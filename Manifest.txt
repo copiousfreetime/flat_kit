@@ -1,1 +1,13 @@
-
+CONTRIBUTING.md
+HISTORY.md
+LICENSE.txt
+Manifest.txt
+README.md
+Rakefile
+lib/flat_kit.rb
+tasks/default.rake
+tasks/extension.rake
+tasks/man.rake
+tasks/this.rb
+test/test_helper.rb
+test/test_version.rb
