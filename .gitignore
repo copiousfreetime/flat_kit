@@ -1,0 +1,28 @@
+*.gem
+*.rbc
+*.log
+/.config
+/coverage/
+/pkg/
+/test/tmp/
+/test/version_tmp/
+/tmp/
+/log/
+
+# Ignore Byebug command history file.
+.byebug_history
+
+# documentation
+/doc/
+
+# editor
+*~
+*.swp
+*.swo
+
+# environment normalization
+/.gem/
+/.bundle/
+/vendor/bundle/
+/lib/bundler/man/
+
