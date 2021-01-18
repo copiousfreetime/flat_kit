@@ -13,7 +13,8 @@ Gem::Specification.new do |s|
   s.date = "2021-01-18"
   s.description = "A library and commandline program for reading, writing, indexing,  sorting, and merging CSV, TSV, JSON and other flat-file formats.".freeze
   s.email = "jeremy@copiousfreetime.org".freeze
-  s.files = ["".freeze]
+  s.extra_rdoc_files = ["CONTRIBUTING.md".freeze, "HISTORY.md".freeze, "LICENSE.txt".freeze, "Manifest.txt".freeze, "README.md".freeze]
+  s.files = ["CONTRIBUTING.md".freeze, "HISTORY.md".freeze, "LICENSE.txt".freeze, "Manifest.txt".freeze, "README.md".freeze, "Rakefile".freeze, "lib/flat_kit.rb".freeze, "tasks/default.rake".freeze, "tasks/extension.rake".freeze, "tasks/man.rake".freeze, "tasks/this.rb".freeze, "test/test_helper.rb".freeze, "test/test_version.rb".freeze]
   s.homepage = "http://github.com/copiousfreetime/flat_kit".freeze
   s.licenses = ["https://opensource.org/licenses/MIT".freeze]
   s.rdoc_options = ["--main".freeze, "README.md".freeze, "--markup".freeze, "tomdoc".freeze]
@@ -26,11 +27,13 @@ Gem::Specification.new do |s|
   end
 
   if s.respond_to? :add_runtime_dependency then
+    s.add_runtime_dependency(%q<optimist>.freeze, ["~> 3.0"])
     s.add_development_dependency(%q<rake>.freeze, ["~> 13.0"])
     s.add_development_dependency(%q<minitest>.freeze, ["~> 5.11"])
     s.add_development_dependency(%q<rdoc>.freeze, ["~> 6.3"])
     s.add_development_dependency(%q<simplecov>.freeze, ["~> 0.21"])
   else
+    s.add_dependency(%q<optimist>.freeze, ["~> 3.0"])
     s.add_dependency(%q<rake>.freeze, ["~> 13.0"])
     s.add_dependency(%q<minitest>.freeze, ["~> 5.11"])
     s.add_dependency(%q<rdoc>.freeze, ["~> 6.3"])

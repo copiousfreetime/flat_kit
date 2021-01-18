@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+require 'flat_kit'
+FlatKit::Cli.new.run(argv: ARGV, env: ENV)
