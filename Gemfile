@@ -2,3 +2,7 @@
 # Make changes to Manifest.txt and/or Rakefile and regenerate
 source "https://rubygems.org"
 gemspec
+
+group :development, :test do
+  gem "byebug"
+end
