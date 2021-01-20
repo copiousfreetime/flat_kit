@@ -29,3 +29,4 @@ module FlatKit
 end
 
 require 'flat_kit/input/io'
+require 'flat_kit/input/file'
