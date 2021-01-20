@@ -54,6 +54,7 @@ module FlatKit
         @name
       end
 
+      # internal api method
       def io
         @io
       end

@@ -29,3 +29,4 @@ module FlatKit
 end
 
 require 'flat_kit/output/io'
+require 'flat_kit/output/file'

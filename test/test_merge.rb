@@ -27,7 +27,7 @@ class TestMerge < ::Minitest::Test
   end
 
   def test_can_use_a_text_path_as_output
-    test_path = "test_can_use_a_text_path_as_output.txt"
+    test_path = "tmp/test_can_use_a_text_path_as_output.txt"
     begin
       merge = ::FlatKit::Merge.new(output: test_path, inputs: [], key: [])
       assert_equal(test_path, merge.output.name)
@@ -39,11 +39,11 @@ class TestMerge < ::Minitest::Test
   end
 
   def test_can_use_a_pathname_as_output
-    test_path = Pathname.new("test_can_use_a_pathname_as_output.txt")
+    test_path = Pathname.new("tmp/test_can_use_a_pathname_as_output.txt")
     begin
       merge = ::FlatKit::Merge.new(output: test_path, inputs: [], key: [])
       assert_equal(test_path.to_s, merge.output.name)
-      assert_equal(::FlatKit::Output::File, merge.output)
+      assert_instance_of(::FlatKit::Output::File, merge.output)
       merge.output.close
     ensure
       test_path.unlink
