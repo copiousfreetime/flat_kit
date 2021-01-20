@@ -59,5 +59,25 @@ module TestOutput
       assert_equal("<STDOUT>", io.name)
       assert_equal(::STDOUT, io.io)
     end
+
+
+    def test_writes_to_io
+      test_path = "tmp/test_writes_to_io.txt"
+      begin
+        File.open(test_path, "w") do |f|
+          io = ::FlatKit::Output::IO.new(f)
+          assert_equal(test_path, io.name)
+          assert_instance_of(::File, io.io)
+          io.write("test_writes_to_io output")
+          io.close
+          assert_equal(1, io.count)
+        end
+        t = IO.read(test_path)
+        assert_equal("test_writes_to_io output", t)
+      ensure
+        File.unlink(test_path) if File.exist?(test_path)
+      end
+    end
+
   end
 end

@@ -1,6 +1,7 @@
 module FlatKit
   class Output
     class IO < Output
+      attr_reader :count
 
       STDOUTS = %w[ stdout STDOUT - ]
       STDERRS = %w[ stderr STDERR ]
@@ -33,6 +34,7 @@ module FlatKit
       end
 
       def initialize(obj)
+        @count = 0
         if self.class.is_stdout?(obj) then
           @name = "<STDOUT>"
           @io = $stdout
@@ -54,7 +56,18 @@ module FlatKit
         @name
       end
 
-      # internal api method
+      def write(obj)
+        rc = @io.write(obj.to_s)
+        @count += 1
+        rc
+      end
+
+      # this goes to an io stream and we are not in charge of opening it
+      def close
+        @io.close
+      end
+
+      # internal api method for testing
       def io
         @io
       end
