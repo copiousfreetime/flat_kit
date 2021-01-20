@@ -57,8 +57,9 @@ module FlatKit
 
       logger.debug(opts)
 
-      merge = ::FlatKit::Merge.new(inputs: opts[:inputs], output: opts[:output],
-                                   logger: logger, key: opts[:key], output_format: :json)
+      merge = ::FlatKit::Merge.new(input_paths: opts[:inputs], key: opts[:key],
+                                   output: opts[:output],
+                                   logger: logger, output_format: :json)
       merge.call
     end
   end
