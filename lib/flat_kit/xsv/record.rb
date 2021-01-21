@@ -25,13 +25,17 @@ module FlatKit
 
         if data.nil? && (complete_structured_data.nil? || complete_structured_data.empty?) then
           raise FlatKit::Error,
-            "#{self.class} requires initialization from data: or complete_strucuted_data:"
+            "#{self.class} requires initialization from data: or complete_structured_data:"
         end
       end
 
       def [](key)
         return nil unless @compare_fields.include?(key)
-        data[key]
+        if data.nil? && !@complete_structured_data.nil? then
+          @complete_structured_data[key]
+        else
+          data[key]
+        end
       end
 
       def complete_structured_data
@@ -39,17 +43,28 @@ module FlatKit
       end
       alias to_hash complete_structured_data
 
+      # convert to a csv line,
+      #
+      # First we use data if it is there since that should be a CSV::Row
+      #
+      # Next, if that doesn't work - iterate over the ordered fields and use the
+      # yield the values from complete_structured_data in that order
+      #
+      # And finally, if that doesn'twork, then just use complete structured data
+      # values in that order.
       def to_s
-        if @data.nil? then
-          values = Array.new.tap do |a|
+        return data.to_csv unless data.nil?
+
+        values = Array.new.tap do |a|
+          if @ordered_fields then
             @ordered_fields.each do |field|
               a << @complete_structured_data[field]
             end
+          else
+            a.concat @complete_structured_data.values
           end
-          CSV.generate_line(values)
-        else
-          @data.to_csv
         end
+        CSV.generate_line(values)
       end
     end
   end

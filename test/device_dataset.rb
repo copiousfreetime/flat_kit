@@ -1,7 +1,6 @@
 class DeviceDataset
 
   attr_reader :count
-  attr_reader :records
   attr_reader :compare_fields
   attr_reader :fields
 
