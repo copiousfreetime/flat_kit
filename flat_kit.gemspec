@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0".freeze) if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib".freeze]
   s.authors = ["Jeremy Hinegardner".freeze]
-  s.date = "2021-01-20"
+  s.date = "2021-01-21"
   s.description = "A library and commandline program for reading, writing, indexing,  sorting, and merging CSV, TSV, JSON and other flat-file formats.".freeze
   s.email = "jeremy@copiousfreetime.org".freeze
   s.extra_rdoc_files = ["CONTRIBUTING.md".freeze, "HISTORY.md".freeze, "LICENSE.txt".freeze, "Manifest.txt".freeze, "README.md".freeze]
@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
   end
 
   if s.respond_to? :add_runtime_dependency then
+    s.add_runtime_dependency(%q<oj>.freeze, ["~> 3.0"])
     s.add_runtime_dependency(%q<optimist>.freeze, ["~> 3.0"])
     s.add_development_dependency(%q<rake>.freeze, ["~> 13.0"])
     s.add_development_dependency(%q<minitest>.freeze, ["~> 5.11"])
@@ -34,6 +35,7 @@ Gem::Specification.new do |s|
     s.add_development_dependency(%q<rdoc>.freeze, ["~> 6.3"])
     s.add_development_dependency(%q<simplecov>.freeze, ["~> 0.21"])
   else
+    s.add_dependency(%q<oj>.freeze, ["~> 3.0"])
     s.add_dependency(%q<optimist>.freeze, ["~> 3.0"])
     s.add_dependency(%q<rake>.freeze, ["~> 13.0"])
     s.add_dependency(%q<minitest>.freeze, ["~> 5.11"])

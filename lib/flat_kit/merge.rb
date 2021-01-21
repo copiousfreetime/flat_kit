@@ -8,12 +8,13 @@ module FlatKit
 
     def initialize(inputs:, key:, output: $stdout,
                    logger: FlatKit.logger, output_format: :json)
-      @inputs = nil
+      @inputs  = inputs.map { |i| FlatKit::Input.from(i) }
+      @key     = key
+      @readers = @inputs.map { |i| FlatKit::Reader.for(i).new(input: i, key: key) }
 
       @output = FlatKit::Output.from(output)
       @output_format = output_format
-
-      @key = key
+      #@writer = Writer.new(output: @output, format: @output_format)
       @logger = logger
     end
 
