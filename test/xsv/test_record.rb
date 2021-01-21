@@ -25,6 +25,7 @@ module TestXsv
       @unsorted_data = @records.map { |r| @ordered_keys.map { |k| r[k] } }
       @sorted_data   = @sorted_records.map { |r| @ordered_keys.map { |k| r[k] } }
 
+      @first_data_line = nil
       @sorted_text = CSV.generate('', headers: @ordered_keys, write_headers: true) do |csv|
         @sorted_data.each do |row|
           csv << row
@@ -75,6 +76,27 @@ module TestXsv
       record = FlatKit::Xsv::Record.new(data: data, compare_fields: @key)
       h = record.to_hash
       assert_equal(h, @sorted_records.first)
+    end
+
+    def test_from_record
+      data = @csv_rows.first
+      rec1 = FlatKit::Xsv::Record.new(data: data, compare_fields: @key)
+      rec2 = FlatKit::Xsv::Record.from_record(rec1)
+      assert_equal(rec1, rec2)
+    end
+
+    def test_incomplete_initialization
+      assert_raises(FlatKit::Error) { 
+        FlatKit::Xsv::Record.new(data: nil, compare_fields: [])
+      }
+    end
+
+    def test_to_s_from_csv_record
+      data = @csv_rows.first
+      rec  = FlatKit::Xsv::Record.new(data: data, compare_fields: @key)
+      line = rec.to_s
+      expected_lines = @sorted_text.split(/\n/)
+      assert_equal(line, expected_lines[1] + "\n")
     end
   end
 end

@@ -6,7 +6,7 @@ module FlatKit
     class Record < ::FlatKit::Record
 
       def self.from_record(record)
-        if record.instance_of(FlatKit::Xsv::Record) then
+        if record.instance_of?(FlatKit::Xsv::Record) then
           new(data: record.data, compare_fields: record.compare_fields)
         else
           new(data: nil, compare_fields: record.compare_fields,
@@ -19,10 +19,11 @@ module FlatKit
                      ordered_fields: nil,
                      complete_structured_data: nil)
         super(data: data, compare_fields: compare_fields)
+
         @ordered_fields = ordered_fields
         @complete_structured_data = complete_structured_data
 
-        if data.nil? && (complete_strucutred_data.nil? || complete_structured_data.empty?) then
+        if data.nil? && (complete_structured_data.nil? || complete_structured_data.empty?) then
           raise FlatKit::Error,
             "#{self.class} requires initialization from data: or complete_strucuted_data:"
         end
@@ -39,7 +40,16 @@ module FlatKit
       alias to_hash complete_structured_data
 
       def to_s
-        @data.to_csv
+        if @data.nil? then
+          values = Array.new.tap do |a|
+            @ordered_fields.each do |field|
+              a << @complete_structured_data[field]
+            end
+          end
+          CSV.generate_line(values)
+        else
+          @data.to_csv
+        end
       end
     end
   end
