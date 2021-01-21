@@ -18,8 +18,8 @@ module FlatKit
     end
 
     #
-    def write
-      raise NotImplementedError, "#{self.class} must implement #write(obj)"
+    def io
+      raise NotImplementedError, "#{self.class} must implement #io"
     end
 
     def close

@@ -4,7 +4,6 @@ module FlatKit
   class Output
     class File < Output
       attr_reader :path
-      attr_reader :count
 
       def self.handles?(obj)
         return true if obj.instance_of?(Pathname)
@@ -18,7 +17,6 @@ module FlatKit
       end
 
       def initialize(obj)
-        @count = 0
         @path = Pathname.new(obj)
         path.dirname.mkpath
         @io = open_output(path)
@@ -26,12 +24,6 @@ module FlatKit
 
       def name
         path.to_s
-      end
-
-      def write(obj)
-        rc = @io.write(obj.to_s)
-        @count += 1
-        rc
       end
 
       def close

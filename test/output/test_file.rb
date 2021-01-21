@@ -34,11 +34,10 @@ module TestOutput
       begin
         output = ::FlatKit::Output::File.new(test_path)
         assert_equal(test_path, output.name)
-        output.write("test_writes_to_file output")
+        output.io.write("test_writes_to_file output")
         output.close
         t = IO.read(test_path)
         assert_equal("test_writes_to_file output", t)
-        assert_equal(1, output.count)
       ensure
         File.unlink(test_path) if File.exist?(test_path)
       end
@@ -49,11 +48,10 @@ module TestOutput
       begin
         output = ::FlatKit::Output::File.new(test_path)
         assert_equal(test_path, output.name)
-        output.write("test_writes_to_gzfile output")
+        output.io.write("test_writes_to_gzfile output")
         output.close
         t = %x[ gunzip -c #{test_path} ]
         assert_equal("test_writes_to_gzfile output", t)
-        assert_equal(1, output.count)
       ensure
         File.unlink(test_path) if File.exist?(test_path)
       end

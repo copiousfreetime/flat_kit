@@ -18,8 +18,8 @@ module FlatKit
     end
 
     #
-    def read
-      raise NotImplementedError, "#{self.class} must implement #read"
+    def io
+      raise NotImplementedError, "#{self.class} must implement #io"
     end
 
     def close

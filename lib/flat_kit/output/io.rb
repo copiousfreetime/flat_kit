@@ -56,12 +56,6 @@ module FlatKit
         @name
       end
 
-      def write(obj)
-        rc = @io.write(obj.to_s)
-        @count += 1
-        rc
-      end
-
       # this goes to an io stream and we are not in charge of opening it
       def close
         @io.close

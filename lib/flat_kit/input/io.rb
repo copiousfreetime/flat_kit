@@ -1,8 +1,6 @@
 module FlatKit
   class Input
     class IO < Input
-      attr_reader :count
-
       STDINS = %w[ stdin STDIN - ]
 
       def self.handles?(obj)
@@ -22,7 +20,6 @@ module FlatKit
       end
 
       def initialize(obj)
-        @count = 0
         if self.class.is_stdin?(obj) then
           @name = "<STDIN>"
           @io = $stdin
