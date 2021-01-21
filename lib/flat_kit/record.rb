@@ -29,8 +29,8 @@ module FlatKit
       raise NotImplementedError, "#{self.class} must implement #to_hash"
     end
 
-    def self.from_hash
-      raise NotImplementedError, "#{self.class} must implement #{self.class}.from_hash"
+    def self.from_record
+      raise NotImplementedError, "#{self.class} must implement #{self.class}.from_record"
     end
   end
 end

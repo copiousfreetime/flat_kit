@@ -73,7 +73,6 @@ module TestXsv
     def test_to_hash
       data   = @csv_rows.first
       record = FlatKit::Xsv::Record.new(data: data, compare_fields: @key)
-      puts @csv_rows.first.to_csv
       h = record.to_hash
       assert_equal(h, @sorted_records.first)
     end
