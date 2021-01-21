@@ -7,9 +7,9 @@ module FlatKit
       attr_reader :compare_data
 
       def self.from_record(record)
-        if record.instance_of(FlatKit::Jsonl::Record) then
+        if record.instance_of?(FlatKit::Jsonl::Record) then
 
-          structured = record.fully_parsed? ? record.complete_structured_data : nil
+          structured = record.complete_structured_data? ? record.complete_structured_data : nil
 
           new(data: record.data, compare_fields: record.compare_fields,
               compare_data: record.compare_data,

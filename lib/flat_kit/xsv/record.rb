@@ -4,6 +4,7 @@ require 'flat_kit/record'
 module FlatKit
   module Xsv
     class Record < ::FlatKit::Record
+
       def self.from_record(record)
         if record.instance_of(FlatKit::Xsv::Record) then
           new(data: record.data, compare_fields: record.compare_fields)

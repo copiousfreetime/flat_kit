@@ -71,8 +71,11 @@ module TestJsonl
       assert_equal(src_record, h)
     end
 
-    def test_converts_from_hash
-      flunk
+    def test_converts_from_record
+      data = JSON.generate(@records.first)
+      rec1 = FlatKit::Jsonl::Record.new(data: data, compare_fields: @key)
+      rec2 = FlatKit::Jsonl::Record.from_record(rec1)
+      assert_equal(rec1, rec2)
     end
   end
 end

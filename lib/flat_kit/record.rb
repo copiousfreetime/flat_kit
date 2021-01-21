@@ -1,5 +1,8 @@
 module FlatKit
   class Record
+
+    include Comparable
+
     attr_reader :data
     attr_reader :compare_fields
 
