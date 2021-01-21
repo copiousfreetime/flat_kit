@@ -19,7 +19,7 @@ module TestJsonl
     end
 
     def test_ignores_non_compare_fields_values
-      record     = FlatKit::Jsonl::Record.new(data: @src_json, compare_fields: @compare_fields)
+      record = FlatKit::Jsonl::Record.new(data: @src_json, compare_fields: @compare_fields)
 
       refute(record["version"])
     end
