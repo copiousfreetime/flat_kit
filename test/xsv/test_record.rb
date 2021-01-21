@@ -5,82 +5,50 @@ require 'byebug'
 module TestXsv
   class TestRecord< ::Minitest::Test
     def setup
-      @records              = Array.new.tap do |a|
-        20.times do
-          a << {
-            "build_number" => Faker::Device.build_number,
-            "manufacturer" => Faker::Device.manufacturer,
-            "model_name"   => Faker::Device.model_name,
-            "platform"     => Faker::Device.platform,
-            "serial"       => Faker::Device.serial,
-            "version"      => Faker::Device.version
-          }
-        end
-      end
-
-      @ordered_keys  = %w[ build_number manufacturer model_name platform version serial ]
-      @key           = %w[ manufacturer model_name ]
-      @sorted_records = @records.sort_by { |r| [r["manufacturer"], r["model_name"]] }
-
-      @unsorted_data = @records.map { |r| @ordered_keys.map { |k| r[k] } }
-      @sorted_data   = @sorted_records.map { |r| @ordered_keys.map { |k| r[k] } }
-
-      @first_data_line = nil
-      @sorted_text = CSV.generate('', headers: @ordered_keys, write_headers: true) do |csv|
-        @sorted_data.each do |row|
-          csv << row
-        end
-      end
-
-      @csv_rows = []
-
-      CSV.new(@sorted_text, converters: :numeric, headers: :first_row, return_headers: false).each do |row|
-        @csv_rows << row
-      end
+      @one_row_dataset = DeviceDataset.new(count: 1)
+      @csv_row = @one_row_dataset.records_as_csv_rows.first
+      @compare_fields = @one_row_dataset.compare_fields
     end
 
     def test_initializes_from_data
-      data   = @csv_rows.first
-      record = FlatKit::Xsv::Record.new(data: data, compare_fields: @key)
-      @key.each do |k|
-        assert_equal(data[k], record[k])
+      record = FlatKit::Xsv::Record.new(data: @csv_row, compare_fields: @compare_fields)
+      original_record = @one_row_dataset.records.first
+      @compare_fields.each do |field|
+        assert_equal(original_record[field], record[field])
       end
     end
 
     def test_ignores_non_compare_fields_values
-      data   = @csv_rows.first
-      record = FlatKit::Xsv::Record.new(data: data, compare_fields: @key)
-
+      record = FlatKit::Xsv::Record.new(data: @csv_row, compare_fields: @compare_fields)
       refute(record["version"])
     end
 
     def test_is_sortable
+      dataset = DeviceDataset.new(count: 20)
       fk_records = Array.new.tap do |a|
-        @csv_rows.each do |data|
-          a << FlatKit::Xsv::Record.new(data: data, compare_fields: @key)
+        dataset.records_as_csv_rows.each do |csv_row|
+          a << FlatKit::Xsv::Record.new(data: csv_row, compare_fields: @compare_fields)
         end
       end
 
       sorted = fk_records.sort
-      output_text = CSV.generate('', headers: @ordered_keys, write_headers: true) do |csv|
+      output_text = CSV.generate('', headers: dataset.fields, write_headers: true) do |csv|
         sorted.each do |row|
           csv << row.data
         end
       end
 
-      assert_equal(output_text, @sorted_text)
+      assert_equal(output_text, dataset.sorted_records_as_csv)
     end
 
     def test_to_hash
-      data   = @csv_rows.first
-      record = FlatKit::Xsv::Record.new(data: data, compare_fields: @key)
+      record = FlatKit::Xsv::Record.new(data: @csv_row, compare_fields: @compare_fields)
       h = record.to_hash
-      assert_equal(h, @sorted_records.first)
+      assert_equal(@one_row_dataset.records.first, h)
     end
 
     def test_from_record
-      data = @csv_rows.first
-      rec1 = FlatKit::Xsv::Record.new(data: data, compare_fields: @key)
+      rec1 = FlatKit::Xsv::Record.new(data: @csv_row, compare_fields: @compare_fields)
       rec2 = FlatKit::Xsv::Record.from_record(rec1)
       assert_equal(rec1, rec2)
     end
@@ -92,11 +60,10 @@ module TestXsv
     end
 
     def test_to_s_from_csv_record
-      data = @csv_rows.first
-      rec  = FlatKit::Xsv::Record.new(data: data, compare_fields: @key)
-      line = rec.to_s
-      expected_lines = @sorted_text.split(/\n/)
-      assert_equal(line, expected_lines[1] + "\n")
+      record = FlatKit::Xsv::Record.new(data: @csv_row, compare_fields: @compare_fields)
+      line = record.to_s
+      expected = @one_row_dataset.records_as_csv_rows[0].to_csv
+      assert_equal(expected, line)
     end
   end
 end
