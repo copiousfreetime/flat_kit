@@ -1,7 +1,13 @@
 require_relative '../test_helper'
 
 module TestInput
+  class NullIO < ::IO
+    def initialize()
+    end
+  end
+
   class TestIO < ::Minitest::Test
+
     def test_handles_stdin_text
       ::FlatKit::Input::IO::STDINS.each do |e|
         assert(::FlatKit::Input::IO.handles?(e), "#{e} is not stdin text")
@@ -37,10 +43,28 @@ module TestInput
       end
     end
 
+    def test_init_from_string_io_object
+      sio = StringIO.new
+      io = ::FlatKit::Input::IO.new(sio)
+      assert_match(/StringIO/, io.name)
+      assert_instance_of(::StringIO, io.io)
+    end
+
+    def test_init_from_io_object
+      null_io = NullIO.new
+      io = ::FlatKit::Input::IO.new(null_io)
+      assert_match(/NullIO/, io.name)
+      assert_instance_of(::TestInput::NullIO, io.io)
+    end
+
     def test_init_from_stdin
       io  = ::FlatKit::Input::IO.new($stdin)
       assert_equal("<STDIN>", io.name)
       assert_equal(::STDIN, io.io)
+    end
+
+    def test_init_from_invalid
+      assert_raises(::FlatKit::Error) { ::FlatKit::Input::IO.new(Object.new) }
     end
 
     def test_reads_from_io

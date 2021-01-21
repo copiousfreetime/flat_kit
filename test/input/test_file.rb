@@ -22,7 +22,6 @@ module TestInput
       refute(::FlatKit::Input::File.handles?(Object.new))
     end
 
-
     def test_raises_error_if_not_readable
       assert_raises(FlatKit::Error) { ::FlatKit::Input::File.new("tmp/does-not-exist") }
     end

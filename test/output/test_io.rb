@@ -1,6 +1,11 @@
 require_relative '../test_helper'
 
 module TestOutput
+  class NullIO < ::IO
+    def initialize()
+    end
+  end
+
   class TestIO < ::Minitest::Test
     def test_handles_stderr_text
       ::FlatKit::Output::IO::STDERRS.each do |e|
@@ -60,6 +65,19 @@ module TestOutput
       assert_equal(::STDOUT, io.io)
     end
 
+    def test_init_from_string_io_object
+      sio = StringIO.new
+      io = ::FlatKit::Output::IO.new(sio)
+      assert_match(/StringIO/, io.name)
+      assert_instance_of(::StringIO, io.io)
+    end
+
+    def test_init_from_io_object
+      null_io = NullIO.new
+      io = ::FlatKit::Output::IO.new(null_io)
+      assert_match(/NullIO/, io.name)
+      assert_instance_of(::TestOutput::NullIO, io.io)
+    end
 
     def test_writes_to_io
       test_path = "tmp/test_writes_to_io.txt"

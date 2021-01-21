@@ -44,6 +44,9 @@ module FlatKit
         elsif obj.kind_of?(::File) then
           @name = obj.path
           @io = obj
+        elsif obj.kind_of?(::StringIO) then
+          @name = obj.inspect
+          @io = obj
         elsif obj.kind_of?(::IO) then
           @name = obj.inspect
           @io = obj
