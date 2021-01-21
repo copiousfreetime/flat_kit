@@ -16,6 +16,10 @@ module FlatKit
       def to_s
         @data.to_csv
       end
+
+      def to_hash
+        @data.to_hash
+      end
     end
   end
 end

@@ -33,7 +33,7 @@ module TestXsv
 
       @csv_rows = []
 
-      CSV.new(@sorted_text, headers: :first_row, return_headers: false).each do |row|
+      CSV.new(@sorted_text, converters: :numeric, headers: :first_row, return_headers: false).each do |row|
         @csv_rows << row
       end
     end
@@ -68,6 +68,14 @@ module TestXsv
       end
 
       assert_equal(output_text, @sorted_text)
+    end
+
+    def test_to_hash
+      data   = @csv_rows.first
+      record = FlatKit::Xsv::Record.new(data: data, compare_fields: @key)
+      puts @csv_rows.first.to_csv
+      h = record.to_hash
+      assert_equal(h, @sorted_records.first)
     end
   end
 end
