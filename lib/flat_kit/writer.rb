@@ -1,5 +1,5 @@
 module FlatKit
-  class Reader
+  class Writer
     extend DescendantTracker
   end
 end
