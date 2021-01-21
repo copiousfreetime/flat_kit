@@ -1,5 +1,4 @@
 require 'test_helper'
-require 'flat_kit'
 
 class TestVersion < ::Minitest::Test
   def test_version_constant_match
