@@ -5,7 +5,7 @@ module FlatKit
 
       def self.handles?(obj)
         return true if is_stdin?(obj)
-        return true if obj.kind_of?(::IO)
+        return true if [ ::File, ::StringIO, ::IO ].any? { |klass| obj.kind_of?(klass) }
         return false
       end
 

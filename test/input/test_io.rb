@@ -19,6 +19,10 @@ module TestInput
       assert(::FlatKit::Input::IO.handles?(x), "is not stdin")
     end
 
+    def test_handles_stringio
+      assert(::FlatKit::Input::IO.handles?(StringIO.new))
+    end
+
     def test_does_not_handle_other
       x = Object.new
       refute(::FlatKit::Input::IO.handles?(x))
