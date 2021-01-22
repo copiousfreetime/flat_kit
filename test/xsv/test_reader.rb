@@ -19,7 +19,7 @@ module TestXsv
 
     def test_fields
       reader = ::FlatKit::Xsv::Reader.new(source: @test_path, compare_fields: @compare_fields)
-      all = reader.to_a
+      reader.to_a
       assert_equal(@dataset.fields, reader.fields)
     end
 
@@ -27,6 +27,12 @@ module TestXsv
       assert_raises(::FlatKit::Error) {
         ::FlatKit::Xsv::Reader.new(source: Object.new, compare_fields: nil)
       }
+    end
+
+    def test_automatically_figures_out_fields_if_needed
+      reader = ::FlatKit::Xsv::Reader.new(source: @test_path)
+      reader.take(1)
+      assert_equal(@dataset.fields, reader.fields)
     end
 
     def test_reads_from_pathname

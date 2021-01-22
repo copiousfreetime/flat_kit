@@ -15,7 +15,7 @@ module FlatKit
         }
       end
 
-      def initialize(source:, compare_fields:, **csv_options)
+      def initialize(source:, compare_fields: :none, **csv_options)
         super(source: source, compare_fields: compare_fields)
         @input = ::FlatKit::Input.from(source)
         @count = 0

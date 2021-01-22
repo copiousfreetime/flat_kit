@@ -15,18 +15,20 @@ module FlatKit
         end
       end
 
-      def initialize(data:, compare_fields:,
-                     ordered_fields: nil,
+      def initialize(data:, compare_fields: :none,
+                     ordered_fields: :auto,
                      complete_structured_data: nil)
         super(data: data, compare_fields: compare_fields)
 
-        @ordered_fields = ordered_fields
         @complete_structured_data = complete_structured_data
+        @ordered_fields = ordered_fields
 
         if data.nil? && (complete_structured_data.nil? || complete_structured_data.empty?) then
           raise FlatKit::Error,
             "#{self.class} requires initialization from data: or complete_structured_data:"
         end
+
+        resolve_ordered_fields
       end
 
       def [](key)
@@ -47,12 +49,8 @@ module FlatKit
         return data.fields unless data.nil?
 
         Array.new.tap do |a|
-          if @ordered_fields then
-            @ordered_fields.each do |field|
-              a << @complete_structured_data[field]
-            end
-          else
-            a.concat @complete_structured_data.values
+          @ordered_fields.each do |field|
+            a << @complete_structured_data[field]
           end
         end
       end
@@ -69,6 +67,18 @@ module FlatKit
       def to_s
         return data.to_csv unless data.nil?
         CSV.generate_line(to_a)
+      end
+
+      private
+
+      def resolve_ordered_fields
+        if (@ordered_fields == :auto) || (@ordered_fields.nil? || @ordered_fields.empty?) then
+          if @data.nil? || @data.empty? then
+            @ordered_fields = complete_structured_data.keys
+          else
+            @ordered_fields = @data.headers
+          end
+        end
       end
     end
   end

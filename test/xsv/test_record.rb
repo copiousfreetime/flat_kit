@@ -54,7 +54,7 @@ module TestXsv
     end
 
     def test_incomplete_initialization
-      assert_raises(FlatKit::Error) { 
+      assert_raises(FlatKit::Error) {
         FlatKit::Xsv::Record.new(data: nil, compare_fields: [])
       }
     end

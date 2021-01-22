@@ -4,7 +4,7 @@ module FlatKit
       attr_reader :input
       attr_reader :count
 
-      def initialize(source:, compare_fields:)
+      def initialize(source:, compare_fields: :none)
         super
         @input = ::FlatKit::Input.from(source)
         @count = 0

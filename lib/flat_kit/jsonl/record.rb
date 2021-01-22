@@ -20,7 +20,7 @@ module FlatKit
         end
       end
 
-      def initialize(data:, compare_fields:,
+      def initialize(data:, compare_fields: :none,
                      compare_data: Hash.new,
                      complete_structured_data: nil)
         super(data: data, compare_fields: compare_fields)
