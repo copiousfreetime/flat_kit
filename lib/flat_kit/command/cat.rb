@@ -1,5 +1,6 @@
 module FlatKit
   class Command
+    # TODO: Implement the --flatten commandline switch
     class Cat < ::FlatKit::Command
       def self.name
         "cat"
@@ -25,6 +26,14 @@ module FlatKit
           The flatfile type(s) will be automatically determined by the file name.
           If the inputs or output is not a file, but from stdin or stdout then
           the input and output types must be specified.
+
+          NOTE: If converting from JSON to CSV and the input JSON does not have
+                every possible field on ever record, then the output csv iwll
+                be corrupted.
+
+                In this case the input json should be fed through 'flatten' first
+                or use the '--flatten' flag which will require an additional pass
+                through the input to gather all the fields
           BANNER
 
           banner <<~USAGE
