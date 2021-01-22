@@ -17,7 +17,7 @@ module FlatKit
           @count += 1
         when FlatKit::Record
           converted_record = ::FlatKit::Jsonl::Record.from_record(record)
-          output.io.write(converted_recod.to_s)
+          output.io.write(converted_record.to_s)
           @count += 1
         else
           raise FlatKit::Error, "Unable to write records of type #{record.class}"
