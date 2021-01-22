@@ -29,6 +29,10 @@ module TestOutput
       assert(::FlatKit::Output::IO.handles?(x), "is not stdout")
     end
 
+    def test_handles_stringio
+      assert(::FlatKit::Output::IO.handles?(StringIO.new))
+    end
+
     def test_does_not_handle_other
       x = Object.new
       refute(::FlatKit::Output::IO.handles?(x))
