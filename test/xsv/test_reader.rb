@@ -17,6 +17,12 @@ module TestXsv
       File.unlink(@test_path) if File.exist?(@test_path)
     end
 
+    def test_fields
+      reader = ::FlatKit::Xsv::Reader.new(source: @test_path, compare_fields: @compare_fields)
+      all = reader.to_a
+      assert_equal(@dataset.fields, reader.fields)
+    end
+
     def test_raises_error_on_invalid_source
       assert_raises(::FlatKit::Error) {
         ::FlatKit::Xsv::Reader.new(source: Object.new, compare_fields: nil)
