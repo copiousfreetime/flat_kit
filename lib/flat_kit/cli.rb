@@ -1,5 +1,5 @@
 require 'optimist'
-require 'flat_kit/logger'
+require_relative '../flat_kit/command'
 require 'csv'
 
 module FlatKit
@@ -12,41 +12,55 @@ module FlatKit
 
     def parser
       @parser ||= ::Optimist::Parser.new do
-        version "FlatKit v#{::FlatKit::VERSION}"
+        version ::FlatKit::VERSION
 
-        usage "[options] inputfile(s)"
+        banner "fk v#{self.version}"
 
-        opt :log, "Set the logger output location", default: "<stderr>"
-        #opt :debug, "Force debug. Output lots of informtion to standard error", default: false
-        opt :key, "The comma separted list of field(s) to use for sorting the input", required: true, type: :string
-        opt :merge, "Merge only. The input files are assumed to be pre-sorted. If they are not sorted the output order is undefined.", default: true
-        opt :output, "Send the output to the given path instead of standard out.", default: "<stdout>"
-        #opt :output_format, "Output format, csv or json", default: "json"
+        banner <<~USAGE
+
+        Usage:
+          fk <command> [<args>...]
+          fk [options]
+        USAGE
+
+        banner <<~OPTIONS
+
+        Options:
+
+        OPTIONS
+
+        opt :verbose, "Force debug. Output lots of informtion to standard error", default: false
+        opt :list, "List all the commands", default: false, short: :none
+        opt :log, "Set the logger output location", default: "<stderr>", short: :none
+        opt :help, "Show help message", short: :h
+        opt :version, "Print version and exit", short: :none
+
+        stop_on FlatKit::Command.names
+        banner Cli.commands_banner
+
+            #opt :key, "The comma separted list of field(s) to use for sorting the input", required: true, type: :string
+            #opt :merge, "Merge only. The input files are assumed to be pre-sorted. If they are not sorted the output order is undefined.", default: true
       end
+    end
+
+    def self.commands_banner
+      sorted_commands = FlatKit::Command.children.sort_by{ |c| c.name }
+      left_width = sorted_commands.map { |c| c.name.length }.sort.last
+      banner = StringIO.new
+      banner.puts
+      banner.puts "Commands:"
+      banner.puts
+
+      sorted_commands.each do |command|
+        banner.puts "  #{command.name.ljust(left_width)}    #{command.description}"
+      end
+      banner.string
     end
 
     def run(argv: ARGV, env: ENV)
       opts = ::Optimist::with_standard_exception_handling(parser) do
         o = parser.parse(argv)
-        raise Optimist::CommandlineError, "At least 1 input file is required" if parser.leftovers.empty?
-
-        if !o[:output_given] then
-          o[:output] = $stdout
-        end
-        o
       end
-
-      # parse the key fields
-      opts[:key] = CSV.parse_line(opts[:key])
-
-      # gather the inputs
-      opts[:inputs] = parser.leftovers.map { |input|
-        if input == "-" then
-          $stdin
-        else
-          input
-        end
-      }
 
       # setup logger
       logger = ::FlatKit.logger
@@ -55,12 +69,19 @@ module FlatKit
         logger = ::FlatKit::Logger.for_path(opts[:log])
       end
 
-      logger.debug(opts)
+      if opts[:verbose] then
+        logger.level = :debug
+      else
+        logger.level = :info
+      end
 
-      merge = ::FlatKit::Merge.new(input_paths: opts[:inputs], key: opts[:key],
-                                   output: opts[:output],
-                                   logger: logger, output_format: :json)
-      merge.call
+      logger.debug opts
+      logger.debug argv
+
+      command_name  = argv.shift
+      command_klass = FlatKit::Command.for(command_name)
+      command       = command_klass.new(argv: argv, logger: logger, env: env)
+      command.call
     end
   end
 end

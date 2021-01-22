@@ -1,3 +1,5 @@
 module FlatKit
-  class Error < ::StandardError; end
+  class Error < ::StandardError
+    class UnknownFormat < ::FlatKit::Error; end
+  end
 end
