@@ -22,13 +22,20 @@ module FlatKit
     attr_reader :source
     attr_reader :compare_fields
 
-    def initialize(source:, compare_fields:)
+    def initialize(source:, compare_fields: :none)
       @source = source
-      @compare_fields = compare_fields
+      @compare_fields = resolve_compare_fields(compare_fields)
     end
 
     def each
       raise NotImplementedError, "#{self.class} needs to implement #each"
+    end
+
+    private
+
+    def resolve_compare_fields(value)
+      return [] if value == :none
+      return value
     end
   end
 end

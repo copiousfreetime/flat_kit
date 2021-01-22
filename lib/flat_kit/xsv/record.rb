@@ -4,6 +4,7 @@ require 'flat_kit/record'
 module FlatKit
   module Xsv
     class Record < ::FlatKit::Record
+      attr_reader :ordered_fields
 
       def self.from_record(record, ordered_fields: nil)
         if record.instance_of?(FlatKit::Xsv::Record) then
