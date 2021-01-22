@@ -13,12 +13,10 @@ module FlatKit
       def write(record)
         case record
         when FlatKit::Jsonl::Record
-          output.io.write(record.to_s)
-          @count += 1
+          write_record(record)
         when FlatKit::Record
           converted_record = ::FlatKit::Jsonl::Record.from_record(record)
-          output.io.write(converted_record.to_s)
-          @count += 1
+          write_record(converted_record)
         else
           raise FlatKit::Error, "Unable to write records of type #{record.class}"
         end
@@ -31,6 +29,12 @@ module FlatKit
 
       def close
         @output.close
+      end
+
+      def write_record(record)
+        # enforces ending in newlin if it doesn't already have one
+        output.io.puts record.to_s
+        @count += 1
       end
     end
   end
