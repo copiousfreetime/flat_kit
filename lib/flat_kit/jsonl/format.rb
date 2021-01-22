@@ -8,6 +8,14 @@ module FlatKit
         end
         return false
       end
+
+      def self.reader
+        ::FlatKit::Jsonl::Reader
+      end
+
+      def self.writer
+        ::FlatKit::Jsonl::Writer
+      end
     end
   end
 end

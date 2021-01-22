@@ -8,6 +8,14 @@ module FlatKit
         end
         return false
       end
+
+      def self.reader
+        ::FlatKit::Xsv::Reader
+      end
+
+      def self.writer
+        ::FlatKit::Xsv::Writer
+      end
     end
   end
 end
