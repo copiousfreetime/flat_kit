@@ -1,7 +1,5 @@
 module FlatKit
   class Command
-    attr_reader :input_paths
-
     class Cat < ::FlatKit::Command
       def self.name
         "cat"
@@ -51,46 +49,17 @@ module FlatKit
         end
       end
 
-      def parse
-        require 'byebug'
-        parser = self.class.parser
-        ::Optimist::with_standard_exception_handling(parser) do
-          @opts = parser.parse(argv)
-          @input_paths = parser.leftovers
-          if @input_paths.empty? then
-            @input_paths << "-"
-          end
-
-          @readers = Array.new.tap do |a|
-            @input_paths.each do |path|
-              begin
-                format = format_for(path: path, fallback: opts[:input_format])
-                a << format.reader.new(source: path)
-              rescue StandardError => e
-                raise ::Optimist::CommandlineError, e.message
-              end
-            end
-          end
-
-          # output fallback is the first readers format
-          output_fallback = opts[:output_format]
-          if output_fallback == "auto" then
-            output_fallback = @readers.first.format_name
-          end
-
-          output_format = format_for(path: opts[:output], fallback: output_fallback)
-          @writer = output_format.writer.new(destination: opts[:output])
-        end
-      end
-
       def call
-        @readers.each do |r|
-          logger.info "Cat #{r.source} to #{@writer.destination}"
+        total = 0
+        readers.each do |r|
+          logger.info "cat #{r.source} to #{writer.destination}"
           r.each do |record|
-            @writer.write(record)
+            writer.write(record)
           end
+          total += r.count
         end
-        @writer.close
+        writer.close
+        logger.debug "processed #{total} records"
       end
     end
   end

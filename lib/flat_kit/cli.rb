@@ -1,6 +1,5 @@
 require 'optimist'
 require_relative '../flat_kit/command'
-require 'csv'
 
 module FlatKit
   class Cli
@@ -37,9 +36,6 @@ module FlatKit
 
         stop_on FlatKit::Command.names
         banner Cli.commands_banner
-
-            #opt :key, "The comma separted list of field(s) to use for sorting the input", required: true, type: :string
-            #opt :merge, "Merge only. The input files are assumed to be pre-sorted. If they are not sorted the output order is undefined.", default: true
       end
     end
 
