@@ -5,7 +5,7 @@ module FlatKit
   module Xsv
     class Record < ::FlatKit::Record
 
-      def self.from_record(record)
+      def self.from_record(record, ordered_fields: nil)
         if record.instance_of?(FlatKit::Xsv::Record) then
           new(data: record.data, compare_fields: record.compare_fields)
         else
@@ -43,6 +43,20 @@ module FlatKit
       end
       alias to_hash complete_structured_data
 
+      def to_a
+        return data.fields unless data.nil?
+
+        Array.new.tap do |a|
+          if @ordered_fields then
+            @ordered_fields.each do |field|
+              a << @complete_structured_data[field]
+            end
+          else
+            a.concat @complete_structured_data.values
+          end
+        end
+      end
+
       # convert to a csv line,
       #
       # First we use data if it is there since that should be a CSV::Row
@@ -54,17 +68,7 @@ module FlatKit
       # values in that order.
       def to_s
         return data.to_csv unless data.nil?
-
-        values = Array.new.tap do |a|
-          if @ordered_fields then
-            @ordered_fields.each do |field|
-              a << @complete_structured_data[field]
-            end
-          else
-            a.concat @complete_structured_data.values
-          end
-        end
-        CSV.generate_line(values)
+        CSV.generate_line(to_a)
       end
     end
   end
