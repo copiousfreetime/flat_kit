@@ -27,6 +27,10 @@ module FlatKit
       @compare_fields = resolve_compare_fields(compare_fields)
     end
 
+    def format_name
+      self.class.format_name
+    end
+
     def each
       raise NotImplementedError, "#{self.class} needs to implement #each"
     end

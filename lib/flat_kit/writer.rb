@@ -17,6 +17,10 @@ module FlatKit
       @destination = destination
     end
 
+    def format_name
+      self.class.format_name
+    end
+
     def write(record)
       raise NotImplementedError, "#{self.class} needs to implement #write"
     end

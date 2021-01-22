@@ -1,6 +1,10 @@
 module FlatKit
   module Jsonl
     class Format < ::FlatKit::Format
+      def self.format_name
+        "jsonl"
+      end
+
       def self.handles?(filename)
         parts = filename.split(".")
         %w[ json jsonl ndjson ].each do |ext|

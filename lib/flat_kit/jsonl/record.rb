@@ -6,6 +6,10 @@ module FlatKit
     class Record < ::FlatKit::Record
       attr_reader :compare_data
 
+      def self.format_name
+        ::FlatKit::Jsonl::Format.format_name
+      end
+
       def self.from_record(record)
         if record.instance_of?(FlatKit::Jsonl::Record) then
 

@@ -46,6 +46,10 @@ module FlatKit
       @compare_fields = compare_fields
     end
 
+    def format_name
+      self.class.format_name
+    end
+
     def <=>(other)
       compare_result = nil
 

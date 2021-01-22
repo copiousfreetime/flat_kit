@@ -1,6 +1,10 @@
 module FlatKit
   module Xsv
     class Format < ::FlatKit::Format
+      def self.format_name
+        "xsv"
+      end
+
       def self.handles?(filename)
         parts = filename.split(".")
         %w[ csv tsv txt ].each do |ext|

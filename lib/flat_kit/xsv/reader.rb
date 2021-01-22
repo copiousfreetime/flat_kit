@@ -7,6 +7,10 @@ module FlatKit
       attr_reader :count
       attr_reader :fields
 
+      def self.format_name
+        ::FlatKit::Xsv::Format.format_name
+      end
+
       def self.default_csv_options
         {
           headers: :first_row,

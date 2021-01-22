@@ -6,6 +6,10 @@ module FlatKit
     class Record < ::FlatKit::Record
       attr_reader :ordered_fields
 
+      def self.format_name
+        ::FlatKit::Xsv::Format.format_name
+      end
+
       def self.from_record(record, ordered_fields: nil)
         if record.instance_of?(FlatKit::Xsv::Record) then
           new(data: record.data, compare_fields: record.compare_fields)

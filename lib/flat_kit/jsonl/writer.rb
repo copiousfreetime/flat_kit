@@ -4,6 +4,10 @@ module FlatKit
       attr_reader :output
       attr_reader :count
 
+      def self.format_name
+        ::FlatKit::Jsonl::Format.format_name
+      end
+
       def initialize(destination:)
         super
         @output = ::FlatKit::Output.from(@destination)

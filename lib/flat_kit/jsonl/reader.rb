@@ -4,6 +4,10 @@ module FlatKit
       attr_reader :input
       attr_reader :count
 
+      def self.format_name
+        ::FlatKit::Jsonl::Format.format_name
+      end
+
       def initialize(source:, compare_fields: :none)
         super
         @input = ::FlatKit::Input.from(source)
