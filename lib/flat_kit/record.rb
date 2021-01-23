@@ -56,6 +56,11 @@ module FlatKit
       compare_fields.each do |field|
         my_val         = self[field]
         other_val      = other[field]
+
+        return  0 if my_val.nil? && other_val.nil?
+        return -1 if my_val.nil?
+        return  1 if other_val.nil?
+
         compare_result = my_val.<=>(other_val)
 
         return compare_result unless compare_result.zero?
