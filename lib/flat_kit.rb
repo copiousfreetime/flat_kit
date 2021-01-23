@@ -13,3 +13,6 @@ require 'flat_kit/output'
 require 'flat_kit/cli'
 require 'flat_kit/xsv'
 require 'flat_kit/jsonl'
+
+require 'flat_kit/merge_node'
+require 'flat_kit/merge_tree'
