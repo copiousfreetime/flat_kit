@@ -4,15 +4,21 @@ module FlatKit
 
     attr_reader :left
     attr_reader :right
-    attr_reader :value
+    attr_reader :winner
+    attr_accessor :next_level
 
     def initialize(left: nil, right: nil)
       @left = nil
       @right = nil
-      @value = nil
+      @winner = nil
+      @next_level = nil
     end
 
     def sentinel?
+      true
+    end
+
+    def leaf?
       true
     end
 

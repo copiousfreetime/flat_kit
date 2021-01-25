@@ -3,23 +3,75 @@ module FlatKit
 
     include Comparable
 
-    attr_accessor :value
-    attr_accessor :left
-    attr_accessor :right
+    attr_accessor :left        # Internal Node
+    attr_accessor :right       # Internal Node
+    attr_accessor :winner      # Internal Node
+    attr_accessor :next_level  # Who to tell
+    attr_accessor :leaf        # winning leaf node
 
     def initialize(left:, right:)
-      @left     = left
-      @right    = right
-      @value    = left <= right ? left.value : right.value
+      @left       = left
+      @left.next_level = self
+
+      @right      = right
+      @right.next_level = self
+      @next_level  = nil
+
+      play
+    end
+
+    def value
+      winner.value
     end
 
     def sentinel?
       false
     end
 
+    def leaf?
+      false
+    end
+
+    # We are being told that the passed in node no longer has data in it and is
+    # to be removed from the tree.
+    #
+    # We replace our reference to this node with a sentinal node so that
+    # comparisons work correctly.
+    #
+    # After updating the node, we then need to check and see if both of our
+    # child nodes are sentinels, and if so, then tell our parent to remove us
+    # from the tree.
+    #
+    def player_finished(node)
+      if left.object_id == node.object_id then
+        @left = SentinelInternalNode.new
+        @left.next_level = self
+      elsif right.object_id == node.object_id then
+        @right = SentinelInternalNode.new
+        @right.next_level = self
+      else
+        raise FlatKit::Error, "Unknown player #{node}"
+      end
+
+      if @right.sentinel? && @left.sentinel? then
+        next_level.player_finished(self) if next_level
+        @right = nil
+        @left = nil
+        @winner = nil
+      end
+    end
+
+    def play
+      @winner = left <= right ? left : right
+      if !@winner.sentinel? then
+        @leaf = winner.leaf
+      end
+      next_level.play if next_level
+    end
+
     def <=>(other)
       return -1 if other.sentinel?
-      @value.<=>(other.value)
+      value.<=>(other.value)
     end
   end
 end

@@ -2,7 +2,13 @@ module FlatKit
   class SentinelLeafNode
     include Comparable
 
+    attr_accessor :next_level
+
     def sentinel?
+      true
+    end
+
+    def leaf?
       true
     end
 

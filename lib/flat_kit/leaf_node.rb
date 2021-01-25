@@ -6,18 +6,38 @@ module FlatKit
     attr_reader :reader
     attr_reader :value
 
+    attr_accessor :next_level
+
     def initialize(reader)
-      @reader = reader
-      @enum = @reader.to_enum
-      @value = @enum.next
+      @reader     = reader
+      @enum       = @reader.to_enum
+      @value      = @enum.next
+
+      @next_level = nil
+    end
+
+    def winner
+      value
     end
 
     def sentinel?
       false
     end
 
-    def external_node
+    def leaf?
+      true
+    end
+
+    def leaf
       self
+    end
+
+    def update_and_replay
+      self.next
+      if finished? then
+        next_level.player_finished(self)
+      end
+      next_level.play
     end
 
     def next
@@ -35,6 +55,8 @@ module FlatKit
 
     def <=>(other)
       return -1 if other.sentinel?
+      byebug if self.value.nil?
+      byebug if other.value.nil?
       self.value.<=>(other.value)
     end
   end

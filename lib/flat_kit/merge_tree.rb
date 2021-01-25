@@ -2,12 +2,10 @@ module FlatKit
   class MergeTree
     attr_reader :leaves
     attr_reader :levels
-    attr_reader :root
+    attr_reader :readers
 
     def initialize(readers)
       @readers = readers
-      @root = nil
-
       @leaves = []
       @levels = []
 
@@ -24,24 +22,21 @@ module FlatKit
 
     #
     # Initialize the tournament tree, go in depths - bottom layer will be the
-    # losers of the 2 leaf nodes, next layer will be 
+    # winners of the 2 leaf nodes, continuing until top layer is just 1 node
+    #
     def init_tree
       values = @leaves.dup
       loop do
         break if values.size == 1
 
-        # need to make sure we have an even number of elements in values
-        if values.size.odd? then
-          values << SentinelInternalNode.new
-        end
-
-        losers = []
+        winners = []
 
         values.each_slice(2) do |left, right|
-          losers << InternalNode.new(left: left, right: right)
+          right = SentinelInternalNode.new if right.nil?
+          winners << InternalNode.new(left: left, right: right)
         end
-        values = losers
-        @levels << losers
+        values = winners
+        @levels << winners
       end
     end
 
@@ -51,6 +46,25 @@ module FlatKit
 
     def depth
       @levels.size
+    end
+
+    def each
+      loop do
+        break if root.leaf.finished?
+        yield root.value
+        leaf = root.leaf
+        leaf.update_and_replay
+      end
+    end
+
+    def walk
+      traverse(root)
+    end
+
+    def traverse(node)
+      traverse(node.left) unless node.leaf?
+      $stderr.puts "#{node.class}"
+      traverse(node.right) unless node.leaf?
     end
   end
 end
