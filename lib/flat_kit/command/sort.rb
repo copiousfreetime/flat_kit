@@ -82,7 +82,7 @@ module FlatKit
 
       def call
         sort.call
-     end
+      end
     end
   end
 end
