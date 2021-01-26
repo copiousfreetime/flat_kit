@@ -30,7 +30,7 @@ module FlatKit
 
           The flatfile type(s) will be automatically determined by the file name.
           If the output is not a file, but to stdout then the output type will
-          be the same as hte first input file, or it can be specified as a commandline
+          be the same as the first input file, or it can be specified as a commandline
           switch.
 
           The merge will do a single pass through the input to generate the
@@ -66,11 +66,12 @@ module FlatKit
         parser = self.class.parser
         ::Optimist::with_standard_exception_handling(parser) do
           @opts = parser.parse(argv)
+          @compare_keys = CSV.parse_line(opts[:key])
           paths = parser.leftovers
-          @readers = create_readers_from_paths(paths: paths, fallback: opts[:input_format])
+          raise ::Optimist::CommandlineError, "At least 2 input files are required" if paths.size < 2
+          @readers = create_readers_from_paths(paths: paths, compare_fields: @compare_keys, fallback: opts[:input_format])
           @writer  = create_writer_from_path(path: opts[:output], fallback: opts[:output_format],
                                              reader_format: @readers.first.format_name)
-          @compare_keys = CSV.parse_line(opts[:key])
         end
       end
 
@@ -80,6 +81,16 @@ module FlatKit
         readers.each do |r|
           logger.info "  #{r.source}"
         end
+
+        merge_tree = ::FlatKit::MergeTree.new(readers)
+        merge_tree.each do |record|
+          writer.write(record)
+        end
+        readers.each do |r|
+          logger.info "  #{r.source} produced #{r.count} records"
+        end
+        writer.close
+        logger.info "Wrote #{writer.count} records to #{writer.destination}"
       end
     end
   end

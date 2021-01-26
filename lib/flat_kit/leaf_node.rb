@@ -44,6 +44,7 @@ module FlatKit
     def update_and_replay
       self.next
       if finished? then
+        ::FlatKit.logger.debug "#{reader.source} has finished reading #{reader.count} records"
         next_level.player_finished(self)
       end
       next_level.play

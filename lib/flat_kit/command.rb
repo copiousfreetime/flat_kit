@@ -67,7 +67,7 @@ module FlatKit
     end
 
     # Should ::Optimist::with_standard_exception_handling(parser) block
-    def create_readers_from_paths(paths:, fallback:)
+    def create_readers_from_paths(paths:, fallback:, compare_fields: :none)
       if paths.empty? then
         paths << "-"
       end
@@ -76,7 +76,7 @@ module FlatKit
         paths.each do |path|
           begin
             format = format_for(path: path, fallback: fallback)
-            a << format.reader.new(source: path)
+            a << format.reader.new(source: path, compare_fields: compare_fields)
           rescue StandardError => e
             raise ::Optimist::CommandlineError, e.message
           end
