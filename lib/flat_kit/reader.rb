@@ -22,7 +22,7 @@ module FlatKit
     attr_reader :source
     attr_reader :compare_fields
 
-    def self.create_reader_from_path(path:, fallback: "auto", compare_fields: :none)
+    def self.create_reader_from_path(path: "-", fallback: "auto", compare_fields: :none)
       format = ::FlatKit::Format.for_with_fallback!(path: path, fallback: fallback)
       return format.reader.new(source: path, compare_fields: compare_fields)
     end

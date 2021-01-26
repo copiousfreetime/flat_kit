@@ -1,67 +1,36 @@
 module FlatKit
   class Merge
+    attr_reader :readers
+    attr_reader :writer
     attr_reader :compare_fields
-    attr_reader :inputs
-    attr_reader :output
-    attr_reader :logger
-    attr_reader :output_format
 
-    def initialize(inputs:, compare_fields:, input_format: :auto,
-                   output: $stdout, output_format: :auto,
-                   logger: FlatKit.logger)
+    def initialize(inputs:, input_fallback: "auto",
+                   output:, output_fallback: "auto",
+                   compare_fields:)
 
-      @compare_fields = compare_fields.map{ |k| k.to_s }
-      @inputs         = inputs
-      @input_format   = input_format
-      @output         = output
-      @output_format  = ::FlatKit::Format.for(output_format)
-
-      @readers = Array.new.tap do |a|
-        @inputs.each do |i|
-          format = ::FlatKit::Format.for(i)
-          reader = format.reader.new(source: i, compare_fields: @compare_fields)
-        end
-      end
-
-      @readers = inputs.map { |r|
-        format 
-        FlatKit::Reader.new(source: i, compare_fields: compare_fields, format: input_format) 
-      }
-
-      @output_format = output_format
-      format = ::FlatKit::Format.for(output)
-      @writer = format.writer.new(destination: output)
-
-      @logger = logger
+      @compare_fields = compare_fields
+      @readers = ::FlatKit::Reader.create_readers_from_paths(paths: inputs, compare_fields: @compare_fields,
+                                                             fallback: input_fallback)
+      @writer  = ::FlatKit::Writer.create_writer_from_path(path: output, fallback: output_fallback,
+                                                           reader_format: @readers.first.format_name)
     end
 
-  end
-end
-__END__
     def call
+      ::FlatKit.logger.info "Merging the following files into #{writer.destination}"
+      ::FlatKit.logger.info "Using this key for sorting: #{compare_fields.join(", ")}"
+      readers.each do |r|
+        ::FlatKit.logger.info "  #{r.source}"
+      end
 
-compare_fields = %w[ ms t ]
-format = ::FlatKit::Format.for('json')
-readers = ARGV.map do |path|
-  format.reader.new(source: path, compare_fields: compare_fields)
-end
-
-writer = format.writer.new(destination: "output.jsonl.gz")
-tree = ::FlatKit::MergeTree.new(readers)
-count = 0
-tree.each do |record|
-  writer.write(record)
-  #puts "#{"%6s" % record['ms']} #{record['t']}"
-  count += 1
-end
-writer.close
-
-read_count = 0
-tree.readers.each do |r|
-  $stderr.puts "Reader #{r.source} count #{r.count}"
-  read_count += r.count
-end
-$stde
+      merge_tree = ::FlatKit::MergeTree.new(readers)
+      merge_tree.each do |record|
+        writer.write(record)
+      end
+      readers.each do |r|
+        ::FlatKit.logger.info "  #{r.source} produced #{r.count} records"
+      end
+      writer.close
+      ::FlatKit.logger.info "Wrote #{writer.count} records to #{writer.destination}"
     end
   end
 end

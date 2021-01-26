@@ -71,9 +71,9 @@ module FlatKit
             paths = parser.leftovers
             raise ::Optimist::CommandlineError, "At least 2 input files are required" if paths.size < 2
 
-            @readers = ::FlatKit::Reader.create_readers_from_paths(paths: paths, compare_fields: @compare_keys, fallback: opts[:input_format])
-            @writer  = ::FlatKit::Writer.create_writer_from_path(path: opts[:output], fallback: opts[:output_format],
-                                               reader_format: @readers.first.format_name)
+            @merge = ::FlatKit::Merge.new(inputs: paths, input_fallback: opts[:input_format],
+                                          compare_fields: @compare_keys,
+                                          output: opts[:output], output_fallback: opts[:output_format])
           rescue ::FlatKit::Error => e
             raise ::Optimist::CommandlineError, e.message
           end
@@ -81,21 +81,7 @@ module FlatKit
       end
 
       def call
-        logger.info "Merging the following files into #{writer.destination}"
-        logger.info "Using this key for sorting: #{compare_keys.join(", ")}"
-        readers.each do |r|
-          logger.info "  #{r.source}"
-        end
-
-        merge_tree = ::FlatKit::MergeTree.new(readers)
-        merge_tree.each do |record|
-          writer.write(record)
-        end
-        readers.each do |r|
-          logger.info "  #{r.source} produced #{r.count} records"
-        end
-        writer.close
-        logger.info "Wrote #{writer.count} records to #{writer.destination}"
+        @merge.call
       end
     end
   end
