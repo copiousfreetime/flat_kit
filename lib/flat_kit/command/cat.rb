@@ -58,17 +58,31 @@ module FlatKit
         end
       end
 
+      def parse
+        parser = self.class.parser
+        ::Optimist::with_standard_exception_handling(parser) do
+          begin
+            @opts = parser.parse(argv)
+            paths = parser.leftovers
+
+            @readers = ::FlatKit::Reader.create_readers_from_paths(paths: paths, fallback: opts[:input_format])
+            @writer  = ::FlatKit::Writer.create_writer_from_path(path: opts[:output], fallback: opts[:output_format],
+                                                                 reader_format: @readers.first.format_name)
+          rescue ::FlatKit::Error => e
+            raise ::Optimist::CommandlineError, e.message
+          end
+        end
+      end
+
       def call
-        total = 0
         readers.each do |r|
           logger.info "cat #{r.source} to #{writer.destination}"
           r.each do |record|
             writer.write(record)
           end
-          total += r.count
         end
         writer.close
-        logger.debug "processed #{total} records"
+        logger.debug "processed #{writer.count} records"
       end
     end
   end

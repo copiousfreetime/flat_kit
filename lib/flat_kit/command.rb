@@ -40,14 +40,6 @@ module FlatKit
 
     def parse
       raise NotImplementedError, "#{self.class} must implement #{self.class}#parse"
-      # parser = self.class.parser
-      # ::Optimist::with_standard_exception_handling(parser) do
-      #   @opts = parser.parse(argv)
-      #   paths = parser.leftovers
-      #   @readers = create_readers_from_paths(paths: paths, fallback: opts[:input_format])
-      #   @writer  = create_writer_from_path(path: opts[:output], fallback: opts[:output_format],
-      #                                      reader_format: @readers.first.format_name)
-      # end
     end
 
     def call
