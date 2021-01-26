@@ -1,4 +1,10 @@
 module FlatKit
+  # Private: The Sentinel Internal Node is a private class used by the MergeTree
+  # class.
+  #
+  # This class represents an empty / completed node in the merge tree where all
+  # the data from the descendant leaf node is full used up.
+  #
   class SentinelInternalNode
     include Comparable
 

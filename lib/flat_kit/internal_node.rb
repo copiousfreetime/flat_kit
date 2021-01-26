@@ -1,4 +1,14 @@
 module FlatKit
+  # Private: This is a class used internally by MergeTree and should not be used
+  # outside of that context.
+  #
+  # The InternalNode represents a single element of the tournament tree
+  # altorithm holding references to the to other internal nodes that competed in
+  # this node and which one is the winner.
+  #
+  # A reference to the leaf node that is associated with the winner is also kept
+  # here.
+  #
   class InternalNode
 
     include Comparable
@@ -55,9 +65,6 @@ module FlatKit
 
       if @right.sentinel? && @left.sentinel? then
         next_level.player_finished(self) if next_level
-        @right = nil
-        @left = nil
-        @winner = nil
       end
     end
 

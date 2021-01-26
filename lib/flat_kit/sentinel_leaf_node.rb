@@ -1,4 +1,8 @@
 module FlatKit
+  # Private: The Sentinel Leaf Node is used internally by the MergeTree
+  #
+  # This class represents a LeafNode that has no more data
+  #
   class SentinelLeafNode
     include Comparable
 

@@ -1,4 +1,13 @@
 module FlatKit
+  # Private: The LeafNode is a wrapper around a Reader object to enable
+  # a consistent api for use in the MergeTree
+  #
+  # The LeafNode keeps track of the head of the reader list and when its value
+  # is used up, it pulls the next value and then notifies the next level of the
+  # MergeTree that its value has changed and so should do another play.
+  #
+  # If all the data is used up from the reader, it also notifies the next level
+  # of that so the next level can remove it from the tree.
   class LeafNode
 
     include Comparable
