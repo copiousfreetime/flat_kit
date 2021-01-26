@@ -55,7 +55,7 @@ module FlatKit
 
     def run(argv: ARGV, env: ENV)
       opts = ::Optimist::with_standard_exception_handling(parser) do
-        o = parser.parse(argv)
+        parser.parse(argv)
       end
 
       if opts[:log_given] then
