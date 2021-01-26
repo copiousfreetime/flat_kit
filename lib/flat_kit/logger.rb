@@ -25,6 +25,13 @@ module FlatKit
     end
   end
 
+  def self.log_to(destination = $stderr)
+    if destination.kind_of?(::IO) then
+      @logger = ::FlatKit::Logger.for_io(destination)
+    else
+      @logger = ::FlatKit::Logger.for_path(destination)
+    end
+  end
 
   def self.logger
     @logger ||= ::FlatKit::Logger.for_io($stderr)

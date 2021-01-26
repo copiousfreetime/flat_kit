@@ -58,25 +58,22 @@ module FlatKit
         o = parser.parse(argv)
       end
 
-      # setup logger
-      logger = ::FlatKit.logger
-
       if opts[:log_given] then
-        logger = ::FlatKit::Logger.for_path(opts[:log])
+        ::FlatKit.log_to(opts[:log])
       end
 
       if opts[:verbose] then
-        logger.level = :debug
+        ::FlatKit.logger.level = :debug
       else
-        logger.level = :info
+        ::FlatKit.logger.level = :info
       end
 
-      logger.debug opts
-      logger.debug argv
+      ::FlatKit.logger.debug opts
+      ::FlatKit.logger.debug argv
 
       command_name  = argv.shift
       command_klass = FlatKit::Command.for(command_name)
-      command       = command_klass.new(argv: argv, logger: logger, env: env)
+      command       = command_klass.new(argv: argv, logger: ::FlatKit.logger, env: env)
       command.call
     end
   end
