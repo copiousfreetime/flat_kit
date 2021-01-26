@@ -14,7 +14,7 @@ module FlatKit
       @inputs         = inputs
       @input_format   = input_format
       @output         = output
-      @output_format  = output_format
+      @output_format  = ::FlatKit::Format.for(output_format)
 
       @readers = Array.new.tap do |a|
         @inputs.each do |i|

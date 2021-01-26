@@ -65,13 +65,18 @@ module FlatKit
       def parse
         parser = self.class.parser
         ::Optimist::with_standard_exception_handling(parser) do
-          @opts = parser.parse(argv)
-          @compare_keys = CSV.parse_line(opts[:key])
-          paths = parser.leftovers
-          raise ::Optimist::CommandlineError, "At least 2 input files are required" if paths.size < 2
-          @readers = create_readers_from_paths(paths: paths, compare_fields: @compare_keys, fallback: opts[:input_format])
-          @writer  = create_writer_from_path(path: opts[:output], fallback: opts[:output_format],
-                                             reader_format: @readers.first.format_name)
+          begin
+            @opts = parser.parse(argv)
+            @compare_keys = CSV.parse_line(opts[:key])
+            paths = parser.leftovers
+            raise ::Optimist::CommandlineError, "At least 2 input files are required" if paths.size < 2
+
+            @readers = ::FlatKit::Reader.create_readers_from_paths(paths: paths, compare_fields: @compare_keys, fallback: opts[:input_format])
+            @writer  = ::FlatKit::Writer.create_writer_from_path(path: opts[:output], fallback: opts[:output_format],
+                                               reader_format: @readers.first.format_name)
+          rescue StandardError => e
+            raise ::Optimist::CommandlineError, e.message
+          end
         end
       end
 

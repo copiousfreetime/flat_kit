@@ -22,6 +22,22 @@ module FlatKit
     attr_reader :source
     attr_reader :compare_fields
 
+    def self.create_reader_from_path(path:, fallback: "auto", compare_fields: :none)
+      format = ::FlatKit::Format.for_with_fallback!(path: path, fallback: fallback)
+      return format.reader.new(source: path, compare_fields: compare_fields)
+    end
+
+    def self.create_readers_from_paths(paths:, fallback: "auto", compare_fields: :none)
+      # default to stdin if there are no paths
+      if paths.empty? then
+        paths << "-"
+      end
+
+      paths.map do |path|
+        create_reader_from_path(path: path, fallback: fallback, compare_fields: compare_fields)
+      end
+    end
+
     def initialize(source:, compare_fields: :none)
       @source = source
       @compare_fields = resolve_compare_fields(compare_fields)

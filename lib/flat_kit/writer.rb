@@ -13,6 +13,12 @@ module FlatKit
   class Writer
     attr_reader :destination
 
+    def self.create_writer_from_path(path:, fallback:, reader_format:)
+      fallback = reader_format if fallback == "auto"
+      format   = ::FlatKit::Format.for_with_fallback!(path: path, fallback: fallback)
+      format.writer.new(destination: path)
+    end
+
     def initialize(destination:)
       @destination = destination
     end
