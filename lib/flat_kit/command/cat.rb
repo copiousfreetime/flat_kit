@@ -75,14 +75,18 @@ module FlatKit
       end
 
       def call
+        total = 0
         readers.each do |r|
           logger.info "cat #{r.source} to #{writer.destination}"
           r.each do |record|
             writer.write(record)
+            total += 1
           end
+          logger.info "read #{r.count} records from #{r.source}"
         end
         writer.close
         logger.debug "processed #{writer.count} records"
+        logger.debug "read #{total} records"
       end
     end
   end
