@@ -50,3 +50,4 @@ end
 
 require 'flat_kit/command/cat'
 require 'flat_kit/command/merge'
+require 'flat_kit/command/sort'
