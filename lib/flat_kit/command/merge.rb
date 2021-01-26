@@ -74,7 +74,7 @@ module FlatKit
             @readers = ::FlatKit::Reader.create_readers_from_paths(paths: paths, compare_fields: @compare_keys, fallback: opts[:input_format])
             @writer  = ::FlatKit::Writer.create_writer_from_path(path: opts[:output], fallback: opts[:output_format],
                                                reader_format: @readers.first.format_name)
-          rescue StandardError => e
+          rescue ::FlatKit::Error => e
             raise ::Optimist::CommandlineError, e.message
           end
         end
