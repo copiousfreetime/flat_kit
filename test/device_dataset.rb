@@ -1,10 +1,17 @@
 class DeviceDataset
 
+  include TestHelper
+
   attr_reader :count
   attr_reader :compare_fields
   attr_reader :fields
 
-  def initialize(count:, compare_fields: [ "manufacturer", "model_name" ])
+  attr_reader :filename_jsonl
+  attr_reader :filename_sorted_jsonl
+  attr_reader :filename_csv
+  attr_reader :filename_sorted_csv
+
+  def initialize(count:, compare_fields: [ "manufacturer", "model_name", "slug" ])
     @count = count
     @compare_fields = compare_fields
     @fields = %w[
@@ -13,8 +20,34 @@ class DeviceDataset
       model_name
       platform
       serial
-      version
+      slug
     ]
+    @filename_sorted_jsonl = nil
+    @filename_jsonl = nil
+    @filename_sorted_csv = nil
+    @filename_csv = nil
+    @slug = generate_slug
+  end
+
+  def persist_records_as_jsonl
+    @filename_jsonl = scratch_file(prefix: "unsorted_", slug: @slug)
+    @filename_jsonl.open("w+") do |f|
+      f.write(records_as_jsonl)
+    end
+  end
+
+  def persist_sorted_records_as_jsonl
+    @filename_sorted_jsonl = scratch_file(prefix: "sorted_", slug: @slug)
+    @filename_sorted_jsonl.open("w+") do |f|
+      f.write(sorted_records_as_jsonl)
+    end
+  end
+
+  def cleanup_files
+    [ @filename_sorted_jsonl, @filename_jsonl, @filename_sorted_csv, @filename_csv ].each do |p|
+      next if p.nil?
+      p.unlink if p.exist?
+    end
   end
 
   def records
@@ -22,7 +55,8 @@ class DeviceDataset
       count.times do
         a << Hash.new.tap do |h|
           fields.each do |f|
-            h[f] = ::Faker::Device.send(f)
+            value = (f == 'slug') ? generate_slug : ::Faker::Device.send(f)
+            h[f] = value
           end
         end
       end

@@ -27,6 +27,8 @@ module FlatKit
   #
   #
   class MergeTree
+    include Enumerable
+
     attr_reader :leaves
     attr_reader :levels
     attr_reader :readers
