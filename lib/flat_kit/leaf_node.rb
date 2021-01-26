@@ -65,8 +65,6 @@ module FlatKit
 
     def <=>(other)
       return -1 if other.sentinel?
-      byebug if self.value.nil?
-      byebug if other.value.nil?
       self.value.<=>(other.value)
     end
   end
