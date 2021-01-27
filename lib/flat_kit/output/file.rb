@@ -44,6 +44,8 @@ module FlatKit
         case path.extname
         when ".gz"
           Zlib::GzipWriter.open(path.to_s)
+        # when ".gz"
+        #   ::IO.popen("gzip -c > #{path}", "w")
         else
           path.open("wb")
         end
