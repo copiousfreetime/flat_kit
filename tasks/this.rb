@@ -140,7 +140,7 @@ class ThisProject
 
       spec.files       = manifest
       spec.executables = spec.files.grep(/^bin/) { |f| File.basename(f) }
-      spec.test_files  = spec.files.grep(/^spec/)
+      spec.test_files  = spec.files.grep(/^(spec|test)/)
 
       spec.extra_rdoc_files += spec.files.grep(/(txt|rdoc|md)$/)
       spec.rdoc_options = [ "--main"  , 'README.md',
