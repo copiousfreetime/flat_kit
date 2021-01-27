@@ -17,6 +17,26 @@
     single output file.
   * Both a commandline tool and a ruby library to utilize in your own programs
 
+
+```
+Usage:
+  fk <command> [<args>...]
+  fk [options]
+
+Options:
+  -v, --verbose    Force debug. Output lots of informtion to standard error
+  --list           List all the commands
+  --log=<s>        Set the logger output location (default: <stderr>)
+  -h, --help       Show help message
+  --version        Print version and exit
+
+Commands:
+
+  cat      Concatenate files together that have the same structure.
+  merge    Merge sorted files together that have the same structure.
+  sort     Sort a given file by a set of fields.
+```
+
 ## EXAMPLES
 
 **Convert input csv files into a single output json file**
@@ -25,11 +45,11 @@
 
 **Sort an input json file and output it as a compressed csv**
 
-    fk sort --keys year,month,day input.json -o output.csv.gz
+    fk sort --key year,month,day input.json -o output.csv.gz
 
 **Merge an entire directory of sorted record compressed csv files into a compress json file**
 
-    fk merge --keys category,timestamp sorted/*.csv.gz -o sorted.json.gz
+    fk merge --key category,timestamp sorted/*.csv.gz -o sorted.json.gz
 
 
 ## MIT LICENSE
