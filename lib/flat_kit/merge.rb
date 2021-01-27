@@ -7,7 +7,6 @@ module FlatKit
     def initialize(inputs:, input_fallback: "auto",
                    output:, output_fallback: "auto",
                    compare_fields:)
-
       @compare_fields = compare_fields
       @readers = ::FlatKit::Reader.create_readers_from_paths(paths: inputs, compare_fields: @compare_fields,
                                                              fallback: input_fallback)

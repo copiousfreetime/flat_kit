@@ -11,7 +11,7 @@ module FlatKit
     end
 
     def self.for(path)
-      find_child(:handles?, path)
+      find_child(:handles?, path.to_s)
     end
 
     def self.for_with_fallback(path:, fallback: "auto")
