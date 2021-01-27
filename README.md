@@ -10,9 +10,27 @@
 
 ## FEATURES
 
-  FIXME
+  * Currently supporting CSV/TSV/XSV and JSON formats
+  * Transparently handles gzipped compressed input or output
+  * Sort records based upon the named keys of your choice
+  * Efficent singles pass merge of any number of sorted input files into a
+    single output file.
+  * Both a commandline tool and a ruby library to utilize in your own programs
 
-## Examples
+## EXAMPLES
+
+**Convert input csv files into a single output json file**
+
+    fk cat files/*csv -o output.json
+
+**Sort an input json file and output it as a compressed csv**
+
+    fk sort --keys year,month,day input.json -o output.csv.gz
+
+**Merge an entire directory of sorted record compressed csv files into a compress json file**
+
+    fk merge --keys category,timestamp sorted/*.csv.gz -o sorted.json.gz
+
 
 ## MIT LICENSE
 
