@@ -51,10 +51,11 @@ Commands:
 
     fk merge --key category,timestamp sorted/*.csv.gz -o sorted.json.gz
 
+## CREDITS / REFERENCES
+
+* https://github.com/BurntSushi/xsv - lots of concepts and ideas pulled from xsv
 
 ## MIT LICENSE
-
-https://opensource.org/licenses/MIT
 
 MIT License
 
