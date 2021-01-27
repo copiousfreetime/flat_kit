@@ -6,4 +6,6 @@ gemspec
 group :development, :test do
   gem "byebug"
   gem "faker"
+  gem "heel"
+  gem "benchmark-ips"
 end
