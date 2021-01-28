@@ -1,5 +1,8 @@
 module FlatKit
   class Merge
+
+    include ::FlatKit::Observable
+
     attr_reader :readers
     attr_reader :writer
     attr_reader :compare_fields
@@ -23,6 +26,7 @@ module FlatKit
 
       merge_tree = ::FlatKit::MergeTree.new(readers)
       merge_tree.each do |record|
+        notify_observers(record)
         writer.write(record)
       end
       readers.each do |r|
