@@ -18,25 +18,27 @@ module FlatKit
     end
 
     def call
-      ::FlatKit.logger.info "Merging the following files into #{writer.destination}"
-      ::FlatKit.logger.info "Using this key for sorting: #{compare_fields.join(", ")}"
+      ::FlatKit.logger.debug "Merging the following files into #{writer.destination}"
+      ::FlatKit.logger.debug "Using this key for sorting: #{compare_fields.join(", ")}"
       readers.each do |r|
-        ::FlatKit.logger.info "  #{r.source}"
+        ::FlatKit.logger.debug "  #{r.source}"
       end
 
       merge_tree = ::FlatKit::MergeTree.new(readers)
+
       notify_listeners(name: :start, data: :start)
       merge_tree.each do |record|
-        notify_listeners(name: :record, data: record)
         writer.write(record)
+        notify_listeners(name: :record, data: record)
       end
+      notify_listeners(name: :stop, data: :stop)
 
       readers.each do |r|
-        ::FlatKit.logger.info "  #{r.source} produced #{r.count} records"
+        ::FlatKit.logger.debug "  #{r.source} produced #{r.count} records"
       end
+
       writer.close
-      notify_listeners(name: :stop, data: :stop)
-      ::FlatKit.logger.info "Wrote #{writer.count} records to #{writer.destination}"
+      ::FlatKit.logger.debug "Wrote #{writer.count} records to #{writer.destination}"
     end
   end
 end
