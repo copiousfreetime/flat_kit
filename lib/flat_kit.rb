@@ -1,5 +1,5 @@
 module FlatKit
-  VERSION = "0.1.0"
+  VERSION = "0.2.0"
 end
 require 'flat_kit/error'
 require 'flat_kit/logger'
