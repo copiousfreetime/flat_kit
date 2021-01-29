@@ -26,8 +26,6 @@ module FlatKit
       end
     end
 
-    private
-
     def _listeners
       @_listeners ||= Array.new
     end
