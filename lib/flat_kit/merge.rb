@@ -1,7 +1,7 @@
 module FlatKit
   class Merge
 
-    include ::FlatKit::Observable
+    include ::FlatKit::EventEmitter
 
     attr_reader :readers
     attr_reader :writer
@@ -25,14 +25,17 @@ module FlatKit
       end
 
       merge_tree = ::FlatKit::MergeTree.new(readers)
+      notify_listeners(name: :start, data: :start)
       merge_tree.each do |record|
-        notify_observers(record)
+        notify_listeners(name: :record, data: record)
         writer.write(record)
       end
+
       readers.each do |r|
         ::FlatKit.logger.info "  #{r.source} produced #{r.count} records"
       end
       writer.close
+      notify_listeners(name: :stop, data: :stop)
       ::FlatKit.logger.info "Wrote #{writer.count} records to #{writer.destination}"
     end
   end
