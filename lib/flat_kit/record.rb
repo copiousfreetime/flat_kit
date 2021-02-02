@@ -57,11 +57,15 @@ module FlatKit
         my_val         = self[field]
         other_val      = other[field]
 
-        return  0 if my_val.nil? && other_val.nil?
-        return -1 if my_val.nil?
-        return  1 if other_val.nil?
-
-        compare_result = my_val.<=>(other_val)
+        if my_val.nil? && other_val.nil? then
+          compare_result = 0
+        elsif my_val.nil?
+          compare_result = -1
+        elsif other_val.nil?
+          compare_result = 1
+        else
+          compare_result = my_val.<=>(other_val)
+        end
 
         return compare_result unless compare_result.zero?
       end
