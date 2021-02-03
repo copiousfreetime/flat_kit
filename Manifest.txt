@@ -13,6 +13,7 @@ lib/flat_kit/command/merge.rb
 lib/flat_kit/command/sort.rb
 lib/flat_kit/descendant_tracker.rb
 lib/flat_kit/error.rb
+lib/flat_kit/event_emitter.rb
 lib/flat_kit/format.rb
 lib/flat_kit/input.rb
 lib/flat_kit/input/file.rb
@@ -55,6 +56,7 @@ test/jsonl/test_writer.rb
 test/output/test_file.rb
 test/output/test_io.rb
 test/test_conversions.rb
+test/test_event_emitter.rb
 test/test_format.rb
 test/test_helper.rb
 test/test_merge.rb
