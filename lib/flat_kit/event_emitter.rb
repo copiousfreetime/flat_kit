@@ -20,9 +20,9 @@ module FlatKit
       _listeners.clear
     end
 
-    def notify_listeners(name:, data:)
+    def notify_listeners(name:, data:, record_count: nil, byte_count: nil)
       _listeners.each do |l|
-        l.on_event(name: name, data: data)
+        l.on_event(name: name, data: data, record_count: record_count, byte_count: byte_count)
       end
     end
 

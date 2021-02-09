@@ -8,15 +8,21 @@ class TestEventEmitter < ::Minitest::Test
   class Sub
     attr_reader :name
     attr_reader :data
+    attr_reader :byte_count
+    attr_reader :record_count
 
     def initialize
       @name = nil
       @data = nil
+      @byte_count = nil
+      @record_count = nil
     end
 
-    def on_event(name:, data:)
+    def on_event(name:, data:, byte_count: nil, record_count: nil)
       @name = name
       @data = data
+      @byte_count = byte_count
+      @record_count = record_count
     end
   end
 
@@ -61,12 +67,18 @@ class TestEventEmitter < ::Minitest::Test
     @emitter.add_listener(@receiver)
     @emitter.add_listener(@receiver_2)
 
-    @emitter.notify_listeners(name: :notification, data: "DATA!")
+    @emitter.notify_listeners(name: :notification, data: "DATA!", byte_count: 42, record_count: 12)
 
     assert_equal(:notification, @receiver.name)
     assert_equal(:notification, @receiver_2.name)
 
     assert_equal("DATA!", @receiver.data)
     assert_equal("DATA!", @receiver_2.data)
+
+    assert_equal(42, @receiver.byte_count)
+    assert_equal(42, @receiver_2.byte_count)
+
+    assert_equal(12, @receiver.record_count)
+    assert_equal(12, @receiver_2.record_count)
   end
 end
