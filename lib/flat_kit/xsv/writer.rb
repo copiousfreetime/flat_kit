@@ -1,7 +1,6 @@
 module FlatKit
   module Xsv
     class Writer < ::FlatKit::Writer
-      attr_reader :output
       attr_reader :fields
       attr_reader :header_bytes
 
@@ -19,7 +18,6 @@ module FlatKit
       def initialize(destination:, fields: :auto, **csv_options)
         super(destination: destination)
         @fields = fields
-        @output = ::FlatKit::Output.from(@destination)
         @we_write_the_header = nil
         @csv_options = Writer.default_csv_options.dup
 
@@ -50,10 +48,6 @@ module FlatKit
       rescue => e
         ::FlatKit.logger.error "Error reading jsonl records from #{output.name}: #{e}"
         raise ::FlatKit::Error, e
-      end
-
-      def close
-        @output.close
       end
 
       private

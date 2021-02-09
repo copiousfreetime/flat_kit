@@ -12,6 +12,7 @@ module FlatKit
   #
   class Writer
     attr_reader :destination
+    attr_reader :output
     attr_reader :count
     attr_reader :byte_count
 
@@ -23,6 +24,7 @@ module FlatKit
 
     def initialize(destination:)
       @destination = destination
+      @output = ::FlatKit::Output.from(@destination)
       @count = 0
       @byte_count = 0
     end
@@ -36,7 +38,7 @@ module FlatKit
     end
 
     def close
-      raise NotImplementedError, "#{self.class} needs to implement #close"
+      output.close
     end
   end
 end

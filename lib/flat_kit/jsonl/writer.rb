@@ -1,7 +1,6 @@
 module FlatKit
   module Jsonl
     class Writer < ::FlatKit::Writer
-      attr_reader :output
       @count = 0
       @byte_count = 0
 
@@ -11,7 +10,6 @@ module FlatKit
 
       def initialize(destination:)
         super
-        @output = ::FlatKit::Output.from(@destination)
       end
 
       def write(record)
@@ -29,10 +27,6 @@ module FlatKit
       rescue => e
         ::FlatKit.logger.error "Error reading jsonl records from #{output.name}: #{e}"
         raise ::FlatKit::Error, e
-      end
-
-      def close
-        @output.close
       end
 
       def write_record(record)
