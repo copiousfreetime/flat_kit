@@ -12,6 +12,8 @@ module FlatKit
   #
   class Writer
     attr_reader :destination
+    attr_reader :count
+    attr_reader :byte_count
 
     def self.create_writer_from_path(path:, fallback:, reader_format:)
       fallback = reader_format if fallback == "auto"
@@ -21,6 +23,8 @@ module FlatKit
 
     def initialize(destination:)
       @destination = destination
+      @count = 0
+      @byte_count = 0
     end
 
     def format_name

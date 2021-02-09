@@ -2,7 +2,6 @@ module FlatKit
   module Xsv
     class Writer < ::FlatKit::Writer
       attr_reader :output
-      attr_reader :count
       attr_reader :fields
 
       def self.format_name
@@ -20,7 +19,6 @@ module FlatKit
         super(destination: destination)
         @fields = fields
         @output = ::FlatKit::Output.from(@destination)
-        @count = 0
         @we_write_the_header = nil
         @csv_options = Writer.default_csv_options.dup
 

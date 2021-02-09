@@ -2,7 +2,8 @@ module FlatKit
   module Jsonl
     class Writer < ::FlatKit::Writer
       attr_reader :output
-      attr_reader :count
+      @count = 0
+      @byte_count = 0
 
       def self.format_name
         ::FlatKit::Jsonl::Format.format_name
@@ -11,7 +12,6 @@ module FlatKit
       def initialize(destination:)
         super
         @output = ::FlatKit::Output.from(@destination)
-        @count = 0
       end
 
       def write(record)
