@@ -41,18 +41,33 @@ module TestXsv
       assert_equal(expected, actual)
     end
 
-    def test_writes_to_io
+    def test_position
       File.open(@write_path, "w+") do |f|
         writer = ::FlatKit::Xsv::Writer.new(destination: f,fields: :auto)
-        data_bytes = 0
+        records_bytes = 0
         header_bytes = nil
 
-        @records.each do |r|
-          data_bytes += r.to_s.bytesize
-          writer.write(r)
+        @records.each_with_index do |r, idx|
+          record_length = r.to_s.bytesize
+
+          position = writer.write(r)
+          # make sure write stores the last_position api and returns that value
+          assert_equal(position, writer.last_position)
+
           header_bytes = writer.header_bytes if header_bytes == nil
           assert(header_bytes > 0)
-          assert_equal(header_bytes + data_bytes, writer.byte_count)
+
+          assert_equal(idx, position.index)
+          assert_equal(header_bytes + records_bytes, position.offset)
+          assert_equal(record_length, position.bytesize)
+
+          records_bytes += record_length
+
+          current_position = writer.current_position
+          assert_equal(idx+1, current_position.index)
+          assert_equal(header_bytes + records_bytes, current_position.offset)
+          assert_equal(0, current_position.bytesize)
+
         end
         writer.close
 

@@ -1,8 +1,6 @@
 module FlatKit
   module Jsonl
     class Writer < ::FlatKit::Writer
-      @count = 0
-      @byte_count = 0
 
       def self.format_name
         ::FlatKit::Jsonl::Format.format_name
@@ -12,6 +10,8 @@ module FlatKit
         super
       end
 
+      # write the record and return the Position the record was written
+      #
       def write(record)
         case record
         when FlatKit::Jsonl::Record
@@ -30,10 +30,24 @@ module FlatKit
       end
 
       def write_record(record)
-        # enforces ending in newlin if it doesn't already have one
+        # the index of the record being written is the same as the count of records written so far
+        record_index = @count
+
+        # get the current output stream position to calculate bytes written
+        start_offset = output.io.tell
+
+        # enforces ending in newline if it doesn't already have one
         output.io.puts record.to_s
-        @byte_count = output.io.tell
+
+        ending_offset = output.io.tell
+        bytes_written = (ending_offset - start_offset)
+
         @count += 1
+
+        @last_position = ::FlatKit::Position.new(index: record_index,
+                                                 offset: start_offset,
+                                                 bytesize: bytes_written)
+
       end
     end
   end

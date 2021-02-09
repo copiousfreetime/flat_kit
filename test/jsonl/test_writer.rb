@@ -41,15 +41,30 @@ module TestJsonl
       assert_equal(expected, actual)
     end
 
-    def test_writes_to_io
+    def test_postion
       File.open(@write_path, "w+") do |f|
         writer = ::FlatKit::Jsonl::Writer.new(destination: f)
 
         byte_offset = 0
-        @records.each do |r|
-          byte_offset += r.data.bytesize
-          writer.write(r)
-          assert_equal(byte_offset, writer.byte_count)
+        @records.each_with_index do |r, idx|
+          record_length = r.data.bytesize
+
+          position = writer.write(r)
+
+          # make sure write stores the last_position api and returns that value
+          assert_equal(position, writer.last_position)
+
+          assert_equal(idx, position.index)
+          assert_equal(byte_offset, position.offset)
+          assert_equal(record_length, position.bytesize)
+
+          byte_offset += record_length
+
+          current_position = writer.current_position
+          assert_equal(idx+1, current_position.index)
+          assert_equal(byte_offset, current_position.offset)
+          assert_equal(0, current_position.bytesize)
+
         end
         writer.close
 

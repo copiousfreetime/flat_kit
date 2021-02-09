@@ -28,11 +28,9 @@ module FlatKit
 
       notify_listeners(name: :start, data: :start)
       merge_tree.each do |record|
-        writer.write(record)
-        meta = {
-          record_count: writer.count,
-          byte_count: writer.byte_count
-        }
+
+        position = writer.write(record)
+        meta = { position: position }
         notify_listeners(name: :record, data: record, meta: meta)
       end
       notify_listeners(name: :stop, data: :stop)

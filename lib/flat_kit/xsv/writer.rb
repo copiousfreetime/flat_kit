@@ -33,6 +33,11 @@ module FlatKit
         @csv = CSV.new(output.io, **@csv_options)
       end
 
+      # write the record and return the Position the record was written
+      #
+      # In the case of the header being written automatcially, the Postion returned is the
+      # position of the reocrd, not the header
+      #
       def write(record)
         case record
         when FlatKit::Xsv::Record
@@ -57,9 +62,23 @@ module FlatKit
           @csv << record.ordered_fields
           @header_bytes = output.tell
         end
+
+        # the index of the record being written is the same as the count of records written so far
+        record_index = @count
+
+        # get the current output stream position to calculate bytes written
+        start_offset = output.tell
+
         @csv << record.to_a
+
+        ending_offset = output.io.tell
+        bytes_written = (ending_offset - start_offset)
+
         @count += 1
-        @byte_count = output.tell
+
+        @last_position = ::FlatKit::Position.new(index: record_index,
+                                                 offset: start_offset,
+                                                 bytesize: bytes_written)
       end
     end
   end
