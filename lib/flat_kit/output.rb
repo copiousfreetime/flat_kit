@@ -22,6 +22,10 @@ module FlatKit
       raise NotImplementedError, "#{self.class} must implement #io"
     end
 
+    def tell
+      io.tell
+    end
+
     def close
       raise NotImplementedError, "#{self.class} must implement #close"
     end

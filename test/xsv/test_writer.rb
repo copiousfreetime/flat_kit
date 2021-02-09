@@ -43,10 +43,16 @@ module TestXsv
 
     def test_writes_to_io
       File.open(@write_path, "w+") do |f|
-        writer = ::FlatKit::Xsv::Writer.new(destination: f,fields: @reader.fields)
+        writer = ::FlatKit::Xsv::Writer.new(destination: f,fields: :auto)
+        data_bytes = 0
+        header_bytes = nil
 
         @records.each do |r|
+          data_bytes += r.to_s.bytesize
           writer.write(r)
+          header_bytes = writer.header_bytes if header_bytes == nil
+          assert(header_bytes > 0)
+          assert_equal(header_bytes + data_bytes, writer.byte_count)
         end
         writer.close
 

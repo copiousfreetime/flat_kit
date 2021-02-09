@@ -45,8 +45,11 @@ module TestJsonl
       File.open(@write_path, "w+") do |f|
         writer = ::FlatKit::Jsonl::Writer.new(destination: f)
 
+        byte_offset = 0
         @records.each do |r|
+          byte_offset += r.data.bytesize
           writer.write(r)
+          assert_equal(byte_offset, writer.byte_count)
         end
         writer.close
 

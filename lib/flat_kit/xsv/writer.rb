@@ -3,6 +3,7 @@ module FlatKit
     class Writer < ::FlatKit::Writer
       attr_reader :output
       attr_reader :fields
+      attr_reader :header_bytes
 
       def self.format_name
         ::FlatKit::Xsv::Format.format_name
@@ -29,6 +30,7 @@ module FlatKit
           @we_write_the_header = false
         end
 
+        @header_bytes = 0
         @csv_options.merge!(csv_options)
         @csv = CSV.new(output.io, **@csv_options)
       end
@@ -59,9 +61,11 @@ module FlatKit
       def write_record(record)
         if @we_write_the_header && @count == 0 then
           @csv << record.ordered_fields
+          @header_bytes = output.tell
         end
-        @count += 1
         @csv << record.to_a
+        @count += 1
+        @byte_count = output.tell
       end
     end
   end

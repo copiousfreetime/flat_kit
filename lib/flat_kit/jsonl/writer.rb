@@ -38,6 +38,7 @@ module FlatKit
       def write_record(record)
         # enforces ending in newlin if it doesn't already have one
         output.io.puts record.to_s
+        @byte_count = output.io.tell
         @count += 1
       end
     end
