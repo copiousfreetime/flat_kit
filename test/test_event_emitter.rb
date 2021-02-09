@@ -16,12 +16,8 @@ class TestEventEmitter < ::Minitest::Test
       @meta = nil
     end
 
-    def byte_count
-      meta[:byte_count]
-    end
-
-    def record_count
-      meta[:record_count]
+    def [](key)
+      @meta[key]
     end
 
     def on_event(name:, data:, meta:)
@@ -73,8 +69,8 @@ class TestEventEmitter < ::Minitest::Test
     @emitter.add_listener(@receiver_2)
 
     meta = {
-      record_count: 42,
-      byte_count: 4242
+      foo: "foo",
+      bar: 42,
     }
     @emitter.notify_listeners(name: :notification, data: "DATA!", meta: meta)
 
@@ -84,10 +80,10 @@ class TestEventEmitter < ::Minitest::Test
     assert_equal("DATA!", @receiver.data)
     assert_equal("DATA!", @receiver_2.data)
 
-    assert_equal(4242, @receiver.byte_count)
-    assert_equal(4242, @receiver_2.byte_count)
+    assert_equal("foo", @receiver[:foo])
+    assert_equal("foo", @receiver_2[:foo])
 
-    assert_equal(42, @receiver.record_count)
-    assert_equal(42, @receiver_2.record_count)
+    assert_equal(42, @receiver[:bar])
+    assert_equal(42, @receiver_2[:bar])
   end
 end
