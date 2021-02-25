@@ -17,6 +17,7 @@ require 'flat_kit/xsv'
 require 'flat_kit/jsonl'
 require 'flat_kit/merge'
 require 'flat_kit/sort'
+require 'flat_kit/stats'
 
 require 'flat_kit/merge_tree'
 require 'flat_kit/internal_node'
