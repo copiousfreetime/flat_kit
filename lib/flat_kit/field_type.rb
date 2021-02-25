@@ -11,6 +11,7 @@ module FlatKit
 end
 
 require 'flat_kit/field_type/boolean_type'
+require 'flat_kit/field_type/date_time_type'
 require 'flat_kit/field_type/integer_type'
 require 'flat_kit/field_type/float_type'
 require 'flat_kit/field_type/null_type'
