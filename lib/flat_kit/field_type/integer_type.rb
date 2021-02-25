@@ -2,7 +2,7 @@ module FlatKit
   class FieldType
     class IntegerType < FieldType
 
-      REGEX = /\A\d+\Z/
+      REGEX = /\A[-+]?\d+\Z/
 
       def self.matches?(data)
         case data

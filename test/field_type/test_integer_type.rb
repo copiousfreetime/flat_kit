@@ -6,6 +6,10 @@ module TestFieldType
       assert(FlatKit::FieldType::IntegerType.matches?(42))
     end
 
+    def test_matches_negative_integer
+      assert(FlatKit::FieldType::IntegerType.matches?("-42"))
+    end
+
     def test_float_does_not_match
       refute(FlatKit::FieldType::IntegerType.matches?(42.0))
     end
@@ -19,7 +23,6 @@ module TestFieldType
       refute(FlatKit::FieldType::IntegerType.matches?("abc"))
     end
 
-    focus
     def test_other_class_does_not_match
       refute(FlatKit::FieldType::IntegerType.matches?(Object.new))
     end
