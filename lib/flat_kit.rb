@@ -2,9 +2,11 @@ module FlatKit
   VERSION = "0.3.0"
 end
 require 'flat_kit/error'
+require 'flat_kit/descendant_tracker'
 require 'flat_kit/logger'
 require 'flat_kit/event_emitter'
-require 'flat_kit/descendant_tracker'
+
+require 'flat_kit/field_type'
 require 'flat_kit/format'
 require 'flat_kit/position'
 require 'flat_kit/record'

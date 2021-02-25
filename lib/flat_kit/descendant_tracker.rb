@@ -23,5 +23,14 @@ module FlatKit
         child_klass.send(method, *args)
       end
     end
+
+    # 
+    # Find all the children that return truthy from the given method with args
+    #
+    def find_children(method, *args)
+      children.select do |child_klass|
+        child_klass.send(method, *args)
+      end
+    end
   end
 end
