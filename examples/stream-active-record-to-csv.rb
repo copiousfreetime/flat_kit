@@ -22,23 +22,20 @@ bar        = ProgressBar.new(scope.count)
 # using active record in batches to not pull all the recors from the database at
 # once
 #
-#  https://api.rubyonrails.org/classes/ActiveRecord/Batches.html#method-i-in_batches
-scope.in_batches do |batch|
+#  https://api.rubyonrails.org/classes/ActiveRecord/Batches.html#method-i-find_each
+scope.find_each do |record|
 
-  batch.each do |record|
+  # generate an XSV Record by pulling hte attributes out of the active record
+  # model. You may also want to generate a hash from a query or something
+  # along those lines. In any case pass in a Hash to complete_structured_data:
+  # and nil to data.
+  xsv_record = ::FlatKit::Xsv::Record.new(data: nil, complete_structured_data: record.attributes)
 
-    # generate an XSV Record by pulling hte attributes out of the active record
-    # model. You may also want to generate a hash from a query or something
-    # along those lines. In any case pass in a Hash to complete_structured_data:
-    # and nil to data.
-    xsv_record = ::FlatKit::Xsv::Record.new(data: nil, complete_structured_data: record.attributes)
+  # FlatKit will automatically handle writing out the header line based upon
+  # the fields in the first record.
+  output_csv.write(xsv_record)
 
-    # FlatKit will automatically handle writing out the header line based upon
-    # the fields in the first record.
-    output_csv.write(xsv_record)
-
-    bar.increment!
-  end
+  bar.increment!
 end
 
 # close the output file explicitly
