@@ -12,7 +12,7 @@ module FlatKit
           true
         when String
           begin
-            d = DateTime.parse(data)
+            DateTime.parse(data)
             true
           rescue => _
             false

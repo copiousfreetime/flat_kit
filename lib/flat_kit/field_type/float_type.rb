@@ -11,7 +11,7 @@ module FlatKit
         when String
           return false if IntegerType.matches?(data)
           begin
-            f = Float(data)
+            Float(data)
             true
           rescue ArgumentError => _
             false
