@@ -7,7 +7,6 @@ module TestFieldType
       assert_raises(NotImplementedError) { ::FlatKit::FieldType.weight }
     end
 
-    focus
     def test_best_guesses
       guesses = {
         "t"          => ::FlatKit::FieldType::BooleanType,
