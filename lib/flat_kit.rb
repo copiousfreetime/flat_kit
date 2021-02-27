@@ -21,6 +21,8 @@ require 'flat_kit/merge'
 require 'flat_kit/sort'
 require 'flat_kit/stats'
 
+require 'flat_kit/stat_type'
+
 require 'flat_kit/merge_tree'
 require 'flat_kit/internal_node'
 require 'flat_kit/sentinel_internal_node'
