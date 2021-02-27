@@ -9,8 +9,15 @@ $: << test_dir
 require_relative './test_helper'
 
 require 'find'
-Find.find(test_dir) do |path|
-  next unless File.file?(path) && File.basename(path) =~ /\Atest_.*\.rb\Z/
-  require path
+
+if ARGV.empty? then
+  Find.find(test_dir) do |path|
+    next unless File.file?(path) && File.basename(path) =~ /\Atest_.*\.rb\Z/
+    require path
+  end
+else
+  ARGV.each do |f|
+    require File.expand_path(f)
+  end
 end
 
