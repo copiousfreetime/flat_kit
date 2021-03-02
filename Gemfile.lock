@@ -53,7 +53,7 @@ PLATFORMS
 DEPENDENCIES
   benchmark-ips
   byebug
-  faker
+  faker (~> 2.16)
   flat_kit!
   heel
   minitest (~> 5.11)
