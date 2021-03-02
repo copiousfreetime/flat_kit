@@ -21,6 +21,13 @@ module FlatKit
         end
       end
 
+      def self.coerce(data)
+        Float(data)
+      rescue TypeError => _
+        CoerceFailure
+      rescue ArgumentError => _
+        CoerceFailure
+      end
     end
   end
 end
