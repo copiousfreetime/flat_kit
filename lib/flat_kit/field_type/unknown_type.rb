@@ -10,6 +10,13 @@ module FlatKit
         return REGEX.match?(data)
       end
 
+      def self.coerce(data)
+        return data if REGEX.match?(data)
+        return CoerceFailure
+      rescue
+        return CoerceFailure
+      end
+
     end
   end
 end
