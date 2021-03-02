@@ -17,6 +17,14 @@ module FlatKit
         end
       end
 
+      def self.coerce(data)
+        Integer(data)
+      rescue TypeError => _
+        CoerceFailure
+      rescue ArgumentError => _
+        CoerceFailure
+      end
+ 
     end
   end
 end
