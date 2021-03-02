@@ -6,6 +6,12 @@ module FlatKit
       def self.matches?(data)
         data.kind_of?(String)
       end
+
+      def self.coerce(data)
+        data.to_s
+      rescue => _
+        CoerceFailure
+      end
     end
   end
 end
