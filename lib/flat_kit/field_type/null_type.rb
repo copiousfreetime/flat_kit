@@ -15,6 +15,17 @@ module FlatKit
         end
       end
 
+      def self.coerce(data)
+        case data
+        when nil
+          data
+        when String
+          return nil if REGEX.match?(data)
+          CoerceFailure
+        else
+          CoerceFailure
+        end
+      end
     end
   end
 end
