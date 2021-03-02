@@ -7,6 +7,10 @@ module FlatKit
       def self.matches?(data)
         false
       end
+
+      def self.coerce(data)
+        CoerceFailure
+      end
     end
   end
 end
