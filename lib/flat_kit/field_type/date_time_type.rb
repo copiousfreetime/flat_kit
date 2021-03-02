@@ -4,11 +4,11 @@ module FlatKit
 
       def self.matches?(data)
         case data
+        when DateTime
+          true
         when Date
           true
         when Time
-          true
-        when DateTime
           true
         when String
           begin
@@ -19,6 +19,25 @@ module FlatKit
           end
         else
           false
+        end
+      end
+
+      def self.coerce(data)
+        case data
+        when DateTime
+          data
+        when Date
+          data
+        when Time
+          data
+        when String
+          begin
+            DateTime.parse(data)
+          rescue => _
+            CoerceFailure
+          end
+        else
+          CoerceFailure
         end
       end
     end
