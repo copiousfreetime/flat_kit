@@ -69,7 +69,7 @@ module FlatKit
       update_type_count(value)
 
       if field_type_determined? then
-        update_stats(value: value)
+        update_stats(value)
       else
         @values << value
 
