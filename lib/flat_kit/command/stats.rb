@@ -18,8 +18,14 @@ module FlatKit
           banner <<~BANNER
           Given an input file collect basic statistics.
 
-          The statistics can vary based upon the datatype of the field. Numeric fields
-          will report the basic min, max, mean, standard deviation and sum
+          The statistics can vary based upon the datatype of the field.
+
+          Numeric fields will report the basic count, min, max, mean, standard deviation and sum.
+          Non-numeric fields that are comparable, like dates, will report count, min and max.
+          Other non-numeric fields will only report the count.
+
+          Adding --cardinality will report the count, and frequency of distinct values in the result.
+          This will allow for reporting the median value.
 
           The fields upon which stats are collected may be selected with the --fields parameter.
           By default statistics are collected on all fields.
@@ -52,10 +58,8 @@ module FlatKit
           opt :input_format, "Input format, csv or json", default: "auto", short: :none
           opt :output_format, "Output format, csv or json", default: "auto", short: :none
           opt :select, "The comma separted list of field(s) to report stats on", required: false, type: :string
-          opt :mode, "Collect the mode statistics, this requires additional memory", default: false
-          opt :median, "Collect median statistics, this requires additional memory", default: false
           opt :everything, "Show all statistics that are possible", default: false
-          opt :cardinality, "Show the cardinality of the fields, this requires additioanl memory", default: false
+          opt :cardinality, "Show the cardinality of the fields, this requires additional memory", default: false
         end
       end
 
@@ -64,20 +68,18 @@ module FlatKit
         ::Optimist::with_standard_exception_handling(parser) do
           begin
             opts = parser.parse(argv)
-            fields = :all
+            fields = ::FlatKit::Stats::AllFields
             fields = CSV.parse_line(opts[:select]) if opts[:select]
 
-            stats = [ :min, :max, :mean, :stddev, :sum ]
-            stats << :mode        if opts[:mode] || opts[:everything]
-            stats << :median      if opts[:median] || opts[:everything]
-            stats << :cardinality if opts[:cardinality] || opts[:everything]
+            stats = [FieldStats::CORE_STATS]
+            stats << FieldStats::CARDINALITY_STATS if opts[:cardinality] || opts[:everything]
 
             paths = parser.leftovers
             raise ::Optimist::CommandlineError, "1 and only 1 input file is allowed" if paths.size > 1
             path = paths.first || "-" # default to stdin
             @stats = ::FlatKit::Stats.new(input: path, input_fallback: opts[:input_format],
                                          output: opts[:output], output_fallback: opts[:output_format],
-                                         stat_fields: fields, stats_to_collect: stats)
+                                         fields_to_stat: fields, stats_to_collect: stats)
           rescue ::FlatKit::Error => e
             raise ::Optimist::CommandlineError, e.message
           end
