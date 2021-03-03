@@ -173,7 +173,7 @@ module FlatKit
 
     def null_percent
       return 0 if total_count.zero?
-      null_count.to_f / total_count
+      ((null_count.to_f / total_count) * 100.0).truncate(2)
     end
 
     def unknown_count
@@ -182,7 +182,7 @@ module FlatKit
 
     def unknown_percent
       return 0 if total_count.zero?
-      unknown_count.to_f / total_count
+      ((unknown_count.to_f / total_count) * 100.0).truncate(2)
     end
 
     def to_hash
