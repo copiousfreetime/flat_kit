@@ -3,6 +3,8 @@ module FlatKit
 
     extend FlatKit::DescendantTracker
 
+    CoerceFailure = Class.new(::Object).freeze
+
     def self.candidate_types(data)
       find_children(:matches?, data)
     end
@@ -13,6 +15,10 @@ module FlatKit
 
     def self.matches?(data)
       raise NotImplementedError, "must implement #{self.name}.matches?(data)"
+    end
+
+    def self.coerce(data)
+      raise NotImplementedError, "must implement #{self.name}.coerce(data)"
     end
 
     # Each type has a weight so if a value matches multiple types, then the list

@@ -25,5 +25,9 @@ module TestFieldType
         assert_equal(expected, ::FlatKit::FieldType.best_guess(test), "Expected '#{test}' to be #{expected}")
       end
     end
+
+    def test_children_exist
+      assert_equal(8,::FlatKit::FieldType.children.size)
+    end
   end
 end
