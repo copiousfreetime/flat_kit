@@ -18,7 +18,8 @@ module TestFieldType
         "n/a"        => ::FlatKit::FieldType::UnknownType,
         "foo"        => ::FlatKit::FieldType::StringType,
         "12.3"       => ::FlatKit::FieldType::FloatType,
-        "2021-02-26" => ::FlatKit::FieldType::DateTimeType,
+        "2021-02-26" => ::FlatKit::FieldType::DateType,
+        "2020-03-03T12:34:56Z" => ::FlatKit::FieldType::TimestampType,
       }
 
       guesses.each do |test, expected|
@@ -27,7 +28,7 @@ module TestFieldType
     end
 
     def test_children_exist
-      assert_equal(8,::FlatKit::FieldType.children.size)
+      assert_equal(9,::FlatKit::FieldType.children.size)
     end
   end
 end

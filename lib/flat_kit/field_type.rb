@@ -41,9 +41,10 @@ module FlatKit
       return 4 if self == IntegerType
       return 3 if self == FloatType
 
-      # DateTime's string representation shouldn't intersect with anything so
+      # Date and Timestamps string representation shouldn't intersect with anything so
       # leaving it at the same level as Null and Unkonwn
-      return 2 if self == DateTimeType
+      return 2 if self == DateType
+      return 2 if self == TimestampType
 
       # Null and Unknown shoulnd't conflict since their string representations
       # do not intersect
@@ -65,7 +66,8 @@ end
 
 require 'flat_kit/field_type/guess_type'
 require 'flat_kit/field_type/boolean_type'
-require 'flat_kit/field_type/date_time_type'
+require 'flat_kit/field_type/date_type'
+require 'flat_kit/field_type/timestamp_type'
 require 'flat_kit/field_type/integer_type'
 require 'flat_kit/field_type/float_type'
 require 'flat_kit/field_type/null_type'

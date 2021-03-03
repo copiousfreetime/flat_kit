@@ -5,7 +5,7 @@ module FlatKit
     end
 
     def self.ordinal_types
-      [FieldType::DateTimeType]
+      [FieldType::DateType, FieldType::TimestampType]
     end
 
     def self.numerical_types
