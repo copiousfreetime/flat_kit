@@ -43,7 +43,7 @@ class TestFieldStats < ::Minitest::Test
     assert_equal(min, field_stats.min)
     assert_equal(max, field_stats.max)
     assert_in_epsilon(sum, field_stats.sum)
-    assert_in_epsilon(null_count.to_f / (null_count + number_data.size), field_stats.percent_null)
+    assert_in_epsilon(null_count.to_f / (null_count + number_data.size), field_stats.null_percent)
   end
 
   def test_collect_numeric_cardinality_stats
@@ -89,7 +89,7 @@ class TestFieldStats < ::Minitest::Test
 
     assert_equal(unknown_count, field_stats.unknown_count)
     assert_equal(unknown_count + number_data.size, field_stats.total_count)
-    assert_in_epsilon(unknown_count.to_f / (unknown_count + number_data.size), field_stats.percent_unknown)
+    assert_in_epsilon(unknown_count.to_f / (unknown_count + number_data.size), field_stats.unknown_percent)
   end
 
   def test_resolves_type_automatically

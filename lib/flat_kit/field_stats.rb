@@ -107,7 +107,7 @@ module FlatKit
       stats.count + @out_of_type_count
     end
 
-    def percent_null
+    def null_percent
       return 0 if total_count.zero?
       null_count.to_f / total_count
     end
@@ -116,7 +116,7 @@ module FlatKit
       type_counts[FieldType::UnknownType]
     end
 
-    def percent_unknown
+    def unknown_percent
       return 0 if total_count.zero?
       unknown_count.to_f / total_count
     end
