@@ -14,8 +14,8 @@ module FlatKit
 
     def self.for(type)
       return OrdinalStats   if ordinal_types.include?(type)
-      return NominalStats   if nomial_types.types.include?(type)
-      return NumericalStats if numerical_types.types.include?(type)
+      return NominalStats   if nominal_types.include?(type)
+      return NumericalStats if numerical_types.include?(type)
       raise ArgumentError, "Unknown stat type for #{type}"
     end
 
