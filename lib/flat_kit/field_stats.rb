@@ -124,9 +124,7 @@ module FlatKit
     private
 
     def stats
-      if !field_type_determined? then
-        resolve_guess
-      end
+      resolve_guess
       @stats
     end
 
@@ -154,6 +152,7 @@ module FlatKit
     end
 
     def resolve_guess
+      return if field_type_determined?
       best_guess_type, _best_guess_count = type_counts.max_by { |k, v| v }
       @field_type = best_guess_type
       @stats = StatType.for(@field_type).new(collecting_frequencies: collecting_frequencies?)
