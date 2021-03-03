@@ -22,6 +22,7 @@ require 'flat_kit/sort'
 require 'flat_kit/stats'
 
 require 'flat_kit/stat_type'
+require 'flat_kit/field_stats'
 
 require 'flat_kit/merge_tree'
 require 'flat_kit/internal_node'
