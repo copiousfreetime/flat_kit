@@ -30,12 +30,11 @@ module FlatKit
     #       puts "#{m.rjust(6)} : #{s.send( m ) }"
     #     end
     #
-    class NumericalStats < StatType
+    class NumericalStats < NominalStats
       # A list of the available stats
 
       attr_reader :min
       attr_reader :max
-      attr_reader :count
       attr_reader :sum
       attr_reader :sumsq
 
@@ -43,17 +42,16 @@ module FlatKit
         @default_stats ||= %w[ count max mean min rate stddev sum sumsq ]
       end
 
-      def initialize
-        @mutex = Mutex.new
-        @min = Float::INFINITY
-        @max = -Float::INFINITY
-        @count = 0
-        @sum = 0.0
-        @sumsq = 0.0
+      def self.all_stats
+        @all_stats ||= %w[ count max mean min mode rate stddev sum sumsq unique_count unique_values ]
       end
 
-      def collected_stats
-        return self.class.default_stats
+      def initialize(collecting_frequencies: false)
+        super
+        @min = Float::INFINITY
+        @max = -Float::INFINITY
+        @sum = 0.0
+        @sumsq = 0.0
       end
 
       # call-seq:
@@ -69,6 +67,9 @@ module FlatKit
           @count += 1
           @sum   += value
           @sumsq += (value * value)
+
+          # from Nomnial update
+          @frequencies[value] += 1 if @collecting_frequencies
         end
 
         return value

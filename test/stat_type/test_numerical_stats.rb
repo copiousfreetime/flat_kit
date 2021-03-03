@@ -6,6 +6,7 @@ module TestStatType
     def setup
       @stats = FlatKit::StatType::NumericalStats.new
       @full_stats = FlatKit::StatType::NumericalStats.new
+      @all_stats = FlatKit::StatType::NumericalStats.new(collecting_frequencies: true)
       [ 1, 2, 3].each { |i| @full_stats.update( i ) }
     end
 
@@ -88,8 +89,30 @@ module TestStatType
       assert_equal(%w[ count rate ], h.keys.sort)
     end
 
-    def test_raises_nomethoderror_if_an_invalid_stat_is_used
+    def test_raises_nomethoderror_if_an_invalid_json_stat_is_used
       assert_raises(NoMethodError) { @full_stats.to_json( "wibble" ) }
+    end
+
+    def test_collects_mode
+      values = Array.new.tap do |a|
+        100.times {
+          n = Random.rand(10)
+          a << n
+          @all_stats.update(n)
+        }
+      end
+
+      tally = values.tally
+      mode_value = tally.max_by { |v, count| count }.first
+
+      assert_equal(mode_value, @all_stats.mode)
+    end
+
+    def test_collecting_frequences_reports_extra_stat_names
+      stat_names = @all_stats.collected_stats
+      assert_includes(stat_names, "mode")
+      assert_includes(stat_names, "unique_count")
+      assert_includes(stat_names, "unique_values")
     end
   end
 end
