@@ -78,6 +78,12 @@ module FlatKit
       end
 
       command_klass = FlatKit::Command.for(command_name)
+      if command_klass.nil? then
+        $stdout.puts "ERROR: Unknown command '#{command_name}'"
+        parser.educate
+        exit 0
+      end
+
       command       = command_klass.new(argv: argv, logger: ::FlatKit.logger, env: env)
       command.call
     end
