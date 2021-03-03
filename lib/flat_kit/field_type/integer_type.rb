@@ -4,6 +4,10 @@ module FlatKit
 
       REGEX = /\A[-+]?\d+\Z/
 
+      def self.type_name
+        "integer"
+      end
+
       def self.matches?(data)
         case data
         when Integer

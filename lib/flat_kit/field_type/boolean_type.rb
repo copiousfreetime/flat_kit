@@ -6,6 +6,10 @@ module FlatKit
       FALSEY_REGEX = /\A(false|f|0|no|n|off)\Z/i
       REGEX        = Regexp.union(TRUTHY_REGEX, FALSEY_REGEX)
 
+      def self.type_name
+        "boolean"
+      end
+
       def self.matches?(data)
         case data
         when TrueClass

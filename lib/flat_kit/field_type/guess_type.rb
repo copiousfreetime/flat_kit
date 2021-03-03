@@ -4,6 +4,10 @@ module FlatKit
     # it needs to be guessed. This is a sentinel type that doesn't match any
     # data.
     class GuessType < FieldType
+      def self.type_name
+        self.name
+      end
+
       def self.matches?(data)
         false
       end

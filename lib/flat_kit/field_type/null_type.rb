@@ -4,6 +4,10 @@ module FlatKit
 
       REGEX = Regexp.union(/\A(null|nil)\Z/i, /\A\\N\Z/)
 
+      def self.type_name
+        "null"
+      end
+
       def self.matches?(data)
         case data
         when nil

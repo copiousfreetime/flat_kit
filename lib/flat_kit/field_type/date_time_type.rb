@@ -2,6 +2,10 @@ module FlatKit
   class FieldType
     class DateTimeType < FieldType
 
+      def self.type_name
+        "datetime"
+      end
+
       def self.matches?(data)
         case data
         when DateTime

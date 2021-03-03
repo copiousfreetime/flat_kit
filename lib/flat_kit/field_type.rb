@@ -13,6 +13,10 @@ module FlatKit
       candidate_types(data).sort_by { |t| t.weight }.last
     end
 
+    def self.type_name
+      raise NotImplementedError, "must impleent #{self.type_name}"
+    end
+
     def self.matches?(data)
       raise NotImplementedError, "must implement #{self.name}.matches?(data)"
     end
