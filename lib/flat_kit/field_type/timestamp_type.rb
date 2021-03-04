@@ -31,7 +31,7 @@ module FlatKit
         when String
           parse_formats.each do |format|
             begin
-              coerced_data = Time.strptime(data, format)
+              coerced_data = Time.strptime(data, format).utc
               return coerced_data
             rescue => _
               # do nothing

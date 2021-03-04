@@ -48,7 +48,7 @@ module FlatKit
       end
 
       def complete_structured_data
-        @complete_structured_data ||= Oj.load(data)
+        @complete_structured_data ||= Oj.load(data, mode: :strict)
       end
       alias to_hash complete_structured_data
 
@@ -60,7 +60,7 @@ module FlatKit
       # to parse
       def data
         if @data.nil? && complete_structured_data? then
-          @data = Oj.dump(complete_structured_data)
+          @data = Oj.dump(complete_structured_data, mode: :json)
         end
         @data
       end

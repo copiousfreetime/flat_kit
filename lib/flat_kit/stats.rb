@@ -58,6 +58,7 @@ module FlatKit
       @stats_by_field.each do |name, stats|
         h = stats.to_hash.merge({"total_record_count" => @record_count })
         record = ::FlatKit::Jsonl::Record.new(data: nil, complete_structured_data: h)
+
         @writer.write(record)
       end
     end
