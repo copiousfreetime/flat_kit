@@ -37,7 +37,7 @@ module TestFieldType
     end
 
     def test_coerce
-      formats = ::FlatKit::FieldType::DateType.known_formats
+      formats = ::FlatKit::FieldType::DateType.parse_formats
 
       formats.each do |df|
         s = Time.now.strftime("#{df}")

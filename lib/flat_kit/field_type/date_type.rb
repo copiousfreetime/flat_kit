@@ -4,7 +4,6 @@ module FlatKit
     # resolution
     class DateType < FieldType
 
-      # https://en.wikipedia.org/wiki/Date_format_by_country
       # %Y   4 digit year
       # %y   2 didigt year (%Y mod 100) (00..99)
       # %m   month of year zero padded
@@ -25,148 +24,121 @@ module FlatKit
           "%Y-%m-%d",
           "%Y%m%d",
           "%Y/%m/%d",
-          "%Y.%m.%d",
-          "%Y.%m.%d.",
           "%Y %m %d.",
-          "%Y %b %d",
-          "%Y %B %d",
-          "%Y-%m%d",
-          "%Y. %m. %d.",
-          "%Y, %d %B",
-          "%Y, %d %b",
-
-          "%y.%m.%d.",
-          "%y.%m.%d",
-          "%y/%m/%d",
 
           # DMY formats
           "%d %B %Y",
           "%d %b %Y",
-          "%d%m%y",
-          "%d-%B-%Y",
-          "%d/%b/%Y",
           "%d-%b-%Y",
+          "%d/%b/%Y",
           "%d-%m-%Y",
           "%d-%m-%y",
-          "%d. %B %Y",
-          "%d. %B %Y.",
-          "%d. %m. %Y",
-          "%d. %m. %Y.",
-          "%d.%B.%Y",
-          "%d.%B.%y",
-          "%d.%b.%Y",
-          "%d.%b.%y",
-          "%d.%m.%Y",
-          "%d.%m.%Y.",
-          "%d.%m.%y",
-          "%d/%m %Y",
-          "%d/%m-%y",
-          "%d/%m/%Y",
-          "%d/%m/%y",
+          "%d %b, %Y",
+          "%d %b,%Y",
+          "%d %B, %Y",
+          "%d %B,%Y",
 
           # MDY formats
-          "%m/%d/%y",
           "%m/%d/%Y",
           "%m-%d-%Y",
-          "%b-%d-%Y",
-          "%B %d. %Y",
+          "%m/%d/%y",
+          "%m-%d-%y",
+
           "%B %d, %Y",
-          "%B-%d-%Y",
-          "%B/%d/%Y",
+          "%b %d, %Y",
 
           # other formats
           "%Y-%j",
-          "%Y%m",
-          "%Y-%m",
-          "%Y %m",
           "%a %b %d %Y"
-
        ]
 
       end
 
-      def self.known_formats
-        @known_formats ||= [
-          # YMD formats
-          "%Y-%m-%d",
-          "%Y%m%d",
-          "%Y/%m/%d",
-          "%Y.%m.%d",
-          "%Y.%m.%d.",
-          "%Y %m %d.",
-          "%Y %b %d",
-          "%Y %b %-d",
-          "%Y %B %-d",
-          "%Y %B %d",
-          "%Y-%m%d",
-          "%Y. %m. %-d.",
-          "%Y. %m. %d.",
-          "%Y.%-m.%-d.",
-          "%Y.%-m.%-d",
-          "%Y, %d %B",
-          "%Y, %d %b",
-
-          "%y.%-m.%-d",
-          "%y.%-m.%-d.",
-          "%y.%m.%d.",
-          "%y.%m.%d",
-          "%y/%m/%d",
-
-          # DMY formats
-          "%-d %b %Y",
-          "%-d %B %Y",
-          "%-d-%-m-%Y",
-          "%-d. %-m. %Y",
-          "%-d. %-m. %Y.",
-          "%-d. %B %Y",
-          "%-d. %B %Y.",
-          "%-d.%-m.%Y",
-          "%-d.%-m.%Y.",
-          "%-d.%m.%Y.",
-          "%-d.%m.%Y",
-          "%-d.%b.%Y",
-          "%-d.%B.%Y",
-          "%-d/%-m %Y",
-          "%-d/%-m/%Y",
-          "%d %B %Y",
-          "%d %b %Y",
-          "%d-%m-%Y",
-          "%d-%b-%Y",
-          "%d-%B-%Y",
-          "%d.%m.%Y",
-          "%d/%m %Y",
-          "%d/%m/%Y",
-
-          "%-d.%b.%y",
-          "%-d.%B.%y",
-          "%-d.%-m.%y",
-          "%-d/%-m-%y",
-          "%-d/%-m/%y",
-          "%d/%m/%y",
-          "%d-%m-%y",
-          "%d.%m.%y",
-          "%d%m%y",
-
-          # MDY formats
-          "%-m/%-d/%Y",
-          "%m/%d/%Y",
-          "%m-%d-%Y",
-          "%b-%d-%Y",
-          "%B %-d, %Y",
-          "%B %-d. %Y",
-          "%B %d, %Y",
-          "%B-%d-%Y",
-          "%B/%d/%Y",
-
-          "%-m/%-d/%y",
-
-          # other formats
-          "%Y-%j",
-          "%Y%m",
-          "%Y-%m",
-          "%Y %m",
-        ]
-      end
+      # https://en.wikipedia.org/wiki/Date_format_by_country
+      # List of formats culled from the above - not using all as it is
+      # definitely a performance issue at the moment
+      # def self.known_formats
+      #   @known_formats ||= [
+      #     # YMD formats
+      #     "%Y-%m-%d",
+      #     "%Y%m%d",
+      #     "%Y/%m/%d",
+      #     "%Y.%m.%d",
+      #     "%Y.%m.%d.",
+      #     "%Y %m %d.",
+      #     "%Y %b %d",
+      #     "%Y %b %-d",
+      #     "%Y %B %-d",
+      #     "%Y %B %d",
+      #     "%Y-%m%d",
+      #     "%Y. %m. %-d.",
+      #     "%Y. %m. %d.",
+      #     "%Y.%-m.%-d.",
+      #     "%Y.%-m.%-d",
+      #     "%Y, %d %B",
+      #     "%Y, %d %b",
+      #
+      #     "%y.%-m.%-d",
+      #     "%y.%-m.%-d.",
+      #     "%y.%m.%d.",
+      #     "%y.%m.%d",
+      #     "%y/%m/%d",
+      #
+      #     # DMY formats
+      #     "%-d %b %Y",
+      #     "%-d %B %Y",
+      #     "%-d-%-m-%Y",
+      #     "%-d. %-m. %Y",
+      #     "%-d. %-m. %Y.",
+      #     "%-d. %B %Y",
+      #     "%-d. %B %Y.",
+      #     "%-d.%-m.%Y",
+      #     "%-d.%-m.%Y.",
+      #     "%-d.%m.%Y.",
+      #     "%-d.%m.%Y",
+      #     "%-d.%b.%Y",
+      #     "%-d.%B.%Y",
+      #     "%-d/%-m %Y",
+      #     "%-d/%-m/%Y",
+      #     "%d %B %Y",
+      #     "%d %b %Y",
+      #     "%d-%m-%Y",
+      #     "%d-%b-%Y",
+      #     "%d-%B-%Y",
+      #     "%d.%m.%Y",
+      #     "%d/%m %Y",
+      #     "%d/%m/%Y",
+      #
+      #     "%-d.%b.%y",
+      #     "%-d.%B.%y",
+      #     "%-d.%-m.%y",
+      #     "%-d/%-m-%y",
+      #     "%-d/%-m/%y",
+      #     "%d/%m/%y",
+      #     "%d-%m-%y",
+      #     "%d.%m.%y",
+      #     "%d%m%y",
+      #
+      #     # MDY formats
+      #     "%-m/%-d/%Y",
+      #     "%m/%d/%Y",
+      #     "%m-%d-%Y",
+      #     "%b-%d-%Y",
+      #     "%B %-d, %Y",
+      #     "%B %-d. %Y",
+      #     "%B %d, %Y",
+      #     "%B-%d-%Y",
+      #     "%B/%d/%Y",
+      #
+      #     "%-m/%-d/%y",
+      #
+      #     # other formats
+      #     "%Y-%j",
+      #     "%Y%m",
+      #     "%Y-%m",
+      #     "%Y %m",
+      #   ]
+      # end
 
       def self.type_name
         "date"

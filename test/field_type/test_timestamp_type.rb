@@ -32,20 +32,32 @@ module TestFieldType
     end
 
     def test_no_duplicate_formats
-      time_formats = ::FlatKit::FieldType::TimestampType.time_formats
       parse_formats = ::FlatKit::FieldType::TimestampType.parse_formats
 
-      assert_equal(time_formats.size, time_formats.sort.uniq.size)
       assert_equal(parse_formats.size, parse_formats.sort.uniq.size)
     end
 
     def test_parse_formats
-      parse_formats = ::FlatKit::FieldType::TimestampType.parse_formats
+      parse_formats = ::FlatKit::FieldType::TimestampType.parse_formats.dup
+      extra_formats = [
+          "%Y-%m-%dT%H:%M:%S.%N%z",
+          "%Y-%m-%d %H:%M:%S.%NZ",
+          "%Y-%m-%d %H:%M:%S.%N",
+          "%Y-%m-%dT%H:%M:%S.%3N%z",
+          "%Y-%m-%d %H:%M:%S.%3NZ",
+          "%Y-%m-%d %H:%M:%S.%3N",
+          "%Y-%m-%dT%H:%M:%S.%6N%z",
+          "%Y-%m-%d %H:%M:%S.%6NZ",
+          "%Y-%m-%d %H:%M:%S.%6N",
+          "%Y-%m-%dT%H:%M:%S.%9N%z",
+          "%Y-%m-%d %H:%M:%S.%9NZ",
+          "%Y-%m-%d %H:%M:%S.%9N",
+      ]
+      parse_formats.concat(extra_formats)
 
       parse_formats.each do |format|
         now = Time.now
-        epoch = now.to_i
-        str = Time.now.strftime(format)
+        str = now.strftime(format)
 
         assert(FlatKit::FieldType::TimestampType.matches?(str), "#{str} should match timestamp")
         coerced = FlatKit::FieldType::TimestampType.coerce(str)
