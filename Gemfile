@@ -6,5 +6,6 @@ gemspec
 group :development, :test do
   gem "byebug"
   gem "heel"
+  gem "progress_bar"
   gem "benchmark-ips"
 end
