@@ -1,7 +1,7 @@
 module FlatKit
   class StatType
     def self.nominal_types
-      [FieldType::BooleanType, FieldType::StringType]
+      [FieldType::BooleanType, FieldType::StringType, FieldType::NullType ]
     end
 
     def self.ordinal_types
