@@ -2,6 +2,8 @@
 ## Version 0.3.0
 
 * Changing the event listening api to include meta data about the event
+* Add field type detection
+* Add a 'stats' command to generate stats about the data file
 
 ## Version 0.2.0
 
