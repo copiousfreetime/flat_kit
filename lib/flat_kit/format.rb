@@ -3,7 +3,7 @@ module FlatKit
     extend DescendantTracker
 
     def self.format_name
-      raise NotImplementedError, "#{self.class} must implemente #{self.class}.format_name"
+      raise NotImplementedError, "#{self.class} must implement #{self.class}.format_name"
     end
 
     def format_name
