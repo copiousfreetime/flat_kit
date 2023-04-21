@@ -36,11 +36,13 @@ task :develop => "develop:default"
 # Minitest - standard TestTask
 #------------------------------------------------------------------------------
 begin
-  require 'rake/testtask'
-  Rake::TestTask.new( :test ) do |t|
-    t.ruby_opts    = %w[ -w ]
-    t.libs         = %w[ lib spec test ]
-    t.pattern      = "{test,spec}/**/{test_*,*_spec}.rb"
+  require 'minitest/test_task'
+  Minitest::TestTask.create( :test) do |t|
+    t.libs << "lib"
+    t.libs << "spec"
+    t.libs << "test"
+    t.warning = true
+    t.test_globs = "{test,spec}/**/{test_*,*_spec}.rb"
   end
 
   task :test_requirements
@@ -143,14 +145,20 @@ namespace :fixme do
   end
 
   def local_fixme_files
-    This.manifest.select { |p| p =~ %r|^tasks/| }
+    local_files = This.manifest.select { |p| p =~ %r|^tasks/| }
+    local_files << ".semaphore/semaphore.yml"
   end
 
   def outdated_fixme_files
     local_fixme_files.select do |local|
       upstream     = fixme_project_path( local )
-      upstream.exist? &&
-        ( Digest::SHA256.file( local ) != Digest::SHA256.file( upstream ) )
+      if upstream.exist? then
+        if File.exist?( local ) then
+          ( Digest::SHA256.file( local ) != Digest::SHA256.file( upstream ) )
+        else
+          true
+        end
+      end
     end
   end
 
@@ -201,7 +209,7 @@ task :gemspec do
 end
 
 # .rbc files from ruby 2.0
-CLOBBER << FileList["**/*.rbc"]
+CLOBBER << "**/*.rbc"
 
 # The standard gem packaging task, everyone has it.
 require 'rubygems/package_task'

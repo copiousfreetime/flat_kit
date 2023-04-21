@@ -23,9 +23,12 @@ begin
       ext.lib_dir   = File.join( 'lib', This.name )
       ext.gem_spec  = This.ruby_gemspec
 
-      ext.cross_compile  = true                         # enable cross compilation (requires cross compile toolchain)
-      ext.cross_platform = %w[x86-mingw32 x64-mingw32]  # forces the Windows platform instead of the default one
-                                                        # configure options only for cross compile
+      ext.cross_compile  = true  # enable cross compilation (requires cross compile toolchain)
+      ext.cross_platform = %w[
+        x86-mingw32
+        x64-mingw-ucrt
+        x64-mingw32
+      ]
     end
   end
 
@@ -34,5 +37,5 @@ rescue LoadError
   This.task_warning( 'extension' )
 end
 
-CLOBBER << FileList["lib/**/*.{jar,so,bundle}"]
-CLOBBER << FileList["lib/#{This.name}/{1,2}.*/"]
+CLOBBER << "lib/**/*.{jar,so,bundle}"
+CLOBBER << "lib/#{This.name}/{1,2,3}.*/"

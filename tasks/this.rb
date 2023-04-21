@@ -25,7 +25,7 @@ class ThisProject
   #
   # Yields self
   def initialize(&block)
-    @exclude_from_manifest = Regexp.union(/\.(git|DS_Store)/,
+    @exclude_from_manifest = Regexp.union(/\.(git|DS_Store|semaphore)/,
                                           /^(doc|coverage|pkg|tmp|Gemfile(\.lock)?)/,
                                           /^[^\/]+\.gemspec/,
                                           /\.(swp|jar|bundle|so|rvmrc|travis.yml|byebug_history|fossa.yml|ruby-version)$/,
@@ -140,13 +140,13 @@ class ThisProject
 
       spec.files       = manifest
       spec.executables = spec.files.grep(/^bin/) { |f| File.basename(f) }
-      spec.test_files  = spec.files.grep(/^(spec|test)/)
+      spec.test_files  = spec.files.grep(/^spec/)
 
       spec.extra_rdoc_files += spec.files.grep(/(txt|rdoc|md)$/)
       spec.rdoc_options = [ "--main"  , 'README.md',
                             "--markup", "tomdoc" ]
 
-      spec.required_ruby_version = '>= 2.2.2'
+      spec.required_ruby_version = '>= 2.3.0'
     end
   end
 
@@ -194,7 +194,7 @@ class ThisProject
   end
 
   def license
-    license_file = project_path("LICENSE.txt")
+    license_file = project_path("LICENSE")
     line = license_file.readlines.first
     line.split(/\s+/).first
   end
