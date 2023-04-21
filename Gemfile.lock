@@ -26,6 +26,7 @@ GEM
     highline (2.1.0)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
+    jar-dependencies (0.4.1)
     launchy (2.5.2)
       addressable (~> 2.8)
     mime-types (3.4.1)
@@ -35,6 +36,7 @@ GEM
     minitest-focus (1.3.1)
       minitest (>= 4, < 6)
     nio4r (2.5.9)
+    nio4r (2.5.9-java)
     oj (3.14.3)
     optimist (3.0.1)
     options (2.3.2)
@@ -43,8 +45,12 @@ GEM
       options (~> 2.3.0)
     psych (5.1.0)
       stringio
+    psych (5.1.0-java)
+      jar-dependencies (>= 0.1.7)
     public_suffix (5.0.1)
     puma (6.2.2)
+      nio4r (~> 2.0)
+    puma (6.2.2-java)
       nio4r (~> 2.0)
     rack (3.0.7)
     rackup (2.1.0)
@@ -65,6 +71,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-21
+  java
   x86_64-darwin-19
   x86_64-linux
 
