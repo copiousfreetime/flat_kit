@@ -72,7 +72,7 @@ module FlatKit
       ::FlatKit.logger.debug argv
 
       command_name  = argv.shift
-      if command_name.downcase == "help" then
+      if command_name.nil? || command_name.downcase == "help" then
         parser.educate
         exit 0
       end
