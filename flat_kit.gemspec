@@ -10,41 +10,27 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0".freeze) if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib".freeze]
   s.authors = ["Jeremy Hinegardner".freeze]
-  s.date = "2021-03-01"
+  s.date = "2023-04-21"
   s.description = "A library and commandline program for reading, writing, indexing,  sorting, and merging CSV, TSV, JSON and other flat-file formats.".freeze
   s.email = "jeremy@copiousfreetime.org".freeze
   s.executables = ["fk".freeze]
   s.extra_rdoc_files = ["CONTRIBUTING.md".freeze, "HISTORY.md".freeze, "LICENSE.txt".freeze, "Manifest.txt".freeze, "README.md".freeze]
-  s.files = ["CONTRIBUTING.md".freeze, "HISTORY.md".freeze, "LICENSE.txt".freeze, "Manifest.txt".freeze, "README.md".freeze, "Rakefile".freeze, "bin/fk".freeze, "lib/flat_kit.rb".freeze, "lib/flat_kit/cli.rb".freeze, "lib/flat_kit/command.rb".freeze, "lib/flat_kit/command/cat.rb".freeze, "lib/flat_kit/command/merge.rb".freeze, "lib/flat_kit/command/sort.rb".freeze, "lib/flat_kit/descendant_tracker.rb".freeze, "lib/flat_kit/error.rb".freeze, "lib/flat_kit/event_emitter.rb".freeze, "lib/flat_kit/format.rb".freeze, "lib/flat_kit/input.rb".freeze, "lib/flat_kit/input/file.rb".freeze, "lib/flat_kit/input/io.rb".freeze, "lib/flat_kit/internal_node.rb".freeze, "lib/flat_kit/jsonl.rb".freeze, "lib/flat_kit/jsonl/format.rb".freeze, "lib/flat_kit/jsonl/reader.rb".freeze, "lib/flat_kit/jsonl/record.rb".freeze, "lib/flat_kit/jsonl/writer.rb".freeze, "lib/flat_kit/leaf_node.rb".freeze, "lib/flat_kit/logger.rb".freeze, "lib/flat_kit/merge.rb".freeze, "lib/flat_kit/merge_tree.rb".freeze, "lib/flat_kit/output.rb".freeze, "lib/flat_kit/output/file.rb".freeze, "lib/flat_kit/output/io.rb".freeze, "lib/flat_kit/reader.rb".freeze, "lib/flat_kit/record.rb".freeze, "lib/flat_kit/sentinel_internal_node.rb".freeze, "lib/flat_kit/sentinel_leaf_node.rb".freeze, "lib/flat_kit/sort.rb".freeze, "lib/flat_kit/writer.rb".freeze, "lib/flat_kit/xsv.rb".freeze, "lib/flat_kit/xsv/format.rb".freeze, "lib/flat_kit/xsv/reader.rb".freeze, "lib/flat_kit/xsv/record.rb".freeze, "lib/flat_kit/xsv/writer.rb".freeze, "tasks/default.rake".freeze, "tasks/extension.rake".freeze, "tasks/man.rake".freeze, "tasks/this.rb".freeze, "test/device_dataset.rb".freeze, "test/input/test_file.rb".freeze, "test/input/test_io.rb".freeze, "test/jsonl/test_format.rb".freeze, "test/jsonl/test_reader.rb".freeze, "test/jsonl/test_record.rb".freeze, "test/jsonl/test_writer.rb".freeze, "test/output/test_file.rb".freeze, "test/output/test_io.rb".freeze, "test/test_conversions.rb".freeze, "test/test_event_emitter.rb".freeze, "test/test_format.rb".freeze, "test/test_helper.rb".freeze, "test/test_merge.rb".freeze, "test/test_merge_tree.rb".freeze, "test/test_version.rb".freeze, "test/xsv/test_format.rb".freeze, "test/xsv/test_reader.rb".freeze, "test/xsv/test_record.rb".freeze, "test/xsv/test_writer.rb".freeze]
+  s.files = ["CONTRIBUTING.md".freeze, "HISTORY.md".freeze, "LICENSE.txt".freeze, "Manifest.txt".freeze, "README.md".freeze, "Rakefile".freeze, "bin/fk".freeze, "examples/stream-active-record-to-csv.rb".freeze, "lib/flat_kit.rb".freeze, "lib/flat_kit/cli.rb".freeze, "lib/flat_kit/command.rb".freeze, "lib/flat_kit/command/cat.rb".freeze, "lib/flat_kit/command/merge.rb".freeze, "lib/flat_kit/command/sort.rb".freeze, "lib/flat_kit/command/stats.rb".freeze, "lib/flat_kit/descendant_tracker.rb".freeze, "lib/flat_kit/error.rb".freeze, "lib/flat_kit/event_emitter.rb".freeze, "lib/flat_kit/field_stats.rb".freeze, "lib/flat_kit/field_type.rb".freeze, "lib/flat_kit/field_type/boolean_type.rb".freeze, "lib/flat_kit/field_type/date_type.rb".freeze, "lib/flat_kit/field_type/float_type.rb".freeze, "lib/flat_kit/field_type/guess_type.rb".freeze, "lib/flat_kit/field_type/integer_type.rb".freeze, "lib/flat_kit/field_type/null_type.rb".freeze, "lib/flat_kit/field_type/string_type.rb".freeze, "lib/flat_kit/field_type/timestamp_type.rb".freeze, "lib/flat_kit/field_type/unknown_type.rb".freeze, "lib/flat_kit/format.rb".freeze, "lib/flat_kit/input.rb".freeze, "lib/flat_kit/input/file.rb".freeze, "lib/flat_kit/input/io.rb".freeze, "lib/flat_kit/internal_node.rb".freeze, "lib/flat_kit/jsonl.rb".freeze, "lib/flat_kit/jsonl/format.rb".freeze, "lib/flat_kit/jsonl/reader.rb".freeze, "lib/flat_kit/jsonl/record.rb".freeze, "lib/flat_kit/jsonl/writer.rb".freeze, "lib/flat_kit/leaf_node.rb".freeze, "lib/flat_kit/logger.rb".freeze, "lib/flat_kit/merge.rb".freeze, "lib/flat_kit/merge_tree.rb".freeze, "lib/flat_kit/output.rb".freeze, "lib/flat_kit/output/file.rb".freeze, "lib/flat_kit/output/io.rb".freeze, "lib/flat_kit/position.rb".freeze, "lib/flat_kit/reader.rb".freeze, "lib/flat_kit/record.rb".freeze, "lib/flat_kit/sentinel_internal_node.rb".freeze, "lib/flat_kit/sentinel_leaf_node.rb".freeze, "lib/flat_kit/sort.rb".freeze, "lib/flat_kit/stat_type.rb".freeze, "lib/flat_kit/stat_type/nominal_stats.rb".freeze, "lib/flat_kit/stat_type/numerical_stats.rb".freeze, "lib/flat_kit/stat_type/ordinal_stats.rb".freeze, "lib/flat_kit/stats.rb".freeze, "lib/flat_kit/writer.rb".freeze, "lib/flat_kit/xsv.rb".freeze, "lib/flat_kit/xsv/format.rb".freeze, "lib/flat_kit/xsv/reader.rb".freeze, "lib/flat_kit/xsv/record.rb".freeze, "lib/flat_kit/xsv/writer.rb".freeze, "tasks/default.rake".freeze, "tasks/extension.rake".freeze, "tasks/man.rake".freeze, "tasks/this.rb".freeze, "test/device_dataset.rb".freeze, "test/field_type/test_boolean_type.rb".freeze, "test/field_type/test_date_type.rb".freeze, "test/field_type/test_float_type.rb".freeze, "test/field_type/test_guess_type.rb".freeze, "test/field_type/test_integer_type.rb".freeze, "test/field_type/test_null_type.rb".freeze, "test/field_type/test_string_type.rb".freeze, "test/field_type/test_timestamp_type.rb".freeze, "test/field_type/test_unknown_type.rb".freeze, "test/input/test_file.rb".freeze, "test/input/test_io.rb".freeze, "test/jsonl/test_format.rb".freeze, "test/jsonl/test_reader.rb".freeze, "test/jsonl/test_record.rb".freeze, "test/jsonl/test_writer.rb".freeze, "test/output/test_file.rb".freeze, "test/output/test_io.rb".freeze, "test/run".freeze, "test/stat_type/test_nominal_stats.rb".freeze, "test/stat_type/test_numerical_stats.rb".freeze, "test/stat_type/test_ordinal_stats.rb".freeze, "test/test_conversions.rb".freeze, "test/test_event_emitter.rb".freeze, "test/test_field_stats.rb".freeze, "test/test_field_type.rb".freeze, "test/test_format.rb".freeze, "test/test_helper.rb".freeze, "test/test_merge.rb".freeze, "test/test_merge_tree.rb".freeze, "test/test_version.rb".freeze, "test/xsv/test_format.rb".freeze, "test/xsv/test_reader.rb".freeze, "test/xsv/test_record.rb".freeze, "test/xsv/test_writer.rb".freeze]
   s.homepage = "http://github.com/copiousfreetime/flat_kit".freeze
   s.licenses = ["MIT".freeze]
   s.rdoc_options = ["--main".freeze, "README.md".freeze, "--markup".freeze, "tomdoc".freeze]
-  s.required_ruby_version = Gem::Requirement.new(">= 2.2.2".freeze)
-  s.rubygems_version = "3.1.2".freeze
+  s.required_ruby_version = Gem::Requirement.new(">= 2.3.0".freeze)
+  s.rubygems_version = "3.4.10".freeze
   s.summary = "A library and commandline program for reading, writing, indexing, sorting, and merging CSV, TSV, JSON and other flat-file formats.".freeze
-  s.test_files = ["test/device_dataset.rb".freeze, "test/input/test_file.rb".freeze, "test/input/test_io.rb".freeze, "test/jsonl/test_format.rb".freeze, "test/jsonl/test_reader.rb".freeze, "test/jsonl/test_record.rb".freeze, "test/jsonl/test_writer.rb".freeze, "test/output/test_file.rb".freeze, "test/output/test_io.rb".freeze, "test/test_conversions.rb".freeze, "test/test_event_emitter.rb".freeze, "test/test_format.rb".freeze, "test/test_helper.rb".freeze, "test/test_merge.rb".freeze, "test/test_merge_tree.rb".freeze, "test/test_version.rb".freeze, "test/xsv/test_format.rb".freeze, "test/xsv/test_reader.rb".freeze, "test/xsv/test_record.rb".freeze, "test/xsv/test_writer.rb".freeze]
 
-  if s.respond_to? :specification_version then
-    s.specification_version = 4
-  end
+  s.specification_version = 4
 
-  if s.respond_to? :add_runtime_dependency then
-    s.add_runtime_dependency(%q<oj>.freeze, ["~> 3.0"])
-    s.add_runtime_dependency(%q<optimist>.freeze, ["~> 3.0"])
-    s.add_development_dependency(%q<faker>.freeze, ["~> 2.16"])
-    s.add_development_dependency(%q<rake>.freeze, ["~> 13.0"])
-    s.add_development_dependency(%q<minitest>.freeze, ["~> 5.11"])
-    s.add_development_dependency(%q<minitest-focus>.freeze, ["~> 1.2"])
-    s.add_development_dependency(%q<rdoc>.freeze, ["~> 6.3"])
-    s.add_development_dependency(%q<simplecov>.freeze, ["~> 0.21"])
-  else
-    s.add_dependency(%q<oj>.freeze, ["~> 3.0"])
-    s.add_dependency(%q<optimist>.freeze, ["~> 3.0"])
-    s.add_dependency(%q<faker>.freeze, ["~> 2.16"])
-    s.add_dependency(%q<rake>.freeze, ["~> 13.0"])
-    s.add_dependency(%q<minitest>.freeze, ["~> 5.11"])
-    s.add_dependency(%q<minitest-focus>.freeze, ["~> 1.2"])
-    s.add_dependency(%q<rdoc>.freeze, ["~> 6.3"])
-    s.add_dependency(%q<simplecov>.freeze, ["~> 0.21"])
-  end
+  s.add_runtime_dependency(%q<oj>.freeze, ["~> 3.0"])
+  s.add_runtime_dependency(%q<optimist>.freeze, ["~> 3.0"])
+  s.add_development_dependency(%q<faker>.freeze, ["~> 2.16"])
+  s.add_development_dependency(%q<rake>.freeze, ["~> 13.0"])
+  s.add_development_dependency(%q<minitest>.freeze, ["~> 5.11"])
+  s.add_development_dependency(%q<minitest-focus>.freeze, ["~> 1.2"])
+  s.add_development_dependency(%q<rdoc>.freeze, ["~> 6.3"])
+  s.add_development_dependency(%q<simplecov>.freeze, ["~> 0.21"])
 end
