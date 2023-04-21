@@ -30,6 +30,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency(%q<faker>.freeze, ["~> 2.16"])
   s.add_development_dependency(%q<rake>.freeze, ["~> 13.0"])
   s.add_development_dependency(%q<minitest>.freeze, ["~> 5.11"])
+  s.add_development_dependency(%q<minitest-junit>.freeze, ["~> 1.0"])
   s.add_development_dependency(%q<minitest-focus>.freeze, ["~> 1.2"])
   s.add_development_dependency(%q<rdoc>.freeze, ["~> 6.3"])
   s.add_development_dependency(%q<simplecov>.freeze, ["~> 0.21"])
