@@ -1,4 +1,9 @@
 # FlatKit Changelog
+## Version 0.3.1
+* setup semaphore testing
+* fix a typo
+* fix commandline error if no sub command is given
+
 ## Version 0.3.0
 
 * Changing the event listening api to include meta data about the event

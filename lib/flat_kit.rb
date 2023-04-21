@@ -1,5 +1,5 @@
 module FlatKit
-  VERSION = "0.3.0"
+  VERSION = "0.3.1"
 end
 require 'flat_kit/error'
 require 'flat_kit/descendant_tracker'
