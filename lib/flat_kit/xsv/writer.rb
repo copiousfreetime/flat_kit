@@ -51,7 +51,7 @@ module FlatKit
       rescue FlatKit::Error => fe
         raise fe
       rescue => e
-        ::FlatKit.logger.error "Error reading jsonl records from #{output.name}: #{e}"
+        ::FlatKit.logger.error "Error writing xsv records to #{output.name}: #{e}"
         raise ::FlatKit::Error, e
       end
 
