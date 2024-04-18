@@ -1,7 +1,7 @@
 require 'simplecov'
 SimpleCov.start if ENV['COVERAGE']
 
-require 'byebug'
+require 'debug'
 
 require 'minitest/autorun'
 require 'minitest/focus'

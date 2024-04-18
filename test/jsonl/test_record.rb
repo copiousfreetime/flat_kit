@@ -1,6 +1,5 @@
 require_relative '../test_helper'
 require 'faker'
-require 'byebug'
 
 module TestJsonl
   class TestRecord < ::Minitest::Test

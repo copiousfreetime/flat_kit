@@ -1,6 +1,5 @@
 require 'test_helper'
 require 'faker'
-require 'byebug'
 
 module TestXsv
   class TestRecord< ::Minitest::Test
