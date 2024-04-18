@@ -24,11 +24,7 @@ begin
       ext.gem_spec  = This.ruby_gemspec
 
       ext.cross_compile  = true  # enable cross compilation (requires cross compile toolchain)
-      ext.cross_platform = %w[
-        x86-mingw32
-        x64-mingw-ucrt
-        x64-mingw32
-      ]
+      ext.cross_platform = This.cross_platforms
     end
   end
 
