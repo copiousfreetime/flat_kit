@@ -28,10 +28,12 @@ blocks:
           matrix:
             - env_var: RUBY_VERSION
               values:
-                - 3.0.6
-                - 3.1.4
-                - 3.2.3
-                - 3.3.0
+                - 3.0.7
+                - 3.1.5
+                - 3.2.4
+                - 3.3.1
+                - jruby-9.4.5.0
+                - truffleruby-23.1.2
           commands:
             - source .semaphore/ensure-ruby-version.sh
             - source .semaphore/ensure-bundle.sh
