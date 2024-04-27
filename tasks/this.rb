@@ -142,8 +142,9 @@ class ThisProject
       spec.license     = license
 
       spec.files       = manifest
-      spec.executables = spec.files.grep(/^bin/) { |f| File.basename(f) }
       spec.test_files  = spec.files.grep(/^spec/)
+      spec.bindir      = 'exe'
+      spec.executables = spec.files.grep(/^exe/) { |f| File.basename(f) }
 
       spec.extra_rdoc_files += spec.files.grep(/(txt|rdoc|md)$/)
       spec.rdoc_options = [ "--main"  , 'README.md',
