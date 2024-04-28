@@ -11,7 +11,7 @@ module FlatKit
 
       def self.matches?(data)
         return false unless data.is_a?(String)
-        return true if data.length == 0
+        return true if data.length.zero?
 
         REGEX.match?(data)
       end

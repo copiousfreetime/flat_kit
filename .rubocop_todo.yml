@@ -257,17 +257,6 @@ Style/NilComparison:
     - 'test/xsv/test_writer.rb'
 
 # Offense count: 3
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: EnforcedStyle, AllowedMethods, AllowedPatterns.
-# SupportedStyles: predicate, comparison
-Style/NumericPredicate:
-  Exclude:
-    - 'spec/**/*'
-    - 'lib/flat_kit/field_type/unknown_type.rb'
-    - 'lib/flat_kit/xsv/writer.rb'
-    - 'test/xsv/test_writer.rb'
-
-# Offense count: 3
 # This cop supports safe autocorrection (--autocorrect).
 Style/OperatorMethodCall:
   Exclude:

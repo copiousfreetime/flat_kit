@@ -58,7 +58,7 @@ module TestXsv
 
           header_bytes = writer.header_bytes if header_bytes == nil
 
-          assert(header_bytes > 0)
+          assert_predicate(header_bytes, :positive?)
 
           assert_equal(idx, position.index)
           assert_equal(header_bytes + records_bytes, position.offset)

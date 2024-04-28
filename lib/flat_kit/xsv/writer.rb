@@ -59,7 +59,7 @@ module FlatKit
       private
 
       def write_record(record)
-        if @we_write_the_header && @count == 0
+        if @we_write_the_header && @count.zero?
           @csv << record.ordered_fields
           @header_bytes = output.tell
         end
