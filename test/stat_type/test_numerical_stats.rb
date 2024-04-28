@@ -110,7 +110,7 @@ module TestStatType
       end
 
       tally = values.tally
-      mode_value = tally.max_by { |v, count| count }.first
+      mode_value = tally.max_by { |_v, count| count }.first
 
       assert_equal(mode_value, @all_stats.mode)
     end
