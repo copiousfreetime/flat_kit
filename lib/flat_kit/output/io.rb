@@ -12,14 +12,14 @@ module FlatKit
       STDERRS = %w[stderr STDERR <stderr>].freeze
 
       def self.handles?(obj)
-        return true if is_stderr?(obj)
-        return true if is_stdout?(obj)
+        return true if stderr?(obj)
+        return true if stdout?(obj)
         return true if [::File, ::StringIO, ::IO].any? { |klass| obj.is_a?(klass) }
 
         false
       end
 
-      def self.is_stderr?(obj)
+      def self.stderr?(obj)
         case obj
         when String
           return true if STDERRS.include?(obj)
@@ -29,7 +29,7 @@ module FlatKit
         false
       end
 
-      def self.is_stdout?(obj)
+      def self.stdout?(obj)
         case obj
         when String
           return true if STDOUTS.include?(obj)
@@ -42,10 +42,10 @@ module FlatKit
       def initialize(obj)
         super()
         @count = 0
-        if self.class.is_stdout?(obj)
+        if self.class.stdout?(obj)
           @name = "<STDOUT>"
           @io = $stdout
-        elsif self.class.is_stderr?(obj)
+        elsif self.class.stderr?(obj)
           @name = "<STDERR>"
           @io = $stderr
         elsif obj.is_a?(::IO)

@@ -123,12 +123,6 @@ Lint/UselessMethodDefinition:
 Metrics/AbcSize:
   Max: 44
 
-# Offense count: 4
-# Configuration parameters: CountComments, CountAsOne, AllowedMethods, AllowedPatterns.
-# AllowedMethods: refine
-Metrics/BlockLength:
-  Max: 33
-
 # Offense count: 1
 # Configuration parameters: CountComments, CountAsOne.
 Metrics/ClassLength:
@@ -167,18 +161,6 @@ Naming/MethodName:
   Exclude:
     - 'test/field_type/test_date_type.rb'
     - 'test/field_type/test_timestamp_type.rb'
-
-# Offense count: 3
-# Configuration parameters: NamePrefix, ForbiddenPrefixes, AllowedMethods, MethodDefinitionMacros.
-# NamePrefix: is_, has_, have_
-# ForbiddenPrefixes: is_, has_, have_
-# AllowedMethods: is_a?
-# MethodDefinitionMacros: define_method, define_singleton_method
-Naming/PredicateName:
-  Exclude:
-    - 'spec/**/*'
-    - 'lib/flat_kit/input/io.rb'
-    - 'lib/flat_kit/output/io.rb'
 
 # Offense count: 1
 # Configuration parameters: EnforcedStyle, CheckMethodNames, CheckSymbols, AllowedIdentifiers, AllowedPatterns.

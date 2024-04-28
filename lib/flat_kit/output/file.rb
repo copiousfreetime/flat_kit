@@ -16,8 +16,8 @@ module FlatKit
         return false unless obj.instance_of?(String)
 
         # incase these get loaded in different orders
-        return false if ::FlatKit::Output::IO.is_stdout?(obj)
-        return false if ::FlatKit::Output::IO.is_stderr?(obj)
+        return false if ::FlatKit::Output::IO.stdout?(obj)
+        return false if ::FlatKit::Output::IO.stderr?(obj)
 
         true
       end

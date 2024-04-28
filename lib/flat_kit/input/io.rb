@@ -6,13 +6,13 @@ module FlatKit
       STDINS = %w[stdin STDIN - <stdin>].freeze
 
       def self.handles?(obj)
-        return true if is_stdin?(obj)
+        return true if stdin?(obj)
         return true if [::File, ::StringIO, ::IO].any? { |klass| obj.is_a?(klass) }
 
         false
       end
 
-      def self.is_stdin?(obj)
+      def self.stdin?(obj)
         case obj
         when String
           return true if STDINS.include?(obj)
@@ -24,7 +24,7 @@ module FlatKit
 
       def initialize(obj)
         super()
-        if self.class.is_stdin?(obj)
+        if self.class.stdin?(obj)
           @name = "<STDIN>"
           @io = $stdin
         elsif obj.is_a?(::IO)

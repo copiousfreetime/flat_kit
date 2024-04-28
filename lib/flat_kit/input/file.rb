@@ -13,7 +13,7 @@ module FlatKit
         return false unless obj.instance_of?(String)
 
         # incase these get loaded in different orders
-        return false if ::FlatKit::Input::IO.is_stdin?(obj)
+        return false if ::FlatKit::Input::IO.stdin?(obj)
 
         true
       end
