@@ -4,8 +4,11 @@ require_relative "../test_helper"
 
 module TestOutput
   class NullIO < ::IO
+    # This is a null IO object that does nothing
+    # rubocop:disable Lint/MissingSuper
     def initialize()
     end
+    # rubocop:enable Lint/MissingSuper
   end
 
   class TestIO < ::Minitest::Test

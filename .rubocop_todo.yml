@@ -114,18 +114,6 @@ Lint/IdentityComparison:
   Exclude:
     - 'lib/flat_kit/internal_node.rb'
 
-# Offense count: 7
-# Configuration parameters: AllowedParentClasses.
-Lint/MissingSuper:
-  Exclude:
-    - 'lib/flat_kit/input/file.rb'
-    - 'lib/flat_kit/input/io.rb'
-    - 'lib/flat_kit/output/file.rb'
-    - 'lib/flat_kit/output/io.rb'
-    - 'lib/flat_kit/stat_type/nominal_stats.rb'
-    - 'test/input/test_io.rb'
-    - 'test/output/test_io.rb'
-
 # Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Lint/RedundantRequireStatement:

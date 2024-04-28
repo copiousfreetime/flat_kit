@@ -40,6 +40,7 @@ module FlatKit
       end
 
       def initialize(obj)
+        super()
         @count = 0
         if self.class.is_stdout?(obj)
           @name = "<STDOUT>"

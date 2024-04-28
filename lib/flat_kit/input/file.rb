@@ -19,6 +19,7 @@ module FlatKit
       end
 
       def initialize(obj)
+        super()
         @count = 0
         @path = Pathname.new(obj)
         raise FlatKit::Error, "Input #{obj} is not readable" unless @path.readable?

@@ -23,6 +23,7 @@ module FlatKit
       end
 
       def initialize(obj)
+        super()
         if self.class.is_stdin?(obj)
           @name = "<STDIN>"
           @io = $stdin

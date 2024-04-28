@@ -8,6 +8,9 @@ module FlatKit
     class File < Output
       attr_reader :path
 
+      # internal api method for testing purposes
+      attr_reader :io
+
       def self.handles?(obj)
         return true if obj.instance_of?(Pathname)
         return false unless obj.instance_of?(String)
@@ -20,6 +23,7 @@ module FlatKit
       end
 
       def initialize(obj)
+        super()
         @path = Pathname.new(obj)
         path.dirname.mkpath
         @io = open_output(path)
@@ -32,9 +36,6 @@ module FlatKit
       def close
         @io.close
       end
-
-      # internal api method for testing purposes
-      attr_reader :io
 
       private
 

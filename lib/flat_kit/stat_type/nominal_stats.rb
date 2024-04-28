@@ -16,6 +16,7 @@ module FlatKit
       end
 
       def initialize(collecting_frequencies: false)
+        super()
         @mutex = Mutex.new
         @count = 0
         @collecting_frequencies = collecting_frequencies
