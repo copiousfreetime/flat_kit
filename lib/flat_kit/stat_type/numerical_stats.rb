@@ -39,11 +39,11 @@ module FlatKit
       attr_reader :sumsq
 
       def self.default_stats
-        @default_stats ||= %w[ count max mean min rate stddev sum sumsq ]
+        @default_stats ||= %w[count max mean min rate stddev sum sumsq]
       end
 
       def self.all_stats
-        @all_stats ||= %w[ count max mean min mode rate stddev sum sumsq unique_count unique_values ]
+        @all_stats ||= %w[count max mean min mode rate stddev sum sumsq unique_count unique_values]
       end
 
       def initialize(collecting_frequencies: false)

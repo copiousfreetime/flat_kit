@@ -6,11 +6,11 @@ module FlatKit
       attr_reader :count
 
       def self.default_stats
-        @default_stats ||= %w[ count ]
+        @default_stats ||= %w[count]
       end
 
       def self.all_stats
-        @all_stats ||= %w[ count unique_count unique_values mode ]
+        @all_stats ||= %w[count unique_count unique_values mode]
       end
 
       def initialize(collecting_frequencies: false)

@@ -7,7 +7,7 @@ module FlatKit
 
       def self.handles?(filename)
         parts = filename.split(".")
-        %w[ json jsonl ndjson ].each do |ext|
+        %w[json jsonl ndjson].each do |ext|
           return true if parts.include?(ext)
         end
         return false

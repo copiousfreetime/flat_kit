@@ -7,11 +7,11 @@ module FlatKit
       attr_reader :max
 
       def self.default_stats
-        @default_stats ||= %w[ count max min ]
+        @default_stats ||= %w[count max min]
       end
 
       def self.all_stats
-        @all_stats ||= %w[ count max min unique_count unique_values mode ]
+        @all_stats ||= %w[count max min unique_count unique_values mode]
       end
 
       def initialize(collecting_frequencies: false)

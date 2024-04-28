@@ -58,11 +58,11 @@ module TestStatType
     def test_converts_to_a_limited_hash_if_given_arguments
       h = @full_stats.to_hash("min", "max", "mean")
       assert_equal(3, h.size)
-      assert_equal(%w[ max mean min], h.keys.sort)
+      assert_equal(%w[max mean min], h.keys.sort)
 
-      h = @full_stats.to_hash(%w[ count rate ])
+      h = @full_stats.to_hash(%w[count rate])
       assert_equal(2, h.size)
-      assert_equal(%w[ count rate ], h.keys.sort)
+      assert_equal(%w[count rate], h.keys.sort)
     end
 
     def test_raises_nomethoderror_if_an_invalid_stat_is_used
@@ -80,12 +80,12 @@ module TestStatType
       j = @full_stats.to_json("min", "max", "mean")
       h = JSON.parse(j)
       assert_equal(3, h.size)
-      assert_equal(%w[ max mean min], h.keys.sort)
+      assert_equal(%w[max mean min], h.keys.sort)
 
-      j = @full_stats.to_json(%w[ count rate ])
+      j = @full_stats.to_json(%w[count rate])
       h = JSON.parse(j)
       assert_equal(2, h.size)
-      assert_equal(%w[ count rate ], h.keys.sort)
+      assert_equal(%w[count rate], h.keys.sort)
     end
 
     def test_raises_nomethoderror_if_an_invalid_json_stat_is_used

@@ -1,7 +1,7 @@
 module FlatKit
   class Input
     class IO < Input
-      STDINS = %w[ stdin STDIN - <stdin> ]
+      STDINS = %w[stdin STDIN - <stdin>]
 
       def self.handles?(obj)
         return true if is_stdin?(obj)
