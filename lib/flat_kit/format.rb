@@ -27,7 +27,10 @@ module FlatKit
 
     def self.for_with_fallback!(path:, fallback: "auto")
       format = for_with_fallback(path: path, fallback: fallback)
-      raise ::FlatKit::Error::UnknownFormat, "Unable to figure out format for '#{path}' with fallback '#{fallback}'" if format.nil?
+      if format.nil?
+        raise ::FlatKit::Error::UnknownFormat,
+              "Unable to figure out format for '#{path}' with fallback '#{fallback}'"
+      end
 
       format
     end

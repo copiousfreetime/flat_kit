@@ -42,7 +42,9 @@ module FlatKit
 
     attr_reader :type_counts, :field_type, :name
 
-    def initialize(name:, stats_to_collect: CORE_STATS, type: ::FlatKit::FieldType::GuessType, guess_threshold: DEFAULT_GUESS_THRESHOLD)
+    def initialize(name:, stats_to_collect: CORE_STATS,
+                   type: ::FlatKit::FieldType::GuessType,
+                   guess_threshold: DEFAULT_GUESS_THRESHOLD)
       @name              = name
       @field_type        = type
       @guess_threshold   = guess_threshold
@@ -56,9 +58,13 @@ module FlatKit
       @stats_to_collect.each do |collection_set|
         next if ALL_STATS.include?(collection_set)
 
-        raise ArgumentError, "#{collection_set} is not a valid stats collection set, must be one of #{ALL_STATS.map { |s| s.to_s }.join(", ") }"
+        valid_sets = ALL_STATS.map(&:to_s).join(", ")
+
+        raise ArgumentError, "#{collection_set} is not a valid stats collection set, must be one of #{valid_sets}"
       end
-      raise ArgumentError, "type: must be FieldType subclasses - not #{type}" unless type.is_a?(Class) && (type.superclass == ::FlatKit::FieldType)
+      return if type.is_a?(Class) && (type.superclass == ::FlatKit::FieldType)
+
+      raise ArgumentError, "type: must be FieldType subclasses - not #{type}"
     end
 
     def field_type_determined?
@@ -230,7 +236,9 @@ module FlatKit
       best_guess_type, _best_guess_count = type_counts.max_by { |k, v| v }
       @field_type = best_guess_type
       @stats = StatType.for(@field_type).new(collecting_frequencies: collecting_frequencies?)
-      @length_stats = ::FlatKit::StatType::NumericalStats.new(collecting_frequencies: collecting_frequencies?) if @field_type == ::FlatKit::FieldType::StringType
+      if @field_type == ::FlatKit::FieldType::StringType
+        @length_stats = ::FlatKit::StatType::NumericalStats.new(collecting_frequencies: collecting_frequencies?)
+      end
       @values.each do |v|
         update_stats(v)
       end
