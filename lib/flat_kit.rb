@@ -7,6 +7,7 @@ module FlatKit
 end
 require "flat_kit/error"
 require "flat_kit/descendant_tracker"
+require "flat_kit/log_formatter"
 require "flat_kit/logger"
 require "flat_kit/event_emitter"
 

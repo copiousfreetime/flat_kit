@@ -1,6 +1,4 @@
 require:
-  - rubocop-faker
-  - rubocop-github
   - rubocop-md
   - rubocop-minitest
   - rubocop-packaging
@@ -13,7 +11,6 @@ AllCops:
   Exclude:
     - 'coverage/**/*'
     - 'doc/**/*'
-    - 'tasks/**/*'
     - 'pkg/**/*'
     - 'tmp/**/*'
     - '*.gemspec'

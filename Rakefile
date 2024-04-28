@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+#
 # vim: syntax=ruby
 load "tasks/this.rb"
 
@@ -18,7 +18,7 @@ This.ruby_gemspec do |spec|
     "changelog_uri" => "https://github.com/copiousfreetime/#{This.name}/blob/master/HISTORY.md",
     "homepage_uri" => "https://github.com/copiousfreetime/#{This.name}",
     "source_code_uri" => "https://github.com/copiousfreetime/#{This.name}",
-    "label" => "flat_kit",
+    "label" => This.name,
     "rubygems_mfa_required" => "true",
   }
 end
