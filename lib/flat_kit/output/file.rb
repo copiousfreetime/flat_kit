@@ -1,4 +1,5 @@
 require 'zlib'
+require 'pathname'
 
 module FlatKit
   class Output
