@@ -6,7 +6,7 @@ load "tasks/this.rb"
 This.name     = "flat_kit"
 This.author   = "Jeremy Hinegardner"
 This.email    = "jeremy@copiousfreetime.org"
-This.homepage = "http://github.com/copiousfreetime/#{ This.name }"
+This.homepage = "http://github.com/copiousfreetime/#{This.name}"
 
 This.ruby_gemspec do |spec|
   spec.add_runtime_dependency("oj", "~> 3.0")
