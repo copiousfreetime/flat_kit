@@ -10,11 +10,11 @@ module FlatKit
         name
       end
 
-      def self.matches?(data)
+      def self.matches?(*)
         false
       end
 
-      def self.coerce(data)
+      def self.coerce(*)
         CoerceFailure
       end
     end

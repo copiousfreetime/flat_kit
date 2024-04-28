@@ -12,7 +12,7 @@ module FlatKit
         ::FlatKit::Xsv::Format.format_name
       end
 
-      def self.from_record(record, ordered_fields: nil)
+      def self.from_record(record)
         if record.instance_of?(FlatKit::Xsv::Record)
           new(data: record.data, compare_fields: record.compare_fields)
         else

@@ -23,7 +23,7 @@ module TestHelper
   end
 
   def generate_slug(length: 10)
-    SecureRandom.alphanumeric(10)
+    SecureRandom.alphanumeric(length)
   end
 
   def scratch_file(prefix: "test_", slug: generate_slug, extension: ".jsonl")

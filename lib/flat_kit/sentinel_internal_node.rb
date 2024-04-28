@@ -13,7 +13,7 @@ module FlatKit
     attr_reader :left, :right, :winner
     attr_accessor :next_level
 
-    def initialize(left: nil, right: nil)
+    def initialize(*)
       @left = nil
       @right = nil
       @winner = nil

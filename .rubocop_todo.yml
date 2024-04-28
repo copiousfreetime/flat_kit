@@ -122,19 +122,6 @@ Lint/RedundantRequireStatement:
     - '**/*.markdown'
     - 'lib/flat_kit/stat_type/numerical_stats.rb'
 
-# Offense count: 7
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AutoCorrect, AllowUnusedKeywordArguments, IgnoreEmptyMethods, IgnoreNotImplementedMethods.
-Lint/UnusedMethodArgument:
-  Exclude:
-    - '**/*.md'
-    - '**/*.markdown'
-    - 'lib/flat_kit/field_type/guess_type.rb'
-    - 'lib/flat_kit/logger.rb'
-    - 'lib/flat_kit/sentinel_internal_node.rb'
-    - 'lib/flat_kit/xsv/record.rb'
-    - 'test/test_helper.rb'
-
 # Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: AutoCorrect.

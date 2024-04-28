@@ -11,7 +11,7 @@ module FlatKit
       self.datetime_format = DATETIME_FORMAT
     end
 
-    def call(severity, time, progname, msg)
+    def call(severity, time, _progname, msg)
       FORMAT % [format_datetime(time.utc), Process.pid, severity, msg2str(msg)]
     end
   end
