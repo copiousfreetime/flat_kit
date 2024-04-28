@@ -1,10 +1,12 @@
 # FlatKit Changelog
 
-## Version 0.3.1
-* setup semaphore testing
-* fix a typo
-* fix commandline error if no sub command is given
-* add rubocop checking
+## Version 1.0.0
+
+* Setup semaphore testing
+* Fix typos
+* Fix commandline error if no sub command is given
+* Add rubocop
+* Update supported to Ruby 3.0 or greater
 
 ## Version 0.3.0
 

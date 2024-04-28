@@ -3,7 +3,7 @@
 # Public: Top level namespace for this gem
 #
 module FlatKit
-  VERSION = "0.3.1"
+  VERSION = "1.0.0"
 end
 require "flat_kit/error"
 require "flat_kit/descendant_tracker"
