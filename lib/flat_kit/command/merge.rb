@@ -65,7 +65,7 @@ module FlatKit
 
       def parse
         parser = self.class.parser
-        ::Optimist::with_standard_exception_handling(parser) do
+        ::Optimist.with_standard_exception_handling(parser) do
           @opts = parser.parse(argv)
           @compare_keys = CSV.parse_line(opts[:key])
           paths = parser.leftovers

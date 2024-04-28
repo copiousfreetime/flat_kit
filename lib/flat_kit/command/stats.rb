@@ -66,7 +66,7 @@ module FlatKit
 
       def parse
         parser = self.class.parser
-        ::Optimist::with_standard_exception_handling(parser) do
+        ::Optimist.with_standard_exception_handling(parser) do
           opts = parser.parse(argv)
           fields = ::FlatKit::Stats::AllFields
           fields = CSV.parse_line(opts[:select]) if opts[:select]
