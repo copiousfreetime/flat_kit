@@ -13,9 +13,7 @@ module FlatKit
 
       def self.matches?(data)
         case data
-        when TrueClass
-          true
-        when FalseClass
+        when TrueClass, FalseClass
           true
         when String
           REGEX.match?(data)

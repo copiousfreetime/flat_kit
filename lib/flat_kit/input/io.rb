@@ -26,13 +26,10 @@ module FlatKit
         if self.class.is_stdin?(obj)
           @name = "<STDIN>"
           @io = $stdin
-        elsif obj.is_a?(::File)
-          @name = obj.path
+        elsif obj.is_a?(::IO)
+          @name = obj.path || obj.inspect
           @io = obj
         elsif obj.is_a?(::StringIO)
-          @name = obj.inspect
-          @io = obj
-        elsif obj.is_a?(::IO)
           @name = obj.inspect
           @io = obj
         else

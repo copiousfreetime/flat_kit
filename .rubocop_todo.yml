@@ -116,17 +116,6 @@ Lint/AssignmentInCondition:
   Exclude:
     - 'lib/flat_kit/jsonl/reader.rb'
 
-# Offense count: 8
-# Configuration parameters: IgnoreLiteralBranches, IgnoreConstantBranches.
-Lint/DuplicateBranch:
-  Exclude:
-    - 'lib/flat_kit/field_type/boolean_type.rb'
-    - 'lib/flat_kit/field_type/date_type.rb'
-    - 'lib/flat_kit/field_type/float_type.rb'
-    - 'lib/flat_kit/field_type/integer_type.rb'
-    - 'lib/flat_kit/input/io.rb'
-    - 'lib/flat_kit/output/io.rb'
-
 # Offense count: 1
 # Configuration parameters: AllowComments.
 Lint/EmptyClass:

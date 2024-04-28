@@ -44,13 +44,10 @@ module FlatKit
         elsif self.class.is_stderr?(obj)
           @name = "<STDERR>"
           @io = $stderr
-        elsif obj.is_a?(::File)
-          @name = obj.path
+        elsif obj.is_a?(::IO)
+          @name = obj.path || obj.inspect
           @io = obj
         elsif obj.is_a?(::StringIO)
-          @name = obj.inspect
-          @io = obj
-        elsif obj.is_a?(::IO)
           @name = obj.inspect
           @io = obj
         else
