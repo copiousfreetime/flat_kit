@@ -102,34 +102,34 @@ class TestFieldStats < Minitest::Test
 
   def test_resolves_type_automatically
     field_stats = ::FlatKit::FieldStats.new(name: "numeric-autoresolve", guess_threshold: 101)
-    field_stats, _ = generate_data_with(stats: field_stats) { Faker::Number.within(range: 1.0..100.0) }
+    field_stats, _i = generate_data_with(stats: field_stats) { Faker::Number.within(range: 1.0..100.0) }
 
     refute(field_stats.field_type_determined?)
-    field_stats, _ = generate_data_with(stats: field_stats) { Faker::Number.within(range: 200.0..300.0) }
+    field_stats, _i = generate_data_with(stats: field_stats) { Faker::Number.within(range: 200.0..300.0) }
 
     assert(field_stats.field_type_determined?)
   end
 
   def test_resolves_integer_appropriately_with_mixed_data
     field_stats = ::FlatKit::FieldStats.new(name: "numeric-integer", guess_threshold: 100)
-    field_stats, _ = generate_data_with(count: 40, stats: field_stats) { Faker::Number.within(range: 0..1).to_s }
-    field_stats, _ = generate_data_with(count: 70, stats: field_stats) { Faker::Number.within(range: 0..200).to_s }
+    field_stats, _i = generate_data_with(count: 40, stats: field_stats) { Faker::Number.within(range: 0..1).to_s }
+    field_stats, _i = generate_data_with(count: 70, stats: field_stats) { Faker::Number.within(range: 0..200).to_s }
 
     assert_equal(::FlatKit::FieldType::IntegerType, field_stats.field_type)
   end
 
   def test_resolves_boolean_appropriately_with_mixed_data
     field_stats = ::FlatKit::FieldStats.new(name: "numeric-integer", guess_threshold: 100)
-    field_stats, _ = generate_data_with(count: 70, stats: field_stats) { Faker::Boolean.boolean.to_s }
-    field_stats, _ = generate_data_with(count: 40, stats: field_stats) { Faker::Number.within(range: 0..200).to_s }
+    field_stats, _i = generate_data_with(count: 70, stats: field_stats) { Faker::Boolean.boolean.to_s }
+    field_stats, _i = generate_data_with(count: 40, stats: field_stats) { Faker::Number.within(range: 0..200).to_s }
 
     assert_equal(::FlatKit::FieldType::BooleanType, field_stats.field_type)
   end
 
   def test_resolves_string_appropriately_with_mixed_data
     field_stats = ::FlatKit::FieldStats.new(name: "string", guess_threshold: 100)
-    field_stats, _ = generate_data_with(count: 61, stats: field_stats) { Faker::Color.name.to_s }
-    field_stats, _ = generate_data_with(count: 59, stats: field_stats) { Faker::Number.within(range: 0..200).to_s }
+    field_stats, _i = generate_data_with(count: 61, stats: field_stats) { Faker::Color.name.to_s }
+    field_stats, _i = generate_data_with(count: 59, stats: field_stats) { Faker::Number.within(range: 0..200).to_s }
 
     assert_equal(::FlatKit::FieldType::StringType, field_stats.field_type)
 
