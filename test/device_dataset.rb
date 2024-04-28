@@ -92,7 +92,8 @@ class DeviceDataset
   private
 
   def as_jsonl(list:)
-    list.map { |r| Oj.dump(r) }.join("\n") + "\n"
+    without_nl = list.map { |r| Oj.dump(r) }.join("\n")
+    "#{without_nl}\n"
   end
 
   def as_csv(list:, headers: fields)

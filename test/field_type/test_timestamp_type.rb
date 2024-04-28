@@ -74,7 +74,7 @@ module TestFieldType
       end
     end
 
-    def test_N_number_does_not_match
+    def test_n_number_does_not_match
       x = "N89362"
 
       refute(FlatKit::FieldType::TimestampType.matches?(x), "#{x} should not be date")
