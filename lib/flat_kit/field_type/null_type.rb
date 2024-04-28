@@ -1,7 +1,6 @@
 module FlatKit
   class FieldType
     class NullType < FieldType
-
       REGEX = Regexp.union(/\A(null|nil)\Z/i, /\A\\N\Z/)
 
       def self.type_name

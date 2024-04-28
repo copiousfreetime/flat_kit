@@ -99,6 +99,5 @@ module TestOutput
         File.unlink(test_path) if File.exist?(test_path)
       end
     end
-
   end
 end

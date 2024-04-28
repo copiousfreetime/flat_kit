@@ -2,7 +2,6 @@ require_relative "./test_helper"
 
 module TestFieldType
   class TestFieldType < ::Minitest::Test
-
     def test_weight_raises_exception
       assert_raises(NotImplementedError) { ::FlatKit::FieldType.weight }
     end

@@ -64,7 +64,6 @@ module TestJsonl
           assert_equal(idx+1, current_position.index)
           assert_equal(byte_offset, current_position.offset)
           assert_equal(0, current_position.bytesize)
-
         end
         writer.close
 

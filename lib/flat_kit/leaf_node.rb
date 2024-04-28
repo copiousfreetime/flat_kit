@@ -9,7 +9,6 @@ module FlatKit
   # If all the data is used up from the reader, it also notifies the next level
   # of that so the next level can remove it from the tree.
   class LeafNode
-
     include Comparable
 
     attr_reader :reader

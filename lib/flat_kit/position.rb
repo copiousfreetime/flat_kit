@@ -5,7 +5,6 @@ module FlatKit
   # information about the record that was just written
   #
   class Position
-
     attr_reader :index    # zero based
     attr_reader :offset   # byte offset in the IO stream
     attr_reader :bytesize # byte length of the record

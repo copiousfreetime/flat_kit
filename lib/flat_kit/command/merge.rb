@@ -2,7 +2,6 @@ require "csv"
 module FlatKit
   class Command
     class Merge < ::FlatKit::Command
-
       def self.name
         "merge"
       end

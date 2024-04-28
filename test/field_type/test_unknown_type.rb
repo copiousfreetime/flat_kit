@@ -2,7 +2,6 @@ require_relative "../test_helper"
 
 module TestFieldType
   class TestUnknownType < ::Minitest::Test
-
     def unknown_items
       [ "na", "n/a", "unk", "unknown"]
     end
@@ -30,6 +29,5 @@ module TestFieldType
         assert_equal(::FlatKit::FieldType::CoerceFailure, FlatKit::FieldType::UnknownType.coerce(x))
       end
     end
-
   end
 end

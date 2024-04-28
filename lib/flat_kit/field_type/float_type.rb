@@ -1,7 +1,6 @@
 module FlatKit
   class FieldType
     class FloatType < FieldType
-
       def self.type_name
         "float"
       end

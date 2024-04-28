@@ -35,7 +35,6 @@ module FlatKit
   #   # the initialize method must call super(data:, compare_fields:) to
   #     initializa the root data structures
   class Record
-
     include Comparable
 
     attr_reader :data

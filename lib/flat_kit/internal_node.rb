@@ -10,7 +10,6 @@ module FlatKit
   # here.
   #
   class InternalNode
-
     include Comparable
 
     attr_accessor :left        # Internal Node

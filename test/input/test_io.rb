@@ -7,7 +7,6 @@ module TestInput
   end
 
   class TestIO < ::Minitest::Test
-
     def test_handles_stdin_text
       ::FlatKit::Input::IO::STDINS.each do |e|
         assert(::FlatKit::Input::IO.handles?(e), "#{e} is not stdin text")
@@ -88,6 +87,5 @@ module TestInput
         File.unlink(test_path) if File.exist?(test_path)
       end
     end
-
   end
 end

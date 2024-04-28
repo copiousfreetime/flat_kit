@@ -1,6 +1,5 @@
 module FlatKit
   class FieldType
-
     extend FlatKit::DescendantTracker
 
     CoerceFailure = Class.new(::Object).freeze

@@ -1,7 +1,6 @@
 module FlatKit
   class FieldType
     class TimestampType < FieldType
-
       def self.parse_formats
         @timestamp_formats ||= [
           "%Y-%m-%d %H:%M:%S.%NZ",

@@ -24,7 +24,6 @@ bar        = ProgressBar.new(scope.count)
 #
 #  https://api.rubyonrails.org/classes/ActiveRecord/Batches.html#method-i-find_each
 scope.find_each do |record|
-
   # generate an XSV Record by pulling hte attributes out of the active record
   # model. You may also want to generate a hash from a query or something
   # along those lines. In any case pass in a Hash to complete_structured_data:

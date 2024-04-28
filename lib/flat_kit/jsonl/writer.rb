@@ -1,7 +1,6 @@
 module FlatKit
   module Jsonl
     class Writer < ::FlatKit::Writer
-
       def self.format_name
         ::FlatKit::Jsonl::Format.format_name
       end

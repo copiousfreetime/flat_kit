@@ -1,5 +1,4 @@
 class DeviceDataset
-
   include TestHelper
 
   attr_reader :count

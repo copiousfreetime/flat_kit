@@ -19,7 +19,6 @@ This.ruby_gemspec do |spec|
     "label" => "flat_kit",
     "rubygems_mfa_required" => "true"
   }
-
 end
 
 load "tasks/default.rake"

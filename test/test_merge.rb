@@ -1,7 +1,6 @@
 require "test_helper"
 
 class TestMerge < ::Minitest::Test
-
   def test_can_use_use_dash_as_output
     merge = ::FlatKit::Merge.new(inputs: [], input_fallback: "json",
                                  output: "-", output_fallback: "json", compare_fields: [])

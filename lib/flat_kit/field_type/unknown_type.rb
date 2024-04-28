@@ -1,7 +1,6 @@
 module FlatKit
   class FieldType
     class UnknownType < FieldType
-
       REGEX = %r{\A(na|n/a|unk|unknown)\Z}i
 
       def self.type_name
@@ -22,7 +21,6 @@ module FlatKit
       rescue
         return CoerceFailure
       end
-
     end
   end
 end

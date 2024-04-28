@@ -3,7 +3,6 @@ module FlatKit
     # Same as NominalStats and also collects min and max
     #
     class OrdinalStats < NominalStats
-
       attr_reader :min
       attr_reader :max
 
@@ -23,7 +22,6 @@ module FlatKit
 
       def update(value)
         @mutex.synchronize do
-
           if @min.nil? || (value < @min) then
             @min = value
           end

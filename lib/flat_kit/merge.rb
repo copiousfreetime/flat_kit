@@ -1,6 +1,5 @@
 module FlatKit
   class Merge
-
     include ::FlatKit::EventEmitter
 
     attr_reader :readers
@@ -28,7 +27,6 @@ module FlatKit
 
       notify_listeners(name: :start, data: :start)
       merge_tree.each do |record|
-
         position = writer.write(record)
         meta = { position: position }
         notify_listeners(name: :record, data: record, meta: meta)

@@ -2,7 +2,6 @@ require "csv"
 module FlatKit
   class Command
     class Sort < ::FlatKit::Command
-
       def self.name
         "sort"
       end

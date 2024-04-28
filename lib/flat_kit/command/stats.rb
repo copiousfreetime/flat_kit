@@ -1,7 +1,6 @@
 module FlatKit
   class Command
     class Stats < ::FlatKit::Command
-
       def self.name
         "stats"
       end
