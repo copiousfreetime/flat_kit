@@ -5,6 +5,8 @@ require "flat_kit/record"
 
 module FlatKit
   module Xsv
+    # Internal: Class that exposes the data from an XSV format record to the flatkit API
+    #
     class Record < ::FlatKit::Record
       attr_reader :ordered_fields
 

@@ -2,6 +2,8 @@
 
 module FlatKit
   class Command
+    # Internal: The implementation of the cat command.
+    #
     # TODO: Implement the --flatten commandline switch
     class Cat < ::FlatKit::Command
       def self.name

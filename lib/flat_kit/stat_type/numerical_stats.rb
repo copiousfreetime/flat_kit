@@ -11,11 +11,10 @@ require "oj"
 
 module FlatKit
   class StatType
-    #
-    # Stats object will keep track of the _min_, _max_, _count_, _sum_ and _sumsq_
+    # Internal: Stats object to keep track of the _min_, _max_, _count_, _sum_ and _sumsq_
     # and when you want you may also retrieve the _mean_, _stddev_ and _rate_.
     #
-    # this contrived example shows getting a list of all the files in a directory
+    # This contrived example shows getting a list of all the files in a directory
     # and running stats on file sizes.
     #
     #     s = FlatKit::Stats.new

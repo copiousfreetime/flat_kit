@@ -2,6 +2,8 @@
 
 module FlatKit
   class Input
+    # Internal: Handler for non-filebased input. Generally this is just stdin
+    #
     class IO < Input
       STDINS = %w[stdin STDIN - <stdin>].freeze
 

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module FlatKit
+  # Internal: Namespace for the xsv file fromat handling
   module Xsv
   end
 end

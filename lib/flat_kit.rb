@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# Public: Top level namespace for this gem
+#
 module FlatKit
   VERSION = "0.3.1"
 end

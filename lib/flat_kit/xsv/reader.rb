@@ -4,6 +4,8 @@ require "csv"
 
 module FlatKit
   module Xsv
+    # Internal: Reader class that parses and yields records from xsv files
+    #
     class Reader < ::FlatKit::Reader
       attr_reader :input, :count, :fields
 

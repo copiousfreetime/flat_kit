@@ -5,6 +5,8 @@ require "flat_kit/record"
 
 module FlatKit
   module Jsonl
+    # Internal: Class that exposes data from a JSONL format record to the flatkit api
+    #
     class Record < ::FlatKit::Record
       attr_reader :compare_data
 

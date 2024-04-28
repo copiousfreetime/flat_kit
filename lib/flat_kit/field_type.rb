@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module FlatKit
+  # Internal: The base class for all field types
+  #
   class FieldType
     extend FlatKit::DescendantTracker
 

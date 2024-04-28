@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module FlatKit
+  # Internal: Collects stats from an Input and sends thos stats to an Output
+  #
   class Stats
     include ::FlatKit::EventEmitter
 

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module FlatKit
+  # Internal: Base class of all the statistic types
+  #
   class StatType
     def self.nominal_types
       [FieldType::BooleanType, FieldType::StringType, FieldType::NullType]

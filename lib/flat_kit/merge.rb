@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module FlatKit
+  # Internal: Class implementing merging from N inputs and output to 1 output.
+  #
   class Merge
     include ::FlatKit::EventEmitter
 

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module FlatKit
+  # Internal: Base class of all input handlers
+  #
   class Input
     extend DescendantTracker
 

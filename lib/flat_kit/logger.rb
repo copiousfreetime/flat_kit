@@ -2,20 +2,11 @@
 
 require "logger"
 
+# Public: Top level namespace for the gem
+#
 module FlatKit
-  class LogFormatter < ::Logger::Formatter
-    FORMAT          = "%s %5d %05s : %s\n"
-    DATETIME_FORMAT = "%Y-%m-%dT%H:%M:%SZ"
-    def initialize
-      super
-      self.datetime_format = DATETIME_FORMAT
-    end
-
-    def call(severity, time, _progname, msg)
-      format(FORMAT, format_datetime(time.utc), Process.pid, severity, msg2str(msg))
-    end
-  end
-
+  # Internal: Logger class
+  #
   class Logger
     def self.for_io(io)
       ::Logger.new(io, formatter: LogFormatter.new)

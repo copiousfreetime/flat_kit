@@ -2,6 +2,8 @@
 
 module FlatKit
   class FieldType
+    # Internal: Class reprepseting the Integer type and coercian to it.
+    #
     class IntegerType < FieldType
       REGEX = /\A[-+]?\d+\Z/.freeze
 

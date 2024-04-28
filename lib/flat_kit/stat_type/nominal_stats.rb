@@ -2,7 +2,7 @@
 
 module FlatKit
   class StatType
-    # Status object to keep track of the count and frequency of values
+    # Internal: Status object to keep track of the count and frequency of values.
     #
     class NominalStats < StatType
       attr_reader :count

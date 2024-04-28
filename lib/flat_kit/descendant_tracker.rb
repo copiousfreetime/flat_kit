@@ -3,6 +3,8 @@
 require "set"
 
 module FlatKit
+  # Internal: A module to track descendants of a class
+  #
   module DescendantTracker
     def inherited(klass)
       super

@@ -2,6 +2,8 @@
 
 module FlatKit
   class FieldType
+    # Internal: Represeting floating point data and conversion to it
+    #
     class FloatType < FieldType
       def self.type_name
         "float"

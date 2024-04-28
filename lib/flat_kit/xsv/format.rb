@@ -2,6 +2,8 @@
 
 module FlatKit
   module Xsv
+    # Internal: xsv format class holding the metadata about the xsv format utilities
+    #
     class Format < ::FlatKit::Format
       def self.format_name
         "xsv"

@@ -2,6 +2,8 @@
 
 module FlatKit
   class Command
+    # Internal: The implementation of the stats command.
+    #
     class Stats < ::FlatKit::Command
       def self.name
         "stats"

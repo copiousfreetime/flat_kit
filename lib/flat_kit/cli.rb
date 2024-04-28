@@ -4,6 +4,8 @@ require "optimist"
 require_relative "../flat_kit/command"
 
 module FlatKit
+  # Public: The the main entry point for the command line interface
+  #
   class Cli
     attr_reader :options
 

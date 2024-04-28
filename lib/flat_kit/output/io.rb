@@ -2,6 +2,8 @@
 
 module FlatKit
   class Output
+    # Internal: Non-file Output impelementation - this is genrally to stdout or stderr
+    #
     class IO < Output
       attr_reader :count, :name
 

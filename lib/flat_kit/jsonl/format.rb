@@ -2,6 +2,8 @@
 
 module FlatKit
   module Jsonl
+    # Internal: JSONL format class holding the metadata about the JSONL format
+    #
     class Format < ::FlatKit::Format
       def self.format_name
         "jsonl"

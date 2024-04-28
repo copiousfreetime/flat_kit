@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module FlatKit
+  # Internal: Sorts an Input and sends the sorted records to an Output
+  #
   class Sort
     attr_reader :reader, :writer, :compare_fields
 

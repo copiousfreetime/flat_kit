@@ -2,6 +2,8 @@
 
 module FlatKit
   module Jsonl
+    # Internal: Class that writes flatkit records to JSONL files
+    #
     class Writer < ::FlatKit::Writer
       def self.format_name
         ::FlatKit::Jsonl::Format.format_name

@@ -5,6 +5,8 @@ require "pathname"
 
 module FlatKit
   class Input
+    # Internal: Handler for file based input
+    #
     class File < Input
       attr_reader :path, :count, :io
 

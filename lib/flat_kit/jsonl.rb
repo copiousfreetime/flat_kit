@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module FlatKit
+  # Internal: Top level namespace for the newline-oriented JSON format
+  #
   module Jsonl
   end
 end

@@ -5,6 +5,8 @@ require "pathname"
 
 module FlatKit
   class Output
+    # Internal: File output implementation
+    #
     class File < Output
       attr_reader :path
 

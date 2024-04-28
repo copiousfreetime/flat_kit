@@ -2,6 +2,8 @@
 
 module FlatKit
   class FieldType
+    # Internal: Type for all tiemstamps types more granular than Date.
+    #
     class TimestampType < FieldType
       def self.parse_formats
         @parse_formats ||= [

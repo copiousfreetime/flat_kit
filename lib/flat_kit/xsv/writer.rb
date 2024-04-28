@@ -2,6 +2,8 @@
 
 module FlatKit
   module Xsv
+    # Internal: Write that takes flatkit records and writes them to XSV Output
+    #
     class Writer < ::FlatKit::Writer
       attr_reader :fields, :header_bytes
 

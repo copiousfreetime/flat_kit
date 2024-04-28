@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module FlatKit
+  # Internal: The base class for all commands in the CLI
+  #
   class Command
     extend DescendantTracker
 

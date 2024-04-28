@@ -3,6 +3,8 @@
 require "csv"
 module FlatKit
   class Command
+    # Internal: The implementation of the merge command.
+    #
     class Merge < ::FlatKit::Command
       def self.name
         "merge"

@@ -2,8 +2,9 @@
 
 module FlatKit
   class FieldType
-    # Representing the type of data which only includes data up to the day
-    # resolution
+    # Internal: Representing the type of data which only includes data up to
+    # the day resolution
+    #
     class DateType < FieldType
       # %Y   4 digit year
       # %y   2 didigt year (%Y mod 100) (00..99)

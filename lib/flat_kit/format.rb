@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module FlatKit
+  # Internal: The base class of all data file format classes
+  #
   class Format
     extend DescendantTracker
 

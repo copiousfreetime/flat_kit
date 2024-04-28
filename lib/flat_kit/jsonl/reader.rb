@@ -2,6 +2,8 @@
 
 module FlatKit
   module Jsonl
+    # Internal: Reader class that parses and yields records from JSONL files
+    #
     class Reader < ::FlatKit::Reader
       attr_reader :input, :count
 

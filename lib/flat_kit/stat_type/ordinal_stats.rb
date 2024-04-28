@@ -2,7 +2,7 @@
 
 module FlatKit
   class StatType
-    # Same as NominalStats and also collects min and max
+    # Internal: Same as NominalStats and also collects min and max
     #
     class OrdinalStats < NominalStats
       attr_reader :min, :max

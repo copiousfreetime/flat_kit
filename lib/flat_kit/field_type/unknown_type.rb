@@ -2,6 +2,8 @@
 
 module FlatKit
   class FieldType
+    # Internal: Unknown type, this is what we use for unknown values in the data
+    #
     class UnknownType < FieldType
       REGEX = %r{\A(na|n/a|unk|unknown)\Z}i.freeze
 

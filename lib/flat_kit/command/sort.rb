@@ -3,6 +3,8 @@
 require "csv"
 module FlatKit
   class Command
+    # Internal: The implementation of the sort command.
+    #
     class Sort < ::FlatKit::Command
       def self.name
         "sort"
