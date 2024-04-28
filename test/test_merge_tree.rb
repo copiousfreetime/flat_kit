@@ -22,9 +22,7 @@ class TestMergeTree < Minitest::Test
   end
 
   def teardown
-    @datasets.each do |ds|
-      ds.cleanup_files
-    end
+    @datasets.each(&:cleanup_files)
   end
 
   def test_init_tree
@@ -55,7 +53,7 @@ class TestMergeTree < Minitest::Test
   def test_merging
     expected_records = @records.sort_by { |r| @compare_fields.map { |f| r[f] } }
     tree = ::FlatKit::MergeTree.new(@readers)
-    actual_records = tree.to_a.map { |r| r.to_hash }
+    actual_records = tree.to_a.map(&:to_hash)
 
     assert_equal(expected_records.size, actual_records.size)
 

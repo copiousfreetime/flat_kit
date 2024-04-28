@@ -19,7 +19,7 @@ module FlatKit
     end
 
     def self.names
-      children.map { |c| c.name }
+      children.map(&:name)
     end
 
     def self.for(name)

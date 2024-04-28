@@ -42,7 +42,7 @@ module FlatKit
     end
 
     def self.commands_banner
-      sorted_commands = FlatKit::Command.children.sort_by{ |c| c.name }
+      sorted_commands = FlatKit::Command.children.sort_by(&:name)
       left_width = sorted_commands.map { |c| c.name.length }.sort.last
       banner = StringIO.new
       banner.puts
