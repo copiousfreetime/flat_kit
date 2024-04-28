@@ -14,15 +14,6 @@ Gemspec/DeprecatedAttributeAssignment:
   Exclude:
     - 'flat_kit.gemspec'
 
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle, IndentationWidth.
-# SupportedStyles: special_inside_parentheses, consistent, align_brackets
-Layout/FirstArrayElementIndentation:
-  Exclude:
-    - 'lib/flat_kit/field_type/date_type.rb'
-    - 'test/field_type/test_timestamp_type.rb'
-
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 Layout/SpaceAfterColon:
@@ -65,12 +56,6 @@ Lint/AssignmentInCondition:
 Lint/EmptyClass:
   Exclude:
     - 'test/test_event_emitter.rb'
-
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-Lint/IdentityComparison:
-  Exclude:
-    - 'lib/flat_kit/internal_node.rb'
 
 # Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
@@ -125,14 +110,6 @@ Minitest/AssertOperator:
   Exclude:
     - 'test/xsv/test_writer.rb'
 
-# Offense count: 2
-# Configuration parameters: EnforcedStyle, AllowedPatterns.
-# SupportedStyles: snake_case, camelCase
-Naming/MethodName:
-  Exclude:
-    - 'test/field_type/test_date_type.rb'
-    - 'test/field_type/test_timestamp_type.rb'
-
 # Offense count: 1
 # Configuration parameters: EnforcedStyle, CheckMethodNames, CheckSymbols, AllowedIdentifiers, AllowedPatterns.
 # SupportedStyles: snake_case, normalcase, non_integer
@@ -168,26 +145,10 @@ Style/CommandLiteral:
   Exclude:
     - 'test/output/test_file.rb'
 
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-Style/DefWithParentheses:
-  Exclude:
-    - 'test/input/test_io.rb'
-    - 'test/output/test_io.rb'
-
 # Offense count: 75
 # Configuration parameters: AllowedConstants.
 Style/Documentation:
   Enabled: false
-
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AutoCorrect, EnforcedStyle.
-# SupportedStyles: compact, expanded
-Style/EmptyMethod:
-  Exclude:
-    - 'test/input/test_io.rb'
-    - 'test/output/test_io.rb'
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
@@ -227,49 +188,12 @@ Style/NilComparison:
   Exclude:
     - 'test/xsv/test_writer.rb'
 
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-Style/RandomWithOffset:
-  Exclude:
-    - 'test/stat_type/test_nominal_stats.rb'
-    - 'test/stat_type/test_ordinal_stats.rb'
-
-# Offense count: 2
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: AutoCorrect, AllowComments.
-Style/RedundantInitialize:
-  Exclude:
-    - 'test/input/test_io.rb'
-    - 'test/output/test_io.rb'
-
-# Offense count: 2
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Style/RedundantSort:
-  Exclude:
-    - 'lib/flat_kit/cli.rb'
-    - 'lib/flat_kit/field_type.rb'
-
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: AllowModifier.
 Style/SoleNestedConditional:
   Exclude:
     - 'lib/flat_kit/internal_node.rb'
-
-# Offense count: 2
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: RequireEnglish.
-# SupportedStyles: use_perl_names, use_english_names, use_builtin_english_names
-Style/SpecialGlobalVars:
-  EnforcedStyle: use_perl_names
-
-# Offense count: 2
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: Mode.
-Style/StringConcatenation:
-  Exclude:
-    - 'test/device_dataset.rb'
-    - 'test/input/test_file.rb'
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).

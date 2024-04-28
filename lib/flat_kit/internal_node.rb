@@ -57,10 +57,10 @@ module FlatKit
     # from the tree.
     #
     def player_finished(node)
-      if left.object_id == node.object_id
+      if left.equal?(node)
         @left = SentinelInternalNode.new
         @left.next_level = self
-      elsif right.object_id == node.object_id
+      elsif right.equal?(node)
         @right = SentinelInternalNode.new
         @right.next_level = self
       else

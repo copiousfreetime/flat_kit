@@ -11,7 +11,7 @@ module FlatKit
     end
 
     def self.best_guess(data)
-      candidate_types(data).sort_by(&:weight).last
+      candidate_types(data).max_by(&:weight)
     end
 
     def self.type_name

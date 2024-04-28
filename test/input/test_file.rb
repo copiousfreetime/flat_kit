@@ -68,7 +68,7 @@ module TestInput
         input = ::FlatKit::Input::File.new(test_path)
         content = input.io.read
 
-        assert_equal(text + "\n", content)
+        assert_equal("#{text}\n", content)
 
         input.close
       ensure
