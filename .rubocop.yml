@@ -31,10 +31,13 @@ Metrics/AbcSize:
   Max: 25
   Exclude:
     - 'test/**/*'
+    - 'tasks/**/*'
 
 Metrics/BlockLength:
   CountAsOne:
     - heredoc
+  Exclude:
+    - 'tasks/**/*'
 
 Metrics/ClassLength:
   Max: 175
