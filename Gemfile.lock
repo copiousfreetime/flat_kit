@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    flat_kit (0.3.1)
+    flat_kit (1.0.0)
       csv (~> 3.3)
       oj (~> 3.0)
       optimist (~> 3.0)
