@@ -34,19 +34,19 @@ module TestFieldType
     end
 
     def test_integer_coerces
-      assert_equal(42.0, ::FlatKit::FieldType::FloatType.coerce(42))
+      assert_in_delta(42.0, ::FlatKit::FieldType::FloatType.coerce(42))
     end
 
     def test_integer_strings_coerce
-      assert_equal(42.0, ::FlatKit::FieldType::FloatType.coerce("42"))
+      assert_in_delta(42.0, ::FlatKit::FieldType::FloatType.coerce("42"))
     end
 
     def test_float_strings_coerce
-      assert_equal(42.6, ::FlatKit::FieldType::FloatType.coerce("42.6"))
+      assert_in_delta(42.6, ::FlatKit::FieldType::FloatType.coerce("42.6"))
     end
 
     def test_float_coerces
-      assert_equal(42.6, ::FlatKit::FieldType::FloatType.coerce(42.6))
+      assert_in_delta(42.6, ::FlatKit::FieldType::FloatType.coerce(42.6))
     end
 
     def test_non_numercic_do_not_coerce

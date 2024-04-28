@@ -15,24 +15,24 @@ module TestStatType
       assert_equal(0, @stats.count)
       assert_equal(Float::INFINITY, @stats.min)
       assert_equal(-Float::INFINITY, @stats.max)
-      assert_equal(0.0, @stats.sum)
-      assert_equal(0.0, @stats.rate)
+      assert_in_delta(0.0, @stats.sum)
+      assert_in_delta(0.0, @stats.rate)
     end
 
     def test_calculates_mean
-      assert_equal(2.0, @full_stats.mean)
+      assert_in_delta(2.0, @full_stats.mean)
     end
 
     def test_calculates_rate
-      assert_equal(0.5, @full_stats.rate)
+      assert_in_delta(0.5, @full_stats.rate)
     end
 
     def test_tracks_the_maximum_value
-      assert_equal(3.0, @full_stats.max)
+      assert_in_delta(3.0, @full_stats.max)
     end
 
     def test_tracks_the_minimum_value
-      assert_equal(1.0, @full_stats.min)
+      assert_in_delta(1.0, @full_stats.min)
     end
 
     def test_tracks_the_count
@@ -40,11 +40,11 @@ module TestStatType
     end
 
     def test_tracks_the_sum
-      assert_equal(6.0, @full_stats.sum)
+      assert_in_delta(6.0, @full_stats.sum)
     end
 
     def test_calculates_the_standard_deviation
-      assert_equal(1.0, @full_stats.stddev)
+      assert_in_delta(1.0, @full_stats.stddev)
     end
 
     def test_calculates_the_sum_of_squares

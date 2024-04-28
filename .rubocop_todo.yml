@@ -244,13 +244,6 @@ Metrics/ParameterLists:
 Metrics/PerceivedComplexity:
   Max: 10
 
-# Offense count: 12
-# This cop supports safe autocorrection (--autocorrect).
-Minitest/AssertInDelta:
-  Exclude:
-    - 'test/field_type/test_float_type.rb'
-    - 'test/stat_type/test_numerical_stats.rb'
-
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 Minitest/AssertOperator:
