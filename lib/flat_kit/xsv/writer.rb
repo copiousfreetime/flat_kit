@@ -25,7 +25,7 @@ module FlatKit
         if @fields == :auto
           @we_write_the_header = true
         else
-          @csv_options.merge!(headers: fields)
+          @csv_options[:headers] = fields
           @we_write_the_header = false
         end
 

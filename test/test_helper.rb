@@ -30,5 +30,5 @@ module TestHelper
     scratch_dir.join("#{prefix}#{slug}#{extension}")
   end
 end
-require_relative "../lib/flat_kit"
+require "flat_kit"
 require_relative "device_dataset"

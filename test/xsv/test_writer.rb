@@ -56,7 +56,7 @@ module TestXsv
           # make sure write stores the last_position api and returns that value
           assert_equal(position, writer.last_position)
 
-          header_bytes = writer.header_bytes if header_bytes == nil
+          header_bytes = writer.header_bytes if header_bytes.nil?
 
           assert_predicate(header_bytes, :positive?)
 

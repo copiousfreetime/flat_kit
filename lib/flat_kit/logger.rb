@@ -12,7 +12,7 @@ module FlatKit
     end
 
     def call(severity, time, _progname, msg)
-      FORMAT % [format_datetime(time.utc), Process.pid, severity, msg2str(msg)]
+      format(FORMAT, format_datetime(time.utc), Process.pid, severity, msg2str(msg))
     end
   end
 

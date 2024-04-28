@@ -16,7 +16,7 @@ module FlatKit
       end
 
       def each
-        while line = input.io.gets do
+        while line = input.io.gets
           record = ::FlatKit::Jsonl::Record.new(data: line, compare_fields: compare_fields)
           @count += 1
           yield record
