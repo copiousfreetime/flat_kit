@@ -19,7 +19,7 @@ module FlatKit
           begin
             Float(data)
             true
-          rescue ArgumentError => _
+          rescue ArgumentError => _e
             false
           end
         else
@@ -29,9 +29,9 @@ module FlatKit
 
       def self.coerce(data)
         Float(data)
-      rescue TypeError => _
+      rescue TypeError => _e
         CoerceFailure
-      rescue ArgumentError => _
+      rescue ArgumentError => _e
         CoerceFailure
       end
     end

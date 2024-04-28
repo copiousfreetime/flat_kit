@@ -49,8 +49,8 @@ module FlatKit
         else
           raise FlatKit::Error, "Unable to write records of type #{record.class}"
         end
-      rescue FlatKit::Error => fe
-        raise fe
+      rescue FlatKit::Error => e
+        raise e
       rescue => e
         ::FlatKit.logger.error "Error writing xsv records to #{output.name}: #{e}"
         raise ::FlatKit::Error, e

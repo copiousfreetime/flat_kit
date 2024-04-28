@@ -161,7 +161,7 @@ module FlatKit
             begin
               coerced_data = Date.strptime(data, format)
               break
-            rescue => _
+            rescue => _e
               false
             end
           end

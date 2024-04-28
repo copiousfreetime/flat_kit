@@ -34,7 +34,7 @@ module FlatKit
             begin
               coerced_data = Time.strptime(data, format).utc
               return coerced_data
-            rescue => _
+            rescue => _e
               # do nothing
             end
           end
