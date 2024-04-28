@@ -40,9 +40,7 @@ module FlatKit
       ::FlatKit.logger.debug "Calculating statistics on #{reader.source}"
       reader.each do |record|
         record.to_hash.each do |field_name, field_value|
-          if collecting_stats_on_field?(field_name)
-            update_stats_for_field(name: field_name, value: field_value)
-          end
+          update_stats_for_field(name: field_name, value: field_value) if collecting_stats_on_field?(field_name)
         end
         @record_count += 1
       end

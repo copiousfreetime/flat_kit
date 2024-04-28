@@ -12,9 +12,7 @@ module FlatKit
     end
 
     def children
-      unless defined? @_children
-        @_children = Set.new
-      end
+      @_children = Set.new unless defined? @_children
       @_children
     end
 

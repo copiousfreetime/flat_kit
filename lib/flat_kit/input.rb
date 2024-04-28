@@ -8,9 +8,7 @@ module FlatKit
       return input if input.is_a?(::FlatKit::Input)
 
       in_klass = find_child(:handles?, input)
-      if in_klass
-        return in_klass.new(input)
-      end
+      return in_klass.new(input) if in_klass
 
       raise FlatKit::Error, "Unable to create input from #{input.class} : #{input.inspect}"
     end

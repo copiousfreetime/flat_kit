@@ -60,9 +60,7 @@ module FlatKit
         parser.parse(argv)
       end
 
-      if opts[:log_given]
-        ::FlatKit.log_to(opts[:log])
-      end
+      ::FlatKit.log_to(opts[:log]) if opts[:log_given]
 
       if opts[:verbose]
         ::FlatKit.logger.level = :debug

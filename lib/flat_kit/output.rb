@@ -8,9 +8,7 @@ module FlatKit
       return out if out.is_a?(::FlatKit::Output)
 
       out_klass = find_child(:handles?, out)
-      if out_klass
-        return out_klass.new(out)
-      end
+      return out_klass.new(out) if out_klass
 
       raise FlatKit::Error, "Unable to create output from #{out.class} : #{out.inspect}"
     end

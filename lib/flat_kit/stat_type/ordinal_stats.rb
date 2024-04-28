@@ -23,13 +23,9 @@ module FlatKit
 
       def update(value)
         @mutex.synchronize do
-          if @min.nil? || (value < @min)
-            @min = value
-          end
+          @min = value if @min.nil? || (value < @min)
 
-          if @max.nil? || (value > @max)
-            @max = value
-          end
+          @max = value if @max.nil? || (value > @max)
 
           @count += 1
 

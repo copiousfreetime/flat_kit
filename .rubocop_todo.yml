@@ -475,22 +475,6 @@ Style/HashEachMethods:
   Exclude:
     - 'lib/flat_kit/stats.rb'
 
-# Offense count: 14
-# This cop supports safe autocorrection (--autocorrect).
-Style/IfUnlessModifier:
-  Exclude:
-    - 'lib/flat_kit/cli.rb'
-    - 'lib/flat_kit/descendant_tracker.rb'
-    - 'lib/flat_kit/field_stats.rb'
-    - 'lib/flat_kit/input.rb'
-    - 'lib/flat_kit/internal_node.rb'
-    - 'lib/flat_kit/jsonl/record.rb'
-    - 'lib/flat_kit/merge_tree.rb'
-    - 'lib/flat_kit/output.rb'
-    - 'lib/flat_kit/reader.rb'
-    - 'lib/flat_kit/stat_type/ordinal_stats.rb'
-    - 'lib/flat_kit/stats.rb'
-
 # Offense count: 5
 # This cop supports safe autocorrection (--autocorrect).
 Style/KeywordParametersOrder:

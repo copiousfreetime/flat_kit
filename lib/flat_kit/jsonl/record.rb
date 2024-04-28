@@ -40,9 +40,7 @@ module FlatKit
         end
 
         # only load compare data if it dosn't exist
-        if data && compare_data.empty?
-          quick_parse
-        end
+        quick_parse if data && compare_data.empty?
       end
 
       def [](key)
@@ -61,9 +59,7 @@ module FlatKit
       # overriding parent accessor since we may be initialized without raw bytes
       # to parse
       def data
-        if @data.nil? && complete_structured_data?
-          @data = Oj.dump(complete_structured_data, mode: :json)
-        end
+        @data = Oj.dump(complete_structured_data, mode: :json) if @data.nil? && complete_structured_data?
         @data
       end
       alias to_s data

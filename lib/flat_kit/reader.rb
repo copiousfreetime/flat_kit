@@ -30,9 +30,7 @@ module FlatKit
 
     def self.create_readers_from_paths(paths:, fallback: "auto", compare_fields: :none)
       # default to stdin if there are no paths
-      if paths.empty?
-        paths << "-"
-      end
+      paths << "-" if paths.empty?
 
       paths.map do |path|
         create_reader_from_path(path: path, fallback: fallback, compare_fields: compare_fields)
