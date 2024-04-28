@@ -2,7 +2,7 @@
 
 require "test_helper"
 
-class TestConversions < ::Minitest::Test
+class TestConversions < Minitest::Test
   def setup
     @one_row_dataset = DeviceDataset.new(count: 1)
     @src_record = @one_row_dataset.records.first

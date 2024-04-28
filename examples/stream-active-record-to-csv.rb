@@ -15,7 +15,7 @@ scope      = MyActiveRecordModel.all
 
 # Output to a file that is csv, and automatically gzipped
 #
-output_csv = ::FlatKit::Xsv::Writer.new(destination: "export.csv.gz")
+output_csv = FlatKit::Xsv::Writer.new(destination: "export.csv.gz")
 
 # handy progress bar
 bar        = ProgressBar.new(scope.count)
@@ -29,7 +29,7 @@ scope.find_each do |record|
   # model. You may also want to generate a hash from a query or something
   # along those lines. In any case pass in a Hash to complete_structured_data:
   # and nil to data.
-  xsv_record = ::FlatKit::Xsv::Record.new(data: nil, complete_structured_data: record.attributes)
+  xsv_record = FlatKit::Xsv::Record.new(data: nil, complete_structured_data: record.attributes)
 
   # FlatKit will automatically handle writing out the header line based upon
   # the fields in the first record.

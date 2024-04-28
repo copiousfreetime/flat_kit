@@ -2,7 +2,7 @@
 
 require_relative "test_helper"
 
-class TestFormat < ::Minitest::Test
+class TestFormat < Minitest::Test
   def test_finds_jsonl_format
     klass = ::FlatKit::Format.for("data.json.gz")
 

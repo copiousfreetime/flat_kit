@@ -2,7 +2,7 @@
 
 require "test_helper"
 
-class TestMergeTree < ::Minitest::Test
+class TestMergeTree < Minitest::Test
   def setup
     @dataset_count = 20
     @records_per_dataset = 100

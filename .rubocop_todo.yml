@@ -498,19 +498,6 @@ Style/RedundantBegin:
     - 'lib/flat_kit/field_type/date_type.rb'
     - 'lib/flat_kit/field_type/timestamp_type.rb'
 
-# Offense count: 9
-# This cop supports safe autocorrection (--autocorrect).
-Style/RedundantConstantBase:
-  Exclude:
-    - 'examples/stream-active-record-to-csv.rb'
-    - 'test/test_conversions.rb'
-    - 'test/test_event_emitter.rb'
-    - 'test/test_field_stats.rb'
-    - 'test/test_format.rb'
-    - 'test/test_merge.rb'
-    - 'test/test_merge_tree.rb'
-    - 'test/test_version.rb'
-
 # Offense count: 4
 # This cop supports safe autocorrection (--autocorrect).
 Style/RedundantCurrentDirectoryInPath:

@@ -2,7 +2,7 @@
 
 require "test_helper"
 
-class TestEventEmitter < ::Minitest::Test
+class TestEventEmitter < Minitest::Test
   class Pub
     include ::FlatKit::EventEmitter
   end

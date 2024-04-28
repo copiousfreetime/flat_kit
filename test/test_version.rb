@@ -2,7 +2,7 @@
 
 require "test_helper"
 
-class TestVersion < ::Minitest::Test
+class TestVersion < Minitest::Test
   def test_version_constant_match
     assert_match(/\A\d+\.\d+\.\d+\Z/, FlatKit::VERSION)
   end
