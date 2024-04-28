@@ -69,7 +69,7 @@ module TestInput
     end
 
     def test_init_from_stdin
-      io  = ::FlatKit::Input::IO.new($stdin)
+      io = ::FlatKit::Input::IO.new($stdin)
 
       assert_equal("<STDIN>", io.name)
       assert_equal(::STDIN, io.io)

@@ -33,9 +33,9 @@ module FlatKit
     end
 
     def current_position
-      ::FlatKit::Position.new(index: @count, # since this hasn't been written yet its the right index
+      ::FlatKit::Position.new(index: @count,       # since this hasn't been written yet its the right index
                               offset: output.tell,
-                              bytesize: 0)       # nothing has been written yet
+                              bytesize: 0)         # nothing has been written yet
     end
 
     # The write method MUST return a Position object detailing the location the

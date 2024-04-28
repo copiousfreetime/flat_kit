@@ -72,7 +72,7 @@ module TestOutput
     end
 
     def test_init_from_stdout
-      io  = ::FlatKit::Output::IO.new($stdout)
+      io = ::FlatKit::Output::IO.new($stdout)
 
       assert_equal("<STDOUT>", io.name)
       assert_equal(::STDOUT, io.io)

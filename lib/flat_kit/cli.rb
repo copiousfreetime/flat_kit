@@ -71,7 +71,7 @@ module FlatKit
       ::FlatKit.logger.debug opts
       ::FlatKit.logger.debug argv
 
-      command_name  = argv.shift
+      command_name = argv.shift
       if command_name.nil? || command_name.downcase == "help"
         parser.educate
         exit 0
@@ -84,7 +84,7 @@ module FlatKit
         exit 0
       end
 
-      command       = command_klass.new(argv: argv, logger: ::FlatKit.logger, env: env)
+      command = command_klass.new(argv: argv, logger: ::FlatKit.logger, env: env)
       command.call
     end
   end

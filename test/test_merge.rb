@@ -14,7 +14,7 @@ class TestMerge < Minitest::Test
   def test_can_use_a_text_path_as_output
     test_path = "tmp/test_can_use_a_text_path_as_output.json"
     begin
-      merge = ::FlatKit::Merge.new(output: test_path, inputs: [], input_fallback: "json",  compare_fields: [])
+      merge = ::FlatKit::Merge.new(output: test_path, inputs: [], input_fallback: "json", compare_fields: [])
 
       assert_equal(test_path, merge.writer.output.name)
       assert_instance_of(::FlatKit::Output::File, merge.writer.output)

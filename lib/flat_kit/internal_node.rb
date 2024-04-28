@@ -24,12 +24,12 @@ module FlatKit
     attr_accessor :leaf
 
     def initialize(left:, right:)
-      @left       = left
+      @left = left
       @left.next_level = self
 
-      @right      = right
+      @right = right
       @right.next_level = self
-      @next_level  = nil
+      @next_level = nil
 
       play
     end
