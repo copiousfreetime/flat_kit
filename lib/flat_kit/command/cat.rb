@@ -18,39 +18,39 @@ module FlatKit
           banner ""
 
           banner <<~BANNER
-          Concatenates files that have the same field structure together into
-          a single file. The files can be of different formats, but must have
-          the same fields and names.
+            Concatenates files that have the same field structure together into
+            a single file. The files can be of different formats, but must have
+            the same fields and names.
 
-          This is probably most easily usable as a way to convert CSV to JSON
-          and vice versa.
+            This is probably most easily usable as a way to convert CSV to JSON
+            and vice versa.
 
-          The flatfile type(s) will be automatically determined by the file name.
-          If the inputs or output is not a file, but from stdin or stdout then
-          the input and output types must be specified.
+            The flatfile type(s) will be automatically determined by the file name.
+            If the inputs or output is not a file, but from stdin or stdout then
+            the input and output types must be specified.
 
-          NOTE: If converting from JSON to CSV and the input JSON does not have
-                every possible field on ever record, then the output csv iwll
-                be corrupted.
+            NOTE: If converting from JSON to CSV and the input JSON does not have
+                  every possible field on ever record, then the output csv iwll
+                  be corrupted.
 
-                In this case the input json should be fed through 'flatten' first
-                or use the '--flatten' flag which will require an additional pass
-                through the input to gather all the fields
+                  In this case the input json should be fed through 'flatten' first
+                  or use the '--flatten' flag which will require an additional pass
+                  through the input to gather all the fields
           BANNER
 
           banner <<~USAGE
 
-          Usage:
-            fk cat file1.csv file2.csv > combinded.csv
-            fk cat --output-format json file1.csv
-            fk cat file1.csv.gzip -o file2.json.gzip
-            fk cat file1.csv.gzip --output-format json | gzip -c > file1.jsonl.gz
+            Usage:
+              fk cat file1.csv file2.csv > combinded.csv
+              fk cat --output-format json file1.csv
+              fk cat file1.csv.gzip -o file2.json.gzip
+              fk cat file1.csv.gzip --output-format json | gzip -c > file1.jsonl.gz
 
           USAGE
 
           banner <<~OPTIONS
 
-          Options:
+            Options:
 
           OPTIONS
 

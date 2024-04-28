@@ -19,14 +19,14 @@ module FlatKit
 
         banner <<~USAGE
 
-        Usage:
-          fk <command> [<args>...]
-          fk [options]
+          Usage:
+            fk <command> [<args>...]
+            fk [options]
         USAGE
 
         banner <<~OPTIONS
 
-        Options:
+          Options:
 
         OPTIONS
 

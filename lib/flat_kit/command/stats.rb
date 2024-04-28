@@ -17,41 +17,41 @@ module FlatKit
           banner ""
 
           banner <<~BANNER
-          Given an input file collect basic statistics.
+            Given an input file collect basic statistics.
 
-          The statistics can vary based upon the datatype of the field.
+            The statistics can vary based upon the datatype of the field.
 
-          Numeric fields will report the basic count, min, max, mean, standard deviation and sum.
-          Non-numeric fields that are comparable, like dates, will report count, min and max.
-          Other non-numeric fields will only report the count.
+            Numeric fields will report the basic count, min, max, mean, standard deviation and sum.
+            Non-numeric fields that are comparable, like dates, will report count, min and max.
+            Other non-numeric fields will only report the count.
 
-          Adding --cardinality will report the count, and frequency of distinct values in the result.
-          This will allow for reporting the median value.
+            Adding --cardinality will report the count, and frequency of distinct values in the result.
+            This will allow for reporting the median value.
 
-          The fields upon which stats are collected may be selected with the --fields parameter.
-          By default statistics are collected on all fields.
+            The fields upon which stats are collected may be selected with the --fields parameter.
+            By default statistics are collected on all fields.
 
-          The flatfile type(s) will be automatically determined by the file name.
+            The flatfile type(s) will be automatically determined by the file name.
 
-          The output can be dumped as a CSV, JSON or a a formated ascii table.
+            The output can be dumped as a CSV, JSON or a a formated ascii table.
 
           BANNER
 
           banner <<~USAGE
 
-          Usage:
-            fk stats --everything file.json
-            fk stats --select surname,given_name file.csv
-            fk stats --select surname,given_name --output-format json file.csv > stats.json
-            fk stats --select field1,field2 --output-format json input.csv
-            fk stats --select field1 file.json.gz -o stats.csv
-            gunzip -c file.json.gz | fk stats --input-format json --output-format text
+            Usage:
+              fk stats --everything file.json
+              fk stats --select surname,given_name file.csv
+              fk stats --select surname,given_name --output-format json file.csv > stats.json
+              fk stats --select field1,field2 --output-format json input.csv
+              fk stats --select field1 file.json.gz -o stats.csv
+              gunzip -c file.json.gz | fk stats --input-format json --output-format text
 
           USAGE
 
           banner <<~OPTIONS
 
-          Options:
+            Options:
 
           OPTIONS
 

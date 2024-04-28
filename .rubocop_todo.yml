@@ -44,16 +44,6 @@ Layout/FirstArrayElementIndentation:
     - 'lib/flat_kit/field_type/date_type.rb'
     - 'test/field_type/test_timestamp_type.rb'
 
-# Offense count: 14
-# This cop supports safe autocorrection (--autocorrect).
-Layout/HeredocIndentation:
-  Exclude:
-    - 'lib/flat_kit/cli.rb'
-    - 'lib/flat_kit/command/cat.rb'
-    - 'lib/flat_kit/command/merge.rb'
-    - 'lib/flat_kit/command/sort.rb'
-    - 'lib/flat_kit/command/stats.rb'
-
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 Layout/SpaceAfterColon:
