@@ -67,7 +67,7 @@ module TestFieldType
     end
 
     def test_other_class_does_not_match
-      [ 42, Object.new, true, false ].each do |x|
+      [42, Object.new, true, false].each do |x|
         refute(FlatKit::FieldType::TimestampType.matches?(x), "#{x} should not be date")
       end
     end

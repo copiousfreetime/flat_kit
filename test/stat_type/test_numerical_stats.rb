@@ -6,7 +6,7 @@ module TestStatType
       @stats = FlatKit::StatType::NumericalStats.new
       @full_stats = FlatKit::StatType::NumericalStats.new
       @all_stats = FlatKit::StatType::NumericalStats.new(collecting_frequencies: true)
-      [ 1, 2, 3].each { |i| @full_stats.update( i ) }
+      [1, 2, 3].each { |i| @full_stats.update( i ) }
     end
 
     def test_intialized_with_usable_values

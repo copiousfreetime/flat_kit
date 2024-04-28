@@ -10,7 +10,7 @@ class DeviceDataset
   attr_reader :filename_csv
   attr_reader :filename_sorted_csv
 
-  def initialize(count:, compare_fields: [ "manufacturer", "model_name", "slug" ])
+  def initialize(count:, compare_fields: ["manufacturer", "model_name", "slug"])
     @count = count
     @compare_fields = compare_fields
     @fields = %w[
@@ -43,7 +43,7 @@ class DeviceDataset
   end
 
   def cleanup_files
-    [ @filename_sorted_jsonl, @filename_jsonl, @filename_sorted_csv, @filename_csv ].each do |p|
+    [@filename_sorted_jsonl, @filename_jsonl, @filename_sorted_csv, @filename_csv].each do |p|
       next if p.nil?
 
       p.unlink if p.exist?

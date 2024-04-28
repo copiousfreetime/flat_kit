@@ -3,7 +3,7 @@ require_relative "../test_helper"
 module TestFieldType
   class TestNullType < ::Minitest::Test
     def nully_items
-      [ "null", "NULL", "nil", "\\N" ]
+      ["null", "NULL", "nil", "\\N"]
     end
 
     def test_null
@@ -17,7 +17,7 @@ module TestFieldType
     end
 
     def test_other_class_does_not_match
-      [ 42, Object.new, true, false ].each do |x|
+      [42, Object.new, true, false].each do |x|
         refute(FlatKit::FieldType::NullType.matches?(x), "#{x} should not be == null")
       end
     end
@@ -33,7 +33,7 @@ module TestFieldType
     end
 
     def test_coerce_failure_non_non_nully_items
-      [ "whatever", 42, Object.new, true, false, Class].each do |x|
+      ["whatever", 42, Object.new, true, false, Class].each do |x|
         assert_equal(::FlatKit::FieldType::CoerceFailure, FlatKit::FieldType::NullType.coerce(x))
       end
     end

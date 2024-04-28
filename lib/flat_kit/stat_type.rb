@@ -1,7 +1,7 @@
 module FlatKit
   class StatType
     def self.nominal_types
-      [FieldType::BooleanType, FieldType::StringType, FieldType::NullType ]
+      [FieldType::BooleanType, FieldType::StringType, FieldType::NullType]
     end
 
     def self.ordinal_types
@@ -38,7 +38,7 @@ module FlatKit
     #
     def to_hash( *args )
       h = {}
-      args = [ args ].flatten
+      args = [args].flatten
       args = self.collected_stats if args.empty?
       args.each do |meth|
         h[meth] = self.send( meth )

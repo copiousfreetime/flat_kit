@@ -9,7 +9,7 @@ module FlatKit
     CORE_STATS = :core
     CARDINALITY_STATS = :cardinality
 
-    ALL_STATS = [ CORE_STATS, CARDINALITY_STATS ]
+    ALL_STATS = [CORE_STATS, CARDINALITY_STATS]
 
     EXPORT_FIELDS = %w[
       name

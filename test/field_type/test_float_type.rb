@@ -48,7 +48,7 @@ module TestFieldType
     end
 
     def test_non_numercic_do_not_coerce
-      [ "eleven", nil, false, Object.new ].each do |nope|
+      ["eleven", nil, false, Object.new].each do |nope|
         assert_equal(::FlatKit::FieldType::CoerceFailure, ::FlatKit::FieldType::FloatType.coerce(nope))
       end
     end

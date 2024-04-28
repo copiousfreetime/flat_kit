@@ -9,7 +9,7 @@ module FlatKit
       def self.handles?(obj)
         return true if is_stderr?(obj)
         return true if is_stdout?(obj)
-        return true if [ ::File, ::StringIO, ::IO ].any? { |klass| obj.kind_of?(klass) }
+        return true if [::File, ::StringIO, ::IO].any? { |klass| obj.kind_of?(klass) }
 
         return false
       end
