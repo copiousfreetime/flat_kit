@@ -16,12 +16,7 @@ module FlatKit
         when String
           return false if IntegerType.matches?(data)
 
-          begin
-            Float(data)
-            true
-          rescue ArgumentError => _e
-            false
-          end
+          maybe_float?(data)
         else
           false
         end
@@ -33,6 +28,13 @@ module FlatKit
         CoerceFailure
       rescue ArgumentError => _e
         CoerceFailure
+      end
+
+      def self.maybe_float?(data)
+        Float(data)
+        true
+      rescue ArgumentError => _e
+        false
       end
     end
   end

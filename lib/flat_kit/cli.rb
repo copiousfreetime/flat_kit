@@ -56,36 +56,48 @@ module FlatKit
     end
 
     def run(argv: ARGV, env: ENV)
-      opts = ::Optimist.with_standard_exception_handling(parser) do
-        parser.parse(argv)
-      end
-
-      ::FlatKit.log_to(opts[:log]) if opts[:log_given]
-
-      ::FlatKit.logger.level = if opts[:verbose]
-                                 :debug
-                               else
-                                 :info
-                               end
-
-      ::FlatKit.logger.debug opts
-      ::FlatKit.logger.debug argv
+      opts = parse_opts(argv)
+      init_logging(opts)
+      ::FlatKit.logger.debug(argv)
 
       command_name = argv.shift
-      if command_name.nil? || command_name.downcase == "help"
-        parser.educate
-        exit 0
-      end
+      exit_if_help(command_name)
 
-      command_klass = FlatKit::Command.for(command_name)
-      if command_klass.nil?
-        $stdout.puts "ERROR: Unknown command '#{command_name}'"
-        parser.educate
-        exit 0
-      end
-
+      command_klass = command_klass_or_exit(command_name)
       command = command_klass.new(argv: argv, logger: ::FlatKit.logger, env: env)
       command.call
+    end
+
+    private
+
+    def parse_opts(argv)
+      ::Optimist.with_standard_exception_handling(parser) do
+        parser.parse(argv)
+      end
+    end
+
+    def init_logging(opts)
+      ::FlatKit.log_to(opts[:log]) if opts[:log_given]
+
+      ::FlatKit.logger.level = opts[:verbose] ? :debug : :info
+
+      ::FlatKit.logger.debug(opts)
+    end
+
+    def exit_if_help(command_name)
+      return unless command_name.nil? || command_name.downcase == "help"
+
+      parser.educate
+      exit 0
+    end
+
+    def command_class_or_exit(command_name)
+      command_klass = FlatKit::Command.for(command_name)
+      return command_klass unless command_klass.nil?
+
+      $stdout.puts "ERROR: Unknown command '#{command_name}'"
+      parser.educate
+      exit 0
     end
   end
 end

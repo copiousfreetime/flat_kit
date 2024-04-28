@@ -21,15 +21,7 @@ module FlatKit
         ::FlatKit.logger.debug "  #{r.source}"
       end
 
-      merge_tree = ::FlatKit::MergeTree.new(readers)
-
-      notify_listeners(name: :start, data: :start)
-      merge_tree.each do |record|
-        position = writer.write(record)
-        meta = { position: position }
-        notify_listeners(name: :record, data: record, meta: meta)
-      end
-      notify_listeners(name: :stop, data: :stop)
+      run_merge(readers)
 
       readers.each do |r|
         ::FlatKit.logger.debug "  #{r.source} produced #{r.count} records"
@@ -37,6 +29,19 @@ module FlatKit
 
       writer.close
       ::FlatKit.logger.debug "Wrote #{writer.count} records to #{writer.destination}"
+    end
+
+    private
+
+    def run_merge(readers)
+      tree = ::FlatKit::MergeTree.new(readers)
+      notify_listeners(name: :start, data: :start)
+      tree.each do |record|
+        position = writer.write(record)
+        meta = { position: position }
+        notify_listeners(name: :record, data: record, meta: meta)
+      end
+      notify_listeners(name: :stop, data: :stop)
     end
   end
 end

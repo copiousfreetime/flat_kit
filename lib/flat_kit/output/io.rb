@@ -42,6 +42,19 @@ module FlatKit
       def initialize(obj)
         super()
         @count = 0
+        @name = nil
+        @io = nil
+        init_name_and_io(obj)
+      end
+
+      # this goes to an io stream and we are not in charge of opening it
+      def close
+        @io.close
+      end
+
+      private
+
+      def init_name_and_io(obj)
         if self.class.stdout?(obj)
           @name = "<STDOUT>"
           @io = $stdout
@@ -57,11 +70,6 @@ module FlatKit
         else
           raise ::FlatKit::Error, "Unable to create #{self.class} from #{obj.class} : #{obj.inspect}"
         end
-      end
-
-      # this goes to an io stream and we are not in charge of opening it
-      def close
-        @io.close
       end
     end
   end
