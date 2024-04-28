@@ -198,7 +198,7 @@ class ThisProject
   end
 
   def license
-    license_file = project_path("LICENSE")
+    license_file = project_path("LICENSE.txt")
     line = license_file.readlines.first
     line.split(/\s+/).first
   end
