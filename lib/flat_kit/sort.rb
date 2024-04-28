@@ -4,10 +4,7 @@ module FlatKit
   class Sort
     attr_reader :reader, :writer, :compare_fields
 
-    def initialize(input:, input_fallback: "auto",
-                   output:, output_fallback: "auto",
-                   compare_fields:)
-
+    def initialize(input:, output:, compare_fields:, input_fallback: "auto", output_fallback: "auto")
       @compare_fields = compare_fields
       @reader = ::FlatKit::Reader.create_reader_from_path(path: input, compare_fields: @compare_fields,
                                                           fallback: input_fallback)

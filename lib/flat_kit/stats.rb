@@ -8,8 +8,7 @@ module FlatKit
 
     attr_reader :reader, :writer, :fields_to_stat, :stats_to_collect, :stats_by_field
 
-    def initialize(input:, input_fallback: "auto",
-                   output:, output_fallback: "auto",
+    def initialize(input:, output:, input_fallback: "auto", output_fallback: "auto",
                    fields_to_stat: AllFields, stats_to_collect: FieldStats::CORE_STATS)
 
       @fields_to_stat   = fields_to_stat

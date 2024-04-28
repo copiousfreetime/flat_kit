@@ -295,14 +295,6 @@ Style/HashEachMethods:
   Exclude:
     - 'lib/flat_kit/stats.rb'
 
-# Offense count: 5
-# This cop supports safe autocorrection (--autocorrect).
-Style/KeywordParametersOrder:
-  Exclude:
-    - 'lib/flat_kit/merge.rb'
-    - 'lib/flat_kit/sort.rb'
-    - 'lib/flat_kit/stats.rb'
-
 # Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Style/MinMaxComparison:
