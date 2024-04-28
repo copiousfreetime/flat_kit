@@ -56,7 +56,7 @@ module TestOutput
         assert_equal(test_path, output.name)
         output.io.write("test_writes_to_gzfile output")
         output.close
-        t = %x[gunzip -c #{test_path}]
+        t = %x(gunzip -c #{test_path})
 
         assert_equal("test_writes_to_gzfile output", t)
       ensure

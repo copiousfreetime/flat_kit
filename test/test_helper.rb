@@ -5,7 +5,7 @@ if ENV["COVERAGE"]
   SimpleCov.start do
     enable_coverage :branch
     primary_coverage :line
-    add_filter %r/^\/test\//
+    add_filter %r{^/test/}
   end
 end
 
