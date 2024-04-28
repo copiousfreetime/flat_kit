@@ -75,6 +75,7 @@ module TestStatType
         "max"   => @values.max,
         "min"   => @values.min,
       }
+
       assert_equal(expecting, @stats.to_hash)
     end
 
@@ -87,6 +88,7 @@ module TestStatType
         "max"           => @values.max,
         "min"           => @values.min,
       }
+
       assert_equal(expecting, @all_stats.to_hash)
     end
   end

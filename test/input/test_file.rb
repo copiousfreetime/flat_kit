@@ -14,6 +14,7 @@ module TestInput
       test_path = "tmp/test_handles_existing_file.txt"
       begin
         IO.write(test_path,"test handles existing file")
+
         assert(::FlatKit::Input::File.handles?(test_path))
       ensure
         File.unlink(test_path) if File.exist?(test_path)
@@ -33,6 +34,7 @@ module TestInput
       begin
         IO.write(test_path,"nothing to see here")
         io = ::FlatKit::Input::File.new(test_path)
+
         assert_equal(test_path, io.name)
         assert_instance_of(::File, io.io)
       ensure
@@ -48,6 +50,7 @@ module TestInput
 
         input = ::FlatKit::Input::File.new(test_path)
         content = input.io.read
+
         assert_equal(text, content)
 
         input.close
@@ -64,6 +67,7 @@ module TestInput
 
         input = ::FlatKit::Input::File.new(test_path)
         content = input.io.read
+
         assert_equal(text + "\n", content)
 
         input.close

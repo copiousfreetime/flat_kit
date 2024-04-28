@@ -36,10 +36,12 @@ module TestJsonl
         writer.write(r)
       end
       writer.close
+
       assert_equal(@count, writer.count)
 
       expected = @dataset.records_as_jsonl
       actual = IO.read(@write_path)
+
       assert_equal(expected, actual)
     end
 
@@ -63,6 +65,7 @@ module TestJsonl
           byte_offset += record_length
 
           current_position = writer.current_position
+
           assert_equal(idx+1, current_position.index)
           assert_equal(byte_offset, current_position.offset)
           assert_equal(0, current_position.bytesize)
@@ -73,6 +76,7 @@ module TestJsonl
 
         expected = @dataset.records_as_jsonl
         actual = IO.read(@write_path)
+
         assert_equal(expected, actual)
       end
     end

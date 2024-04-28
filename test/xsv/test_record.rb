@@ -14,6 +14,7 @@ module TestXsv
     def test_initializes_from_data
       record = FlatKit::Xsv::Record.new(data: @csv_row, compare_fields: @compare_fields)
       original_record = @one_row_dataset.records.first
+
       @compare_fields.each do |field|
         assert_equal(original_record[field], record[field])
       end
@@ -21,6 +22,7 @@ module TestXsv
 
     def test_ignores_non_compare_fields_values
       record = FlatKit::Xsv::Record.new(data: @csv_row, compare_fields: @compare_fields)
+
       refute(record["version"])
     end
 
@@ -45,12 +47,14 @@ module TestXsv
     def test_to_hash
       record = FlatKit::Xsv::Record.new(data: @csv_row, compare_fields: @compare_fields)
       h = record.to_hash
+
       assert_equal(@one_row_dataset.records.first, h)
     end
 
     def test_from_record
       rec1 = FlatKit::Xsv::Record.new(data: @csv_row, compare_fields: @compare_fields)
       rec2 = FlatKit::Xsv::Record.from_record(rec1)
+
       assert_equal(rec1, rec2)
     end
 
@@ -64,6 +68,7 @@ module TestXsv
       record = FlatKit::Xsv::Record.new(data: @csv_row, compare_fields: @compare_fields)
       line = record.to_s
       expected = @one_row_dataset.records_as_csv_rows[0].to_csv
+
       assert_equal(expected, line)
     end
   end

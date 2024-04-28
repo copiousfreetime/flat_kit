@@ -53,16 +53,19 @@ module TestStatType
 
     def test_converts_to_a_hash
       h = @full_stats.to_hash
+
       assert_equal(::FlatKit::StatType::NumericalStats.default_stats.size, h.size)
       assert_equal(::FlatKit::StatType::NumericalStats.default_stats, h.keys.sort)
     end
 
     def test_converts_to_a_limited_hash_if_given_arguments
       h = @full_stats.to_hash("min", "max", "mean")
+
       assert_equal(3, h.size)
       assert_equal(%w[max mean min], h.keys.sort)
 
       h = @full_stats.to_hash(%w[count rate])
+
       assert_equal(2, h.size)
       assert_equal(%w[count rate], h.keys.sort)
     end
@@ -74,6 +77,7 @@ module TestStatType
     def test_converts_to_a_json_string
       j = @full_stats.to_json
       h = JSON.parse(j)
+
       assert_equal(::FlatKit::StatType::NumericalStats.default_stats.size, h.size)
       assert_equal(::FlatKit::StatType::NumericalStats.default_stats, h.keys.sort)
     end
@@ -81,11 +85,13 @@ module TestStatType
     def test_converts_to_a_limited_json_hash_if_given_arguments
       j = @full_stats.to_json("min", "max", "mean")
       h = JSON.parse(j)
+
       assert_equal(3, h.size)
       assert_equal(%w[max mean min], h.keys.sort)
 
       j = @full_stats.to_json(%w[count rate])
       h = JSON.parse(j)
+
       assert_equal(2, h.size)
       assert_equal(%w[count rate], h.keys.sort)
     end
@@ -111,6 +117,7 @@ module TestStatType
 
     def test_collecting_frequences_reports_extra_stat_names
       stat_names = @all_stats.collected_stats
+
       assert_includes(stat_names, "mode")
       assert_includes(stat_names, "unique_count")
       assert_includes(stat_names, "unique_values")

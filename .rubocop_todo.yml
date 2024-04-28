@@ -382,11 +382,6 @@ Minitest/AssertPredicate:
   Exclude:
     - 'test/test_field_stats.rb'
 
-# Offense count: 93
-# This cop supports safe autocorrection (--autocorrect).
-Minitest/EmptyLineBeforeAssertionMethods:
-  Enabled: false
-
 # Offense count: 4
 # This cop supports safe autocorrection (--autocorrect).
 Minitest/RefutePredicate:

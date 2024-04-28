@@ -29,6 +29,7 @@ class TestMergeTree < ::Minitest::Test
 
   def test_init_tree
     tree = ::FlatKit::MergeTree.new(@readers)
+
     assert_equal(20, tree.leaves.size)
 
     assert_equal(5, tree.depth)
@@ -60,6 +61,7 @@ class TestMergeTree < ::Minitest::Test
 
     expected_records.each_with_index do |expected, idx|
       actual = actual_records[idx]
+
       assert_equal(expected, actual)
     end
   end

@@ -42,6 +42,7 @@ class TestConversions < ::Minitest::Test
     json_record = FlatKit::Jsonl::Record.new(data: src_json, compare_fields: @compare_fields)
     xsv_record = FlatKit::Xsv::Record.from_record(json_record)
     json2 = FlatKit::Jsonl::Record.from_record(xsv_record)
+
     assert_equal(src_json, json2.to_s)
   end
 end

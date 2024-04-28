@@ -40,22 +40,27 @@ class TestEventEmitter < ::Minitest::Test
 
   def test_adds_listener
     @emitter.add_listener(@receiver)
+
     assert_equal(1, @emitter.count_listeners)
   end
 
   def test_removes_listener
     @emitter.add_listener(@receiver)
+
     assert_equal(1, @emitter.count_listeners)
 
     @emitter.remove_listener(@receiver)
+
     assert_equal(0, @emitter.count_listeners)
   end
 
   def test_only_adds_an_listener_once
     @emitter.add_listener(@receiver)
+
     assert_equal(1, @emitter.count_listeners)
 
     @emitter.add_listener(@receiver)
+
     assert_equal(1, @emitter.count_listeners)
   end
 

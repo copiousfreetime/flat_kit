@@ -6,6 +6,7 @@ class TestMerge < ::Minitest::Test
   def test_can_use_use_dash_as_output
     merge = ::FlatKit::Merge.new(inputs: [], input_fallback: "json",
                                  output: "-", output_fallback: "json", compare_fields: [])
+
     assert_match(/STDOUT/, merge.writer.output.name)
     assert_instance_of(::FlatKit::Output::IO, merge.writer.output)
   end
@@ -14,6 +15,7 @@ class TestMerge < ::Minitest::Test
     test_path = "tmp/test_can_use_a_text_path_as_output.json"
     begin
       merge = ::FlatKit::Merge.new(output: test_path, inputs: [], input_fallback: "json",  compare_fields: [])
+
       assert_equal(test_path, merge.writer.output.name)
       assert_instance_of(::FlatKit::Output::File, merge.writer.output)
       merge.writer.close
@@ -26,6 +28,7 @@ class TestMerge < ::Minitest::Test
     test_path = Pathname.new("tmp/test_can_use_a_pathname_as_output.json")
     begin
       merge = ::FlatKit::Merge.new(output: test_path, inputs: [], input_fallback: "json", compare_fields: [])
+
       assert_equal(test_path.to_s, merge.writer.output.name)
       assert_instance_of(::FlatKit::Output::File, merge.writer.output)
       merge.writer.close

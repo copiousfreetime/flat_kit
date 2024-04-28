@@ -54,6 +54,7 @@ module TestStatType
 
     def test_default_to_hash
       expecting = { "count" => @values.size }
+
       assert_equal(expecting, @stats.to_hash)
     end
 
@@ -64,6 +65,7 @@ module TestStatType
         "unique_values" => @unique_values.sort,
         "mode" => @frequencies.max_by { |k,v| v }.first
       }
+
       assert_equal(expecting, @all_stats.to_hash)
     end
   end

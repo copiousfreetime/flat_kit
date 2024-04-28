@@ -28,6 +28,7 @@ module TestJsonl
     def test_reads_from_pathname
       reader = ::FlatKit::Jsonl::Reader.new(source: @test_path, compare_fields: @compare_fields)
       all = reader.to_a
+
       assert_equal(@count, reader.count)
       assert_equal(@count, all.size)
     end
@@ -36,6 +37,7 @@ module TestJsonl
       File.open(@test_path) do |f|
         reader = ::FlatKit::Jsonl::Reader.new(source: f, compare_fields: @compare_fields)
         all = reader.to_a
+
         assert_equal(@count, reader.count)
         assert_equal(@count, all.size)
       end

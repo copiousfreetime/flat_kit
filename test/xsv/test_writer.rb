@@ -36,10 +36,12 @@ module TestXsv
         writer.write(r)
       end
       writer.close
+
       assert_equal(@count, writer.count)
 
       expected = @dataset.records_as_csv
       actual = IO.read(@write_path)
+
       assert_equal(expected, actual)
     end
 
@@ -57,6 +59,7 @@ module TestXsv
           assert_equal(position, writer.last_position)
 
           header_bytes = writer.header_bytes if header_bytes == nil
+
           assert(header_bytes > 0)
 
           assert_equal(idx, position.index)
@@ -66,6 +69,7 @@ module TestXsv
           records_bytes += record_length
 
           current_position = writer.current_position
+
           assert_equal(idx+1, current_position.index)
           assert_equal(header_bytes + records_bytes, current_position.offset)
           assert_equal(0, current_position.bytesize)
@@ -76,6 +80,7 @@ module TestXsv
 
         expected = @dataset.records_as_csv
         actual = IO.read(@write_path)
+
         assert_equal(expected, actual)
       end
     end

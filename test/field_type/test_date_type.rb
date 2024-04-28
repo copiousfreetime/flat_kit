@@ -23,6 +23,7 @@ module TestFieldType
 
       formats.each do |df|
         s = Time.now.strftime("#{df}")
+
         assert(FlatKit::FieldType::DateType.matches?(s), "#{s} should match date")
       end
     end
@@ -35,6 +36,7 @@ module TestFieldType
 
     def test_N_number_does_not_match
       x = "N89362"
+
       refute(FlatKit::FieldType::DateType.matches?(x), "#{x} should not be date")
     end
 
@@ -43,22 +45,26 @@ module TestFieldType
 
       formats.each do |df|
         s = Time.now.strftime("#{df}")
+
         assert_instance_of(Date, FlatKit::FieldType::DateType.coerce(s), "#{s} should convert to date")
       end
     end
 
     def test_date_coerce_does_not_passthrough_time
       t = Time.now
+
       assert_equal(::FlatKit::FieldType::CoerceFailure, FlatKit::FieldType::DateType.coerce(t))
     end
 
     def test_date_coerce_passthrough_date
       t = Date.today
+
       assert_equal(t, FlatKit::FieldType::DateType.coerce(t))
     end
 
     def test_date_coerce_does_not_passthrough_datetime
       t = DateTime.now
+
       assert_equal(::FlatKit::FieldType::CoerceFailure, FlatKit::FieldType::DateType.coerce(t))
     end
 

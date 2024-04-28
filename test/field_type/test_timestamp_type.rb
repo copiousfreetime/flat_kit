@@ -76,26 +76,31 @@ module TestFieldType
 
     def test_N_number_does_not_match
       x = "N89362"
+
       refute(FlatKit::FieldType::TimestampType.matches?(x), "#{x} should not be date")
     end
 
     def test_coerce_passthrough_time
       t = Time.now
+
       assert_equal(t, FlatKit::FieldType::TimestampType.coerce(t))
     end
 
     def test_coerce_do_not_passthrough_date
       t = Date.today
+
       assert_equal(::FlatKit::FieldType::CoerceFailure, FlatKit::FieldType::TimestampType.coerce(t))
     end
 
     def test_date_coerce_passthrough_datetime
       t = Time.now
+
       assert_equal(t, FlatKit::FieldType::TimestampType.coerce(t))
     end
 
     def test_date_only_does_not_parse
       t = Time.now.strftime("%Y-%m-%d")
+
       assert_equal(::FlatKit::FieldType::CoerceFailure, FlatKit::FieldType::TimestampType.coerce(t))
     end
 

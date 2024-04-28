@@ -17,6 +17,7 @@ module TestInput
 
     def test_handles_stdin_io
       x = $stdin
+
       assert(::FlatKit::Input::IO.handles?(x), "is not stdin")
     end
 
@@ -26,11 +27,13 @@ module TestInput
 
     def test_does_not_handle_other
       x = Object.new
+
       refute(::FlatKit::Input::IO.handles?(x))
     end
 
     def test_init_from_dash
       io = ::FlatKit::Input::IO.new("-")
+
       assert_equal("<STDIN>", io.name)
       assert_equal(::STDIN, io.io)
     end
@@ -40,6 +43,7 @@ module TestInput
       begin
         File.open(test_path, "w+") do |f|
           io = ::FlatKit::Input::IO.new(f)
+
           assert_equal(test_path, io.name)
           assert_instance_of(::File, io.io)
         end
@@ -51,6 +55,7 @@ module TestInput
     def test_init_from_string_io_object
       sio = StringIO.new
       io = ::FlatKit::Input::IO.new(sio)
+
       assert_match(/StringIO/, io.name)
       assert_instance_of(::StringIO, io.io)
     end
@@ -58,12 +63,14 @@ module TestInput
     def test_init_from_io_object
       null_io = NullIO.new
       io = ::FlatKit::Input::IO.new(null_io)
+
       assert_match(/NullIO/, io.name)
       assert_instance_of(::TestInput::NullIO, io.io)
     end
 
     def test_init_from_stdin
       io  = ::FlatKit::Input::IO.new($stdin)
+
       assert_equal("<STDIN>", io.name)
       assert_equal(::STDIN, io.io)
     end
@@ -83,6 +90,7 @@ module TestInput
           io = ::FlatKit::Input::IO.new(f)
           content = io.io.read
           io.close
+
           assert_equal(content, line)
         end
       ensure

@@ -46,6 +46,7 @@ class TestFieldStats < ::Minitest::Test
     assert_equal(max, field_stats.max)
     assert_in_epsilon(sum, field_stats.sum)
     expected_percent = (null_count.to_f / (null_count + number_data.size)) * 100.0
+
     assert_in_epsilon(expected_percent, field_stats.null_percent)
   end
 
@@ -76,6 +77,7 @@ class TestFieldStats < ::Minitest::Test
     assert_equal(number_data.tally, field_stats.frequencies)
 
     mode = number_data.tally.max_by{ |k,v| v }.first
+
     assert_equal(mode, field_stats.mode)
   end
 
@@ -104,6 +106,7 @@ class TestFieldStats < ::Minitest::Test
 
     refute(field_stats.field_type_determined?)
     field_stats, _ = generate_data_with(stats: field_stats) { Faker::Number.within(range: 200.0..300.0) }
+
     assert(field_stats.field_type_determined?)
   end
 
@@ -119,6 +122,7 @@ class TestFieldStats < ::Minitest::Test
     field_stats = ::FlatKit::FieldStats.new(name: "numeric-integer",guess_threshold: 100)
     field_stats, _ = generate_data_with(count: 70, stats: field_stats) { Faker::Boolean.boolean.to_s }
     field_stats, _ = generate_data_with(count: 40, stats: field_stats) { Faker::Number.within(range: 0..200).to_s }
+
     assert_equal(::FlatKit::FieldType::BooleanType, field_stats.field_type)
   end
 
@@ -126,6 +130,7 @@ class TestFieldStats < ::Minitest::Test
     field_stats = ::FlatKit::FieldStats.new(name: "string",guess_threshold: 100)
     field_stats, _ = generate_data_with(count: 61, stats: field_stats) { Faker::Color.name.to_s }
     field_stats, _ = generate_data_with(count: 59, stats: field_stats) { Faker::Number.within(range: 0..200).to_s }
+
     assert_equal(::FlatKit::FieldType::StringType, field_stats.field_type)
 
     assert_equal(120, field_stats.count)

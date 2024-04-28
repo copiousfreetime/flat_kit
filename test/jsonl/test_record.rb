@@ -14,6 +14,7 @@ module TestJsonl
 
     def test_initializes_from_data
       record = FlatKit::Jsonl::Record.new(data: @src_json, compare_fields: @compare_fields)
+
       @compare_fields.each do |k|
         assert_equal(@src_record[k], record[k])
       end
@@ -43,6 +44,7 @@ module TestJsonl
       end
 
       sorted_string = sio.string
+
       assert_equal(dataset.sorted_records_as_jsonl, sorted_string)
     end
 
@@ -56,6 +58,7 @@ module TestJsonl
     def test_converts_from_record
       rec1 = FlatKit::Jsonl::Record.new(data: @src_json, compare_fields: @compare_fields)
       rec2 = FlatKit::Jsonl::Record.from_record(rec1)
+
       assert_equal(rec1, rec2)
     end
   end
