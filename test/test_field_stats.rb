@@ -34,12 +34,12 @@ class TestFieldStats < Minitest::Test
     max = number_data.max
     sum = number_data.sum
 
-    refute(field_stats.field_type_determined?)
+    refute_predicate(field_stats, :field_type_determined?)
 
     assert_equal(null_count, field_stats.null_count)
     assert_equal(number_data.size, field_stats.count)
 
-    assert(field_stats.field_type_determined?)
+    assert_predicate(field_stats, :field_type_determined?)
 
     assert_in_epsilon(avg, field_stats.mean)
     assert_equal(min, field_stats.min)
@@ -61,12 +61,12 @@ class TestFieldStats < Minitest::Test
     min = number_data.min
     max = number_data.max
 
-    assert(field_stats.collecting_frequencies?)
-    refute(field_stats.field_type_determined?)
+    assert_predicate(field_stats, :collecting_frequencies?)
+    refute_predicate(field_stats, :field_type_determined?)
 
     assert_equal(number_data.size, field_stats.count)
 
-    assert(field_stats.field_type_determined?)
+    assert_predicate(field_stats, :field_type_determined?)
 
     assert_in_epsilon(avg, field_stats.mean)
     assert_equal(min, field_stats.min)
@@ -90,7 +90,7 @@ class TestFieldStats < Minitest::Test
       field_stats.update("unknown")
     end
 
-    refute(field_stats.field_type_determined?)
+    refute_predicate(field_stats, :field_type_determined?)
 
     assert_equal(unknown_count, field_stats.unknown_count)
     assert_equal(unknown_count + number_data.size, field_stats.total_count)
@@ -104,10 +104,10 @@ class TestFieldStats < Minitest::Test
     field_stats = ::FlatKit::FieldStats.new(name: "numeric-autoresolve", guess_threshold: 101)
     field_stats, _i = generate_data_with(stats: field_stats) { Faker::Number.within(range: 1.0..100.0) }
 
-    refute(field_stats.field_type_determined?)
+    refute_predicate(field_stats, :field_type_determined?)
     field_stats, _i = generate_data_with(stats: field_stats) { Faker::Number.within(range: 200.0..300.0) }
 
-    assert(field_stats.field_type_determined?)
+    assert_predicate(field_stats, :field_type_determined?)
   end
 
   def test_resolves_integer_appropriately_with_mixed_data
