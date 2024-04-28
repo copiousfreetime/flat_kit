@@ -23,14 +23,6 @@ Layout/ArgumentAlignment:
     - 'lib/flat_kit/command/stats.rb'
     - 'lib/flat_kit/xsv/record.rb'
 
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AutoCorrect, AllowBorderComment, AllowMarginComment.
-Layout/EmptyComment:
-  Exclude:
-    - 'lib/flat_kit/input.rb'
-    - 'lib/flat_kit/output.rb'
-
 # Offense count: 9
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: AllowForAlignment, AllowBeforeTrailingComments, ForceEqualSignAlignment.

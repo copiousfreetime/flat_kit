@@ -19,7 +19,6 @@ module FlatKit
       raise NotImplementedError, "#{self.class} must implement #name"
     end
 
-    #
     def io
       raise NotImplementedError, "#{self.class} must implement #io"
     end
