@@ -64,7 +64,7 @@ module FlatKit
           @name = "<STDERR>"
           @io = $stderr
         elsif obj.is_a?(::IO)
-          @name = obj.path || obj.inspect
+          @name = (obj.respond_to?(:path) && obj.path) || obj.inspect
           @io = obj
         elsif obj.is_a?(::StringIO)
           @name = obj.inspect
