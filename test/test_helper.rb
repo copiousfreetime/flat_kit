@@ -31,4 +31,6 @@ module TestHelper
   end
 end
 require "flat_kit"
+# disable logging in tests
+::FlatKit.logger.level = ::Logger::FATAL
 require_relative "device_dataset"
