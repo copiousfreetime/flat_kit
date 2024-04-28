@@ -64,7 +64,7 @@ module FlatKit
                          elsif other_val.nil?
                            1
                          else
-                           my_val.<=>(other_val)
+                           my_val <=> (other_val)
                          end
 
         return compare_result unless compare_result.zero?

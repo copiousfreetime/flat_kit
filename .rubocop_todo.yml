@@ -256,14 +256,6 @@ Style/NilComparison:
   Exclude:
     - 'test/xsv/test_writer.rb'
 
-# Offense count: 3
-# This cop supports safe autocorrection (--autocorrect).
-Style/OperatorMethodCall:
-  Exclude:
-    - 'lib/flat_kit/internal_node.rb'
-    - 'lib/flat_kit/leaf_node.rb'
-    - 'lib/flat_kit/record.rb'
-
 # Offense count: 2
 # This cop supports safe autocorrection (--autocorrect).
 Style/RandomWithOffset:
