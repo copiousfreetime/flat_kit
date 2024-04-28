@@ -73,7 +73,7 @@ module FlatKit
     end
 
     def play
-      @winner = left <= right ? left : right
+      @winner = (left <= right) ? left : right
       @leaf = winner.leaf if !@winner.sentinel?
       next_level.play if next_level
     end
