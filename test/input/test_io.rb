@@ -35,7 +35,7 @@ module TestInput
       io = ::FlatKit::Input::IO.new("-")
 
       assert_equal("<STDIN>", io.name)
-      assert_equal(::STDIN, io.io)
+      assert_equal($stdin, io.io)
     end
 
     def test_init_from_file_object
@@ -72,7 +72,7 @@ module TestInput
       io = ::FlatKit::Input::IO.new($stdin)
 
       assert_equal("<STDIN>", io.name)
-      assert_equal(::STDIN, io.io)
+      assert_equal($stdin, io.io)
     end
 
     def test_init_from_invalid

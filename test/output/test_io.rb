@@ -47,14 +47,14 @@ module TestOutput
       io = ::FlatKit::Output::IO.new("-")
 
       assert_equal("<STDOUT>", io.name)
-      assert_equal(::STDOUT, io.io)
+      assert_equal($stdout, io.io)
     end
 
     def test_init_from_stderr_text
       io = ::FlatKit::Output::IO.new("stderr")
 
       assert_equal("<STDERR>", io.name)
-      assert_equal(::STDERR, io.io)
+      assert_equal($stderr, io.io)
     end
 
     def test_init_from_file_object
@@ -75,7 +75,7 @@ module TestOutput
       io = ::FlatKit::Output::IO.new($stdout)
 
       assert_equal("<STDOUT>", io.name)
-      assert_equal(::STDOUT, io.io)
+      assert_equal($stdout, io.io)
     end
 
     def test_init_from_string_io_object

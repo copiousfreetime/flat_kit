@@ -21,7 +21,7 @@ module FlatKit
         when String
           return true if STDERRS.include?(obj)
         when ::IO
-          return true if obj == ::STDERR
+          return true if obj == $stderr
         end
         false
       end
@@ -31,7 +31,7 @@ module FlatKit
         when String
           return true if STDOUTS.include?(obj)
         when ::IO
-          return true if obj == ::STDOUT
+          return true if obj == $stdout
         end
         false
       end

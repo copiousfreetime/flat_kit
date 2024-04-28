@@ -17,7 +17,7 @@ module FlatKit
         when String
           return true if STDINS.include?(obj)
         when ::IO
-          return true if obj == ::STDIN
+          return true if obj == $stdin
         end
         false
       end
