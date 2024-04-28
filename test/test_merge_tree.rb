@@ -16,9 +16,9 @@ class TestMergeTree < ::Minitest::Test
       end
     end
     @compare_fields = @datasets.first.compare_fields
-    @readers = @datasets.map { |dd|
+    @readers = @datasets.map do |dd|
       ::FlatKit::Jsonl::Reader.new(source: dd.filename_sorted_jsonl, compare_fields: @compare_fields)
-    }
+    end
   end
 
   def teardown

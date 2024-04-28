@@ -25,9 +25,9 @@ class TestFieldStats < ::Minitest::Test
     field_stats, number_data = generate_data_with { Faker::Number.within(range: 1.0..100.0) }
 
     null_count = 5
-    null_count.times {
+    null_count.times do
       field_stats.update(nil)
-    }
+    end
 
     avg = number_data.sum / number_data.size
     min = number_data.min
@@ -53,9 +53,9 @@ class TestFieldStats < ::Minitest::Test
   def test_collect_numeric_cardinality_stats
     field_stats = ::FlatKit::FieldStats.new(name: "number-cardinality",
                                             stats_to_collect: ::FlatKit::FieldStats::ALL_STATS)
-    field_stats, number_data = generate_data_with(stats: field_stats) {
+    field_stats, number_data = generate_data_with(stats: field_stats) do
       Faker::Number.within(range:1..25)
-    }
+    end
 
     avg = number_data.sum.to_f / number_data.size
     min = number_data.min
@@ -86,9 +86,9 @@ class TestFieldStats < ::Minitest::Test
     field_stats, number_data = generate_data_with { Faker::Number.within(range: 1.0..100.0) }
 
     unknown_count = 20
-    unknown_count.times {
+    unknown_count.times do
       field_stats.update("unknown")
-    }
+    end
 
     refute(field_stats.field_type_determined?)
 

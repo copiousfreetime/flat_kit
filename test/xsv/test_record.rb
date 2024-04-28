@@ -59,9 +59,9 @@ module TestXsv
     end
 
     def test_incomplete_initialization
-      assert_raises(FlatKit::Error) {
+      assert_raises(FlatKit::Error) do
         FlatKit::Xsv::Record.new(data: nil, compare_fields: [])
-      }
+      end
     end
 
     def test_to_s_from_csv_record

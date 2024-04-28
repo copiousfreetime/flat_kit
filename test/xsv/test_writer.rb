@@ -25,9 +25,9 @@ module TestXsv
     end
 
     def test_raises_error_on_invalid_destination
-      assert_raises(::FlatKit::Error) {
+      assert_raises(::FlatKit::Error) do
         ::FlatKit::Xsv::Writer.new(destination: Object.new, fields: @reader.fields)
-      }
+      end
     end
 
     def test_writes_to_pathname

@@ -25,9 +25,9 @@ module TestJsonl
     end
 
     def test_raises_error_on_invalid_destination
-      assert_raises(::FlatKit::Error) {
+      assert_raises(::FlatKit::Error) do
         ::FlatKit::Jsonl::Writer.new(destination: Object.new)
-      }
+      end
     end
 
     def test_writes_to_pathname

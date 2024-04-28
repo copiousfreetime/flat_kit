@@ -102,11 +102,11 @@ module TestStatType
 
     def test_collects_mode
       values = [].tap do |a|
-        100.times {
+        100.times do
           n = Random.rand(10)
           a << n
           @all_stats.update(n)
-        }
+        end
       end
 
       tally = values.tally

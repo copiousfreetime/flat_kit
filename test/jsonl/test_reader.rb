@@ -20,9 +20,9 @@ module TestJsonl
     end
 
     def test_raises_error_on_invalid_source
-      assert_raises(::FlatKit::Error) {
+      assert_raises(::FlatKit::Error) do
         ::FlatKit::Jsonl::Reader.new(source: Object.new, compare_fields: nil)
-      }
+      end
     end
 
     def test_reads_from_pathname

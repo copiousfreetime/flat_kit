@@ -328,24 +328,6 @@ Security/IoMethods:
     - 'test/output/test_io.rb'
     - 'test/xsv/test_writer.rb'
 
-# Offense count: 10
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle, ProceduralMethods, FunctionalMethods, AllowedMethods, AllowedPatterns, AllowBracesOnProceduralOneLiners, BracesRequiredMethods.
-# SupportedStyles: line_count_based, semantic, braces_for_chaining, always_braces
-# ProceduralMethods: benchmark, bm, bmbm, create, each_with_object, measure, new, realtime, tap, with_object
-# FunctionalMethods: let, let!, subject, watch
-# AllowedMethods: lambda, proc, it
-Style/BlockDelimiters:
-  Exclude:
-    - 'test/jsonl/test_reader.rb'
-    - 'test/jsonl/test_writer.rb'
-    - 'test/stat_type/test_numerical_stats.rb'
-    - 'test/test_field_stats.rb'
-    - 'test/test_merge_tree.rb'
-    - 'test/xsv/test_reader.rb'
-    - 'test/xsv/test_record.rb'
-    - 'test/xsv/test_writer.rb'
-
 # Offense count: 5
 # This cop supports safe autocorrection (--autocorrect).
 Style/ColonMethodCall:

@@ -27,9 +27,9 @@ module TestXsv
     end
 
     def test_raises_error_on_invalid_source
-      assert_raises(::FlatKit::Error) {
+      assert_raises(::FlatKit::Error) do
         ::FlatKit::Xsv::Reader.new(source: Object.new, compare_fields: nil)
-      }
+      end
     end
 
     def test_automatically_figures_out_fields_if_needed
