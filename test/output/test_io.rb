@@ -105,7 +105,7 @@ module TestOutput
           io.io.write("test_writes_to_io output")
           io.close
         end
-        t = IO.read(test_path)
+        t = File.read(test_path)
 
         assert_equal("test_writes_to_io output", t)
       ensure

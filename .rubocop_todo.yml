@@ -306,16 +306,6 @@ Performance/RedundantMerge:
   Exclude:
     - 'lib/flat_kit/xsv/writer.rb'
 
-# Offense count: 9
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Security/IoMethods:
-  Exclude:
-    - 'test/input/test_file.rb'
-    - 'test/jsonl/test_writer.rb'
-    - 'test/output/test_file.rb'
-    - 'test/output/test_io.rb'
-    - 'test/xsv/test_writer.rb'
-
 # Offense count: 5
 # This cop supports safe autocorrection (--autocorrect).
 Style/ColonMethodCall:

@@ -40,7 +40,7 @@ module TestXsv
       assert_equal(@count, writer.count)
 
       expected = @dataset.records_as_csv
-      actual = IO.read(@write_path)
+      actual = File.read(@write_path)
 
       assert_equal(expected, actual)
     end
@@ -79,7 +79,7 @@ module TestXsv
         assert_equal(@count, writer.count)
 
         expected = @dataset.records_as_csv
-        actual = IO.read(@write_path)
+        actual = File.read(@write_path)
 
         assert_equal(expected, actual)
       end

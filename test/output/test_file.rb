@@ -40,7 +40,7 @@ module TestOutput
         assert_equal(test_path, output.name)
         output.io.write("test_writes_to_file output")
         output.close
-        t = IO.read(test_path)
+        t = File.read(test_path)
 
         assert_equal("test_writes_to_file output", t)
       ensure
