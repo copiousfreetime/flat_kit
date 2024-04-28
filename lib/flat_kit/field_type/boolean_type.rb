@@ -5,8 +5,8 @@ module FlatKit
     # Internal: Implemenation of the boolean type and coercion to the type
     #
     class BooleanType < FieldType
-      TRUTHY_REGEX = /\A(true|t|1|yes|y|on)\Z/i.freeze
-      FALSEY_REGEX = /\A(false|f|0|no|n|off)\Z/i.freeze
+      TRUTHY_REGEX = /\A(true|t|1|yes|y|on)\Z/i
+      FALSEY_REGEX = /\A(false|f|0|no|n|off)\Z/i
       REGEX        = Regexp.union(TRUTHY_REGEX, FALSEY_REGEX)
 
       def self.type_name

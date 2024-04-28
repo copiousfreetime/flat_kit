@@ -5,7 +5,7 @@ module FlatKit
     # Internal: Class reprepseting the Integer type and coercian to it.
     #
     class IntegerType < FieldType
-      REGEX = /\A[-+]?\d+\Z/.freeze
+      REGEX = /\A[-+]?\d+\Z/
 
       def self.type_name
         "integer"
