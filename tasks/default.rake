@@ -71,6 +71,12 @@ rescue LoadError
   This.task_warning("rubocop")
 end
 
+def git_files
+  IO.popen(%w[git ls-files -z], chdir: This.project_root, err: IO::NULL) do |ls|
+    ls.readlines("\x0", chomp: true)
+  end
+end
+
 #------------------------------------------------------------------------------
 # Manifest - We want an explicit list of thos files that are to be packaged in
 #            the gem. Most of this is from Hoe.
@@ -96,10 +102,7 @@ namespace "manifest" do
 
   desc "Generate the manifest"
   task generate: :clean do
-    files = IO.popen(%w[git ls-files -z], chdir: This.project_root, err: IO::NULL) do |ls|
-      ls.readlines("\x0", chomp: true).grep(This.include_in_manifest)
-    end
-
+    files = git_files.grep(This.include_in_manifest)
     files.sort!
     File.open("Manifest.txt", "w") do |f|
       f.puts files.join("\n")
@@ -119,8 +122,14 @@ def fixme_project_path(subtree)
 end
 
 def local_fixme_files
-  local_files = This.manifest.grep(%r{^tasks/})
+  local_files = Dir.glob("tasks/**/*")
   local_files.concat(Dir.glob(".semaphore/*"))
+  local_files.concat(Dir.glob(".rubocop.yml"))
+  local_files.concat(Dir.glob("bin/*"))
+end
+
+def upstream_fixme_files
+  fixme_project_root.glob("{tasks/**/*,.semaphore/*,.rubocop.yml,bin/*}")
 end
 
 def outdated_fixme_files
@@ -154,6 +163,20 @@ namespace :fixme do
     end
   end
 
+  desc "See the local fixme files"
+  task :local_files do
+    local_fixme_files.each do |f|
+      puts f
+    end
+  end
+
+  desc "See the upstream fixme files"
+  task :upstream_files do
+    upstream_fixme_files.each do |f|
+      puts f
+    end
+  end
+
   desc "See if the fixme tools are outdated"
   task :outdated do
     if fixme_up_to_date?
@@ -162,6 +185,18 @@ namespace :fixme do
       outdated_fixme_files.each do |f|
         puts "#{f} is outdated"
       end
+    end
+  end
+
+  desc "Show the diff between the local and upstream fixme files"
+  task :diff do
+    outdated_fixme_files.each do |f|
+      upstream = fixme_project_path(f)
+      puts "===> Start Diff for #{f}"
+      output = `diff -du #{upstream} #{f}`
+      puts output unless output.empty?
+      puts "===> End Diff for #{f}"
+      puts
     end
   end
 
