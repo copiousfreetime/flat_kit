@@ -73,7 +73,7 @@ class ThisProject
 
   # Internal: print out a warning about the give task
   def task_warning( task )
-    warn "WARNING: '#{task}' tasks are not defined. Please run 'rake develop'"
+    warn "WARNING: '#{task}' tasks are not defined. Please run 'bin/setup'"
   end
 
   # Internal: Return the full path to the file that is relative to the project
