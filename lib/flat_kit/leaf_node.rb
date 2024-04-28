@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FlatKit
   # Private: The LeafNode is a wrapper around a Reader object to enable
   # a consistent api for use in the MergeTree
@@ -9,11 +11,9 @@ module FlatKit
   # If all the data is used up from the reader, it also notifies the next level
   # of that so the next level can remove it from the tree.
   class LeafNode
-
     include Comparable
 
-    attr_reader :reader
-    attr_reader :value
+    attr_reader :reader, :value
 
     attr_accessor :next_level
 
@@ -43,7 +43,7 @@ module FlatKit
 
     def update_and_replay
       self.next
-      if finished? then
+      if finished?
         ::FlatKit.logger.debug "#{reader.source} has finished reading #{reader.count} records"
         next_level.player_finished(self)
       end
@@ -65,7 +65,8 @@ module FlatKit
 
     def <=>(other)
       return -1 if other.sentinel?
-      self.value.<=>(other.value)
+
+      value <=> (other.value)
     end
   end
 end

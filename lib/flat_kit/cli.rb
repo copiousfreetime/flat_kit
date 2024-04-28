@@ -1,7 +1,11 @@
-require 'optimist'
-require_relative '../flat_kit/command'
+# frozen_string_literal: true
+
+require "optimist"
+require_relative "../flat_kit/command"
 
 module FlatKit
+  # Public: The the main entry point for the command line interface
+  #
   class Cli
     attr_reader :options
 
@@ -13,18 +17,18 @@ module FlatKit
       @parser ||= ::Optimist::Parser.new do
         version ::FlatKit::VERSION
 
-        banner "fk v#{self.version}"
+        banner "fk v#{version}"
 
         banner <<~USAGE
 
-        Usage:
-          fk <command> [<args>...]
-          fk [options]
+          Usage:
+            fk <command> [<args>...]
+            fk [options]
         USAGE
 
         banner <<~OPTIONS
 
-        Options:
+          Options:
 
         OPTIONS
 
@@ -40,8 +44,8 @@ module FlatKit
     end
 
     def self.commands_banner
-      sorted_commands = FlatKit::Command.children.sort_by{ |c| c.name }
-      left_width = sorted_commands.map { |c| c.name.length }.sort.last
+      sorted_commands = FlatKit::Command.children.sort_by(&:name)
+      left_width = sorted_commands.map { |c| c.name.length }.max
       banner = StringIO.new
       banner.puts
       banner.puts "Commands:"
@@ -54,38 +58,48 @@ module FlatKit
     end
 
     def run(argv: ARGV, env: ENV)
-      opts = ::Optimist::with_standard_exception_handling(parser) do
+      opts = parse_opts(argv)
+      init_logging(opts)
+      ::FlatKit.logger.debug(argv)
+
+      command_name = argv.shift
+      exit_if_help(command_name)
+
+      command_klass = command_klass_or_exit(command_name)
+      command = command_klass.new(argv: argv, logger: ::FlatKit.logger, env: env)
+      command.call
+    end
+
+    private
+
+    def parse_opts(argv)
+      ::Optimist.with_standard_exception_handling(parser) do
         parser.parse(argv)
       end
+    end
 
-      if opts[:log_given] then
-        ::FlatKit.log_to(opts[:log])
-      end
+    def init_logging(opts)
+      ::FlatKit.log_to(opts[:log]) if opts[:log_given]
 
-      if opts[:verbose] then
-        ::FlatKit.logger.level = :debug
-      else
-        ::FlatKit.logger.level = :info
-      end
+      ::FlatKit.logger.level = opts[:verbose] ? :debug : :info
 
-      ::FlatKit.logger.debug opts
-      ::FlatKit.logger.debug argv
+      ::FlatKit.logger.debug(opts)
+    end
 
-      command_name  = argv.shift
-      if command_name.nil? || command_name.downcase == "help" then
-        parser.educate
-        exit 0
-      end
+    def exit_if_help(command_name)
+      return unless command_name.nil? || command_name.downcase == "help"
 
+      parser.educate
+      exit 0
+    end
+
+    def command_class_or_exit(command_name)
       command_klass = FlatKit::Command.for(command_name)
-      if command_klass.nil? then
-        $stdout.puts "ERROR: Unknown command '#{command_name}'"
-        parser.educate
-        exit 0
-      end
+      return command_klass unless command_klass.nil?
 
-      command       = command_klass.new(argv: argv, logger: ::FlatKit.logger, env: env)
-      command.call
+      $stdout.puts "ERROR: Unknown command '#{command_name}'"
+      parser.educate
+      exit 0
     end
   end
 end

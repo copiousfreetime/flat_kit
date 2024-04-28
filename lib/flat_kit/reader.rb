@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FlatKit
   # Public: the base class for all format readers.
   #
@@ -14,24 +16,21 @@ module FlatKit
   # API:
   #
   #   initialize(source:, compare_fields:)
-  #   each -> Yields / returns 
+  #   each -> Yields / returns
   #
   class Reader
     include Enumerable
 
-    attr_reader :source
-    attr_reader :compare_fields
+    attr_reader :source, :compare_fields
 
     def self.create_reader_from_path(path: "-", fallback: "auto", compare_fields: :none)
       format = ::FlatKit::Format.for_with_fallback!(path: path, fallback: fallback)
-      return format.reader.new(source: path, compare_fields: compare_fields)
+      format.reader.new(source: path, compare_fields: compare_fields)
     end
 
     def self.create_readers_from_paths(paths:, fallback: "auto", compare_fields: :none)
       # default to stdin if there are no paths
-      if paths.empty? then
-        paths << "-"
-      end
+      paths << "-" if paths.empty?
 
       paths.map do |path|
         create_reader_from_path(path: path, fallback: fallback, compare_fields: compare_fields)
@@ -55,7 +54,8 @@ module FlatKit
 
     def resolve_compare_fields(value)
       return [] if value == :none
-      return value
+
+      value
     end
   end
 end

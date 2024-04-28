@@ -1,13 +1,12 @@
+# frozen_string_literal: true
+
 module FlatKit
+  # Internal: Sorts an Input and sends the sorted records to an Output
+  #
   class Sort
-    attr_reader :reader
-    attr_reader :writer
-    attr_reader :compare_fields
+    attr_reader :reader, :writer, :compare_fields
 
-    def initialize(input:, input_fallback: "auto",
-                   output:, output_fallback: "auto",
-                   compare_fields:)
-
+    def initialize(input:, output:, compare_fields:, input_fallback: "auto", output_fallback: "auto")
       @compare_fields = compare_fields
       @reader = ::FlatKit::Reader.create_reader_from_path(path: input, compare_fields: @compare_fields,
                                                           fallback: input_fallback)
@@ -16,8 +15,8 @@ module FlatKit
     end
 
     def call
-      ::FlatKit.logger.info "Sorting #{reader.source} into #{writer.destination} using key #{compare_fields.join(", ")}"
-      records = Array.new.tap do |a|
+      ::FlatKit.logger.info "Sorting #{reader.source} into #{writer.destination} using key #{compare_fields.join(', ')}"
+      records = [].tap do |a|
         reader.each do |r|
           a << r
         end

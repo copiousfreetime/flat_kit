@@ -1,8 +1,11 @@
+# frozen_string_literal: true
+
 module FlatKit
   class FieldType
+    # Internal: Class reprepseting the Integer type and coercian to it.
+    #
     class IntegerType < FieldType
-
-      REGEX = /\A[-+]?\d+\Z/
+      REGEX = /\A[-+]?\d+\Z/.freeze
 
       def self.type_name
         "integer"
@@ -23,12 +26,11 @@ module FlatKit
 
       def self.coerce(data)
         Integer(data)
-      rescue TypeError => _
+      rescue TypeError => _e
         CoerceFailure
-      rescue ArgumentError => _
+      rescue ArgumentError => _e
         CoerceFailure
       end
- 
     end
   end
 end

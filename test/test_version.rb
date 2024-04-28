@@ -1,6 +1,8 @@
-require 'test_helper'
+# frozen_string_literal: true
 
-class TestVersion < ::Minitest::Test
+require "test_helper"
+
+class TestVersion < Minitest::Test
   def test_version_constant_match
     assert_match(/\A\d+\.\d+\.\d+\Z/, FlatKit::VERSION)
   end

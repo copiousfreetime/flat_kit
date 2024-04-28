@@ -1,4 +1,6 @@
-require_relative '../test_helper'
+# frozen_string_literal: true
+
+require_relative "../test_helper"
 
 module TestInput
   class TestFile < ::Minitest::Test
@@ -11,10 +13,11 @@ module TestInput
     def test_handles_existing_file
       test_path = "tmp/test_handles_existing_file.txt"
       begin
-        IO.write(test_path,"test handles existing file")
+        File.write(test_path, "test handles existing file")
+
         assert(::FlatKit::Input::File.handles?(test_path))
       ensure
-        File.unlink(test_path) if File.exist?(test_path)
+        FileUtils.rm_f(test_path)
       end
     end
 
@@ -29,12 +32,13 @@ module TestInput
     def test_init_from_path
       test_path = "tmp/test_init_from_path.txt"
       begin
-        IO.write(test_path,"nothing to see here")
+        File.write(test_path, "nothing to see here")
         io = ::FlatKit::Input::File.new(test_path)
+
         assert_equal(test_path, io.name)
         assert_instance_of(::File, io.io)
       ensure
-        File.unlink(test_path) if File.exist?(test_path)
+        FileUtils.rm_f(test_path)
       end
     end
 
@@ -42,15 +46,16 @@ module TestInput
       test_path = "tmp/test_reads_from_file.txt"
       begin
         text = "test_reads_from_file"
-        IO.write(test_path,text)
+        File.write(test_path, text)
 
         input = ::FlatKit::Input::File.new(test_path)
         content = input.io.read
+
         assert_equal(text, content)
 
         input.close
       ensure
-        File.unlink(test_path) if File.exist?(test_path)
+        FileUtils.rm_f(test_path)
       end
     end
 
@@ -62,11 +67,12 @@ module TestInput
 
         input = ::FlatKit::Input::File.new(test_path)
         content = input.io.read
-        assert_equal(text + "\n", content)
+
+        assert_equal("#{text}\n", content)
 
         input.close
       ensure
-        File.unlink(test_path) if File.exist?(test_path)
+        FileUtils.rm_f(test_path)
       end
     end
   end

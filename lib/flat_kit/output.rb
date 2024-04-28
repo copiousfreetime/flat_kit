@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 module FlatKit
+  # Internal: Base clases for all output handlers
+  #
   class Output
     extend DescendantTracker
 
     def self.from(out)
-      return out if out.kind_of?(::FlatKit::Output)
+      return out if out.is_a?(::FlatKit::Output)
 
       out_klass = find_child(:handles?, out)
-      if out_klass then
-        return out_klass.new(out)
-      end
+      return out_klass.new(out) if out_klass
 
       raise FlatKit::Error, "Unable to create output from #{out.class} : #{out.inspect}"
     end
@@ -17,7 +19,6 @@ module FlatKit
       raise NotImplementedError, "#{self.class} must implement #name"
     end
 
-    #
     def io
       raise NotImplementedError, "#{self.class} must implement #io"
     end
@@ -32,5 +33,5 @@ module FlatKit
   end
 end
 
-require 'flat_kit/output/io'
-require 'flat_kit/output/file'
+require "flat_kit/output/io"
+require "flat_kit/output/file"

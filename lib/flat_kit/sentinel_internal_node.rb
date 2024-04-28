@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FlatKit
   # Private: The Sentinel Internal Node is a private class used by the MergeTree
   # class.
@@ -8,12 +10,10 @@ module FlatKit
   class SentinelInternalNode
     include Comparable
 
-    attr_reader :left
-    attr_reader :right
-    attr_reader :winner
+    attr_reader :left, :right, :winner
     attr_accessor :next_level
 
-    def initialize(left: nil, right: nil)
+    def initialize(*)
       @left = nil
       @right = nil
       @winner = nil
@@ -31,7 +31,8 @@ module FlatKit
     # A sentinal node is always greater than any other node
     def <=>(other)
       return 0 if other.sentinel?
-      return 1
+
+      1
     end
   end
 end

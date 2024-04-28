@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FlatKit
   # Private: This is a class used internally by MergeTree and should not be used
   # outside of that context.
@@ -10,22 +12,24 @@ module FlatKit
   # here.
   #
   class InternalNode
-
     include Comparable
 
-    attr_accessor :left        # Internal Node
-    attr_accessor :right       # Internal Node
-    attr_accessor :winner      # Internal Node
-    attr_accessor :next_level  # Who to tell
-    attr_accessor :leaf        # winning leaf node
+    # Internal Nodes
+    attr_accessor :left, :right, :winner
+
+    # Who to tell
+    attr_accessor :next_level
+
+    # winning leaf node
+    attr_accessor :leaf
 
     def initialize(left:, right:)
-      @left       = left
+      @left = left
       @left.next_level = self
 
-      @right      = right
+      @right = right
       @right.next_level = self
-      @next_level  = nil
+      @next_level = nil
 
       play
     end
@@ -53,32 +57,31 @@ module FlatKit
     # from the tree.
     #
     def player_finished(node)
-      if left.object_id == node.object_id then
+      if left.equal?(node)
         @left = SentinelInternalNode.new
         @left.next_level = self
-      elsif right.object_id == node.object_id then
+      elsif right.equal?(node)
         @right = SentinelInternalNode.new
         @right.next_level = self
       else
         raise FlatKit::Error, "Unknown player #{node}"
       end
 
-      if @right.sentinel? && @left.sentinel? then
-        next_level.player_finished(self) if next_level
-      end
+      return unless @right.sentinel? && @left.sentinel?
+
+      next_level.player_finished(self) if next_level
     end
 
     def play
-      @winner = left <= right ? left : right
-      if !@winner.sentinel? then
-        @leaf = winner.leaf
-      end
+      @winner = (left <= right) ? left : right
+      @leaf = winner.leaf unless @winner.sentinel?
       next_level.play if next_level
     end
 
     def <=>(other)
       return -1 if other.sentinel?
-      value.<=>(other.value)
+
+      value <=> (other.value)
     end
   end
 end

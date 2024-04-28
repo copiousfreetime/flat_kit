@@ -1,8 +1,12 @@
-require 'csv'
-require 'flat_kit/record'
+# frozen_string_literal: true
+
+require "csv"
+require "flat_kit/record"
 
 module FlatKit
   module Xsv
+    # Internal: Class that exposes the data from an XSV format record to the flatkit API
+    #
     class Record < ::FlatKit::Record
       attr_reader :ordered_fields
 
@@ -10,8 +14,8 @@ module FlatKit
         ::FlatKit::Xsv::Format.format_name
       end
 
-      def self.from_record(record, ordered_fields: nil)
-        if record.instance_of?(FlatKit::Xsv::Record) then
+      def self.from_record(record)
+        if record.instance_of?(FlatKit::Xsv::Record)
           new(data: record.data, compare_fields: record.compare_fields)
         else
           new(data: nil, compare_fields: record.compare_fields,
@@ -28,9 +32,9 @@ module FlatKit
         @complete_structured_data = complete_structured_data
         @ordered_fields = ordered_fields
 
-        if data.nil? && (complete_structured_data.nil? || complete_structured_data.empty?) then
+        if data.nil? && (complete_structured_data.nil? || complete_structured_data.empty?)
           raise FlatKit::Error,
-            "#{self.class} requires initialization from data: or complete_structured_data:"
+                "#{self.class} requires initialization from data: or complete_structured_data:"
         end
 
         resolve_ordered_fields
@@ -38,7 +42,8 @@ module FlatKit
 
       def [](key)
         return nil unless @compare_fields.include?(key)
-        if data.nil? && !@complete_structured_data.nil? then
+
+        if data.nil? && !@complete_structured_data.nil?
           @complete_structured_data[key]
         else
           data[key]
@@ -53,7 +58,7 @@ module FlatKit
       def to_a
         return data.fields unless data.nil?
 
-        Array.new.tap do |a|
+        [].tap do |a|
           @ordered_fields.each do |field|
             a << @complete_structured_data[field]
           end
@@ -71,19 +76,20 @@ module FlatKit
       # values in that order.
       def to_s
         return data.to_csv unless data.nil?
+
         CSV.generate_line(to_a)
       end
 
       private
 
       def resolve_ordered_fields
-        if (@ordered_fields == :auto) || (@ordered_fields.nil? || @ordered_fields.empty?) then
-          if @data.nil? || @data.empty? then
-            @ordered_fields = complete_structured_data.keys
-          else
-            @ordered_fields = @data.headers
-          end
-        end
+        return unless (@ordered_fields == :auto) || (@ordered_fields.nil? || @ordered_fields.empty?)
+
+        @ordered_fields = if @data.nil? || @data.empty?
+                            complete_structured_data.keys
+                          else
+                            @data.headers
+                          end
       end
     end
   end

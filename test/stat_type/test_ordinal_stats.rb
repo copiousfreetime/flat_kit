@@ -1,4 +1,6 @@
-require_relative '../test_helper'
+# frozen_string_literal: true
+
+require_relative "../test_helper"
 
 module TestStatType
   class TestOrdinalStats < ::Minitest::Test
@@ -11,9 +13,9 @@ module TestStatType
       @end_date   = Date.new(today.year, today.month, last_day_of_month)
 
       @unique_values = (@start_date..@end_date).to_a
-      @values = Array.new.tap do |a|
+      @values = [].tap do |a|
         @unique_values.each do |date|
-          (Random.rand(42) + 1).times { a << date}
+          Random.rand(1..42).times { a << date }
         end
       end
 
@@ -70,23 +72,24 @@ module TestStatType
     def test_default_to_hash
       expecting = {
         "count" => @values.size,
-        "max"   => @values.max,
-        "min"   => @values.min,
+        "max" => @values.max,
+        "min" => @values.min,
       }
+
       assert_equal(expecting, @stats.to_hash)
     end
 
     def test_all_stats_hash
       expecting = {
-        "count"         => @values.size,
-        "unique_count"  => @unique_values.size,
+        "count" => @values.size,
+        "unique_count" => @unique_values.size,
         "unique_values" => @unique_values.sort,
-        "mode"          => @frequencies.max_by { |k,v| v }.first,
-        "max"           => @values.max,
-        "min"           => @values.min,
+        "mode" => @frequencies.max_by { |_k, v| v }.first,
+        "max" => @values.max,
+        "min" => @values.min,
       }
+
       assert_equal(expecting, @all_stats.to_hash)
     end
   end
 end
-

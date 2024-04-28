@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module FlatKit
   class FieldType
-    # Representing the type of data which only includes data up to the day
-    # resolution
+    # Internal: Representing the type of data which only includes data up to
+    # the day resolution
+    #
     class DateType < FieldType
-
       # %Y   4 digit year
       # %y   2 didigt year (%Y mod 100) (00..99)
       # %m   month of year zero padded
@@ -49,9 +51,8 @@ module FlatKit
 
           # other formats
           "%Y-%j",
-          "%a %b %d %Y"
-       ]
-
+          "%a %b %d %Y",
+        ].freeze
       end
 
       # https://en.wikipedia.org/wiki/Date_format_by_country
@@ -146,7 +147,7 @@ module FlatKit
 
       def self.matches?(data)
         coerced = coerce(data)
-        return coerced.kind_of?(Date)
+        coerced.is_a?(Date)
       end
 
       def self.coerce(data)
@@ -156,19 +157,20 @@ module FlatKit
         when Date
           data
         when String
-          coerced_data = CoerceFailure
-          parse_formats.each do |format|
-            begin
-              coerced_data = Date.strptime(data, format)
-              break
-            rescue => _
-              false
-            end
-          end
-          coerced_data
+          try_parse(data)
         else
           CoerceFailure
         end
+      end
+
+      def self.try_parse(data)
+        parse_formats.each do |format|
+          coerced_data = Date.strptime(data, format)
+          return coerced_data
+        rescue StandardError => _e
+          false
+        end
+        CoerceFailure
       end
     end
   end

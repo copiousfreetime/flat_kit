@@ -1,8 +1,11 @@
+# frozen_string_literal: true
+
 module FlatKit
   module Xsv
+    # Internal: Write that takes flatkit records and writes them to XSV Output
+    #
     class Writer < ::FlatKit::Writer
-      attr_reader :fields
-      attr_reader :header_bytes
+      attr_reader :fields, :header_bytes
 
       def self.format_name
         ::FlatKit::Xsv::Format.format_name
@@ -11,7 +14,7 @@ module FlatKit
       def self.default_csv_options
         {
           headers: nil,
-          write_headers: true
+          write_headers: true,
         }
       end
 
@@ -21,10 +24,10 @@ module FlatKit
         @we_write_the_header = nil
         @csv_options = Writer.default_csv_options.dup
 
-        if @fields == :auto then
+        if @fields == :auto
           @we_write_the_header = true
         else
-          @csv_options.merge!(headers: fields)
+          @csv_options[:headers] = fields
           @we_write_the_header = false
         end
 
@@ -48,17 +51,17 @@ module FlatKit
         else
           raise FlatKit::Error, "Unable to write records of type #{record.class}"
         end
-      rescue FlatKit::Error => fe
-        raise fe
-      rescue => e
-        ::FlatKit.logger.error "Error reading jsonl records from #{output.name}: #{e}"
+      rescue FlatKit::Error => e
+        raise e
+      rescue StandardError => e
+        ::FlatKit.logger.error "Error writing xsv records to #{output.name}: #{e}"
         raise ::FlatKit::Error, e
       end
 
       private
 
       def write_record(record)
-        if @we_write_the_header && @count == 0 then
+        if @we_write_the_header && @count.zero?
           @csv << record.ordered_fields
           @header_bytes = output.tell
         end

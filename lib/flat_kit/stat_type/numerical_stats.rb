@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #--
 # Copyright (c) 2008, 2009 Jeremy Hinegardner
 # All rights reserved.  See LICENSE and/or COPYING for details.
@@ -5,16 +7,14 @@
 # Pulled from Hitimes, which I also wrote
 #++
 
-require 'thread'
-require 'oj'
+require "oj"
 
 module FlatKit
   class StatType
-    #
-    # Stats object will keep track of the _min_, _max_, _count_, _sum_ and _sumsq_ 
+    # Internal: Stats object to keep track of the _min_, _max_, _count_, _sum_ and _sumsq_
     # and when you want you may also retrieve the _mean_, _stddev_ and _rate_.
     #
-    # this contrived example shows getting a list of all the files in a directory
+    # This contrived example shows getting a list of all the files in a directory
     # and running stats on file sizes.
     #
     #     s = FlatKit::Stats.new
@@ -33,17 +33,14 @@ module FlatKit
     class NumericalStats < NominalStats
       # A list of the available stats
 
-      attr_reader :min
-      attr_reader :max
-      attr_reader :sum
-      attr_reader :sumsq
+      attr_reader :min, :max, :sum, :sumsq
 
       def self.default_stats
-        @default_stats ||= %w[ count max mean min rate stddev sum sumsq ]
+        @default_stats ||= %w[count max mean min rate stddev sum sumsq]
       end
 
       def self.all_stats
-        @all_stats ||= %w[ count max mean min mode rate stddev sum sumsq unique_count unique_values ]
+        @all_stats ||= %w[count max mean min mode rate stddev sum sumsq unique_count unique_values]
       end
 
       def initialize(collecting_frequencies: false)
@@ -61,8 +58,8 @@ module FlatKit
       # Return the input value.
       def update(value)
         @mutex.synchronize do
-          @min = (value < @min) ? value : @min
-          @max = (value > @max) ? value : @max
+          @min = [value, @min].min
+          @max = [value, @max].max
 
           @count += 1
           @sum   += value
@@ -72,17 +69,18 @@ module FlatKit
           @frequencies[value] += 1 if @collecting_frequencies
         end
 
-        return value
+        value
       end
 
       # call-seq:
       #    stat.mean -> Float
-      # 
+      #
       # Return the arithmetic mean of the values put into the Stats object.  If no
       # values have passed through the stats object then 0.0 is returned;
       def mean
         return 0.0 if @count.zero?
-        return @sum / @count
+
+        @sum / @count
       end
 
       # call-seq:
@@ -100,7 +98,8 @@ module FlatKit
       #
       def rate
         return 0.0 if @sum.zero?
-        return @count / @sum
+
+        @count / @sum
       end
 
       #
@@ -113,7 +112,8 @@ module FlatKit
       #
       def stddev
         return 0.0 unless @count > 1
-        Math.sqrt((@sumsq - ((@sum * @sum)/@count)) / (@count - 1))
+
+        Math.sqrt((@sumsq - ((@sum * @sum) / @count)) / (@count - 1))
       end
     end
   end

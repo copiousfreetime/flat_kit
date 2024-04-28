@@ -1,8 +1,9 @@
-require_relative '../test_helper'
+# frozen_string_literal: true
+
+require_relative "../test_helper"
 
 module TestJsonl
   class TestFormat < ::Minitest::Test
-
     def test_handles_json
       assert(::FlatKit::Jsonl::Format.handles?("data.json.gz"))
     end

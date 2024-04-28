@@ -1,12 +1,14 @@
-require_relative '../test_helper'
+# frozen_string_literal: true
+
+require_relative "../test_helper"
 
 module TestStatType
   class TestNominalStats < ::Minitest::Test
     def setup
-      @unique_values = ('a'..'f').to_a
-      @values = Array.new.tap do |a|
+      @unique_values = ("a".."f").to_a
+      @values = [].tap do |a|
         @unique_values.each do |letter|
-          (Random.rand(42) + 1).times { a << letter }
+          Random.rand(1..42).times { a << letter }
         end
       end
 
@@ -52,6 +54,7 @@ module TestStatType
 
     def test_default_to_hash
       expecting = { "count" => @values.size }
+
       assert_equal(expecting, @stats.to_hash)
     end
 
@@ -60,10 +63,10 @@ module TestStatType
         "count" => @values.size,
         "unique_count" => @unique_values.size,
         "unique_values" => @unique_values.sort,
-        "mode" => @frequencies.max_by { |k,v| v }.first
+        "mode" => @frequencies.max_by { |_k, v| v }.first,
       }
+
       assert_equal(expecting, @all_stats.to_hash)
     end
   end
 end
-

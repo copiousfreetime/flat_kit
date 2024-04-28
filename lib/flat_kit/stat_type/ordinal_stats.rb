@@ -1,18 +1,18 @@
+# frozen_string_literal: true
+
 module FlatKit
   class StatType
-    # Same as NominalStats and also collects min and max
+    # Internal: Same as NominalStats and also collects min and max
     #
     class OrdinalStats < NominalStats
-
-      attr_reader :min
-      attr_reader :max
+      attr_reader :min, :max
 
       def self.default_stats
-        @default_stats ||= %w[ count max min ]
+        @default_stats ||= %w[count max min]
       end
 
       def self.all_stats
-        @all_stats ||= %w[ count max min unique_count unique_values mode ]
+        @all_stats ||= %w[count max min unique_count unique_values mode]
       end
 
       def initialize(collecting_frequencies: false)
@@ -23,14 +23,9 @@ module FlatKit
 
       def update(value)
         @mutex.synchronize do
+          @min = value if @min.nil? || (value < @min)
 
-          if @min.nil? || (value < @min) then
-            @min = value
-          end
-
-          if @max.nil? || (value > @max) then
-            @max = value
-          end
+          @max = value if @max.nil? || (value > @max)
 
           @count += 1
 

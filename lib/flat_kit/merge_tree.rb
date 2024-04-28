@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FlatKit
   # Public: Merge a list of sorted records from Readers into a single output Writer
   #
@@ -29,9 +31,7 @@ module FlatKit
   class MergeTree
     include Enumerable
 
-    attr_reader :leaves
-    attr_reader :levels
-    attr_reader :readers
+    attr_reader :leaves, :levels, :readers
 
     def initialize(readers)
       @readers = readers
@@ -44,9 +44,7 @@ module FlatKit
 
       # Need to pad the leaves to an even number so that the slicing by 2 for
       # the tournament will work
-      if @leaves.size.odd? then
-        @leaves << SentinelLeafNode.new
-      end
+      @leaves << SentinelLeafNode.new if @leaves.size.odd?
 
       init_tree
     end
@@ -94,6 +92,7 @@ module FlatKit
     def each
       loop do
         break if root.leaf.finished?
+
         yield root.value
         # consume the yielded value and have the tournament tree replay those
         # brackets affected

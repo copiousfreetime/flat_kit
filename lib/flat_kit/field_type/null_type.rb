@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
 module FlatKit
   class FieldType
+    # Internal: Class reprepseting the null type and coercian to it.
+    #
     class NullType < FieldType
-
       REGEX = Regexp.union(/\A(null|nil)\Z/i, /\A\\N\Z/)
 
       def self.type_name
@@ -25,6 +28,7 @@ module FlatKit
           data
         when String
           return nil if REGEX.match?(data)
+
           CoerceFailure
         else
           CoerceFailure

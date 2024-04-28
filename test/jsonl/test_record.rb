@@ -1,6 +1,7 @@
-require_relative '../test_helper'
-require 'faker'
-require 'byebug'
+# frozen_string_literal: true
+
+require_relative "../test_helper"
+require "faker"
 
 module TestJsonl
   class TestRecord < ::Minitest::Test
@@ -13,6 +14,7 @@ module TestJsonl
 
     def test_initializes_from_data
       record = FlatKit::Jsonl::Record.new(data: @src_json, compare_fields: @compare_fields)
+
       @compare_fields.each do |k|
         assert_equal(@src_record[k], record[k])
       end
@@ -26,7 +28,7 @@ module TestJsonl
 
     def test_is_sortable
       dataset = DeviceDataset.new(count: 20)
-      fk_records = Array.new.tap do |a|
+      fk_records = [].tap do |a|
         dataset.records.each do |r|
           data = JSON.generate(r)
           record = FlatKit::Jsonl::Record.new(data: data, compare_fields: @compare_fields)
@@ -42,6 +44,7 @@ module TestJsonl
       end
 
       sorted_string = sio.string
+
       assert_equal(dataset.sorted_records_as_jsonl, sorted_string)
     end
 
@@ -55,6 +58,7 @@ module TestJsonl
     def test_converts_from_record
       rec1 = FlatKit::Jsonl::Record.new(data: @src_json, compare_fields: @compare_fields)
       rec2 = FlatKit::Jsonl::Record.from_record(rec1)
+
       assert_equal(rec1, rec2)
     end
   end

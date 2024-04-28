@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FlatKit
   # Private: The Sentinel Leaf Node is used internally by the MergeTree
   #
@@ -31,7 +33,8 @@ module FlatKit
     # A sentinal node is always greater than any other node
     def <=>(other)
       return 0 if other.sentinel?
-      return 1
+
+      1
     end
   end
 end

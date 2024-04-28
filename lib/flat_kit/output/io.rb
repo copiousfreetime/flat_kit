@@ -1,62 +1,52 @@
+# frozen_string_literal: true
+
 module FlatKit
   class Output
+    # Internal: Non-file Output impelementation - this is genrally to stdout or stderr
+    #
     class IO < Output
-      attr_reader :count
+      attr_reader :count, :name
 
-      STDOUTS = %w[ stdout STDOUT - <stdout> ]
-      STDERRS = %w[ stderr STDERR <stderr> ]
+      # internal api method for testing
+      attr_reader :io
+
+      STDOUTS = %w[stdout STDOUT - <stdout>].freeze
+      STDERRS = %w[stderr STDERR <stderr>].freeze
 
       def self.handles?(obj)
-        return true if is_stderr?(obj)
-        return true if is_stdout?(obj)
-        return true if [ ::File, ::StringIO, ::IO ].any? { |klass| obj.kind_of?(klass) }
-        return false
+        return true if stderr?(obj)
+        return true if stdout?(obj)
+        return true if [::File, ::StringIO, ::IO].any? { |klass| obj.is_a?(klass) }
+
+        false
       end
 
-      def self.is_stderr?(obj)
+      def self.stderr?(obj)
         case obj
         when String
           return true if STDERRS.include?(obj)
         when ::IO
-          return true if obj == ::STDERR
+          return true if obj == $stderr
         end
-        return false
+        false
       end
 
-      def self.is_stdout?(obj)
+      def self.stdout?(obj)
         case obj
         when String
           return true if STDOUTS.include?(obj)
         when ::IO
-          return true if obj == ::STDOUT
+          return true if obj == $stdout
         end
-        return false
+        false
       end
 
       def initialize(obj)
+        super()
         @count = 0
-        if self.class.is_stdout?(obj) then
-          @name = "<STDOUT>"
-          @io = $stdout
-        elsif self.class.is_stderr?(obj) then
-          @name = "<STDERR>"
-          @io = $stderr
-        elsif obj.kind_of?(::File) then
-          @name = obj.path
-          @io = obj
-        elsif obj.kind_of?(::StringIO) then
-          @name = obj.inspect
-          @io = obj
-        elsif obj.kind_of?(::IO) then
-          @name = obj.inspect
-          @io = obj
-        else
-          raise ::FlatKit::Error, "Unable to create #{self.class} from #{obj.class} : #{obj.inspect}"
-        end
-      end
-
-      def name
-        @name
+        @name = nil
+        @io = nil
+        init_name_and_io(obj)
       end
 
       # this goes to an io stream and we are not in charge of opening it
@@ -64,9 +54,24 @@ module FlatKit
         @io.close
       end
 
-      # internal api method for testing
-      def io
-        @io
+      private
+
+      def init_name_and_io(obj)
+        if self.class.stdout?(obj)
+          @name = "<STDOUT>"
+          @io = $stdout
+        elsif self.class.stderr?(obj)
+          @name = "<STDERR>"
+          @io = $stderr
+        elsif obj.is_a?(::IO)
+          @name = (obj.respond_to?(:path) && obj.path) || obj.inspect
+          @io = obj
+        elsif obj.is_a?(::StringIO)
+          @name = obj.inspect
+          @io = obj
+        else
+          raise ::FlatKit::Error, "Unable to create #{self.class} from #{obj.class} : #{obj.inspect}"
+        end
       end
     end
   end

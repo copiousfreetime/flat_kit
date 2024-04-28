@@ -1,17 +1,20 @@
-require 'set'
+# frozen_string_literal: true
+
+require "set"
 
 module FlatKit
+  # Internal: A module to track descendants of a class
+  #
   module DescendantTracker
     def inherited(klass)
       super
       return unless klass.instance_of?(Class)
-      self.children << klass
+
+      children << klass
     end
 
     def children
-      unless defined? @_children
-        @_children = Set.new
-      end
+      @_children = Set.new unless defined? @_children
       @_children
     end
 
@@ -24,7 +27,7 @@ module FlatKit
       end
     end
 
-    # 
+    #
     # Find all the children that return truthy from the given method with args
     #
     def find_children(method, *args)

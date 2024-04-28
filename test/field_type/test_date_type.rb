@@ -1,4 +1,6 @@
-require_relative '../test_helper'
+# frozen_string_literal: true
+
+require_relative "../test_helper"
 
 module TestFieldType
   class TestDateType < ::Minitest::Test
@@ -20,19 +22,21 @@ module TestFieldType
       assert_equal(formats.size, formats.sort.uniq.size)
 
       formats.each do |df|
-        s = Time.now.strftime("#{df}")
+        s = Time.now.strftime(df.to_s)
+
         assert(FlatKit::FieldType::DateType.matches?(s), "#{s} should match date")
       end
     end
 
     def test_other_class_does_not_match
-      [ 42, Object.new, true, false ].each do |x|
+      [42, Object.new, true, false].each do |x|
         refute(FlatKit::FieldType::DateType.matches?(x), "#{x} should not be date")
       end
     end
 
-    def test_N_number_does_not_match
+    def test_n_number_does_not_match
       x = "N89362"
+
       refute(FlatKit::FieldType::DateType.matches?(x), "#{x} should not be date")
     end
 
@@ -40,23 +44,27 @@ module TestFieldType
       formats = ::FlatKit::FieldType::DateType.parse_formats
 
       formats.each do |df|
-        s = Time.now.strftime("#{df}")
+        s = Time.now.strftime(df.to_s)
+
         assert_instance_of(Date, FlatKit::FieldType::DateType.coerce(s), "#{s} should convert to date")
       end
     end
 
     def test_date_coerce_does_not_passthrough_time
       t = Time.now
+
       assert_equal(::FlatKit::FieldType::CoerceFailure, FlatKit::FieldType::DateType.coerce(t))
     end
 
     def test_date_coerce_passthrough_date
       t = Date.today
+
       assert_equal(t, FlatKit::FieldType::DateType.coerce(t))
     end
 
     def test_date_coerce_does_not_passthrough_datetime
       t = DateTime.now
+
       assert_equal(::FlatKit::FieldType::CoerceFailure, FlatKit::FieldType::DateType.coerce(t))
     end
 

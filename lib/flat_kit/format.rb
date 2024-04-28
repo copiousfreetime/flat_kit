@@ -1,4 +1,8 @@
+# frozen_string_literal: true
+
 module FlatKit
+  # Internal: The base class of all data file format classes
+  #
   class Format
     extend DescendantTracker
 
@@ -20,15 +24,17 @@ module FlatKit
       return format unless format.nil?
 
       # now try the fallback
-      format = ::FlatKit::Format.for(fallback)
-      return format
+      ::FlatKit::Format.for(fallback)
     end
 
     def self.for_with_fallback!(path:, fallback: "auto")
       format = for_with_fallback(path: path, fallback: fallback)
-      raise ::FlatKit::Error::UnknownFormat, "Unable to figure out format for '#{path}' with fallback '#{fallback}'" if format.nil?
+      if format.nil?
+        raise ::FlatKit::Error::UnknownFormat,
+              "Unable to figure out format for '#{path}' with fallback '#{fallback}'"
+      end
 
-      return format
+      format
     end
   end
 end

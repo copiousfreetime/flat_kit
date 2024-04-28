@@ -1,15 +1,18 @@
+# frozen_string_literal: true
+
 module FlatKit
   class FieldType
+    # Internal: Type for all tiemstamps types more granular than Date.
+    #
     class TimestampType < FieldType
-
       def self.parse_formats
-        @timestamp_formats ||= [
+        @parse_formats ||= [
           "%Y-%m-%d %H:%M:%S.%NZ",
           "%Y-%m-%d %H:%M:%S.%N",
           "%Y-%m-%dT%H:%M:%S.%N%z", # w3cdtf
           "%Y-%m-%d %H:%M:%S",
           "%Y-%m-%dT%H:%M:%S%z",
-          "%Y-%m-%dT%H:%M:%SZ", 
+          "%Y-%m-%dT%H:%M:%SZ",
           "%Y%m%dT%H%M%S",
           "%a, %d %b %Y %H:%M:%S %z", # rfc2822, httpdate
         ].freeze
@@ -21,7 +24,7 @@ module FlatKit
 
       def self.matches?(data)
         coerced = coerce(data)
-        return coerced.kind_of?(Time)
+        coerced.is_a?(Time)
       end
 
       def self.coerce(data)
@@ -30,12 +33,10 @@ module FlatKit
           data
         when String
           parse_formats.each do |format|
-            begin
-              coerced_data = Time.strptime(data, format).utc
-              return coerced_data
-            rescue => _
-              # do nothing
-            end
+            coerced_data = Time.strptime(data, format).utc
+            return coerced_data
+          rescue StandardError => _e
+            # do nothing
           end
           CoerceFailure
         else

@@ -1,10 +1,11 @@
-require_relative '../test_helper'
+# frozen_string_literal: true
+
+require_relative "../test_helper"
 
 module TestFieldType
   class TestUnknownType < ::Minitest::Test
-
     def unknown_items
-      [ 'na', 'n/a', 'unk', 'unknown']
+      ["na", "n/a", "unk", "unknown"]
     end
 
     def test_unknown_items
@@ -14,7 +15,7 @@ module TestFieldType
     end
 
     def test_other_class_does_not_match
-      [ 42, Object.new, true, false, "whatever" ].each do |x|
+      [42, Object.new, true, false, "whatever"].each do |x|
         refute(FlatKit::FieldType::UnknownType.matches?(x), "#{x} should not unknown ")
       end
     end
@@ -26,10 +27,9 @@ module TestFieldType
     end
 
     def test_other_class_does_not_coerce
-      [ 42, Object.new, true, false, "whatever" ].each do |x|
+      [42, Object.new, true, false, "whatever"].each do |x|
         assert_equal(::FlatKit::FieldType::CoerceFailure, FlatKit::FieldType::UnknownType.coerce(x))
       end
     end
-
   end
 end

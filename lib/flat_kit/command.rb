@@ -1,13 +1,12 @@
+# frozen_string_literal: true
+
 module FlatKit
+  # Internal: The base class for all commands in the CLI
+  #
   class Command
     extend DescendantTracker
 
-    attr_reader :argv
-    attr_reader :env
-    attr_reader :logger
-    attr_reader :opts
-    attr_reader :readers
-    attr_reader :writer
+    attr_reader :argv, :env, :logger, :opts, :readers, :writer
 
     def self.name
       raise NotImplementedError, "#{self.class} must implement #{self.class}.name"
@@ -22,7 +21,7 @@ module FlatKit
     end
 
     def self.names
-      children.map { |c| c.name }
+      children.map(&:name)
     end
 
     def self.for(name)
@@ -48,7 +47,7 @@ module FlatKit
   end
 end
 
-require 'flat_kit/command/cat'
-require 'flat_kit/command/merge'
-require 'flat_kit/command/sort'
-require 'flat_kit/command/stats'
+require "flat_kit/command/cat"
+require "flat_kit/command/merge"
+require "flat_kit/command/sort"
+require "flat_kit/command/stats"

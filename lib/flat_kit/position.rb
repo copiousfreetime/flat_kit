@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FlatKit
   # The information about the position of a record in an IO stream
   #
@@ -5,10 +7,7 @@ module FlatKit
   # information about the record that was just written
   #
   class Position
-
-    attr_reader :index    # zero based
-    attr_reader :offset   # byte offset in the IO stream
-    attr_reader :bytesize # byte length of the record
+    attr_reader :index, :offset, :bytesize # zero based   # byte offset in the IO stream # byte length of the record
 
     def initialize(index: nil, offset: nil, bytesize: nil)
       @index    = index

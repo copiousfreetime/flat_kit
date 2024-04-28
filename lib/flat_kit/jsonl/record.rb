@@ -1,8 +1,12 @@
-require 'oj'
-require 'flat_kit/record'
+# frozen_string_literal: true
+
+require "oj"
+require "flat_kit/record"
 
 module FlatKit
   module Jsonl
+    # Internal: Class that exposes data from a JSONL format record to the flatkit api
+    #
     class Record < ::FlatKit::Record
       attr_reader :compare_data
 
@@ -11,7 +15,7 @@ module FlatKit
       end
 
       def self.from_record(record)
-        if record.instance_of?(FlatKit::Jsonl::Record) then
+        if record.instance_of?(FlatKit::Jsonl::Record)
 
           structured = record.complete_structured_data? ? record.complete_structured_data : nil
 
@@ -25,22 +29,20 @@ module FlatKit
       end
 
       def initialize(data:, compare_fields: :none,
-                     compare_data: Hash.new,
+                     compare_data: {},
                      complete_structured_data: nil)
         super(data: data, compare_fields: compare_fields)
 
         @complete_structured_data = complete_structured_data
 
-        if complete_structured_data? && (compare_data.nil? || compare_data.empty?) then
-          @compare_data = complete_structured_data
-        else
-          @compare_data = compare_data
-        end
+        @compare_data = if complete_structured_data? && (compare_data.nil? || compare_data.empty?)
+                          complete_structured_data
+                        else
+                          compare_data
+                        end
 
         # only load compare data if it dosn't exist
-        if data && compare_data.empty? then
-          quick_parse
-        end
+        quick_parse if data && compare_data.empty?
       end
 
       def [](key)
@@ -59,9 +61,7 @@ module FlatKit
       # overriding parent accessor since we may be initialized without raw bytes
       # to parse
       def data
-        if @data.nil? && complete_structured_data? then
-          @data = Oj.dump(complete_structured_data, mode: :json)
-        end
+        @data = Oj.dump(complete_structured_data, mode: :json) if @data.nil? && complete_structured_data?
         @data
       end
       alias to_s data
@@ -79,6 +79,3 @@ module FlatKit
     end
   end
 end
-
-
-

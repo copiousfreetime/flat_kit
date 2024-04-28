@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
 module FlatKit
   class Command
+    # Internal: The implementation of the stats command.
+    #
     class Stats < ::FlatKit::Command
-
       def self.name
         "stats"
       end
@@ -12,45 +15,45 @@ module FlatKit
 
       def self.parser
         ::Optimist::Parser.new do
-          banner "#{Sort.description}"
+          banner Sort.description.to_s
           banner ""
 
           banner <<~BANNER
-          Given an input file collect basic statistics.
+            Given an input file collect basic statistics.
 
-          The statistics can vary based upon the datatype of the field.
+            The statistics can vary based upon the datatype of the field.
 
-          Numeric fields will report the basic count, min, max, mean, standard deviation and sum.
-          Non-numeric fields that are comparable, like dates, will report count, min and max.
-          Other non-numeric fields will only report the count.
+            Numeric fields will report the basic count, min, max, mean, standard deviation and sum.
+            Non-numeric fields that are comparable, like dates, will report count, min and max.
+            Other non-numeric fields will only report the count.
 
-          Adding --cardinality will report the count, and frequency of distinct values in the result.
-          This will allow for reporting the median value.
+            Adding --cardinality will report the count, and frequency of distinct values in the result.
+            This will allow for reporting the median value.
 
-          The fields upon which stats are collected may be selected with the --fields parameter.
-          By default statistics are collected on all fields.
+            The fields upon which stats are collected may be selected with the --fields parameter.
+            By default statistics are collected on all fields.
 
-          The flatfile type(s) will be automatically determined by the file name.
+            The flatfile type(s) will be automatically determined by the file name.
 
-          The output can be dumped as a CSV, JSON or a a formated ascii table.
+            The output can be dumped as a CSV, JSON or a a formated ascii table.
 
           BANNER
 
           banner <<~USAGE
 
-          Usage:
-            fk stats --everything file.json
-            fk stats --select surname,given_name file.csv
-            fk stats --select surname,given_name --output-format json file.csv > stats.json
-            fk stats --select field1,field2 --output-format json input.csv
-            fk stats --select field1 file.json.gz -o stats.csv
-            gunzip -c file.json.gz | fk stats --input-format json --output-format text
+            Usage:
+              fk stats --everything file.json
+              fk stats --select surname,given_name file.csv
+              fk stats --select surname,given_name --output-format json file.csv > stats.json
+              fk stats --select field1,field2 --output-format json input.csv
+              fk stats --select field1 file.json.gz -o stats.csv
+              gunzip -c file.json.gz | fk stats --input-format json --output-format text
 
           USAGE
 
           banner <<~OPTIONS
 
-          Options:
+            Options:
 
           OPTIONS
 
@@ -65,24 +68,23 @@ module FlatKit
 
       def parse
         parser = self.class.parser
-        ::Optimist::with_standard_exception_handling(parser) do
-          begin
-            opts = parser.parse(argv)
-            fields = ::FlatKit::Stats::AllFields
-            fields = CSV.parse_line(opts[:select]) if opts[:select]
+        ::Optimist.with_standard_exception_handling(parser) do
+          opts = parser.parse(argv)
+          fields = ::FlatKit::Stats::AllFields
+          fields = CSV.parse_line(opts[:select]) if opts[:select]
 
-            stats = [FieldStats::CORE_STATS]
-            stats << FieldStats::CARDINALITY_STATS if opts[:cardinality] || opts[:everything]
+          stats = [FieldStats::CORE_STATS]
+          stats << FieldStats::CARDINALITY_STATS if opts[:cardinality] || opts[:everything]
 
-            paths = parser.leftovers
-            raise ::Optimist::CommandlineError, "1 and only 1 input file is allowed" if paths.size > 1
-            path = paths.first || "-" # default to stdin
-            @stats = ::FlatKit::Stats.new(input: path, input_fallback: opts[:input_format],
-                                         output: opts[:output], output_fallback: opts[:output_format],
-                                         fields_to_stat: fields, stats_to_collect: stats)
-          rescue ::FlatKit::Error => e
-            raise ::Optimist::CommandlineError, e.message
-          end
+          paths = parser.leftovers
+          raise ::Optimist::CommandlineError, "1 and only 1 input file is allowed" if paths.size > 1
+
+          path = paths.first || "-" # default to stdin
+          @stats = ::FlatKit::Stats.new(input: path, input_fallback: opts[:input_format],
+                                        output: opts[:output], output_fallback: opts[:output_format],
+                                        fields_to_stat: fields, stats_to_collect: stats)
+        rescue ::FlatKit::Error => e
+          raise ::Optimist::CommandlineError, e.message
         end
       end
 

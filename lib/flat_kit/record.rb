@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FlatKit
   # Public: The base class that all record classes should inherit from.
   #
@@ -35,11 +37,9 @@ module FlatKit
   #   # the initialize method must call super(data:, compare_fields:) to
   #     initializa the root data structures
   class Record
-
     include Comparable
 
-    attr_reader :data
-    attr_reader :compare_fields
+    attr_reader :data, :compare_fields
 
     def initialize(data:, compare_fields:)
       @data = data
@@ -57,15 +57,15 @@ module FlatKit
         my_val         = self[field]
         other_val      = other[field]
 
-        if my_val.nil? && other_val.nil? then
-          compare_result = 0
-        elsif my_val.nil?
-          compare_result = -1
-        elsif other_val.nil?
-          compare_result = 1
-        else
-          compare_result = my_val.<=>(other_val)
-        end
+        compare_result = if my_val.nil? && other_val.nil?
+                           0
+                         elsif my_val.nil?
+                           -1
+                         elsif other_val.nil?
+                           1
+                         else
+                           my_val <=> (other_val)
+                         end
 
         return compare_result unless compare_result.zero?
       end

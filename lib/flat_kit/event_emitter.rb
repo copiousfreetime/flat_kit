@@ -1,9 +1,12 @@
+# frozen_string_literal: true
+
 module FlatKit
-  # A simplified Observable class for use internally
+  # Internal: A simplified Observable class for use internally
   #
   module EventEmitter
     def add_listener(listener)
       raise ::NoMethodError, "#{listener} does not resond to #on_event" unless listener.respond_to?(:on_event)
+
       self._listeners ||= []
       self._listeners << listener unless _listeners.include?(listener)
     end
@@ -27,7 +30,7 @@ module FlatKit
     end
 
     def _listeners
-      @_listeners ||= Array.new
+      @_listeners ||= []
     end
   end
 end

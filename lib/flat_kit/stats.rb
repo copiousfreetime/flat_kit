@@ -1,22 +1,21 @@
+# frozen_string_literal: true
+
 module FlatKit
+  # Internal: Collects stats from an Input and sends thos stats to an Output
+  #
   class Stats
     include ::FlatKit::EventEmitter
 
     AllFields = Class.new.freeze
 
-    attr_reader :reader
-    attr_reader :writer
-    attr_reader :fields_to_stat
-    attr_reader :stats_to_collect
-    attr_reader :stats_by_field
+    attr_reader :reader, :writer, :fields_to_stat, :stats_to_collect, :stats_by_field
 
-    def initialize(input:, input_fallback: "auto",
-                   output:, output_fallback: "auto",
+    def initialize(input:, output:, input_fallback: "auto", output_fallback: "auto",
                    fields_to_stat: AllFields, stats_to_collect: FieldStats::CORE_STATS)
 
       @fields_to_stat   = fields_to_stat
       @stats_to_collect = stats_to_collect
-      @stats_by_field   = Hash.new
+      @stats_by_field   = {}
       @record_count     = 0
 
       @reader = ::FlatKit::Reader.create_reader_from_path(path: input, fallback: input_fallback)
@@ -32,7 +31,8 @@ module FlatKit
 
     def collecting_stats_on_field?(name)
       return true if @fields_to_stat == AllFields
-      return @fields_to_stat.include?(name)
+
+      @fields_to_stat.include?(name)
     end
 
     private
@@ -41,9 +41,7 @@ module FlatKit
       ::FlatKit.logger.debug "Calculating statistics on #{reader.source}"
       reader.each do |record|
         record.to_hash.each do |field_name, field_value|
-          if collecting_stats_on_field?(field_name) then
-            update_stats_for_field(name: field_name, value: field_value)
-          end
+          update_stats_for_field(name: field_name, value: field_value) if collecting_stats_on_field?(field_name)
         end
         @record_count += 1
       end
@@ -55,8 +53,8 @@ module FlatKit
     end
 
     def write_stat_records
-      @stats_by_field.each do |name, stats|
-        h = stats.to_hash.merge({"total_record_count" => @record_count })
+      @stats_by_field.each_value do |stats|
+        h = stats.to_hash.merge({ "total_record_count" => @record_count })
         record = ::FlatKit::Jsonl::Record.new(data: nil, complete_structured_data: h)
 
         @writer.write(record)

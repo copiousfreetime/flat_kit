@@ -1,25 +1,31 @@
-require 'zlib'
+# frozen_string_literal: true
+
+require "zlib"
+require "pathname"
 
 module FlatKit
   class Input
+    # Internal: Handler for file based input
+    #
     class File < Input
-      attr_reader :path
-      attr_reader :count
+      attr_reader :path, :count, :io
 
       def self.handles?(obj)
         return true if obj.instance_of?(Pathname)
         return false unless obj.instance_of?(String)
 
         # incase these get loaded in different orders
-        return false if ::FlatKit::Input::IO.is_stdin?(obj)
+        return false if ::FlatKit::Input::IO.stdin?(obj)
 
-        return true
+        true
       end
 
       def initialize(obj)
+        super()
         @count = 0
         @path = Pathname.new(obj)
         raise FlatKit::Error, "Input #{obj} is not readable" unless @path.readable?
+
         @io = open_input(path)
       end
 
@@ -29,10 +35,6 @@ module FlatKit
 
       def close
         @io.close
-      end
-
-      def io
-        @io
       end
 
       private

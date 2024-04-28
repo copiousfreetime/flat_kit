@@ -1,11 +1,13 @@
-require 'csv'
+# frozen_string_literal: true
+
+require "csv"
 
 module FlatKit
   module Xsv
+    # Internal: Reader class that parses and yields records from xsv files
+    #
     class Reader < ::FlatKit::Reader
-      attr_reader :input
-      attr_reader :count
-      attr_reader :fields
+      attr_reader :input, :count, :fields
 
       def self.format_name
         ::FlatKit::Xsv::Format.format_name
@@ -15,7 +17,7 @@ module FlatKit
         {
           headers: :first_row,
           converters: :numeric,
-          return_headers: false
+          return_headers: false,
         }
       end
 
@@ -36,7 +38,7 @@ module FlatKit
           yield record
         end
         input.close
-      rescue => e
+      rescue StandardError => e
         ::FlatKit.logger.error "Error reading xsv records from #{input.name}: #{e}"
         raise ::FlatKit::Error, e
       end

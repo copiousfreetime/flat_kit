@@ -1,13 +1,12 @@
+# frozen_string_literal: true
+
 module FlatKit
   module Jsonl
+    # Internal: Class that writes flatkit records to JSONL files
+    #
     class Writer < ::FlatKit::Writer
-
       def self.format_name
         ::FlatKit::Jsonl::Format.format_name
-      end
-
-      def initialize(destination:)
-        super
       end
 
       # write the record and return the Position the record was written
@@ -22,10 +21,10 @@ module FlatKit
         else
           raise FlatKit::Error, "Unable to write records of type #{record.class}"
         end
-      rescue FlatKit::Error => fe
-        raise fe
-      rescue => e
-        ::FlatKit.logger.error "Error reading jsonl records from #{output.name}: #{e}"
+      rescue FlatKit::Error => e
+        raise e
+      rescue StandardError => e
+        ::FlatKit.logger.error "Error writing jsonl records to #{output.name}: #{e}"
         raise ::FlatKit::Error, e
       end
 
@@ -47,7 +46,6 @@ module FlatKit
         @last_position = ::FlatKit::Position.new(index: record_index,
                                                  offset: start_offset,
                                                  bytesize: bytes_written)
-
       end
     end
   end

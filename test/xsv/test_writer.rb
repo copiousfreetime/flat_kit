@@ -1,4 +1,6 @@
-require_relative '../test_helper'
+# frozen_string_literal: true
+
+require_relative "../test_helper"
 
 module TestXsv
   class TestWriter < ::Minitest::Test
@@ -9,23 +11,21 @@ module TestXsv
       @write_path = "tmp/test_writes_to_io.csv"
       @read_path = "tmp/test_read.csv"
 
-      File.open(@read_path, "wb") do |f|
-        f.write(@dataset.records_as_csv)
-      end
+      File.binwrite(@read_path, @dataset.records_as_csv)
 
       @reader = ::FlatKit::Xsv::Reader.new(source: @read_path, compare_fields: @compare_fields)
       @records = @reader.to_a
     end
 
     def teardown
-      File.unlink(@write_path) if File.exist?(@write_path)
-      File.unlink(@read_path) if File.exist?(@read_path)
+      FileUtils.rm_f(@write_path)
+      FileUtils.rm_f(@read_path)
     end
 
     def test_raises_error_on_invalid_destination
-      assert_raises(::FlatKit::Error) {
+      assert_raises(::FlatKit::Error) do
         ::FlatKit::Xsv::Writer.new(destination: Object.new, fields: @reader.fields)
-      }
+      end
     end
 
     def test_writes_to_pathname
@@ -34,16 +34,18 @@ module TestXsv
         writer.write(r)
       end
       writer.close
+
       assert_equal(@count, writer.count)
 
       expected = @dataset.records_as_csv
-      actual = IO.read(@write_path)
+      actual = File.read(@write_path)
+
       assert_equal(expected, actual)
     end
 
     def test_position
       File.open(@write_path, "w+") do |f|
-        writer = ::FlatKit::Xsv::Writer.new(destination: f,fields: :auto)
+        writer = ::FlatKit::Xsv::Writer.new(destination: f, fields: :auto)
         records_bytes = 0
         header_bytes = nil
 
@@ -54,8 +56,9 @@ module TestXsv
           # make sure write stores the last_position api and returns that value
           assert_equal(position, writer.last_position)
 
-          header_bytes = writer.header_bytes if header_bytes == nil
-          assert(header_bytes > 0)
+          header_bytes = writer.header_bytes if header_bytes.nil?
+
+          assert_predicate(header_bytes, :positive?)
 
           assert_equal(idx, position.index)
           assert_equal(header_bytes + records_bytes, position.offset)
@@ -64,17 +67,18 @@ module TestXsv
           records_bytes += record_length
 
           current_position = writer.current_position
-          assert_equal(idx+1, current_position.index)
+
+          assert_equal(idx + 1, current_position.index)
           assert_equal(header_bytes + records_bytes, current_position.offset)
           assert_equal(0, current_position.bytesize)
-
         end
         writer.close
 
         assert_equal(@count, writer.count)
 
         expected = @dataset.records_as_csv
-        actual = IO.read(@write_path)
+        actual = File.read(@write_path)
+
         assert_equal(expected, actual)
       end
     end

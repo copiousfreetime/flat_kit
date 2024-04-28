@@ -1,5 +1,9 @@
+# frozen_string_literal: true
+
 module FlatKit
   module Jsonl
+    # Internal: JSONL format class holding the metadata about the JSONL format
+    #
     class Format < ::FlatKit::Format
       def self.format_name
         "jsonl"
@@ -7,10 +11,10 @@ module FlatKit
 
       def self.handles?(filename)
         parts = filename.split(".")
-        %w[ json jsonl ndjson ].each do |ext|
+        %w[json jsonl ndjson].each do |ext|
           return true if parts.include?(ext)
         end
-        return false
+        false
       end
 
       def self.reader

@@ -1,14 +1,16 @@
-require_relative '../test_helper'
+# frozen_string_literal: true
+
+require_relative "../test_helper"
 
 module TestFieldType
   class TestBooleanType < ::Minitest::Test
     def truthy_items
-      t = %w[ yes Y true t 1 y ]
+      t = %w[yes Y true t 1 y]
       t << 1
     end
 
     def falsey_items
-      f = %w[ no n false f 0 N ]
+      f = %w[no n false f 0 N]
       f << 0
     end
 

@@ -1,4 +1,6 @@
-require_relative '../test_helper'
+# frozen_string_literal: true
+
+require_relative "../test_helper"
 
 module TestFieldType
   class TestIntegerType < ::Minitest::Test
@@ -44,7 +46,7 @@ module TestFieldType
     end
 
     def test_non_numercic_do_not_coerce
-      [ "eleven", nil, false, Object.new ].each do |nope|
+      ["eleven", nil, false, Object.new].each do |nope|
         assert_equal(::FlatKit::FieldType::CoerceFailure, ::FlatKit::FieldType::IntegerType.coerce(nope))
       end
     end

@@ -1,7 +1,11 @@
+# frozen_string_literal: true
+
 module FlatKit
-  # Collect stats on a single field. We may not know what the field data type is
-  # to start with, so collect a bunch of values until we have the threshold, and
-  # then calculte states based upon the data types determined by the guess
+  # Internal: Collect stats on a single field.
+  #
+  # We may not know what the field data type is to start with, so collect a
+  # bunch of values until we have the threshold, and then calculte states based
+  # upon the data types determined by the guess
   #
   class FieldStats
     DEFAULT_GUESS_THRESHOLD = 1000
@@ -9,7 +13,7 @@ module FlatKit
     CORE_STATS = :core
     CARDINALITY_STATS = :cardinality
 
-    ALL_STATS = [ CORE_STATS, CARDINALITY_STATS ]
+    ALL_STATS = [CORE_STATS, CARDINALITY_STATS].freeze
 
     EXPORT_FIELDS = %w[
       name
@@ -36,14 +40,13 @@ module FlatKit
       total_count
       null_percent
       unknown_percent
-    ]
+    ].freeze
 
+    attr_reader :type_counts, :field_type, :name, :out_of_type_count
 
-    attr_reader :type_counts
-    attr_reader :field_type
-    attr_reader :name
-
-    def initialize(name:, stats_to_collect: CORE_STATS, type: ::FlatKit::FieldType::GuessType, guess_threshold: DEFAULT_GUESS_THRESHOLD)
+    def initialize(name:, stats_to_collect: CORE_STATS,
+                   type: ::FlatKit::FieldType::GuessType,
+                   guess_threshold: DEFAULT_GUESS_THRESHOLD)
       @name              = name
       @field_type        = type
       @guess_threshold   = guess_threshold
@@ -56,9 +59,14 @@ module FlatKit
 
       @stats_to_collect.each do |collection_set|
         next if ALL_STATS.include?(collection_set)
-        raise ArgumentError, "#{collection_set} is not a valid stats collection set, must be one of #{ALL_STATS.map { |s| s.to_s }.join(", ") }"
+
+        valid_sets = ALL_STATS.map(&:to_s).join(", ")
+
+        raise ArgumentError, "#{collection_set} is not a valid stats collection set, must be one of #{valid_sets}"
       end
-      raise ArgumentError, "type: must be FieldType subclasses - not #{type}" unless type.kind_of?(Class) && (type.superclass == ::FlatKit::FieldType)
+      return if type.is_a?(Class) && (type.superclass == ::FlatKit::FieldType)
+
+      raise ArgumentError, "type: must be FieldType subclasses - not #{type}"
     end
 
     def field_type_determined?
@@ -68,14 +76,12 @@ module FlatKit
     def update(value)
       update_type_count(value)
 
-      if field_type_determined? then
+      if field_type_determined?
         update_stats(value)
       else
         @values << value
 
-        if @values.size >= @guess_threshold then
-          resolve_guess
-        end
+        resolve_guess if @values.size >= @guess_threshold
       end
     end
 
@@ -167,12 +173,9 @@ module FlatKit
       stats.count + @out_of_type_count
     end
 
-    def out_of_type_count
-      @out_of_type_count
-    end
-
     def null_percent
       return 0 if total_count.zero?
+
       ((null_count.to_f / total_count) * 100.0).truncate(2)
     end
 
@@ -182,15 +185,16 @@ module FlatKit
 
     def unknown_percent
       return 0 if total_count.zero?
+
       ((unknown_count.to_f / total_count) * 100.0).truncate(2)
     end
 
     def to_hash
       resolve_guess
 
-      Hash.new.tap do |h|
+      {}.tap do |h|
         EXPORT_FIELDS.each do |n|
-          h[n] = self.send(n)
+          h[n] = send(n)
         end
       end
     end
@@ -209,7 +213,7 @@ module FlatKit
 
     def update_stats(value)
       coerced_value = @field_type.coerce(value)
-      if coerced_value == FieldType::CoerceFailure then
+      if coerced_value == FieldType::CoerceFailure
         @out_of_type_count += 1
         return
       end
@@ -221,15 +225,16 @@ module FlatKit
     def update_type_count(value)
       guess = FieldType.best_guess(value)
       type_counts[guess] += 1
-      return guess
+      guess
     end
 
     def resolve_guess
       return if field_type_determined?
-      best_guess_type, _best_guess_count = type_counts.max_by { |k, v| v }
+
+      best_guess_type, _best_guess_count = type_counts.max_by { |_k, v| v }
       @field_type = best_guess_type
       @stats = StatType.for(@field_type).new(collecting_frequencies: collecting_frequencies?)
-      if @field_type == ::FlatKit::FieldType::StringType then
+      if @field_type == ::FlatKit::FieldType::StringType
         @length_stats = ::FlatKit::StatType::NumericalStats.new(collecting_frequencies: collecting_frequencies?)
       end
       @values.each do |v|
