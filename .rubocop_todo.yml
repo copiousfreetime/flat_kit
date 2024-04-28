@@ -173,18 +173,6 @@ Minitest/AssertOperator:
   Exclude:
     - 'test/xsv/test_writer.rb'
 
-# Offense count: 4
-# This cop supports safe autocorrection (--autocorrect).
-Minitest/AssertPredicate:
-  Exclude:
-    - 'test/test_field_stats.rb'
-
-# Offense count: 4
-# This cop supports safe autocorrection (--autocorrect).
-Minitest/RefutePredicate:
-  Exclude:
-    - 'test/test_field_stats.rb'
-
 # Offense count: 2
 # Configuration parameters: EnforcedStyle, AllowedPatterns.
 # SupportedStyles: snake_case, camelCase
@@ -261,15 +249,6 @@ Style/EmptyMethod:
     - 'test/input/test_io.rb'
     - 'test/output/test_io.rb'
 
-# Offense count: 4
-# This cop supports safe autocorrection (--autocorrect).
-Style/FileWrite:
-  Exclude:
-    - 'test/jsonl/test_reader.rb'
-    - 'test/jsonl/test_writer.rb'
-    - 'test/xsv/test_reader.rb'
-    - 'test/xsv/test_writer.rb'
-
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: EnforcedStyle.
@@ -342,15 +321,6 @@ Style/RandomWithOffset:
   Exclude:
     - 'test/stat_type/test_nominal_stats.rb'
     - 'test/stat_type/test_ordinal_stats.rb'
-
-# Offense count: 4
-# This cop supports safe autocorrection (--autocorrect).
-Style/RedundantCurrentDirectoryInPath:
-  Exclude:
-    - 'test/run'
-    - 'test/test_field_stats.rb'
-    - 'test/test_field_type.rb'
-    - 'test/test_helper.rb'
 
 # Offense count: 2
 # This cop supports unsafe autocorrection (--autocorrect-all).
@@ -431,16 +401,6 @@ Style/TrailingCommaInArrayLiteral:
   Exclude:
     - 'lib/flat_kit/field_type/timestamp_type.rb'
     - 'test/field_type/test_timestamp_type.rb'
-
-# Offense count: 4
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyleForMultiline.
-# SupportedStylesForMultiline: comma, consistent_comma, no_comma
-Style/TrailingCommaInHashLiteral:
-  Exclude:
-    - 'test/stat_type/test_ordinal_stats.rb'
-    - 'test/test_event_emitter.rb'
-    - 'test/test_field_type.rb'
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
