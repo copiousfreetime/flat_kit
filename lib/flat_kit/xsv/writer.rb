@@ -12,7 +12,7 @@ module FlatKit
       def self.default_csv_options
         {
           headers: nil,
-          write_headers: true
+          write_headers: true,
         }
       end
 

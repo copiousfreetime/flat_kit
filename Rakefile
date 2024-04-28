@@ -19,7 +19,7 @@ This.ruby_gemspec do |spec|
     "homepage_uri" => "https://github.com/copiousfreetime/#{This.name}",
     "source_code_uri" => "https://github.com/copiousfreetime/#{This.name}",
     "label" => "flat_kit",
-    "rubygems_mfa_required" => "true"
+    "rubygems_mfa_required" => "true",
   }
 end
 

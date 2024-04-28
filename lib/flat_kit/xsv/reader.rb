@@ -15,7 +15,7 @@ module FlatKit
         {
           headers: :first_row,
           converters: :numeric,
-          return_headers: false
+          return_headers: false,
         }
       end
 
