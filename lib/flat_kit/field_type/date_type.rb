@@ -146,7 +146,7 @@ module FlatKit
 
       def self.matches?(data)
         coerced = coerce(data)
-        return coerced.kind_of?(Date)
+        coerced.kind_of?(Date)
       end
 
       def self.coerce(data)

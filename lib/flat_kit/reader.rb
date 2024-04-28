@@ -25,7 +25,7 @@ module FlatKit
 
     def self.create_reader_from_path(path: "-", fallback: "auto", compare_fields: :none)
       format = ::FlatKit::Format.for_with_fallback!(path: path, fallback: fallback)
-      return format.reader.new(source: path, compare_fields: compare_fields)
+      format.reader.new(source: path, compare_fields: compare_fields)
     end
 
     def self.create_readers_from_paths(paths:, fallback: "auto", compare_fields: :none)
@@ -57,7 +57,7 @@ module FlatKit
     def resolve_compare_fields(value)
       return [] if value == :none
 
-      return value
+      value
     end
   end
 end

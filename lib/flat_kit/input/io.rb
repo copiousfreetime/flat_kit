@@ -9,7 +9,7 @@ module FlatKit
         return true if is_stdin?(obj)
         return true if [::File, ::StringIO, ::IO].any? { |klass| obj.kind_of?(klass) }
 
-        return false
+        false
       end
 
       def self.is_stdin?(obj)
@@ -19,7 +19,7 @@ module FlatKit
         when ::IO
           return true if obj == ::STDIN
         end
-        return false
+        false
       end
 
       def initialize(obj)

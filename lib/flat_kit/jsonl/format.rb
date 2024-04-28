@@ -12,7 +12,7 @@ module FlatKit
         %w[json jsonl ndjson].each do |ext|
           return true if parts.include?(ext)
         end
-        return false
+        false
       end
 
       def self.reader

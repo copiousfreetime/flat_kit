@@ -25,7 +25,7 @@ module FlatKit
       def collected_stats
         return self.class.default_stats unless @collecting_frequencies
 
-        return self.class.all_stats
+        self.class.all_stats
       end
 
       def mode

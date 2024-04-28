@@ -16,7 +16,7 @@ module FlatKit
         return false if ::FlatKit::Output::IO.is_stdout?(obj)
         return false if ::FlatKit::Output::IO.is_stderr?(obj)
 
-        return true
+        true
       end
 
       def initialize(obj)

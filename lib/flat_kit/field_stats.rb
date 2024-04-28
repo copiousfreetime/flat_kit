@@ -223,7 +223,7 @@ module FlatKit
     def update_type_count(value)
       guess = FieldType.best_guess(value)
       type_counts[guess] += 1
-      return guess
+      guess
     end
 
     def resolve_guess

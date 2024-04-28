@@ -13,7 +13,7 @@ module FlatKit
         return true if is_stdout?(obj)
         return true if [::File, ::StringIO, ::IO].any? { |klass| obj.kind_of?(klass) }
 
-        return false
+        false
       end
 
       def self.is_stderr?(obj)
@@ -23,7 +23,7 @@ module FlatKit
         when ::IO
           return true if obj == ::STDERR
         end
-        return false
+        false
       end
 
       def self.is_stdout?(obj)
@@ -33,7 +33,7 @@ module FlatKit
         when ::IO
           return true if obj == ::STDOUT
         end
-        return false
+        false
       end
 
       def initialize(obj)

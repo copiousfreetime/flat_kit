@@ -71,7 +71,7 @@ module FlatKit
           @frequencies[value] += 1 if @collecting_frequencies
         end
 
-        return value
+        value
       end
 
       # call-seq:
@@ -82,7 +82,7 @@ module FlatKit
       def mean
         return 0.0 if @count.zero?
 
-        return @sum / @count
+        @sum / @count
       end
 
       # call-seq:
@@ -101,7 +101,7 @@ module FlatKit
       def rate
         return 0.0 if @sum.zero?
 
-        return @count / @sum
+        @count / @sum
       end
 
       #

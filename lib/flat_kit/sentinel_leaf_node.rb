@@ -34,7 +34,7 @@ module FlatKit
     def <=>(other)
       return 0 if other.sentinel?
 
-      return 1
+      1
     end
   end
 end

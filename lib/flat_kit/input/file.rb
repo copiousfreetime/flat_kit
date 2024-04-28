@@ -15,7 +15,7 @@ module FlatKit
         # incase these get loaded in different orders
         return false if ::FlatKit::Input::IO.is_stdin?(obj)
 
-        return true
+        true
       end
 
       def initialize(obj)

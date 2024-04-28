@@ -697,12 +697,6 @@ Style/RedundantPercentQ:
   Exclude:
     - 'flat_kit.gemspec'
 
-# Offense count: 28
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowMultipleReturnValues.
-Style/RedundantReturn:
-  Enabled: false
-
 # Offense count: 10
 # This cop supports safe autocorrection (--autocorrect).
 Style/RedundantSelf:

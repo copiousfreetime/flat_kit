@@ -13,15 +13,15 @@ module FlatKit
         return false unless data.kind_of?(String)
         return true if data.length == 0
 
-        return REGEX.match?(data)
+        REGEX.match?(data)
       end
 
       def self.coerce(data)
         return data if REGEX.match?(data)
 
-        return CoerceFailure
+        CoerceFailure
       rescue
-        return CoerceFailure
+        CoerceFailure
       end
     end
   end

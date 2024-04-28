@@ -45,7 +45,7 @@ module FlatKit
       args.each do |meth|
         h[meth] = self.send(meth)
       end
-      return h
+      h
     end
 
     #

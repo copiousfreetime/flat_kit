@@ -23,7 +23,7 @@ module FlatKit
           return true if data.zero?
           return true if data == 1
 
-          return false
+          false
         else
           false
         end

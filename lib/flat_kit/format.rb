@@ -22,15 +22,14 @@ module FlatKit
       return format unless format.nil?
 
       # now try the fallback
-      format = ::FlatKit::Format.for(fallback)
-      return format
+      ::FlatKit::Format.for(fallback)
     end
 
     def self.for_with_fallback!(path:, fallback: "auto")
       format = for_with_fallback(path: path, fallback: fallback)
       raise ::FlatKit::Error::UnknownFormat, "Unable to figure out format for '#{path}' with fallback '#{fallback}'" if format.nil?
 
-      return format
+      format
     end
   end
 end
