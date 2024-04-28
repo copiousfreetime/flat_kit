@@ -17,6 +17,7 @@ AllCops:
     - 'pkg/**/*'
     - 'tmp/**/*'
     - '*.gemspec'
+    - 'vendor/bundle/**/*'
 
 Layout/ExtraSpacing:
   AllowBeforeTrailingComments: true

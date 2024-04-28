@@ -36,7 +36,7 @@ blocks:
             - source .semaphore/ensure-ruby-version.sh
             - source .semaphore/ensure-bundle.sh
             - mkdir -p tmp/test-results/
-            - bundle exec rubocop --debug
+            - bundle exec rake rubocop
             - export TEST_RESULTS_FILE=tmp/test-results/${RUBY_VERSION}.xml
             - A="--junit --junit-filename=${TEST_RESULTS_FILE}" bundle exec rake test
 
