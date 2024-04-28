@@ -20,8 +20,8 @@ module TestXsv
     end
 
     def teardown
-      File.unlink(@write_path) if File.exist?(@write_path)
-      File.unlink(@read_path) if File.exist?(@read_path)
+      FileUtils.rm_f(@write_path)
+      FileUtils.rm_f(@read_path)
     end
 
     def test_raises_error_on_invalid_destination

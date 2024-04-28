@@ -220,20 +220,6 @@ Lint/MissingSuper:
     - 'test/input/test_io.rb'
     - 'test/output/test_io.rb'
 
-# Offense count: 36
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Lint/NonAtomicFileOperation:
-  Exclude:
-    - 'test/input/test_file.rb'
-    - 'test/input/test_io.rb'
-    - 'test/jsonl/test_reader.rb'
-    - 'test/jsonl/test_writer.rb'
-    - 'test/output/test_file.rb'
-    - 'test/output/test_io.rb'
-    - 'test/test_merge.rb'
-    - 'test/xsv/test_reader.rb'
-    - 'test/xsv/test_writer.rb'
-
 # Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Lint/RedundantRequireStatement:

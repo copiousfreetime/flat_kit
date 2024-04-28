@@ -20,7 +20,7 @@ class TestMerge < ::Minitest::Test
       assert_instance_of(::FlatKit::Output::File, merge.writer.output)
       merge.writer.close
     ensure
-      File.unlink(test_path) if File.exist?(test_path)
+      FileUtils.rm_f(test_path)
     end
   end
 

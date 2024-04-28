@@ -17,7 +17,7 @@ module TestInput
 
         assert(::FlatKit::Input::File.handles?(test_path))
       ensure
-        File.unlink(test_path) if File.exist?(test_path)
+        FileUtils.rm_f(test_path)
       end
     end
 
@@ -38,7 +38,7 @@ module TestInput
         assert_equal(test_path, io.name)
         assert_instance_of(::File, io.io)
       ensure
-        File.unlink(test_path) if File.exist?(test_path)
+        FileUtils.rm_f(test_path)
       end
     end
 
@@ -55,7 +55,7 @@ module TestInput
 
         input.close
       ensure
-        File.unlink(test_path) if File.exist?(test_path)
+        FileUtils.rm_f(test_path)
       end
     end
 
@@ -72,7 +72,7 @@ module TestInput
 
         input.close
       ensure
-        File.unlink(test_path) if File.exist?(test_path)
+        FileUtils.rm_f(test_path)
       end
     end
   end

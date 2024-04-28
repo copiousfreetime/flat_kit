@@ -16,7 +16,7 @@ module TestXsv
     end
 
     def teardown
-      File.unlink(@test_path) if File.exist?(@test_path)
+      FileUtils.rm_f(@test_path)
     end
 
     def test_fields

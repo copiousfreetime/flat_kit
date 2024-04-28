@@ -48,7 +48,7 @@ module TestInput
           assert_instance_of(::File, io.io)
         end
       ensure
-        File.unlink(test_path) if File.exist?(test_path)
+        FileUtils.rm_f(test_path)
       end
     end
 
@@ -94,7 +94,7 @@ module TestInput
           assert_equal(content, line)
         end
       ensure
-        File.unlink(test_path) if File.exist?(test_path)
+        FileUtils.rm_f(test_path)
       end
     end
   end

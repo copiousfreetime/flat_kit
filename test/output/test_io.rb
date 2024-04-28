@@ -67,7 +67,7 @@ module TestOutput
           assert_instance_of(::File, io.io)
         end
       ensure
-        File.unlink(test_path) if File.exist?(test_path)
+        FileUtils.rm_f(test_path)
       end
     end
 
@@ -109,7 +109,7 @@ module TestOutput
 
         assert_equal("test_writes_to_io output", t)
       ensure
-        File.unlink(test_path) if File.exist?(test_path)
+        FileUtils.rm_f(test_path)
       end
     end
   end
