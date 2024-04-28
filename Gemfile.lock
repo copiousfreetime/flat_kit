@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     flat_kit (0.3.1)
+      csv (~> 3.3)
       oj (~> 3.0)
       optimist (~> 3.0)
 
@@ -13,7 +14,9 @@ GEM
     benchmark-ips (2.13.0)
     bigdecimal (3.1.7)
     bigdecimal (3.1.7-java)
+    builder (3.2.4)
     concurrent-ruby (1.2.3)
+    csv (3.3.0)
     debug (1.9.2)
       irb (~> 1.10)
       reline (>= 0.3.8)
@@ -44,16 +47,15 @@ GEM
     minitest (5.22.3)
     minitest-focus (1.4.0)
       minitest (>= 4, < 6)
-    minitest-junit (2.1.0)
+    minitest-junit (1.1.0)
+      builder (~> 3.2)
       minitest (~> 5.11)
-      ox (~> 2, >= 2.14.2)
     nio4r (2.7.1)
     nio4r (2.7.1-java)
     oj (3.16.3)
       bigdecimal (>= 3.0)
     optimist (3.1.0)
     options (2.3.2)
-    ox (2.14.18)
     progress_bar (1.3.3)
       highline (>= 1.6, < 3)
       options (~> 2.3.0)
@@ -73,7 +75,7 @@ GEM
     rake (13.2.1)
     rdoc (6.6.3.1)
       psych (>= 4.0.0)
-    reline (0.5.2)
+    reline (0.5.3)
       io-console (~> 0.5)
     rouge (4.2.1)
     simplecov (0.22.0)
@@ -88,6 +90,7 @@ GEM
 PLATFORMS
   arm64-darwin-21
   arm64-darwin-22
+  arm64-darwin-23
   java
   x86_64-darwin-19
   x86_64-linux
@@ -100,7 +103,7 @@ DEPENDENCIES
   heel
   minitest (~> 5.11)
   minitest-focus (~> 1.2)
-  minitest-junit (~> 2.0)
+  minitest-junit (~> 1.0)
   progress_bar
   rake (~> 13.0)
   rdoc (~> 6.3)
