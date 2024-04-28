@@ -13,7 +13,7 @@ module FlatKit
       end
 
       def self.from_record(record, ordered_fields: nil)
-        if record.instance_of?(FlatKit::Xsv::Record) then
+        if record.instance_of?(FlatKit::Xsv::Record)
           new(data: record.data, compare_fields: record.compare_fields)
         else
           new(data: nil, compare_fields: record.compare_fields,
@@ -30,7 +30,7 @@ module FlatKit
         @complete_structured_data = complete_structured_data
         @ordered_fields = ordered_fields
 
-        if data.nil? && (complete_structured_data.nil? || complete_structured_data.empty?) then
+        if data.nil? && (complete_structured_data.nil? || complete_structured_data.empty?)
           raise FlatKit::Error,
             "#{self.class} requires initialization from data: or complete_structured_data:"
         end
@@ -41,7 +41,7 @@ module FlatKit
       def [](key)
         return nil unless @compare_fields.include?(key)
 
-        if data.nil? && !@complete_structured_data.nil? then
+        if data.nil? && !@complete_structured_data.nil?
           @complete_structured_data[key]
         else
           data[key]
@@ -81,8 +81,8 @@ module FlatKit
       private
 
       def resolve_ordered_fields
-        if (@ordered_fields == :auto) || (@ordered_fields.nil? || @ordered_fields.empty?) then
-          if @data.nil? || @data.empty? then
+        if (@ordered_fields == :auto) || (@ordered_fields.nil? || @ordered_fields.empty?)
+          if @data.nil? || @data.empty?
             @ordered_fields = complete_structured_data.keys
           else
             @ordered_fields = @data.headers

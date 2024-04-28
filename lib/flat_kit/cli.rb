@@ -60,11 +60,11 @@ module FlatKit
         parser.parse(argv)
       end
 
-      if opts[:log_given] then
+      if opts[:log_given]
         ::FlatKit.log_to(opts[:log])
       end
 
-      if opts[:verbose] then
+      if opts[:verbose]
         ::FlatKit.logger.level = :debug
       else
         ::FlatKit.logger.level = :info
@@ -74,13 +74,13 @@ module FlatKit
       ::FlatKit.logger.debug argv
 
       command_name  = argv.shift
-      if command_name.nil? || command_name.downcase == "help" then
+      if command_name.nil? || command_name.downcase == "help"
         parser.educate
         exit 0
       end
 
       command_klass = FlatKit::Command.for(command_name)
-      if command_klass.nil? then
+      if command_klass.nil?
         $stdout.puts "ERROR: Unknown command '#{command_name}'"
         parser.educate
         exit 0

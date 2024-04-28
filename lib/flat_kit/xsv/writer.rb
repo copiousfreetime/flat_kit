@@ -22,7 +22,7 @@ module FlatKit
         @we_write_the_header = nil
         @csv_options = Writer.default_csv_options.dup
 
-        if @fields == :auto then
+        if @fields == :auto
           @we_write_the_header = true
         else
           @csv_options.merge!(headers: fields)
@@ -59,7 +59,7 @@ module FlatKit
       private
 
       def write_record(record)
-        if @we_write_the_header && @count == 0 then
+        if @we_write_the_header && @count == 0
           @csv << record.ordered_fields
           @header_bytes = output.tell
         end

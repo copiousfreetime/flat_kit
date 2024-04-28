@@ -23,16 +23,16 @@ module FlatKit
       end
 
       def initialize(obj)
-        if self.class.is_stdin?(obj) then
+        if self.class.is_stdin?(obj)
           @name = "<STDIN>"
           @io = $stdin
-        elsif obj.kind_of?(::File) then
+        elsif obj.kind_of?(::File)
           @name = obj.path
           @io = obj
-        elsif obj.kind_of?(::StringIO) then
+        elsif obj.kind_of?(::StringIO)
           @name = obj.inspect
           @io = obj
-        elsif obj.kind_of?(::IO) then
+        elsif obj.kind_of?(::IO)
           @name = obj.inspect
           @io = obj
         else

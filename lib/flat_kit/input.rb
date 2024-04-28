@@ -8,7 +8,7 @@ module FlatKit
       return input if input.kind_of?(::FlatKit::Input)
 
       in_klass = find_child(:handles?, input)
-      if in_klass then
+      if in_klass
         return in_klass.new(input)
       end
 

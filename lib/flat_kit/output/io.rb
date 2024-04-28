@@ -38,19 +38,19 @@ module FlatKit
 
       def initialize(obj)
         @count = 0
-        if self.class.is_stdout?(obj) then
+        if self.class.is_stdout?(obj)
           @name = "<STDOUT>"
           @io = $stdout
-        elsif self.class.is_stderr?(obj) then
+        elsif self.class.is_stderr?(obj)
           @name = "<STDERR>"
           @io = $stderr
-        elsif obj.kind_of?(::File) then
+        elsif obj.kind_of?(::File)
           @name = obj.path
           @io = obj
-        elsif obj.kind_of?(::StringIO) then
+        elsif obj.kind_of?(::StringIO)
           @name = obj.inspect
           @io = obj
-        elsif obj.kind_of?(::IO) then
+        elsif obj.kind_of?(::IO)
           @name = obj.inspect
           @io = obj
         else

@@ -50,24 +50,24 @@ module FlatKit
     # from the tree.
     #
     def player_finished(node)
-      if left.object_id == node.object_id then
+      if left.object_id == node.object_id
         @left = SentinelInternalNode.new
         @left.next_level = self
-      elsif right.object_id == node.object_id then
+      elsif right.object_id == node.object_id
         @right = SentinelInternalNode.new
         @right.next_level = self
       else
         raise FlatKit::Error, "Unknown player #{node}"
       end
 
-      if @right.sentinel? && @left.sentinel? then
+      if @right.sentinel? && @left.sentinel?
         next_level.player_finished(self) if next_level
       end
     end
 
     def play
       @winner = left <= right ? left : right
-      if !@winner.sentinel? then
+      if !@winner.sentinel?
         @leaf = winner.leaf
       end
       next_level.play if next_level

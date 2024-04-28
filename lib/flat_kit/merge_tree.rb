@@ -44,7 +44,7 @@ module FlatKit
 
       # Need to pad the leaves to an even number so that the slicing by 2 for
       # the tournament will work
-      if @leaves.size.odd? then
+      if @leaves.size.odd?
         @leaves << SentinelLeafNode.new
       end
 

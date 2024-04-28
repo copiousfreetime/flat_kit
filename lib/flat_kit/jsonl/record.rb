@@ -13,7 +13,7 @@ module FlatKit
       end
 
       def self.from_record(record)
-        if record.instance_of?(FlatKit::Jsonl::Record) then
+        if record.instance_of?(FlatKit::Jsonl::Record)
 
           structured = record.complete_structured_data? ? record.complete_structured_data : nil
 
@@ -33,14 +33,14 @@ module FlatKit
 
         @complete_structured_data = complete_structured_data
 
-        if complete_structured_data? && (compare_data.nil? || compare_data.empty?) then
+        if complete_structured_data? && (compare_data.nil? || compare_data.empty?)
           @compare_data = complete_structured_data
         else
           @compare_data = compare_data
         end
 
         # only load compare data if it dosn't exist
-        if data && compare_data.empty? then
+        if data && compare_data.empty?
           quick_parse
         end
       end
@@ -61,7 +61,7 @@ module FlatKit
       # overriding parent accessor since we may be initialized without raw bytes
       # to parse
       def data
-        if @data.nil? && complete_structured_data? then
+        if @data.nil? && complete_structured_data?
           @data = Oj.dump(complete_structured_data, mode: :json)
         end
         @data

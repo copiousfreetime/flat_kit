@@ -57,7 +57,7 @@ module FlatKit
         my_val         = self[field]
         other_val      = other[field]
 
-        if my_val.nil? && other_val.nil? then
+        if my_val.nil? && other_val.nil?
           compare_result = 0
         elsif my_val.nil?
           compare_result = -1

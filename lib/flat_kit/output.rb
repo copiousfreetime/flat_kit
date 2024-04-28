@@ -8,7 +8,7 @@ module FlatKit
       return out if out.kind_of?(::FlatKit::Output)
 
       out_klass = find_child(:handles?, out)
-      if out_klass then
+      if out_klass
         return out_klass.new(out)
       end
 

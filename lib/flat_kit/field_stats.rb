@@ -68,12 +68,12 @@ module FlatKit
     def update(value)
       update_type_count(value)
 
-      if field_type_determined? then
+      if field_type_determined?
         update_stats(value)
       else
         @values << value
 
-        if @values.size >= @guess_threshold then
+        if @values.size >= @guess_threshold
           resolve_guess
         end
       end
@@ -211,7 +211,7 @@ module FlatKit
 
     def update_stats(value)
       coerced_value = @field_type.coerce(value)
-      if coerced_value == FieldType::CoerceFailure then
+      if coerced_value == FieldType::CoerceFailure
         @out_of_type_count += 1
         return
       end
@@ -232,7 +232,7 @@ module FlatKit
       best_guess_type, _best_guess_count = type_counts.max_by { |k, v| v }
       @field_type = best_guess_type
       @stats = StatType.for(@field_type).new(collecting_frequencies: collecting_frequencies?)
-      if @field_type == ::FlatKit::FieldType::StringType then
+      if @field_type == ::FlatKit::FieldType::StringType
         @length_stats = ::FlatKit::StatType::NumericalStats.new(collecting_frequencies: collecting_frequencies?)
       end
       @values.each do |v|
