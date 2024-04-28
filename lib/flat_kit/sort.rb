@@ -13,7 +13,7 @@ module FlatKit
     end
 
     def call
-      ::FlatKit.logger.info "Sorting #{reader.source} into #{writer.destination} using key #{compare_fields.join(", ")}"
+      ::FlatKit.logger.info "Sorting #{reader.source} into #{writer.destination} using key #{compare_fields.join(', ')}"
       records = [].tap do |a|
         reader.each do |r|
           a << r

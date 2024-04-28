@@ -16,7 +16,7 @@ module FlatKit
 
     def call
       ::FlatKit.logger.debug "Merging the following files into #{writer.destination}"
-      ::FlatKit.logger.debug "Using this key for sorting: #{compare_fields.join(", ")}"
+      ::FlatKit.logger.debug "Using this key for sorting: #{compare_fields.join(', ')}"
       readers.each do |r|
         ::FlatKit.logger.debug "  #{r.source}"
       end

@@ -271,27 +271,12 @@ Style/RedundantInitialize:
     - 'test/input/test_io.rb'
     - 'test/output/test_io.rb'
 
-# Offense count: 3
-# This cop supports safe autocorrection (--autocorrect).
-Style/RedundantPercentQ:
-  Exclude:
-    - 'flat_kit.gemspec'
-
 # Offense count: 2
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Style/RedundantSort:
   Exclude:
     - 'lib/flat_kit/cli.rb'
     - 'lib/flat_kit/field_type.rb'
-
-# Offense count: 3
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: ConvertCodeThatCanStartToReturnNil, AllowedMethods, MaxChainLength.
-# AllowedMethods: present?, blank?, presence, try, try!
-Style/SafeNavigation:
-  Exclude:
-    - 'lib/flat_kit/field_stats.rb'
-    - 'lib/flat_kit/internal_node.rb'
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
@@ -314,16 +299,6 @@ Style/StringConcatenation:
   Exclude:
     - 'test/device_dataset.rb'
     - 'test/input/test_file.rb'
-
-# Offense count: 3
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: single_quotes, double_quotes
-Style/StringLiteralsInInterpolation:
-  Exclude:
-    - 'lib/flat_kit/field_stats.rb'
-    - 'lib/flat_kit/merge.rb'
-    - 'lib/flat_kit/sort.rb'
 
 # Offense count: 3
 # This cop supports safe autocorrection (--autocorrect).
