@@ -14,7 +14,7 @@ module FlatKit
 
       def self.parser
         ::Optimist::Parser.new do
-          banner "#{Merge.description}"
+          banner Merge.description.to_s
           banner ""
 
           banner <<~BANNER

@@ -22,7 +22,7 @@ module TestFieldType
       assert_equal(formats.size, formats.sort.uniq.size)
 
       formats.each do |df|
-        s = Time.now.strftime("#{df}")
+        s = Time.now.strftime(df.to_s)
 
         assert(FlatKit::FieldType::DateType.matches?(s), "#{s} should match date")
       end
@@ -44,7 +44,7 @@ module TestFieldType
       formats = ::FlatKit::FieldType::DateType.parse_formats
 
       formats.each do |df|
-        s = Time.now.strftime("#{df}")
+        s = Time.now.strftime(df.to_s)
 
         assert_instance_of(Date, FlatKit::FieldType::DateType.coerce(s), "#{s} should convert to date")
       end

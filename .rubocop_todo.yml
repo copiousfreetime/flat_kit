@@ -399,16 +399,6 @@ Style/RedundantInitialize:
     - 'test/input/test_io.rb'
     - 'test/output/test_io.rb'
 
-# Offense count: 6
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Style/RedundantInterpolation:
-  Exclude:
-    - 'lib/flat_kit/command/cat.rb'
-    - 'lib/flat_kit/command/merge.rb'
-    - 'lib/flat_kit/command/sort.rb'
-    - 'lib/flat_kit/command/stats.rb'
-    - 'test/field_type/test_date_type.rb'
-
 # Offense count: 3
 # This cop supports safe autocorrection (--autocorrect).
 Style/RedundantPercentQ:

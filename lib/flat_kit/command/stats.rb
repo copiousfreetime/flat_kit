@@ -13,7 +13,7 @@ module FlatKit
 
       def self.parser
         ::Optimist::Parser.new do
-          banner "#{Sort.description}"
+          banner Sort.description.to_s
           banner ""
 
           banner <<~BANNER

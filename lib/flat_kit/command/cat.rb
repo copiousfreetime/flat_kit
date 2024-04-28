@@ -14,7 +14,7 @@ module FlatKit
 
       def self.parser
         ::Optimist::Parser.new do
-          banner "#{Cat.description}"
+          banner Cat.description.to_s
           banner ""
 
           banner <<~BANNER
