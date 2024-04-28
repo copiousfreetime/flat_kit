@@ -80,8 +80,8 @@ module FlatKit
 
             path = paths.first || "-" # default to stdin
             @stats = ::FlatKit::Stats.new(input: path, input_fallback: opts[:input_format],
-                                         output: opts[:output], output_fallback: opts[:output_format],
-                                         fields_to_stat: fields, stats_to_collect: stats)
+                                          output: opts[:output], output_fallback: opts[:output_format],
+                                          fields_to_stat: fields, stats_to_collect: stats)
           rescue ::FlatKit::Error => e
             raise ::Optimist::CommandlineError, e.message
           end

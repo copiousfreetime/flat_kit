@@ -44,18 +44,6 @@ Layout/FirstArrayElementIndentation:
     - 'lib/flat_kit/field_type/date_type.rb'
     - 'test/field_type/test_timestamp_type.rb'
 
-# Offense count: 18
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowMultipleStyles, EnforcedHashRocketStyle, EnforcedColonStyle, EnforcedLastArgumentHashStyle.
-# SupportedHashRocketStyles: key, separator, table
-# SupportedColonStyles: key, separator, table
-# SupportedLastArgumentHashStyles: always_inspect, always_ignore, ignore_implicit, ignore_explicit
-Layout/HashAlignment:
-  Exclude:
-    - 'lib/flat_kit/command/stats.rb'
-    - 'test/stat_type/test_ordinal_stats.rb'
-    - 'test/test_field_type.rb'
-
 # Offense count: 14
 # This cop supports safe autocorrection (--autocorrect).
 Layout/HeredocIndentation:

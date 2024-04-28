@@ -72,8 +72,8 @@ module TestStatType
     def test_default_to_hash
       expecting = {
         "count" => @values.size,
-        "max"   => @values.max,
-        "min"   => @values.min,
+        "max" => @values.max,
+        "min" => @values.min,
       }
 
       assert_equal(expecting, @stats.to_hash)
@@ -81,12 +81,12 @@ module TestStatType
 
     def test_all_stats_hash
       expecting = {
-        "count"         => @values.size,
-        "unique_count"  => @unique_values.size,
+        "count" => @values.size,
+        "unique_count" => @unique_values.size,
         "unique_values" => @unique_values.sort,
-        "mode"          => @frequencies.max_by { |k,v| v }.first,
-        "max"           => @values.max,
-        "min"           => @values.min,
+        "mode" => @frequencies.max_by { |k,v| v }.first,
+        "max" => @values.max,
+        "min" => @values.min,
       }
 
       assert_equal(expecting, @all_stats.to_hash)
