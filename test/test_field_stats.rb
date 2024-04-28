@@ -51,7 +51,7 @@ class TestFieldStats < ::Minitest::Test
     field_stats = ::FlatKit::FieldStats.new(name: "number-cardinality",
                                             stats_to_collect: ::FlatKit::FieldStats::ALL_STATS)
     field_stats, number_data = generate_data_with(stats: field_stats) {
-        Faker::Number.within(range:1..25)
+      Faker::Number.within(range:1..25)
     }
 
     avg = number_data.sum.to_f / number_data.size
