@@ -76,7 +76,7 @@ class TestFieldStats < Minitest::Test
     assert_equal(number_data.tally.keys.sort, field_stats.unique_values.sort)
     assert_equal(number_data.tally, field_stats.frequencies)
 
-    mode = number_data.tally.max_by{ |_k, v| v }.first
+    mode = number_data.tally.max_by { |_k, v| v }.first
 
     assert_equal(mode, field_stats.mode)
   end

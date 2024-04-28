@@ -32,7 +32,7 @@ module FlatKit
       def mode
         return nil unless @collecting_frequencies
 
-        @frequencies.max_by{ |_item, item_count| item_count }.first
+        @frequencies.max_by { |_item, item_count| item_count }.first
       end
 
       def unique_count
