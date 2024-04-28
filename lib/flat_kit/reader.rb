@@ -16,7 +16,7 @@ module FlatKit
   # API:
   #
   #   initialize(source:, compare_fields:)
-  #   each -> Yields / returns 
+  #   each -> Yields / returns
   #
   class Reader
     include Enumerable

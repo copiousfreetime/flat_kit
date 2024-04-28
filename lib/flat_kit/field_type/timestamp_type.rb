@@ -10,7 +10,7 @@ module FlatKit
           "%Y-%m-%dT%H:%M:%S.%N%z", # w3cdtf
           "%Y-%m-%d %H:%M:%S",
           "%Y-%m-%dT%H:%M:%S%z",
-          "%Y-%m-%dT%H:%M:%SZ", 
+          "%Y-%m-%dT%H:%M:%SZ",
           "%Y%m%dT%H%M%S",
           "%a, %d %b %Y %H:%M:%S %z", # rfc2822, httpdate
         ].freeze

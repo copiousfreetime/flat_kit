@@ -29,7 +29,7 @@ module FlatKit
     # Each type has a weight so if a value matches multiple types, then the list
     # can be compared to see where the tie breakers are
     #
-    # All the weights are here so that 
+    # All the weights are here so that
     #
     #
     def self.weight

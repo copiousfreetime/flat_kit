@@ -40,7 +40,7 @@ class TestMergeTree < ::Minitest::Test
     # 1st level should have 5 nodes - since 10 nodes lower
     assert_equal(5, tree.levels[1].size)
 
-    # 2nd level should have 3 nodes - since 5 above (and we shim in a Sentinel 
+    # 2nd level should have 3 nodes - since 5 above (and we shim in a Sentinel
     # node on the last internal node)
     assert_equal(3, tree.levels[2].size)
     assert_instance_of(::FlatKit::SentinelInternalNode, tree.levels[2].last.right)

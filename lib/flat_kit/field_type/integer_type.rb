@@ -29,7 +29,6 @@ module FlatKit
       rescue ArgumentError => _
         CoerceFailure
       end
- 
     end
   end
 end

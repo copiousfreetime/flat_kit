@@ -45,11 +45,11 @@ module TestStatType
 
     def test_calculates_the_standard_deviation
       assert_equal(1.0, @full_stats.stddev)
-    end 
+    end
 
     def test_calculates_the_sum_of_squares
       assert_equal(14, @full_stats.sumsq)
-    end 
+    end
 
     def test_converts_to_a_hash
       h = @full_stats.to_hash

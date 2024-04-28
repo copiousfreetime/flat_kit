@@ -121,21 +121,6 @@ Layout/TrailingEmptyLines:
     - 'test/stat_type/test_nominal_stats.rb'
     - 'test/stat_type/test_ordinal_stats.rb'
 
-# Offense count: 12
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowInHeredoc.
-Layout/TrailingWhitespace:
-  Exclude:
-    - 'lib/flat_kit/descendant_tracker.rb'
-    - 'lib/flat_kit/field_type.rb'
-    - 'lib/flat_kit/field_type/integer_type.rb'
-    - 'lib/flat_kit/field_type/timestamp_type.rb'
-    - 'lib/flat_kit/reader.rb'
-    - 'lib/flat_kit/stat_type.rb'
-    - 'lib/flat_kit/stat_type/numerical_stats.rb'
-    - 'test/stat_type/test_numerical_stats.rb'
-    - 'test/test_merge_tree.rb'
-
 # Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: AllowSafeAssignment.

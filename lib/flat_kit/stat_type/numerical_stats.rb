@@ -13,7 +13,7 @@ require "oj"
 module FlatKit
   class StatType
     #
-    # Stats object will keep track of the _min_, _max_, _count_, _sum_ and _sumsq_ 
+    # Stats object will keep track of the _min_, _max_, _count_, _sum_ and _sumsq_
     # and when you want you may also retrieve the _mean_, _stddev_ and _rate_.
     #
     # this contrived example shows getting a list of all the files in a directory
@@ -76,7 +76,7 @@ module FlatKit
 
       # call-seq:
       #    stat.mean -> Float
-      # 
+      #
       # Return the arithmetic mean of the values put into the Stats object.  If no
       # values have passed through the stats object then 0.0 is returned;
       def mean

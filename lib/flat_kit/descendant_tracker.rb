@@ -25,7 +25,7 @@ module FlatKit
       end
     end
 
-    # 
+    #
     # Find all the children that return truthy from the given method with args
     #
     def find_children(method, *args)
