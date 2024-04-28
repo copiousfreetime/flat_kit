@@ -50,7 +50,7 @@ module FlatKit
 
           # other formats
           "%Y-%j",
-          "%a %b %d %Y"
+          "%a %b %d %Y",
         ].freeze
       end
 
