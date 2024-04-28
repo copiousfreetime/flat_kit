@@ -10,9 +10,7 @@ module TestXsv
       @compare_fields = @dataset.compare_fields
       @test_path = "tmp/test_reads_from_io.csv"
 
-      File.open(@test_path, "wb") do |f|
-        f.write(@dataset.records_as_csv)
-      end
+      File.binwrite(@test_path, @dataset.records_as_csv)
     end
 
     def teardown

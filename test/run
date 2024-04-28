@@ -6,7 +6,7 @@ test_dir = __dir__
 $: << File.join(File.dirname(test_dir), "lib")
 $: << test_dir
 
-require_relative "./test_helper"
+require_relative "test_helper"
 
 require "find"
 

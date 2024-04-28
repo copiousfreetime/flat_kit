@@ -11,9 +11,7 @@ module TestJsonl
       @write_path = "tmp/test_writes_to_io.jsonl"
       @read_path = "tmp/test_read.jsonl"
 
-      File.open(@read_path, "wb") do |f|
-        f.write(@dataset.records_as_jsonl)
-      end
+      File.binwrite(@read_path, @dataset.records_as_jsonl)
 
       @reader = ::FlatKit::Jsonl::Reader.new(source: @read_path, compare_fields: @compare_fields)
       @records = @reader.to_a

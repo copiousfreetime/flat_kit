@@ -11,9 +11,7 @@ module TestXsv
       @write_path = "tmp/test_writes_to_io.csv"
       @read_path = "tmp/test_read.csv"
 
-      File.open(@read_path, "wb") do |f|
-        f.write(@dataset.records_as_csv)
-      end
+      File.binwrite(@read_path, @dataset.records_as_csv)
 
       @reader = ::FlatKit::Xsv::Reader.new(source: @read_path, compare_fields: @compare_fields)
       @records = @reader.to_a

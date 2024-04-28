@@ -31,4 +31,4 @@ module TestHelper
   end
 end
 require_relative "../lib/flat_kit"
-require_relative "./device_dataset"
+require_relative "device_dataset"
