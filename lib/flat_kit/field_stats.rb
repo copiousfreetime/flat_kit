@@ -58,7 +58,7 @@ module FlatKit
 
         raise ArgumentError, "#{collection_set} is not a valid stats collection set, must be one of #{ALL_STATS.map { |s| s.to_s }.join(", ") }"
       end
-      raise ArgumentError, "type: must be FieldType subclasses - not #{type}" unless type.kind_of?(Class) && (type.superclass == ::FlatKit::FieldType)
+      raise ArgumentError, "type: must be FieldType subclasses - not #{type}" unless type.is_a?(Class) && (type.superclass == ::FlatKit::FieldType)
     end
 
     def field_type_determined?

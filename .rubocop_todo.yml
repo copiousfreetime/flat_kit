@@ -381,23 +381,6 @@ Style/BlockDelimiters:
     - 'test/xsv/test_record.rb'
     - 'test/xsv/test_writer.rb'
 
-# Offense count: 16
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: is_a?, kind_of?
-Style/ClassCheck:
-  Exclude:
-    - 'lib/flat_kit/field_stats.rb'
-    - 'lib/flat_kit/field_type/date_type.rb'
-    - 'lib/flat_kit/field_type/string_type.rb'
-    - 'lib/flat_kit/field_type/timestamp_type.rb'
-    - 'lib/flat_kit/field_type/unknown_type.rb'
-    - 'lib/flat_kit/input.rb'
-    - 'lib/flat_kit/input/io.rb'
-    - 'lib/flat_kit/logger.rb'
-    - 'lib/flat_kit/output.rb'
-    - 'lib/flat_kit/output/io.rb'
-
 # Offense count: 5
 # This cop supports safe autocorrection (--autocorrect).
 Style/ColonMethodCall:

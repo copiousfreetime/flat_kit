@@ -22,7 +22,7 @@ module FlatKit
 
       def self.matches?(data)
         coerced = coerce(data)
-        coerced.kind_of?(Time)
+        coerced.is_a?(Time)
       end
 
       def self.coerce(data)

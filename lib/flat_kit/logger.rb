@@ -28,7 +28,7 @@ module FlatKit
   end
 
   def self.log_to(destination = $stderr)
-    if destination.kind_of?(::IO)
+    if destination.is_a?(::IO)
       @logger = ::FlatKit::Logger.for_io(destination)
     else
       @logger = ::FlatKit::Logger.for_path(destination)

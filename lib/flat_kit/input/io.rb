@@ -7,7 +7,7 @@ module FlatKit
 
       def self.handles?(obj)
         return true if is_stdin?(obj)
-        return true if [::File, ::StringIO, ::IO].any? { |klass| obj.kind_of?(klass) }
+        return true if [::File, ::StringIO, ::IO].any? { |klass| obj.is_a?(klass) }
 
         false
       end
@@ -26,13 +26,13 @@ module FlatKit
         if self.class.is_stdin?(obj)
           @name = "<STDIN>"
           @io = $stdin
-        elsif obj.kind_of?(::File)
+        elsif obj.is_a?(::File)
           @name = obj.path
           @io = obj
-        elsif obj.kind_of?(::StringIO)
+        elsif obj.is_a?(::StringIO)
           @name = obj.inspect
           @io = obj
-        elsif obj.kind_of?(::IO)
+        elsif obj.is_a?(::IO)
           @name = obj.inspect
           @io = obj
         else

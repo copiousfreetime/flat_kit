@@ -10,7 +10,7 @@ module FlatKit
       end
 
       def self.matches?(data)
-        return false unless data.kind_of?(String)
+        return false unless data.is_a?(String)
         return true if data.length == 0
 
         REGEX.match?(data)

@@ -5,7 +5,7 @@ module FlatKit
     extend DescendantTracker
 
     def self.from(out)
-      return out if out.kind_of?(::FlatKit::Output)
+      return out if out.is_a?(::FlatKit::Output)
 
       out_klass = find_child(:handles?, out)
       if out_klass

@@ -11,7 +11,7 @@ module FlatKit
       def self.handles?(obj)
         return true if is_stderr?(obj)
         return true if is_stdout?(obj)
-        return true if [::File, ::StringIO, ::IO].any? { |klass| obj.kind_of?(klass) }
+        return true if [::File, ::StringIO, ::IO].any? { |klass| obj.is_a?(klass) }
 
         false
       end
@@ -44,13 +44,13 @@ module FlatKit
         elsif self.class.is_stderr?(obj)
           @name = "<STDERR>"
           @io = $stderr
-        elsif obj.kind_of?(::File)
+        elsif obj.is_a?(::File)
           @name = obj.path
           @io = obj
-        elsif obj.kind_of?(::StringIO)
+        elsif obj.is_a?(::StringIO)
           @name = obj.inspect
           @io = obj
-        elsif obj.kind_of?(::IO)
+        elsif obj.is_a?(::IO)
           @name = obj.inspect
           @io = obj
         else

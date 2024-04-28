@@ -10,7 +10,7 @@ module FlatKit
       end
 
       def self.matches?(data)
-        data.kind_of?(String)
+        data.is_a?(String)
       end
 
       def self.coerce(data)
