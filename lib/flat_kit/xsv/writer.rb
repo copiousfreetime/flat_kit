@@ -1,8 +1,7 @@
 module FlatKit
   module Xsv
     class Writer < ::FlatKit::Writer
-      attr_reader :fields
-      attr_reader :header_bytes
+      attr_reader :fields, :header_bytes
 
       def self.format_name
         ::FlatKit::Xsv::Format.format_name

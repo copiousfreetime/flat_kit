@@ -19,8 +19,7 @@ module FlatKit
   class Reader
     include Enumerable
 
-    attr_reader :source
-    attr_reader :compare_fields
+    attr_reader :source, :compare_fields
 
     def self.create_reader_from_path(path: "-", fallback: "auto", compare_fields: :none)
       format = ::FlatKit::Format.for_with_fallback!(path: path, fallback: fallback)

@@ -2,9 +2,7 @@ module FlatKit
   class Merge
     include ::FlatKit::EventEmitter
 
-    attr_reader :readers
-    attr_reader :writer
-    attr_reader :compare_fields
+    attr_reader :readers, :writer, :compare_fields
 
     def initialize(inputs:, input_fallback: "auto",
                    output:, output_fallback: "auto",

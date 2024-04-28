@@ -3,8 +3,7 @@ module FlatKit
     # Same as NominalStats and also collects min and max
     #
     class OrdinalStats < NominalStats
-      attr_reader :min
-      attr_reader :max
+      attr_reader :min, :max
 
       def self.default_stats
         @default_stats ||= %w[count max min]

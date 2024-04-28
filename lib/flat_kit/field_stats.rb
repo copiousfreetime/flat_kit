@@ -38,9 +38,7 @@ module FlatKit
       unknown_percent
     ]
 
-    attr_reader :type_counts
-    attr_reader :field_type
-    attr_reader :name
+    attr_reader :type_counts, :field_type, :name
 
     def initialize(name:, stats_to_collect: CORE_STATS, type: ::FlatKit::FieldType::GuessType, guess_threshold: DEFAULT_GUESS_THRESHOLD)
       @name              = name

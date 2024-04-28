@@ -29,9 +29,7 @@ module FlatKit
   class MergeTree
     include Enumerable
 
-    attr_reader :leaves
-    attr_reader :levels
-    attr_reader :readers
+    attr_reader :leaves, :levels, :readers
 
     def initialize(readers)
       @readers = readers

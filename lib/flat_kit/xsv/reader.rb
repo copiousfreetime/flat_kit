@@ -3,9 +3,7 @@ require "csv"
 module FlatKit
   module Xsv
     class Reader < ::FlatKit::Reader
-      attr_reader :input
-      attr_reader :count
-      attr_reader :fields
+      attr_reader :input, :count, :fields
 
       def self.format_name
         ::FlatKit::Xsv::Format.format_name

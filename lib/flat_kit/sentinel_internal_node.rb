@@ -8,9 +8,7 @@ module FlatKit
   class SentinelInternalNode
     include Comparable
 
-    attr_reader :left
-    attr_reader :right
-    attr_reader :winner
+    attr_reader :left, :right, :winner
     attr_accessor :next_level
 
     def initialize(left: nil, right: nil)

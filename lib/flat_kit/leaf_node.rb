@@ -11,8 +11,7 @@ module FlatKit
   class LeafNode
     include Comparable
 
-    attr_reader :reader
-    attr_reader :value
+    attr_reader :reader, :value
 
     attr_accessor :next_level
 

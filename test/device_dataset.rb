@@ -1,14 +1,7 @@
 class DeviceDataset
   include TestHelper
 
-  attr_reader :count
-  attr_reader :compare_fields
-  attr_reader :fields
-
-  attr_reader :filename_jsonl
-  attr_reader :filename_sorted_jsonl
-  attr_reader :filename_csv
-  attr_reader :filename_sorted_csv
+  attr_reader :count, :compare_fields, :fields, :filename_jsonl, :filename_sorted_jsonl, :filename_csv, :filename_sorted_csv
 
   def initialize(count:, compare_fields: ["manufacturer", "model_name", "slug"])
     @count = count

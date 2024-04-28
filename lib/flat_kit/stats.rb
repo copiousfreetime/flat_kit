@@ -4,11 +4,7 @@ module FlatKit
 
     AllFields = Class.new.freeze
 
-    attr_reader :reader
-    attr_reader :writer
-    attr_reader :fields_to_stat
-    attr_reader :stats_to_collect
-    attr_reader :stats_by_field
+    attr_reader :reader, :writer, :fields_to_stat, :stats_to_collect, :stats_by_field
 
     def initialize(input:, input_fallback: "auto",
                    output:, output_fallback: "auto",

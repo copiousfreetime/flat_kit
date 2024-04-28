@@ -33,43 +33,43 @@ Layout/EmptyComment:
 
 # Offense count: 38
 # This cop supports safe autocorrection (--autocorrect).
-Layout/EmptyLineAfterGuardClause:
-  Enabled: false
+# Layout/EmptyLineAfterGuardClause:
+#   Enabled: false
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
-Layout/EmptyLineAfterMagicComment:
-  Exclude:
-    - 'flat_kit.gemspec'
+# Layout/EmptyLineAfterMagicComment:
+#   Exclude:
+#     - 'flat_kit.gemspec'
 
 # Offense count: 4
 # This cop supports safe autocorrection (--autocorrect).
-Layout/EmptyLines:
-  Exclude:
-    - 'lib/flat_kit/field_stats.rb'
-    - 'lib/flat_kit/field_type.rb'
-    - 'test/run'
-    - 'test/stat_type/test_numerical_stats.rb'
+# Layout/EmptyLines:
+#   Exclude:
+#     - 'lib/flat_kit/field_stats.rb'
+#     - 'lib/flat_kit/field_type.rb'
+#     - 'test/run'
+#     - 'test/stat_type/test_numerical_stats.rb'
 
 # Offense count: 6
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: empty_lines, no_empty_lines
-Layout/EmptyLinesAroundBlockBody:
-  Exclude:
-    - 'Rakefile'
-    - 'examples/stream-active-record-to-csv.rb'
-    - 'lib/flat_kit/merge.rb'
-    - 'lib/flat_kit/stat_type/ordinal_stats.rb'
-    - 'test/jsonl/test_writer.rb'
-    - 'test/xsv/test_writer.rb'
+# Layout/EmptyLinesAroundBlockBody:
+#   Exclude:
+#     - 'Rakefile'
+#     - 'examples/stream-active-record-to-csv.rb'
+#     - 'lib/flat_kit/merge.rb'
+#     - 'lib/flat_kit/stat_type/ordinal_stats.rb'
+#     - 'test/jsonl/test_writer.rb'
+#     - 'test/xsv/test_writer.rb'
 
 # Offense count: 34
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: empty_lines, empty_lines_except_namespace, empty_lines_special, no_empty_lines, beginning_only, ending_only
-Layout/EmptyLinesAroundClassBody:
-  Enabled: false
+# Layout/EmptyLinesAroundClassBody:
+#   Enabled: false
 
 # Offense count: 3
 # This cop supports safe autocorrection (--autocorrect).
@@ -124,13 +124,6 @@ Layout/HeredocIndentation:
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: Width, AllowedPatterns.
-Layout/IndentationWidth:
-  Exclude:
-    - 'test/test_field_stats.rb'
-
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
 Layout/SpaceAfterColon:
   Exclude:
     - 'test/test_field_stats.rb'
@@ -178,26 +171,6 @@ Layout/SpaceBeforeComma:
   Exclude:
     - 'test/device_dataset.rb'
 
-# Offense count: 32
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBrackets.
-# SupportedStyles: space, no_space, compact
-# SupportedStylesForEmptyBrackets: space, no_space
-Layout/SpaceInsideArrayLiteralBrackets:
-  Exclude:
-    - 'lib/flat_kit/field_stats.rb'
-    - 'lib/flat_kit/input/io.rb'
-    - 'lib/flat_kit/output/io.rb'
-    - 'lib/flat_kit/stat_type.rb'
-    - 'test/device_dataset.rb'
-    - 'test/field_type/test_date_type.rb'
-    - 'test/field_type/test_float_type.rb'
-    - 'test/field_type/test_integer_type.rb'
-    - 'test/field_type/test_null_type.rb'
-    - 'test/field_type/test_timestamp_type.rb'
-    - 'test/field_type/test_unknown_type.rb'
-    - 'test/stat_type/test_numerical_stats.rb'
-
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces, SpaceBeforeBlockParameters.
@@ -215,30 +188,6 @@ Layout/SpaceInsideBlockBraces:
 Layout/SpaceInsideHashLiteralBraces:
   Exclude:
     - 'lib/flat_kit/stats.rb'
-
-# Offense count: 28
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: space, compact, no_space
-Layout/SpaceInsideParens:
-  Exclude:
-    - 'lib/flat_kit/stat_type.rb'
-    - 'test/stat_type/test_numerical_stats.rb'
-
-# Offense count: 38
-# This cop supports safe autocorrection (--autocorrect).
-Layout/SpaceInsidePercentLiteralDelimiters:
-  Exclude:
-    - 'lib/flat_kit/input/io.rb'
-    - 'lib/flat_kit/jsonl/format.rb'
-    - 'lib/flat_kit/output/io.rb'
-    - 'lib/flat_kit/stat_type/nominal_stats.rb'
-    - 'lib/flat_kit/stat_type/numerical_stats.rb'
-    - 'lib/flat_kit/stat_type/ordinal_stats.rb'
-    - 'lib/flat_kit/xsv/format.rb'
-    - 'test/field_type/test_boolean_type.rb'
-    - 'test/output/test_file.rb'
-    - 'test/stat_type/test_numerical_stats.rb'
 
 # Offense count: 3
 # This cop supports safe autocorrection (--autocorrect).
@@ -522,13 +471,6 @@ Security/IoMethods:
     - 'test/output/test_file.rb'
     - 'test/output/test_io.rb'
     - 'test/xsv/test_writer.rb'
-
-# Offense count: 72
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: separated, grouped
-Style/AccessorGrouping:
-  Enabled: false
 
 # Offense count: 10
 # This cop supports safe autocorrection (--autocorrect).

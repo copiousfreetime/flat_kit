@@ -12,11 +12,7 @@ module FlatKit
   class InternalNode
     include Comparable
 
-    attr_accessor :left        # Internal Node
-    attr_accessor :right       # Internal Node
-    attr_accessor :winner      # Internal Node
-    attr_accessor :next_level  # Who to tell
-    attr_accessor :leaf        # winning leaf node
+    attr_accessor :left, :right, :winner, :next_level, :leaf        # Internal Node       # Internal Node      # Internal Node  # Who to tell        # winning leaf node
 
     def initialize(left:, right:)
       @left       = left

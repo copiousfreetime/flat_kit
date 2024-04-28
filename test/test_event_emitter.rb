@@ -6,9 +6,7 @@ class TestEventEmitter < ::Minitest::Test
   end
 
   class Sub
-    attr_reader :name
-    attr_reader :data
-    attr_reader :meta
+    attr_reader :name, :data, :meta
 
     def initialize
       @name = nil

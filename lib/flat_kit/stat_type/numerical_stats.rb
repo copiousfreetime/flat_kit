@@ -33,10 +33,7 @@ module FlatKit
     class NumericalStats < NominalStats
       # A list of the available stats
 
-      attr_reader :min
-      attr_reader :max
-      attr_reader :sum
-      attr_reader :sumsq
+      attr_reader :min, :max, :sum, :sumsq
 
       def self.default_stats
         @default_stats ||= %w[count max mean min rate stddev sum sumsq]

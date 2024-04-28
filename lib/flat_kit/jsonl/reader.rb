@@ -1,8 +1,7 @@
 module FlatKit
   module Jsonl
     class Reader < ::FlatKit::Reader
-      attr_reader :input
-      attr_reader :count
+      attr_reader :input, :count
 
       def self.format_name
         ::FlatKit::Jsonl::Format.format_name

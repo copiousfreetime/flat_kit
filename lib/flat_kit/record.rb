@@ -37,8 +37,7 @@ module FlatKit
   class Record
     include Comparable
 
-    attr_reader :data
-    attr_reader :compare_fields
+    attr_reader :data, :compare_fields
 
     def initialize(data:, compare_fields:)
       @data = data

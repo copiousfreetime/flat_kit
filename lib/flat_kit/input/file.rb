@@ -4,8 +4,7 @@ require "pathname"
 module FlatKit
   class Input
     class File < Input
-      attr_reader :path
-      attr_reader :count
+      attr_reader :path, :count
 
       def self.handles?(obj)
         return true if obj.instance_of?(Pathname)

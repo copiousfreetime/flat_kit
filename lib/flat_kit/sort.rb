@@ -1,8 +1,6 @@
 module FlatKit
   class Sort
-    attr_reader :reader
-    attr_reader :writer
-    attr_reader :compare_fields
+    attr_reader :reader, :writer, :compare_fields
 
     def initialize(input:, input_fallback: "auto",
                    output:, output_fallback: "auto",

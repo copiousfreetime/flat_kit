@@ -11,10 +11,7 @@ module FlatKit
   # See the Xsv::Writer and Jsonl::Writer for examples.
   #
   class Writer
-    attr_reader :destination
-    attr_reader :output
-    attr_reader :count
-    attr_reader :last_position
+    attr_reader :destination, :output, :count, :last_position
 
     def self.create_writer_from_path(path:, fallback:, reader_format:)
       fallback = reader_format if fallback == "auto"

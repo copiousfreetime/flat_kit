@@ -2,12 +2,7 @@ module FlatKit
   class Command
     extend DescendantTracker
 
-    attr_reader :argv
-    attr_reader :env
-    attr_reader :logger
-    attr_reader :opts
-    attr_reader :readers
-    attr_reader :writer
+    attr_reader :argv, :env, :logger, :opts, :readers, :writer
 
     def self.name
       raise NotImplementedError, "#{self.class} must implement #{self.class}.name"

@@ -57,9 +57,7 @@ module FlatKit
         end
       end
 
-      attr_reader :compare_keys
-      attr_reader :reader
-      attr_reader :sort
+      attr_reader :compare_keys, :reader, :sort
 
       def parse
         parser = self.class.parser
