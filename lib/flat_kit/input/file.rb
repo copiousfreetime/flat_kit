@@ -6,7 +6,7 @@ require "pathname"
 module FlatKit
   class Input
     class File < Input
-      attr_reader :path, :count
+      attr_reader :path, :count, :io
 
       def self.handles?(obj)
         return true if obj.instance_of?(Pathname)
@@ -32,10 +32,6 @@ module FlatKit
 
       def close
         @io.close
-      end
-
-      def io
-        @io
       end
 
       private

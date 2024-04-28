@@ -40,7 +40,7 @@ module FlatKit
       unknown_percent
     ].freeze
 
-    attr_reader :type_counts, :field_type, :name
+    attr_reader :type_counts, :field_type, :name, :out_of_type_count
 
     def initialize(name:, stats_to_collect: CORE_STATS,
                    type: ::FlatKit::FieldType::GuessType,
@@ -169,10 +169,6 @@ module FlatKit
 
     def total_count
       stats.count + @out_of_type_count
-    end
-
-    def out_of_type_count
-      @out_of_type_count
     end
 
     def null_percent

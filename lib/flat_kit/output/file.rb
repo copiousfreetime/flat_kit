@@ -34,9 +34,7 @@ module FlatKit
       end
 
       # internal api method for testing purposes
-      def io
-        @io
-      end
+      attr_reader :io
 
       private
 

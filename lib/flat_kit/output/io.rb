@@ -3,7 +3,10 @@
 module FlatKit
   class Output
     class IO < Output
-      attr_reader :count
+      attr_reader :count, :name
+
+      # internal api method for testing
+      attr_reader :io
 
       STDOUTS = %w[stdout STDOUT - <stdout>].freeze
       STDERRS = %w[stderr STDERR <stderr>].freeze
@@ -55,18 +58,9 @@ module FlatKit
         end
       end
 
-      def name
-        @name
-      end
-
       # this goes to an io stream and we are not in charge of opening it
       def close
         @io.close
-      end
-
-      # internal api method for testing
-      def io
-        @io
       end
     end
   end

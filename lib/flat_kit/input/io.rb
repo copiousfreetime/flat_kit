@@ -37,17 +37,11 @@ module FlatKit
         end
       end
 
-      def name
-        @name
-      end
+      attr_reader :name, :io
 
       # this goes to an io stream and we are not in charge of opening it
       def close
         @io.close
-      end
-
-      def io
-        @io
       end
     end
   end
