@@ -62,11 +62,11 @@ module FlatKit
 
       ::FlatKit.log_to(opts[:log]) if opts[:log_given]
 
-      if opts[:verbose]
-        ::FlatKit.logger.level = :debug
-      else
-        ::FlatKit.logger.level = :info
-      end
+      ::FlatKit.logger.level = if opts[:verbose]
+                                 :debug
+                               else
+                                 :info
+                               end
 
       ::FlatKit.logger.debug opts
       ::FlatKit.logger.debug argv

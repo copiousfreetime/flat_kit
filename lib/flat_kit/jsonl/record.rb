@@ -33,11 +33,11 @@ module FlatKit
 
         @complete_structured_data = complete_structured_data
 
-        if complete_structured_data? && (compare_data.nil? || compare_data.empty?)
-          @compare_data = complete_structured_data
-        else
-          @compare_data = compare_data
-        end
+        @compare_data = if complete_structured_data? && (compare_data.nil? || compare_data.empty?)
+                          complete_structured_data
+                        else
+                          compare_data
+                        end
 
         # only load compare data if it dosn't exist
         quick_parse if data && compare_data.empty?
