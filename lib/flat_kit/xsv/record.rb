@@ -81,13 +81,13 @@ module FlatKit
       private
 
       def resolve_ordered_fields
-        if (@ordered_fields == :auto) || (@ordered_fields.nil? || @ordered_fields.empty?)
-          @ordered_fields = if @data.nil? || @data.empty?
-                              complete_structured_data.keys
-                            else
-                              @data.headers
-                            end
-        end
+        return unless (@ordered_fields == :auto) || (@ordered_fields.nil? || @ordered_fields.empty?)
+
+        @ordered_fields = if @data.nil? || @data.empty?
+                            complete_structured_data.keys
+                          else
+                            @data.headers
+                          end
       end
     end
   end

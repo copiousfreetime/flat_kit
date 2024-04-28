@@ -67,9 +67,9 @@ module FlatKit
         raise FlatKit::Error, "Unknown player #{node}"
       end
 
-      if @right.sentinel? && @left.sentinel?
-        next_level.player_finished(self) if next_level
-      end
+      return unless @right.sentinel? && @left.sentinel?
+
+      next_level.player_finished(self) if next_level
     end
 
     def play
