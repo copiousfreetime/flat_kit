@@ -4,7 +4,7 @@ module FlatKit
   class FieldType
     class TimestampType < FieldType
       def self.parse_formats
-        @timestamp_formats ||= [
+        @parse_formats ||= [
           "%Y-%m-%d %H:%M:%S.%NZ",
           "%Y-%m-%d %H:%M:%S.%N",
           "%Y-%m-%dT%H:%M:%S.%N%z", # w3cdtf

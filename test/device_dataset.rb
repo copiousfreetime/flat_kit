@@ -66,27 +66,27 @@ class DeviceDataset
   end
 
   def records_as_jsonl
-    @jsonl_records ||= as_jsonl(list: records)
+    @records_as_jsonl ||= as_jsonl(list: records)
   end
 
   def records_as_csv
-    @csv_records ||= as_csv(list: records)
+    @records_as_csv ||= as_csv(list: records)
   end
 
   def records_as_csv_rows
-    @csv_rows ||= as_csv_rows(records_as_csv)
+    @records_as_csv_rows ||= as_csv_rows(records_as_csv)
   end
 
   def sorted_records_as_jsonl
-    @jsonl_sorted_records ||= as_jsonl(list: sorted_records)
+    @sorted_records_as_jsonl ||= as_jsonl(list: sorted_records)
   end
 
   def sorted_records_as_csv
-    @csv_sorted_records ||= as_csv(list: sorted_records)
+    @sorted_records_as_csv ||= as_csv(list: sorted_records)
   end
 
   def sorted_records_as_csv_rows
-    @csv_sorted_rows ||= as_csv_rows(sorted_records_as_csv)
+    @sorted_records_as_csv_rows ||= as_csv_rows(sorted_records_as_csv)
   end
 
   private
