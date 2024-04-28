@@ -29,7 +29,7 @@ module TestFieldType
     end
 
     def test_children_exist
-      assert_equal(9,::FlatKit::FieldType.children.size)
+      assert_equal(9, ::FlatKit::FieldType.children.size)
     end
   end
 end

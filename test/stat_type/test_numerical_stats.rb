@@ -36,7 +36,7 @@ module TestStatType
     end
 
     def test_tracks_the_count
-      assert_equal(3,@full_stats.count)
+      assert_equal(3, @full_stats.count)
     end
 
     def test_tracks_the_sum

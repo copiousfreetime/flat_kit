@@ -76,7 +76,7 @@ class TestFieldStats < ::Minitest::Test
     assert_equal(number_data.tally.keys.sort, field_stats.unique_values.sort)
     assert_equal(number_data.tally, field_stats.frequencies)
 
-    mode = number_data.tally.max_by{ |k,v| v }.first
+    mode = number_data.tally.max_by{ |k, v| v }.first
 
     assert_equal(mode, field_stats.mode)
   end
@@ -101,7 +101,7 @@ class TestFieldStats < ::Minitest::Test
   end
 
   def test_resolves_type_automatically
-    field_stats = ::FlatKit::FieldStats.new(name: "numeric-autoresolve",guess_threshold: 101)
+    field_stats = ::FlatKit::FieldStats.new(name: "numeric-autoresolve", guess_threshold: 101)
     field_stats, _ = generate_data_with(stats: field_stats) { Faker::Number.within(range: 1.0..100.0) }
 
     refute(field_stats.field_type_determined?)
@@ -111,7 +111,7 @@ class TestFieldStats < ::Minitest::Test
   end
 
   def test_resolves_integer_appropriately_with_mixed_data
-    field_stats = ::FlatKit::FieldStats.new(name: "numeric-integer",guess_threshold: 100)
+    field_stats = ::FlatKit::FieldStats.new(name: "numeric-integer", guess_threshold: 100)
     field_stats, _ = generate_data_with(count: 40, stats: field_stats) { Faker::Number.within(range: 0..1).to_s }
     field_stats, _ = generate_data_with(count: 70, stats: field_stats) { Faker::Number.within(range: 0..200).to_s }
 
@@ -119,7 +119,7 @@ class TestFieldStats < ::Minitest::Test
   end
 
   def test_resolves_boolean_appropriately_with_mixed_data
-    field_stats = ::FlatKit::FieldStats.new(name: "numeric-integer",guess_threshold: 100)
+    field_stats = ::FlatKit::FieldStats.new(name: "numeric-integer", guess_threshold: 100)
     field_stats, _ = generate_data_with(count: 70, stats: field_stats) { Faker::Boolean.boolean.to_s }
     field_stats, _ = generate_data_with(count: 40, stats: field_stats) { Faker::Number.within(range: 0..200).to_s }
 
@@ -127,7 +127,7 @@ class TestFieldStats < ::Minitest::Test
   end
 
   def test_resolves_string_appropriately_with_mixed_data
-    field_stats = ::FlatKit::FieldStats.new(name: "string",guess_threshold: 100)
+    field_stats = ::FlatKit::FieldStats.new(name: "string", guess_threshold: 100)
     field_stats, _ = generate_data_with(count: 61, stats: field_stats) { Faker::Color.name.to_s }
     field_stats, _ = generate_data_with(count: 59, stats: field_stats) { Faker::Number.within(range: 0..200).to_s }
 

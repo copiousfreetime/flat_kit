@@ -47,7 +47,7 @@ module TestXsv
 
     def test_position
       File.open(@write_path, "w+") do |f|
-        writer = ::FlatKit::Xsv::Writer.new(destination: f,fields: :auto)
+        writer = ::FlatKit::Xsv::Writer.new(destination: f, fields: :auto)
         records_bytes = 0
         header_bytes = nil
 

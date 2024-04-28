@@ -84,7 +84,7 @@ module TestStatType
         "count" => @values.size,
         "unique_count" => @unique_values.size,
         "unique_values" => @unique_values.sort,
-        "mode" => @frequencies.max_by { |k,v| v }.first,
+        "mode" => @frequencies.max_by { |k, v| v }.first,
         "max" => @values.max,
         "min" => @values.min,
       }
