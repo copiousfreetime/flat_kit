@@ -11,7 +11,7 @@ module FlatKit
     CORE_STATS = :core
     CARDINALITY_STATS = :cardinality
 
-    ALL_STATS = [CORE_STATS, CARDINALITY_STATS]
+    ALL_STATS = [CORE_STATS, CARDINALITY_STATS].freeze
 
     EXPORT_FIELDS = %w[
       name
@@ -38,7 +38,7 @@ module FlatKit
       total_count
       null_percent
       unknown_percent
-    ]
+    ].freeze
 
     attr_reader :type_counts, :field_type, :name
 

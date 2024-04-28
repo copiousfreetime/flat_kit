@@ -3,7 +3,7 @@
 module FlatKit
   class FieldType
     class UnknownType < FieldType
-      REGEX = %r{\A(na|n/a|unk|unknown)\Z}i
+      REGEX = %r{\A(na|n/a|unk|unknown)\Z}i.freeze
 
       def self.type_name
         "unknown"

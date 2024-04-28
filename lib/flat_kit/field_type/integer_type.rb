@@ -3,7 +3,7 @@
 module FlatKit
   class FieldType
     class IntegerType < FieldType
-      REGEX = /\A[-+]?\d+\Z/
+      REGEX = /\A[-+]?\d+\Z/.freeze
 
       def self.type_name
         "integer"

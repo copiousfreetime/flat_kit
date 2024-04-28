@@ -5,8 +5,8 @@ module FlatKit
     class IO < Output
       attr_reader :count
 
-      STDOUTS = %w[stdout STDOUT - <stdout>]
-      STDERRS = %w[stderr STDERR <stderr>]
+      STDOUTS = %w[stdout STDOUT - <stdout>].freeze
+      STDERRS = %w[stderr STDERR <stderr>].freeze
 
       def self.handles?(obj)
         return true if is_stderr?(obj)
