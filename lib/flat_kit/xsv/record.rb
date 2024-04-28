@@ -32,7 +32,7 @@ module FlatKit
 
         if data.nil? && (complete_structured_data.nil? || complete_structured_data.empty?)
           raise FlatKit::Error,
-            "#{self.class} requires initialization from data: or complete_structured_data:"
+                "#{self.class} requires initialization from data: or complete_structured_data:"
         end
 
         resolve_ordered_fields
