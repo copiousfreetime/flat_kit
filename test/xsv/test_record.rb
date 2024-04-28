@@ -28,7 +28,7 @@ module TestXsv
 
     def test_is_sortable
       dataset = DeviceDataset.new(count: 20)
-      fk_records = Array.new.tap do |a|
+      fk_records = [].tap do |a|
         dataset.records_as_csv_rows.each do |csv_row|
           a << FlatKit::Xsv::Record.new(data: csv_row, compare_fields: @compare_fields)
         end

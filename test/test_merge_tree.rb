@@ -7,7 +7,7 @@ class TestMergeTree < ::Minitest::Test
     @dataset_count = 20
     @records_per_dataset = 100
     @records = []
-    @datasets = Array.new.tap do |a|
+    @datasets = [].tap do |a|
       @dataset_count.times do
         dd = DeviceDataset.new(count: @records_per_dataset)
         dd.persist_sorted_records_as_jsonl

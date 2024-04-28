@@ -13,7 +13,7 @@ module TestStatType
       @end_date   = Date.new(today.year, today.month, last_day_of_month)
 
       @unique_values = (@start_date..@end_date).to_a
-      @values = Array.new.tap do |a|
+      @values = [].tap do |a|
         @unique_values.each do |date|
           (Random.rand(42) + 1).times { a << date}
         end

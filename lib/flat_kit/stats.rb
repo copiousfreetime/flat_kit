@@ -14,7 +14,7 @@ module FlatKit
 
       @fields_to_stat   = fields_to_stat
       @stats_to_collect = stats_to_collect
-      @stats_by_field   = Hash.new
+      @stats_by_field   = {}
       @record_count     = 0
 
       @reader = ::FlatKit::Reader.create_reader_from_path(path: input, fallback: input_fallback)

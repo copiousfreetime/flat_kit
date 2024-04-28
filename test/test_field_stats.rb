@@ -7,7 +7,7 @@ require "faker"
 class TestFieldStats < ::Minitest::Test
   # returns [FieldStats, Array] where the array is the original data
   def generate_data_with(count: 100, stats: ::FlatKit::FieldStats.new(name: "data"), &block)
-    list = Array.new.tap do |a|
+    list = [].tap do |a|
       count.times do
         n = block.call
         stats.update(n)

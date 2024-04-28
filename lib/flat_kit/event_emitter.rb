@@ -30,7 +30,7 @@ module FlatKit
     end
 
     def _listeners
-      @_listeners ||= Array.new
+      @_listeners ||= []
     end
   end
 end

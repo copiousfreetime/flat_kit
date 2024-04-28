@@ -101,7 +101,7 @@ module TestStatType
     end
 
     def test_collects_mode
-      values = Array.new.tap do |a|
+      values = [].tap do |a|
         100.times {
           n = Random.rand(10)
           a << n

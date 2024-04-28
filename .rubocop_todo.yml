@@ -423,25 +423,6 @@ Style/DefWithParentheses:
 Style/Documentation:
   Enabled: false
 
-# Offense count: 16
-# This cop supports safe autocorrection (--autocorrect).
-Style/EmptyLiteral:
-  Exclude:
-    - 'lib/flat_kit/event_emitter.rb'
-    - 'lib/flat_kit/field_stats.rb'
-    - 'lib/flat_kit/jsonl/record.rb'
-    - 'lib/flat_kit/sort.rb'
-    - 'lib/flat_kit/stats.rb'
-    - 'lib/flat_kit/xsv/record.rb'
-    - 'test/device_dataset.rb'
-    - 'test/jsonl/test_record.rb'
-    - 'test/stat_type/test_nominal_stats.rb'
-    - 'test/stat_type/test_numerical_stats.rb'
-    - 'test/stat_type/test_ordinal_stats.rb'
-    - 'test/test_field_stats.rb'
-    - 'test/test_merge_tree.rb'
-    - 'test/xsv/test_record.rb'
-
 # Offense count: 2
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: AutoCorrect, EnforcedStyle.

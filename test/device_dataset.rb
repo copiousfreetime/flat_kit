@@ -46,9 +46,9 @@ class DeviceDataset
   end
 
   def records
-    @records ||= Array.new.tap do |a|
+    @records ||= [].tap do |a|
       count.times do
-        a << Hash.new.tap do |h|
+        a << {}.tap do |h|
           fields.each do |f|
             value = (f == "slug") ? generate_slug : ::Faker::Device.send(f)
             h[f] = value
@@ -103,7 +103,7 @@ class DeviceDataset
   end
 
   def as_csv_rows(text)
-    Array.new.tap do |a|
+    [].tap do |a|
       CSV.new(text, converters: :numeric, headers: :first_row, return_headers: false).each do |row|
         a << row
       end

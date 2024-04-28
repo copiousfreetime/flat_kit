@@ -28,7 +28,7 @@ module TestJsonl
 
     def test_is_sortable
       dataset = DeviceDataset.new(count: 20)
-      fk_records = Array.new.tap do |a|
+      fk_records = [].tap do |a|
         dataset.records.each do |r|
           data = JSON.generate(r)
           record = FlatKit::Jsonl::Record.new(data: data, compare_fields: @compare_fields)

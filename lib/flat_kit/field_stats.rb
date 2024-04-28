@@ -190,7 +190,7 @@ module FlatKit
     def to_hash
       resolve_guess
 
-      Hash.new.tap do |h|
+      {}.tap do |h|
         EXPORT_FIELDS.each do |n|
           h[n] = self.send(n)
         end
