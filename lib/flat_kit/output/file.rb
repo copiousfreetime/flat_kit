@@ -1,5 +1,5 @@
-require 'zlib'
-require 'pathname'
+require "zlib"
+require "pathname"
 
 module FlatKit
   class Output

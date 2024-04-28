@@ -55,7 +55,7 @@ class DeviceDataset
       count.times do
         a << Hash.new.tap do |h|
           fields.each do |f|
-            value = (f == 'slug') ? generate_slug : ::Faker::Device.send(f)
+            value = (f == "slug") ? generate_slug : ::Faker::Device.send(f)
             h[f] = value
           end
         end
@@ -100,7 +100,7 @@ class DeviceDataset
   end
 
   def as_csv(list:, headers: fields)
-    CSV.generate('', headers: headers , write_headers: true) do |csv|
+    CSV.generate("", headers: headers , write_headers: true) do |csv|
       list.each do |r|
         csv << fields.map { |f| r[f] }
       end

@@ -1,4 +1,4 @@
-require 'logger'
+require "logger"
 
 module FlatKit
   class LogFormatter < ::Logger::Formatter

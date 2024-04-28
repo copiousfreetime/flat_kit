@@ -1,5 +1,5 @@
-require 'optimist'
-require_relative '../flat_kit/command'
+require "optimist"
+require_relative "../flat_kit/command"
 
 module FlatKit
   class Cli

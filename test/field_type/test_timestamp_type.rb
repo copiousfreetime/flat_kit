@@ -1,5 +1,5 @@
-require_relative '../test_helper'
-require 'set'
+require_relative "../test_helper"
+require "set"
 
 module TestFieldType
   class TestTimestampType < ::Minitest::Test

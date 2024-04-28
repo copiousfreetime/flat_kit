@@ -1,5 +1,5 @@
-require 'simplecov'
-if ENV['COVERAGE']
+require "simplecov"
+if ENV["COVERAGE"]
   SimpleCov.start do
     enable_coverage :branch
     primary_coverage :line
@@ -7,15 +7,15 @@ if ENV['COVERAGE']
   end
 end
 
-require 'debug'
+require "debug"
 
-require 'minitest/autorun'
-require 'minitest/focus'
-require 'minitest/pride'
+require "minitest/autorun"
+require "minitest/focus"
+require "minitest/pride"
 
 module TestHelper
   def scratch_dir
-    p = Pathname.new(__FILE__).parent.parent.join('tmp/testing_scratch')
+    p = Pathname.new(__FILE__).parent.parent.join("tmp/testing_scratch")
     p.mkpath
     p
   end
@@ -28,5 +28,5 @@ module TestHelper
     scratch_dir.join("#{prefix}#{slug}#{extension}")
   end
 end
-require_relative '../lib/flat_kit'
-require_relative './device_dataset'
+require_relative "../lib/flat_kit"
+require_relative "./device_dataset"

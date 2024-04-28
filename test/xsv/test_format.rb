@@ -1,4 +1,4 @@
-require_relative '../test_helper'
+require_relative "../test_helper"
 
 module TestXsv
   class TestFormat < ::Minitest::Test

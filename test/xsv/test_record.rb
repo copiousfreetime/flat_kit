@@ -1,5 +1,5 @@
-require 'test_helper'
-require 'faker'
+require "test_helper"
+require "faker"
 
 module TestXsv
   class TestRecord< ::Minitest::Test
@@ -31,7 +31,7 @@ module TestXsv
       end
 
       sorted = fk_records.sort
-      output_text = CSV.generate('', headers: dataset.fields, write_headers: true) do |csv|
+      output_text = CSV.generate("", headers: dataset.fields, write_headers: true) do |csv|
         sorted.each do |row|
           csv << row.data
         end

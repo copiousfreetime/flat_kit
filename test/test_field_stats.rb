@@ -1,6 +1,6 @@
-require_relative './test_helper'
+require_relative "./test_helper"
 
-require 'faker'
+require "faker"
 
 class TestFieldStats < ::Minitest::Test
   # returns [FieldStats, Array] where the array is the original data

@@ -32,5 +32,5 @@ module FlatKit
   end
 end
 
-require 'flat_kit/output/io'
-require 'flat_kit/output/file'
+require "flat_kit/output/io"
+require "flat_kit/output/file"

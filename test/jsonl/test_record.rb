@@ -1,5 +1,5 @@
-require_relative '../test_helper'
-require 'faker'
+require_relative "../test_helper"
+require "faker"
 
 module TestJsonl
   class TestRecord < ::Minitest::Test

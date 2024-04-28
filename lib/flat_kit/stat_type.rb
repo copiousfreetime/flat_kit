@@ -60,6 +60,6 @@ module FlatKit
     end
   end
 end
-require 'flat_kit/stat_type/nominal_stats'
-require 'flat_kit/stat_type/ordinal_stats'
-require 'flat_kit/stat_type/numerical_stats'
+require "flat_kit/stat_type/nominal_stats"
+require "flat_kit/stat_type/ordinal_stats"
+require "flat_kit/stat_type/numerical_stats"

@@ -1,5 +1,5 @@
-require 'oj'
-require 'flat_kit/record'
+require "oj"
+require "flat_kit/record"
 
 module FlatKit
   module Jsonl

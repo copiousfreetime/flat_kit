@@ -1,9 +1,9 @@
-require_relative '../test_helper'
+require_relative "../test_helper"
 
 module TestStatType
   class TestNominalStats < ::Minitest::Test
     def setup
-      @unique_values = ('a'..'f').to_a
+      @unique_values = ("a".."f").to_a
       @values = Array.new.tap do |a|
         @unique_values.each do |letter|
           (Random.rand(42) + 1).times { a << letter }

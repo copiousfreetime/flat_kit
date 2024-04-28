@@ -1,4 +1,4 @@
-require_relative 'test_helper'
+require_relative "test_helper"
 
 class TestFormat < ::Minitest::Test
   def test_finds_jsonl_format

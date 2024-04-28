@@ -913,13 +913,6 @@ Style/StringConcatenation:
     - 'test/device_dataset.rb'
     - 'test/input/test_file.rb'
 
-# Offense count: 140
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle, ConsistentQuotesInMultiline.
-# SupportedStyles: single_quotes, double_quotes
-Style/StringLiterals:
-  Enabled: false
-
 # Offense count: 3
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: EnforcedStyle.

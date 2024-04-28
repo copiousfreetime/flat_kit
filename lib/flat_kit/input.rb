@@ -28,5 +28,5 @@ module FlatKit
   end
 end
 
-require 'flat_kit/input/io'
-require 'flat_kit/input/file'
+require "flat_kit/input/io"
+require "flat_kit/input/file"

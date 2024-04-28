@@ -1,5 +1,5 @@
-require 'csv'
-require 'flat_kit/record'
+require "csv"
+require "flat_kit/record"
 
 module FlatKit
   module Xsv

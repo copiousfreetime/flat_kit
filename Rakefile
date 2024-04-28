@@ -1,5 +1,5 @@
 # vim: syntax=ruby
-load 'tasks/this.rb'
+load "tasks/this.rb"
 
 This.name     = "flat_kit"
 This.author   = "Jeremy Hinegardner"
@@ -7,9 +7,9 @@ This.email    = "jeremy@copiousfreetime.org"
 This.homepage = "http://github.com/copiousfreetime/#{ This.name }"
 
 This.ruby_gemspec do |spec|
-  spec.add_runtime_dependency('oj', '~> 3.0')
-  spec.add_runtime_dependency('optimist', '~> 3.0')
-  spec.add_runtime_dependency('csv', '~> 3.3')
+  spec.add_runtime_dependency("oj", "~> 3.0")
+  spec.add_runtime_dependency("optimist", "~> 3.0")
+  spec.add_runtime_dependency("csv", "~> 3.3")
 
   spec.metadata = {
     "bug_tracker_uri" => "https://github.com/copiousfreetime/#{This.name}/issues",
@@ -22,4 +22,4 @@ This.ruby_gemspec do |spec|
 
 end
 
-load 'tasks/default.rake'
+load "tasks/default.rake"

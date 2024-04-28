@@ -5,8 +5,8 @@
 # using FlatKit.
 #------------------------------------------------------------------------------
 
-require 'flat_kit'     # gem 'flat_kit'
-require 'progress_bar' # gem 'progress-bar'
+require "flat_kit"     # gem 'flat_kit'
+require "progress_bar" # gem 'progress-bar'
 
 # get an appropriate scope from one of your models - or any scope for that
 # matter

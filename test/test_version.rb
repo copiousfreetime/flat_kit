@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class TestVersion < ::Minitest::Test
   def test_version_constant_match

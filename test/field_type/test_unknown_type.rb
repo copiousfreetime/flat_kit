@@ -1,10 +1,10 @@
-require_relative '../test_helper'
+require_relative "../test_helper"
 
 module TestFieldType
   class TestUnknownType < ::Minitest::Test
 
     def unknown_items
-      [ 'na', 'n/a', 'unk', 'unknown']
+      [ "na", "n/a", "unk", "unknown"]
     end
 
     def test_unknown_items
