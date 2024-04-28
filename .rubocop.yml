@@ -6,9 +6,9 @@ require:
   - rubocop-md
   - rubocop-minitest
   - rubocop-packaging
+  - rubocop-performance
   - rubocop-rake
   - rubocop-thread_safety
-  - rubocop-performance
 
 AllCops:
   NewCops: enable
@@ -18,6 +18,7 @@ AllCops:
     - 'tasks/**/*'
     - 'pkg/**/*'
     - 'tmp/**/*'
+    - '*.gemspec'
 
 Layout/ExtraSpacing:
   AllowBeforeTrailingComments: true
