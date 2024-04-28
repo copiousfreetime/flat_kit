@@ -7,7 +7,6 @@
 # Pulled from Hitimes, which I also wrote
 #++
 
-require "thread"
 require "oj"
 
 module FlatKit

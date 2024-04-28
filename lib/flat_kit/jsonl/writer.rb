@@ -7,10 +7,6 @@ module FlatKit
         ::FlatKit::Jsonl::Format.format_name
       end
 
-      def initialize(destination:)
-        super
-      end
-
       # write the record and return the Position the record was written
       #
       def write(record)

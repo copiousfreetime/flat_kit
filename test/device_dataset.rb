@@ -96,7 +96,7 @@ class DeviceDataset
   end
 
   def as_csv(list:, headers: fields)
-    CSV.generate(headers: headers , write_headers: true) do |csv|
+    CSV.generate(headers: headers, write_headers: true) do |csv|
       list.each do |r|
         csv << fields.map { |f| r[f] }
       end

@@ -15,7 +15,7 @@ module TestStatType
       @unique_values = (@start_date..@end_date).to_a
       @values = [].tap do |a|
         @unique_values.each do |date|
-          Random.rand(1..42).times { a << date}
+          Random.rand(1..42).times { a << date }
         end
       end
 
