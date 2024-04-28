@@ -60,6 +60,10 @@ Metrics/MethodLength:
 Metrics/ParameterLists:
   CountKeywordArgs: false
 
+Style/Documentation:
+  Exclude:
+    - 'test/**/*'
+
 Style/SafeNavigation:
   Enabled: false
 
