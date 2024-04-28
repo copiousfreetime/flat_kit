@@ -9,6 +9,7 @@ This.homepage = "http://github.com/copiousfreetime/#{ This.name }"
 This.ruby_gemspec do |spec|
   spec.add_dependency('oj', '~> 3.0')
   spec.add_dependency('optimist', '~> 3.0')
+  spec.add_dependency('csv', '~> 3.3')
 
   spec.add_development_dependency( 'faker'    , '~> 3.0')
   spec.add_development_dependency( 'rake'     , '~> 13.0')
