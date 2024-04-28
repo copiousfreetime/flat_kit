@@ -93,8 +93,8 @@ end
 namespace 'manifest' do
   desc "Check the manifest"
   task :check => :clean do
-    files = FileList["**/*", ".*"].exclude( This.exclude_from_manifest ).to_a.sort
-    files = files.select{ |f| File.file?( f ) }
+    files = FileList["**/*", ".*"].to_a.sort
+    files = files.select{ |f| (f =~ This.include_in_manifest) && File.file?( f ) }
 
     tmp = "Manifest.tmp"
     File.open( tmp, 'w' ) do |f|
@@ -111,8 +111,11 @@ namespace 'manifest' do
 
   desc "Generate the manifest"
   task :generate => :clean do
-    files = %x[ git ls-files ].split("\n").sort
-    files.reject! { |f| f =~ This.exclude_from_manifest }
+    files = IO.popen(%w[ git ls-files -z], chdir: This.project_root, err: IO::NULL ) do |ls|
+      ls.readlines("\x0", chomp: true).select { |f| f =~ This.include_in_manifest }
+    end
+
+    files.sort!
     File.open( "Manifest.txt", "w" ) do |f|
       f.puts files.join("\n")
     end
