@@ -37,6 +37,7 @@ lib/flat_kit/jsonl/reader.rb
 lib/flat_kit/jsonl/record.rb
 lib/flat_kit/jsonl/writer.rb
 lib/flat_kit/leaf_node.rb
+lib/flat_kit/log_formatter.rb
 lib/flat_kit/logger.rb
 lib/flat_kit/merge.rb
 lib/flat_kit/merge_tree.rb
