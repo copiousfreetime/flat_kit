@@ -82,19 +82,6 @@ Layout/SpaceInsideStringInterpolation:
     - 'Rakefile'
     - 'lib/flat_kit/field_stats.rb'
 
-# Offense count: 4
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: final_newline, final_blank_line
-Layout/TrailingEmptyLines:
-  Exclude:
-    - '**/*.md'
-    - '**/*.markdown'
-    - 'lib/flat_kit/jsonl/record.rb'
-    - 'test/run'
-    - 'test/stat_type/test_nominal_stats.rb'
-    - 'test/stat_type/test_ordinal_stats.rb'
-
 # Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: AllowSafeAssignment.

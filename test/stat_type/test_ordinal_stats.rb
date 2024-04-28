@@ -93,4 +93,3 @@ module TestStatType
     end
   end
 end
-

@@ -77,6 +77,3 @@ module FlatKit
     end
   end
 end
-
-
-
