@@ -35,7 +35,6 @@ module FlatKit
       # Boolean has crossover with Integer so going to let it overrule Integer
       return 5 if self == BooleanType
 
-
       # Integer could potentially overlap with Float, but it is more restrictive
       # so let it override Flaot
       return 4 if self == IntegerType

@@ -70,6 +70,7 @@ module FlatKit
             @compare_keys = CSV.parse_line(opts[:key])
             paths = parser.leftovers
             raise ::Optimist::CommandlineError, "1 and only 1 input file is allowed" if paths.size > 1
+
             path = paths.first || "-" # default to stdin
             @sort = ::FlatKit::Sort.new(input: path, input_fallback: opts[:input_format],
                                         output: opts[:output], output_fallback: opts[:output_format],

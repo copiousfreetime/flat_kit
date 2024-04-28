@@ -111,7 +111,6 @@ class TestFieldStats < ::Minitest::Test
     field_stats, _ = generate_data_with(count: 70, stats: field_stats) { Faker::Number.within(range: 0..200).to_s }
 
     assert_equal(::FlatKit::FieldType::IntegerType, field_stats.field_type)
-
   end
 
   def test_resolves_boolean_appropriately_with_mixed_data

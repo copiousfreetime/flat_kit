@@ -38,6 +38,7 @@ module FlatKit
 
       def [](key)
         return nil unless @compare_fields.include?(key)
+
         if data.nil? && !@complete_structured_data.nil? then
           @complete_structured_data[key]
         else
@@ -71,6 +72,7 @@ module FlatKit
       # values in that order.
       def to_s
         return data.to_csv unless data.nil?
+
         CSV.generate_line(to_a)
       end
 

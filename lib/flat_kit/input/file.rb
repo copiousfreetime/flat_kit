@@ -21,6 +21,7 @@ module FlatKit
         @count = 0
         @path = Pathname.new(obj)
         raise FlatKit::Error, "Input #{obj} is not readable" unless @path.readable?
+
         @io = open_input(path)
       end
 

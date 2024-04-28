@@ -14,6 +14,7 @@ module FlatKit
           false
         when String
           return false if IntegerType.matches?(data)
+
           begin
             Float(data)
             true

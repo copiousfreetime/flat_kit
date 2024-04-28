@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 
-
 test_dir = __dir__
 
 $: << File.join(File.dirname(test_dir), "lib")
@@ -13,6 +12,7 @@ require "find"
 if ARGV.empty? then
   Find.find(test_dir) do |path|
     next unless File.file?(path) && File.basename(path) =~ /\Atest_.*\.rb\Z/
+
     require path
   end
 else

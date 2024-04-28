@@ -82,6 +82,7 @@ module FlatKit
       # values have passed through the stats object then 0.0 is returned;
       def mean
         return 0.0 if @count.zero?
+
         return @sum / @count
       end
 
@@ -100,6 +101,7 @@ module FlatKit
       #
       def rate
         return 0.0 if @sum.zero?
+
         return @count / @sum
       end
 
@@ -113,6 +115,7 @@ module FlatKit
       #
       def stddev
         return 0.0 unless @count > 1
+
         Math.sqrt((@sumsq - ((@sum * @sum)/@count)) / (@count - 1))
       end
     end

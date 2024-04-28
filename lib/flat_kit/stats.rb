@@ -32,6 +32,7 @@ module FlatKit
 
     def collecting_stats_on_field?(name)
       return true if @fields_to_stat == AllFields
+
       return @fields_to_stat.include?(name)
     end
 

@@ -78,6 +78,7 @@ module FlatKit
 
     def <=>(other)
       return -1 if other.sentinel?
+
       value.<=>(other.value)
     end
   end

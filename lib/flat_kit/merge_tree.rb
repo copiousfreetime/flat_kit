@@ -94,6 +94,7 @@ module FlatKit
     def each
       loop do
         break if root.leaf.finished?
+
         yield root.value
         # consume the yielded value and have the tournament tree replay those
         # brackets affected

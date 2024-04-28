@@ -1,6 +1,5 @@
 require_relative "../test_helper"
 
-
 module TestStatType
   class TestNumericalStats < ::Minitest::Test
     def setup

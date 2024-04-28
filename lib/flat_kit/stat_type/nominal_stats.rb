@@ -24,26 +24,31 @@ module FlatKit
 
       def collected_stats
         return self.class.default_stats unless @collecting_frequencies
+
         return self.class.all_stats
       end
 
       def mode
         return nil unless @collecting_frequencies
+
         @frequencies.max_by{ |item, item_count| item_count }.first
       end
 
       def unique_count
         return nil unless @collecting_frequencies
+
         @frequencies.size
       end
 
       def unique_values
         return nil unless @collecting_frequencies
+
         @frequencies.keys
       end
 
       def frequencies
         return nil unless @collecting_frequencies
+
         @frequencies
       end
 

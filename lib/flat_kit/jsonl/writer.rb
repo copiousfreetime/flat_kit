@@ -47,7 +47,6 @@ module FlatKit
         @last_position = ::FlatKit::Position.new(index: record_index,
                                                  offset: start_offset,
                                                  bytesize: bytes_written)
-
       end
     end
   end

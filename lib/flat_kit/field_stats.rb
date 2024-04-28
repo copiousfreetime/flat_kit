@@ -38,7 +38,6 @@ module FlatKit
       unknown_percent
     ]
 
-
     attr_reader :type_counts
     attr_reader :field_type
     attr_reader :name
@@ -56,6 +55,7 @@ module FlatKit
 
       @stats_to_collect.each do |collection_set|
         next if ALL_STATS.include?(collection_set)
+
         raise ArgumentError, "#{collection_set} is not a valid stats collection set, must be one of #{ALL_STATS.map { |s| s.to_s }.join(", ") }"
       end
       raise ArgumentError, "type: must be FieldType subclasses - not #{type}" unless type.kind_of?(Class) && (type.superclass == ::FlatKit::FieldType)
@@ -173,6 +173,7 @@ module FlatKit
 
     def null_percent
       return 0 if total_count.zero?
+
       ((null_count.to_f / total_count) * 100.0).truncate(2)
     end
 
@@ -182,6 +183,7 @@ module FlatKit
 
     def unknown_percent
       return 0 if total_count.zero?
+
       ((unknown_count.to_f / total_count) * 100.0).truncate(2)
     end
 
@@ -226,6 +228,7 @@ module FlatKit
 
     def resolve_guess
       return if field_type_determined?
+
       best_guess_type, _best_guess_count = type_counts.max_by { |k, v| v }
       @field_type = best_guess_type
       @stats = StatType.for(@field_type).new(collecting_frequencies: collecting_frequencies?)

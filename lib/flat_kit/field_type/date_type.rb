@@ -51,7 +51,6 @@ module FlatKit
           "%Y-%j",
           "%a %b %d %Y"
        ]
-
       end
 
       # https://en.wikipedia.org/wiki/Date_format_by_country

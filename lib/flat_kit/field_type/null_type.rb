@@ -25,6 +25,7 @@ module FlatKit
           data
         when String
           return nil if REGEX.match?(data)
+
           CoerceFailure
         else
           CoerceFailure

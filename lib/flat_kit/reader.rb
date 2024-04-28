@@ -55,6 +55,7 @@ module FlatKit
 
     def resolve_compare_fields(value)
       return [] if value == :none
+
       return value
     end
   end

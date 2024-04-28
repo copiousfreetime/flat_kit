@@ -11,11 +11,13 @@ module FlatKit
       def self.matches?(data)
         return false unless data.kind_of?(String)
         return true if data.length == 0
+
         return REGEX.match?(data)
       end
 
       def self.coerce(data)
         return data if REGEX.match?(data)
+
         return CoerceFailure
       rescue
         return CoerceFailure

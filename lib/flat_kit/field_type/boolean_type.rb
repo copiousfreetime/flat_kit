@@ -21,6 +21,7 @@ module FlatKit
         when Integer
           return true if data.zero?
           return true if data == 1
+
           return false
         else
           false
@@ -36,10 +37,12 @@ module FlatKit
         when Numeric
           return false if data.zero?
           return true  if data == 1
+
           CoerceFailure
         when String
           return true  if TRUTHY_REGEX.match?(data)
           return false if FALSEY_REGEX.match?(data)
+
           CoerceFailure
         end
       end
