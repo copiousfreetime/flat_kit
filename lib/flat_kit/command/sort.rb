@@ -64,19 +64,17 @@ module FlatKit
       def parse
         parser = self.class.parser
         ::Optimist::with_standard_exception_handling(parser) do
-          begin
-            @opts = parser.parse(argv)
-            @compare_keys = CSV.parse_line(opts[:key])
-            paths = parser.leftovers
-            raise ::Optimist::CommandlineError, "1 and only 1 input file is allowed" if paths.size > 1
+          @opts = parser.parse(argv)
+          @compare_keys = CSV.parse_line(opts[:key])
+          paths = parser.leftovers
+          raise ::Optimist::CommandlineError, "1 and only 1 input file is allowed" if paths.size > 1
 
-            path = paths.first || "-" # default to stdin
-            @sort = ::FlatKit::Sort.new(input: path, input_fallback: opts[:input_format],
-                                        output: opts[:output], output_fallback: opts[:output_format],
-                                        compare_fields: @compare_keys)
-          rescue ::FlatKit::Error => e
-            raise ::Optimist::CommandlineError, e.message
-          end
+          path = paths.first || "-" # default to stdin
+          @sort = ::FlatKit::Sort.new(input: path, input_fallback: opts[:input_format],
+                                      output: opts[:output], output_fallback: opts[:output_format],
+                                      compare_fields: @compare_keys)
+        rescue ::FlatKit::Error => e
+          raise ::Optimist::CommandlineError, e.message
         end
       end
 

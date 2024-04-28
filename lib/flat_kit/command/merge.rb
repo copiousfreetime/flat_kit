@@ -66,18 +66,16 @@ module FlatKit
       def parse
         parser = self.class.parser
         ::Optimist::with_standard_exception_handling(parser) do
-          begin
-            @opts = parser.parse(argv)
-            @compare_keys = CSV.parse_line(opts[:key])
-            paths = parser.leftovers
-            raise ::Optimist::CommandlineError, "At least 2 input files are required" if paths.size < 2
+          @opts = parser.parse(argv)
+          @compare_keys = CSV.parse_line(opts[:key])
+          paths = parser.leftovers
+          raise ::Optimist::CommandlineError, "At least 2 input files are required" if paths.size < 2
 
-            @merge = ::FlatKit::Merge.new(inputs: paths, input_fallback: opts[:input_format],
-                                          compare_fields: @compare_keys,
-                                          output: opts[:output], output_fallback: opts[:output_format])
-          rescue ::FlatKit::Error => e
-            raise ::Optimist::CommandlineError, e.message
-          end
+          @merge = ::FlatKit::Merge.new(inputs: paths, input_fallback: opts[:input_format],
+                                        compare_fields: @compare_keys,
+                                        output: opts[:output], output_fallback: opts[:output_format])
+        rescue ::FlatKit::Error => e
+          raise ::Optimist::CommandlineError, e.message
         end
       end
 

@@ -67,24 +67,22 @@ module FlatKit
       def parse
         parser = self.class.parser
         ::Optimist::with_standard_exception_handling(parser) do
-          begin
-            opts = parser.parse(argv)
-            fields = ::FlatKit::Stats::AllFields
-            fields = CSV.parse_line(opts[:select]) if opts[:select]
+          opts = parser.parse(argv)
+          fields = ::FlatKit::Stats::AllFields
+          fields = CSV.parse_line(opts[:select]) if opts[:select]
 
-            stats = [FieldStats::CORE_STATS]
-            stats << FieldStats::CARDINALITY_STATS if opts[:cardinality] || opts[:everything]
+          stats = [FieldStats::CORE_STATS]
+          stats << FieldStats::CARDINALITY_STATS if opts[:cardinality] || opts[:everything]
 
-            paths = parser.leftovers
-            raise ::Optimist::CommandlineError, "1 and only 1 input file is allowed" if paths.size > 1
+          paths = parser.leftovers
+          raise ::Optimist::CommandlineError, "1 and only 1 input file is allowed" if paths.size > 1
 
-            path = paths.first || "-" # default to stdin
-            @stats = ::FlatKit::Stats.new(input: path, input_fallback: opts[:input_format],
-                                          output: opts[:output], output_fallback: opts[:output_format],
-                                          fields_to_stat: fields, stats_to_collect: stats)
-          rescue ::FlatKit::Error => e
-            raise ::Optimist::CommandlineError, e.message
-          end
+          path = paths.first || "-" # default to stdin
+          @stats = ::FlatKit::Stats.new(input: path, input_fallback: opts[:input_format],
+                                        output: opts[:output], output_fallback: opts[:output_format],
+                                        fields_to_stat: fields, stats_to_collect: stats)
+        rescue ::FlatKit::Error => e
+          raise ::Optimist::CommandlineError, e.message
         end
       end
 

@@ -158,12 +158,10 @@ module FlatKit
         when String
           coerced_data = CoerceFailure
           parse_formats.each do |format|
-            begin
-              coerced_data = Date.strptime(data, format)
-              break
-            rescue StandardError => _e
-              false
-            end
+            coerced_data = Date.strptime(data, format)
+            break
+          rescue StandardError => _e
+            false
           end
           coerced_data
         else

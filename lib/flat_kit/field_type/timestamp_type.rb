@@ -31,12 +31,10 @@ module FlatKit
           data
         when String
           parse_formats.each do |format|
-            begin
-              coerced_data = Time.strptime(data, format).utc
-              return coerced_data
-            rescue StandardError => _e
-              # do nothing
-            end
+            coerced_data = Time.strptime(data, format).utc
+            return coerced_data
+          rescue StandardError => _e
+            # do nothing
           end
           CoerceFailure
         else
