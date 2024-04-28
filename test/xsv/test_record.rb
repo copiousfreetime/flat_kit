@@ -4,7 +4,7 @@ require "test_helper"
 require "faker"
 
 module TestXsv
-  class TestRecord< ::Minitest::Test
+  class TestRecord < ::Minitest::Test
     def setup
       @one_row_dataset = DeviceDataset.new(count: 1)
       @csv_row = @one_row_dataset.records_as_csv_rows.first

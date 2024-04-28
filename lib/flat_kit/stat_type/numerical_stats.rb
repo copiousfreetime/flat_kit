@@ -115,7 +115,7 @@ module FlatKit
       def stddev
         return 0.0 unless @count > 1
 
-        Math.sqrt((@sumsq - ((@sum * @sum)/@count)) / (@count - 1))
+        Math.sqrt((@sumsq - ((@sum * @sum) / @count)) / (@count - 1))
       end
     end
   end

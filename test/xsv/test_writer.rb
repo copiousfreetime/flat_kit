@@ -70,7 +70,7 @@ module TestXsv
 
           current_position = writer.current_position
 
-          assert_equal(idx+1, current_position.index)
+          assert_equal(idx + 1, current_position.index)
           assert_equal(header_bytes + records_bytes, current_position.offset)
           assert_equal(0, current_position.bytesize)
         end
