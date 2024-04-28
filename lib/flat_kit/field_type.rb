@@ -10,9 +10,12 @@ module FlatKit
       find_children(:matches?, data)
     end
 
+    # rubocop:disable Style/RedundantSort
+    # We need the stable sort, max_by(&:weight) returns the wrong one
     def self.best_guess(data)
-      candidate_types(data).max_by(&:weight)
+      candidate_types(data).sort_by(&:weight).last
     end
+    # rubocop:enable Style/RedundantSort
 
     def self.type_name
       raise NotImplementedError, "must impleent #{type_name}"
