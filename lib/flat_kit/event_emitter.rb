@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FlatKit
   # A simplified Observable class for use internally
   #

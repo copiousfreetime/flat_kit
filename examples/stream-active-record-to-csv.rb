@@ -1,4 +1,5 @@
 #!/usr/bin/env
+# frozen_string_literal: true
 
 #------------------------------------------------------------------------------
 # This is an example to show how to stream an active record scope to a CSV file

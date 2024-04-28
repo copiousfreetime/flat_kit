@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FlatKit
   # Collect stats on a single field. We may not know what the field data type is
   # to start with, so collect a bunch of values until we have the threshold, and

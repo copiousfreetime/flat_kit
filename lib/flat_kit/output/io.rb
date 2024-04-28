@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FlatKit
   class Output
     class IO < Output

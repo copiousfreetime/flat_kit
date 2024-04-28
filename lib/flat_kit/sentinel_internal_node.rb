@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FlatKit
   # Private: The Sentinel Internal Node is a private class used by the MergeTree
   # class.

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FlatKit
   class Merge
     include ::FlatKit::EventEmitter

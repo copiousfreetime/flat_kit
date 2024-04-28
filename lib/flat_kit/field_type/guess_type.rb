@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FlatKit
   class FieldType
     # GuessType is a field type where we don't know what type the field is, and

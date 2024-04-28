@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "optimist"
 require_relative "../flat_kit/command"
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FlatKit
   class StatType
     # Status object to keep track of the count and frequency of values

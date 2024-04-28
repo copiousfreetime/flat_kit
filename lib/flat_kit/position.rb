@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FlatKit
   # The information about the position of a record in an IO stream
   #

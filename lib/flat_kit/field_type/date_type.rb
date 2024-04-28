@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FlatKit
   class FieldType
     # Representing the type of data which only includes data up to the day

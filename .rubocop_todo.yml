@@ -594,13 +594,6 @@ Style/FormatString:
   Exclude:
     - 'lib/flat_kit/logger.rb'
 
-# Offense count: 96
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: always, always_true, never
-Style/FrozenStringLiteralComment:
-  Enabled: false
-
 # Offense count: 8
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Style/GlobalStdStream:

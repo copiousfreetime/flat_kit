@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require "logger"
 
 module FlatKit
   class LogFormatter < ::Logger::Formatter
-    FORMAT          = "%s %5d %05s : %s\n".freeze
-    DATETIME_FORMAT = "%Y-%m-%dT%H:%M:%SZ".freeze
+    FORMAT          = "%s %5d %05s : %s\n"
+    DATETIME_FORMAT = "%Y-%m-%dT%H:%M:%SZ"
     def initialize
       super
       self.datetime_format = DATETIME_FORMAT

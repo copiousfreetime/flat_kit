@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FlatKit
   # Public: Merge a list of sorted records from Readers into a single output Writer
   #

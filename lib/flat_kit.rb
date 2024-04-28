@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FlatKit
   VERSION = "0.3.1"
 end

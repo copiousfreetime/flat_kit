@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FlatKit
   # Public: the base class for all format readers.
   #

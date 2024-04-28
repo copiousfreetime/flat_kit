@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FlatKit
   # Private: This is a class used internally by MergeTree and should not be used
   # outside of that context.

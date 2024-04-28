@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FlatKit
   class Sort
     attr_reader :reader, :writer, :compare_fields

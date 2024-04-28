@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FlatKit
   class FieldType
     # StringType is essentially a fallback - hence its lower weight than other

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FlatKit
   class StatType
     # Same as NominalStats and also collects min and max

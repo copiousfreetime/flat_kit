@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FlatKit
   # Private: The Sentinel Leaf Node is used internally by the MergeTree
   #

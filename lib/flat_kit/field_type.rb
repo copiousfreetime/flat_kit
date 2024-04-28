@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FlatKit
   class FieldType
     extend FlatKit::DescendantTracker

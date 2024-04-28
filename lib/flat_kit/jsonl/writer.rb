@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FlatKit
   module Jsonl
     class Writer < ::FlatKit::Writer

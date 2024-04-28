@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FlatKit
   # Private: The LeafNode is a wrapper around a Reader object to enable
   # a consistent api for use in the MergeTree

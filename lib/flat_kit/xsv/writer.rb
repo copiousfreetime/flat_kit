@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FlatKit
   module Xsv
     class Writer < ::FlatKit::Writer
