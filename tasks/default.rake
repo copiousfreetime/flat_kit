@@ -57,6 +57,17 @@ rescue LoadError
 end
 
 #------------------------------------------------------------------------------
+# Rubocop - static code analysis
+#------------------------------------------------------------------------------
+begin
+  require 'rubocop/rake_task'
+  RuboCop::RakeTask.new
+rescue LoadError
+  This.task_warning( 'simplecov' )
+end
+
+
+#------------------------------------------------------------------------------
 # Manifest - We want an explicit list of thos files that are to be packaged in
 #            the gem. Most of this is from Hoe.
 #------------------------------------------------------------------------------

@@ -7,17 +7,19 @@ This.email    = "jeremy@copiousfreetime.org"
 This.homepage = "http://github.com/copiousfreetime/#{ This.name }"
 
 This.ruby_gemspec do |spec|
-  spec.add_dependency('oj', '~> 3.0')
-  spec.add_dependency('optimist', '~> 3.0')
-  spec.add_dependency('csv', '~> 3.3')
+  spec.add_runtime_dependency('oj', '~> 3.0')
+  spec.add_runtime_dependency('optimist', '~> 3.0')
+  spec.add_runtime_dependency('csv', '~> 3.3')
 
-  spec.add_development_dependency( 'faker'    , '~> 3.0')
-  spec.add_development_dependency( 'rake'     , '~> 13.0')
-  spec.add_development_dependency( 'minitest' , '~> 5.11' )
-  spec.add_development_dependency( 'minitest-junit' , '~> 1.0' )
-  spec.add_development_dependency( 'minitest-focus' , '~> 1.2' )
-  spec.add_development_dependency( 'rdoc'     , '~> 6.3' )
-  spec.add_development_dependency( 'simplecov', '~> 0.21')
+  spec.metadata = {
+    "bug_tracker_uri" => "https://github.com/copiousfreetime/#{This.name}/issues",
+    "changelog_uri" => "https://github.com/copiousfreetime/#{This.name}/blob/master/HISTORY.md",
+    "homepage_uri" => "https://github.com/copiousfreetime/#{This.name}",
+    "source_code_uri" => "https://github.com/copiousfreetime/#{This.name}",
+    "label" => "flat_kit",
+    "rubygems_mfa_required" => "true"
+  }
+
 end
 
 load 'tasks/default.rake'

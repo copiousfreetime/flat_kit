@@ -1,0 +1,25 @@
+inherit_from: .rubocop_todo.yml
+
+require:
+  - rubocop-faker
+  - rubocop-github
+  - rubocop-md
+  - rubocop-minitest
+  - rubocop-packaging
+  - rubocop-rake
+  - rubocop-thread_safety
+  - rubocop-performance
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'coverage/**/*'
+    - 'doc/**/*'
+    - 'tasks/**/*'
+    - 'pkg/**/*'
+    - 'tmp/**/*'
+
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+  ConsistentQuotesInMultiline: false
