@@ -25,7 +25,7 @@ module FlatKit
         end
       rescue FlatKit::Error => e
         raise e
-      rescue => e
+      rescue StandardError => e
         ::FlatKit.logger.error "Error writing jsonl records to #{output.name}: #{e}"
         raise ::FlatKit::Error, e
       end

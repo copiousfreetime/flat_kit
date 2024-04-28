@@ -20,7 +20,7 @@ module FlatKit
         return data if REGEX.match?(data)
 
         CoerceFailure
-      rescue
+      rescue StandardError
         CoerceFailure
       end
     end

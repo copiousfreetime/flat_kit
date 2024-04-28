@@ -15,7 +15,7 @@ module FlatKit
 
       def self.coerce(data)
         data.to_s
-      rescue => _e
+      rescue StandardError => _e
         CoerceFailure
       end
     end

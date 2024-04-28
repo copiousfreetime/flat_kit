@@ -36,7 +36,7 @@ module FlatKit
           yield record
         end
         input.close
-      rescue => e
+      rescue StandardError => e
         ::FlatKit.logger.error "Error reading xsv records from #{input.name}: #{e}"
         raise ::FlatKit::Error, e
       end
