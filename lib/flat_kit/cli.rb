@@ -15,7 +15,7 @@ module FlatKit
       @parser ||= ::Optimist::Parser.new do
         version ::FlatKit::VERSION
 
-        banner "fk v#{self.version}"
+        banner "fk v#{version}"
 
         banner <<~USAGE
 

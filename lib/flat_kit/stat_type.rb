@@ -41,9 +41,9 @@ module FlatKit
     def to_hash(*args)
       h = {}
       args = [args].flatten
-      args = self.collected_stats if args.empty?
+      args = collected_stats if args.empty?
       args.each do |meth|
-        h[meth] = self.send(meth)
+        h[meth] = send(meth)
       end
       h
     end

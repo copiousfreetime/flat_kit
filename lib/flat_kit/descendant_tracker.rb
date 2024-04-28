@@ -8,7 +8,7 @@ module FlatKit
       super
       return unless klass.instance_of?(Class)
 
-      self.children << klass
+      children << klass
     end
 
     def children

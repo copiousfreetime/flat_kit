@@ -558,18 +558,6 @@ Style/RedundantPercentQ:
   Exclude:
     - 'flat_kit.gemspec'
 
-# Offense count: 10
-# This cop supports safe autocorrection (--autocorrect).
-Style/RedundantSelf:
-  Exclude:
-    - 'lib/flat_kit/cli.rb'
-    - 'lib/flat_kit/descendant_tracker.rb'
-    - 'lib/flat_kit/field_stats.rb'
-    - 'lib/flat_kit/field_type.rb'
-    - 'lib/flat_kit/field_type/guess_type.rb'
-    - 'lib/flat_kit/leaf_node.rb'
-    - 'lib/flat_kit/stat_type.rb'
-
 # Offense count: 2
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Style/RedundantSort:

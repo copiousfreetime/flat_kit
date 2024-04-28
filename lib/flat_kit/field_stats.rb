@@ -190,7 +190,7 @@ module FlatKit
 
       {}.tap do |h|
         EXPORT_FIELDS.each do |n|
-          h[n] = self.send(n)
+          h[n] = send(n)
         end
       end
     end

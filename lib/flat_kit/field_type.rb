@@ -15,15 +15,15 @@ module FlatKit
     end
 
     def self.type_name
-      raise NotImplementedError, "must impleent #{self.type_name}"
+      raise NotImplementedError, "must impleent #{type_name}"
     end
 
     def self.matches?(data)
-      raise NotImplementedError, "must implement #{self.name}.matches?(data)"
+      raise NotImplementedError, "must implement #{name}.matches?(data)"
     end
 
     def self.coerce(data)
-      raise NotImplementedError, "must implement #{self.name}.coerce(data)"
+      raise NotImplementedError, "must implement #{name}.coerce(data)"
     end
 
     # Each type has a weight so if a value matches multiple types, then the list

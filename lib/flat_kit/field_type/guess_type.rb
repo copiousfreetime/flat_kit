@@ -7,7 +7,7 @@ module FlatKit
     # data.
     class GuessType < FieldType
       def self.type_name
-        self.name
+        name
       end
 
       def self.matches?(data)
