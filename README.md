@@ -1,5 +1,7 @@
 ## FlatKit
 
+[![Build Status](https://copiousfreetime.semaphoreci.com/badges/flat_kit/branches/main.svg)](https://copiousfreetime.semaphoreci.com/projects/flat_kit)
+
 * [Homepage](https://github.com/copiousfreetime/flat_kit/)
 * [Github Project](https://github.com/copiousfreetime/flat_kit)
 
