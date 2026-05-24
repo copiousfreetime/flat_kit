@@ -82,7 +82,6 @@ class TestFieldStats < Minitest::Test
   end
 
   def test_unknown_type_stats
-    field_stats = ::FlatKit::FieldStats.new(name: "numeric-with-unknown")
     field_stats, number_data = generate_data_with { Faker::Number.within(range: 1.0..100.0) }
 
     unknown_count = 20

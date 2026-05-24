@@ -13,8 +13,7 @@ module FlatKit
     end
 
     def self.for_path(path)
-      io = File.open(path.to_s, "a")
-      for_io(io)
+      for_io(File.open(path.to_s, "a"))
     end
   end
 

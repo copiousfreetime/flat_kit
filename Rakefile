@@ -1,8 +1,9 @@
 # frozen_string_literal: true
+
 # vim: syntax=ruby
 
 load "tasks/this.rb"
-require 'date'
+require "date"
 
 This.name     = "flat_kit"
 This.author   = "Jeremy Hinegardner"
