@@ -1,4 +1,8 @@
 # FlatKit Changelog
+## Version 1.1.0
+* Update semaphore config
+* rubocop fixes
+* Update tested ruby versions
 
 ## Version 1.0.0
 
