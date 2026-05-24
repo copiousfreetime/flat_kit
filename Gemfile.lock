@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    flat_kit (1.0.0)
+    flat_kit (1.1.0)
       csv (~> 3.3)
       oj (~> 3.0)
       optimist (~> 3.0)
@@ -203,7 +203,7 @@ CHECKSUMS
   erb (6.0.4) sha256=38e3803694be357fe2bfe312487c74beaf9fb4e5beb3e22498952fe1645b95d9
   erb (6.0.4-java) sha256=3014611d37917a20e14ea3ba71e06a8d581b71c073858d7796eeee45b01e8407
   faker (3.8.0) sha256=c147b308df73a90f27a4fc84f18d4c22ef0ad9c2a64b2b61c86fd0ca71753efc
-  flat_kit (1.0.0)
+  flat_kit (1.1.0)
   heel (4.0.1) sha256=bd0bd0b20efec89a6bf2ab37958525386cfe84d0ba6159f49ac9cf684ec433d9
   highline (3.1.2) sha256=67cbd34d19f6ef11a7ee1d82ffab5d36dfd5b3be861f450fc1716c7125f4bb4a
   i18n (1.14.8) sha256=285778639134865c5e0f6269e0b818256017e8cde89993fdfcbfb64d088824a5
