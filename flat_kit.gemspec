@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib".freeze]
   s.authors = ["Jeremy Hinegardner".freeze]
   s.bindir = "exe".freeze
-  s.date = "2024-04-28"
+  s.date = "2026-05-23"
   s.description = "A library and commandline program for reading, writing, indexing,  sorting, and merging CSV, TSV, JSON and other flat-file formats.".freeze
   s.email = "jeremy@copiousfreetime.org".freeze
   s.executables = ["fk".freeze]
@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT".freeze]
   s.rdoc_options = ["--main".freeze, "README.md".freeze, "--markup".freeze, "tomdoc".freeze]
   s.required_ruby_version = Gem::Requirement.new(">= 3.0.0".freeze)
-  s.rubygems_version = "3.5.9".freeze
+  s.rubygems_version = "4.0.10".freeze
   s.summary = "A library and commandline program for reading, writing, indexing, sorting, and merging CSV, TSV, JSON and other flat-file formats.".freeze
 
   s.specification_version = 4
