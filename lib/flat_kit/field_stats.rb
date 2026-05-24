@@ -60,7 +60,7 @@ module FlatKit
       @stats_to_collect.each do |collection_set|
         next if ALL_STATS.include?(collection_set)
 
-        valid_sets = ALL_STATS.map(&:to_s).join(", ")
+        valid_sets = ALL_STATS.join(", ")
 
         raise ArgumentError, "#{collection_set} is not a valid stats collection set, must be one of #{valid_sets}"
       end

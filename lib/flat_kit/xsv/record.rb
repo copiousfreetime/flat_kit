@@ -58,10 +58,8 @@ module FlatKit
       def to_a
         return data.fields unless data.nil?
 
-        [].tap do |a|
-          @ordered_fields.each do |field|
-            a << @complete_structured_data[field]
-          end
+        @ordered_fields.map do |field|
+          @complete_structured_data[field]
         end
       end
 

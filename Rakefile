@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
-#
 # vim: syntax=ruby
+
 load "tasks/this.rb"
+require "date"
 
 This.name     = "flat_kit"
 This.author   = "Jeremy Hinegardner"
@@ -10,6 +11,8 @@ This.email    = "jeremy@copiousfreetime.org"
 This.homepage = "http://github.com/copiousfreetime/#{This.name}"
 
 This.ruby_gemspec do |spec|
+  spec.date = Date.today.to_s
+
   spec.add_runtime_dependency("oj", "~> 3.0")
   spec.add_runtime_dependency("optimist", "~> 3.0")
   spec.add_runtime_dependency("csv", "~> 3.3")

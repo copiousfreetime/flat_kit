@@ -12,7 +12,6 @@ module FlatKit
 
     def initialize(input:, output:, input_fallback: "auto", output_fallback: "auto",
                    fields_to_stat: AllFields, stats_to_collect: FieldStats::CORE_STATS)
-
       @fields_to_stat   = fields_to_stat
       @stats_to_collect = stats_to_collect
       @stats_by_field   = {}

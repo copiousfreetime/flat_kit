@@ -105,10 +105,8 @@ class DeviceDataset
   end
 
   def as_csv_rows(text)
-    [].tap do |a|
-      CSV.new(text, converters: :numeric, headers: :first_row, return_headers: false).each do |row|
-        a << row
-      end
+    CSV.new(text, converters: :numeric, headers: :first_row, return_headers: false).map do |row|
+      row
     end
   end
 end
